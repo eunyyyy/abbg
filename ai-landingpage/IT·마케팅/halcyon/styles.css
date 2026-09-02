@@ -161,6 +161,50 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* =========================================================
+   SCROLL THREAD — a length of thread that spools down the page
+   as you scroll, echoing the reference site's spool-of-thread motif
+   ========================================================= */
+main { position: relative; }
+.thread-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 16px;
+  width: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+.thread-track {
+  position: absolute;
+  inset: 0;
+  background: var(--gray-200);
+  border-radius: 4px;
+}
+.thread-fill {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, var(--primary-500) 0 7px, var(--primary-600) 7px 9px);
+  border-radius: 4px;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.thread-bead {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  background: var(--primary-500);
+  border: 2px solid var(--gray-0);
+  box-shadow: 0 0 0 1px var(--primary-300), var(--shadow-card);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 768px) {
+  .thread-rail { display: none; }
+}
+
+/* =========================================================
    HEADER / GNB
    ========================================================= */
 .header {
@@ -177,9 +221,10 @@ h1, h2, h3, p { margin: 0; }
   margin: 0 auto;
   height: 100%;
   padding: 0 var(--side-pad);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 40px;
+  column-gap: 24px;
 }
 .logo {
   font-family: var(--font-en);
@@ -187,9 +232,9 @@ h1, h2, h3, p { margin: 0; }
   font-size: 24px;
   letter-spacing: 0.5px;
   color: var(--gray-900);
-  flex-shrink: 0;
+  justify-self: start;
 }
-.gnb { flex: 1; }
+.gnb { justify-self: center; }
 .gnb > ul {
   display: flex;
   gap: 36px;
@@ -246,7 +291,7 @@ h1, h2, h3, p { margin: 0; }
   border: none;
   cursor: pointer;
   padding: 0;
-  flex-shrink: 0;
+  justify-self: end;
 }
 .hamburger span {
   display: block;
@@ -625,32 +670,6 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* =========================================================
-   CTA BAND
-   ========================================================= */
-.cta-band {
-  background: linear-gradient(135deg, var(--gold-50), var(--gray-0) 60%);
-  padding: 140px var(--side-pad);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.cta-quote-mark {
-  font-family: Georgia, serif;
-  font-size: 180px;
-  color: var(--gold-300);
-  line-height: 1;
-  opacity: 0.6;
-  margin-bottom: -40px;
-}
-.cta-text {
-  font-size: 40px;
-  font-weight: 800;
-  color: var(--gray-900);
-  line-height: 1.5;
-  position: relative;
-}
-
-/* =========================================================
    FOOTER
    ========================================================= */
 .footer {
@@ -730,7 +749,7 @@ h1, h2, h3, p { margin: 0; }
   body { font-size: 16px; }
   .gnb { display: none; }
   .hamburger { display: flex; }
-  .header-inner { padding: 0 var(--side-pad-mobile); gap: 0; justify-content: space-between; }
+  .header-inner { padding: 0 var(--side-pad-mobile); column-gap: 0; }
 
   .hero {
     grid-template-columns: 1fr;
@@ -761,10 +780,6 @@ h1, h2, h3, p { margin: 0; }
 
   .culture-cards { gap: 14px; }
   .value-card { padding: 24px; }
-
-  .cta-band { padding: 80px var(--side-pad-mobile); }
-  .cta-quote-mark { font-size: 100px; margin-bottom: -20px; }
-  .cta-text { font-size: 24px; }
 
   .footer { padding: 40px var(--side-pad-mobile); }
   .footer-inner { flex-direction: column; align-items: flex-start; text-align: left; }

@@ -162,7 +162,35 @@
   }
 
   /* ---------------------------------------------------------
-     6. Header shadow on scroll (subtle polish)
+     6. Scroll thread — a line spools down the page as you scroll,
+        proportional to how far through the page you are (the
+        reference site's spool-of-thread motif, made interactive)
+  --------------------------------------------------------- */
+  var threadFill = document.getElementById('threadFill');
+  var threadBead = document.getElementById('threadBead');
+  if (threadFill && threadBead) {
+    var threadTicking = false;
+    var updateThread = function () {
+      var doc = document.documentElement;
+      var scrollTop = window.pageYOffset || doc.scrollTop;
+      var scrollable = doc.scrollHeight - window.innerHeight;
+      var progress = scrollable > 0 ? Math.min(1, Math.max(0, scrollTop / scrollable)) : 0;
+      threadFill.style.transform = 'scaleY(' + progress + ')';
+      threadBead.style.top = (progress * 100) + '%';
+      threadTicking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!threadTicking) {
+        requestAnimationFrame(updateThread);
+        threadTicking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateThread);
+    updateThread();
+  }
+
+  /* ---------------------------------------------------------
+     7. Header shadow on scroll (subtle polish)
   --------------------------------------------------------- */
   window.addEventListener('scroll', function () {
     if (!header) return;
