@@ -235,19 +235,6 @@ h1, h2, h3, p { margin: 0; }
 }
 .dropdown li a:hover { color: var(--primary-500); background: var(--primary-50); }
 
-.btn-login {
-  border: 1.5px solid var(--gray-300);
-  border-radius: var(--radius-pill);
-  padding: 10px 24px;
-  font-family: var(--font-en);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--gray-800);
-  transition: all .2s ease;
-  flex-shrink: 0;
-}
-.btn-login:hover { border-color: var(--primary-500); color: var(--primary-500); }
-
 .hamburger {
   display: none;
   flex-direction: column;
@@ -294,8 +281,6 @@ h1, h2, h3, p { margin: 0; }
   border-bottom: 1px solid var(--gray-100);
   color: var(--gray-800);
 }
-.mobile-nav .mobile-login { color: var(--primary-500); border-bottom: none; }
-
 /* =========================================================
    TICKER
    ========================================================= */
@@ -743,7 +728,7 @@ h1, h2, h3, p { margin: 0; }
     --header-h: var(--header-h-mobile);
   }
   body { font-size: 16px; }
-  .gnb, .btn-login { display: none; }
+  .gnb { display: none; }
   .hamburger { display: flex; }
   .header-inner { padding: 0 var(--side-pad-mobile); gap: 0; justify-content: space-between; }
 
