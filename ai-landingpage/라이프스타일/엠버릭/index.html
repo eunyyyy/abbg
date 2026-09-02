@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMBERIC — 앤트워프의 파이어 그릴 비스트로</title>
+<meta name="description" content="장작불에 천천히 구운 스테이크와 오픈 키친의 정직한 한 접시 — 앤트워프의 파이어 그릴 비스트로, EMBERIC.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23E8432E'/%3E%3Cpath d='M50 20c8 14-6 18-6 30a12 12 0 0024 0c0-8-4-10-4-16 6 4 10 12 10 20a20 20 0 01-40 0c0-16 10-22 16-34z' fill='%23FCF9F5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#content">본문 바로가기</a>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="tickerTrack">
+    <span>영업중 — 19:00까지</span><span class="ticker__sep">—</span>
+    <span>영업중 — 19:00까지</span><span class="ticker__sep">—</span>
+    <span>영업중 — 19:00까지</span><span class="ticker__sep">—</span>
+    <span>영업중 — 19:00까지</span><span class="ticker__sep">—</span>
+    <span>영업중 — 19:00까지</span><span class="ticker__sep">—</span>
+    <span>영업중 — 19:00까지</span><span class="ticker__sep">—</span>
+  </div>
+</div>
+
+<header class="gnb" id="gnb">
+  <div class="gnb__inner">
+    <a href="#hero" class="gnb__logo">EMBERIC</a>
+    <button class="gnb__toggle" id="gnbToggle" aria-expanded="false" aria-controls="gnbMenu" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="gnb__nav" id="gnbMenu">
+      <a href="#about" class="gnb__link hover-underline">소개</a>
+      <a href="#collection" class="gnb__link hover-underline">메뉴</a>
+      <a href="#contact" class="gnb__link hover-underline">문의</a>
+      <a href="#visit" class="gnb__link hover-underline">오시는 길</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__stickers" data-sticker="wrap">
+      <div class="hero__sticker is--1" data-sticker="item" style="--sticker-size:6.4rem"><svg viewBox="0 0 64 64"><path d="M20 8h24l-2 20a10 10 0 01-20 0z" fill="none" stroke="currentColor" stroke-width="3"/><line x1="32" y1="38" x2="32" y2="52" stroke="currentColor" stroke-width="3"/><line x1="22" y1="52" x2="42" y2="52" stroke="currentColor" stroke-width="3"/></svg></div>
+      <div class="hero__sticker is--2" data-sticker="item" style="--sticker-size:5.4rem;transform:rotate(-8deg)"><svg viewBox="0 0 64 64"><path d="M14 40c0-14 10-26 24-26 8 0 14 6 14 13 0 9-8 13-16 13-6 0-10 3-10 8 0 6-5 10-11 10-6 0-9-4-9-8 0-4 3-7 8-10z" fill="none" stroke="currentColor" stroke-width="3"/></svg></div>
+      <div class="hero__sticker is--3" data-sticker="item" style="--sticker-size:5.6rem;transform:rotate(16deg)"><svg viewBox="0 0 64 64"><line x1="32" y1="8" x2="32" y2="56" stroke="currentColor" stroke-width="3"/><path d="M32 16c8-4 14 2 14 2s-6 6-14 4M32 28c-8-4-14 2-14 2s6 6 14 4M32 40c8-4 14 2 14 2s-6 6-14 4" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></div>
+      <div class="hero__sticker is--4" data-sticker="item" style="--sticker-size:6rem"><svg viewBox="0 0 64 64"><circle cx="24" cy="30" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="36" cy="30" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="40" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="18" cy="40" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="42" cy="40" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M30 24V10c4-2 8 0 8 0" stroke="currentColor" stroke-width="2.5" fill="none"/></svg></div>
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__headline">불맛 그대로.<br><em>정직한 한 접시.</em></h1>
+      <p class="hero__meta">비스트로 &amp; 그릴 — 앤트워프 엠버레인 14</p>
+      <div class="hero__cta">
+        <a href="#collection" class="btn btn--primary">메뉴 보기</a>
+        <a href="#contact" class="btn btn--outline">테이블 예약</a>
+      </div>
+    </div>
+    <div class="hero__scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="about__inner">
+      <div class="about__images">
+        <div class="about__img-wrap about__img-wrap--left" data-parallax="left">
+          <img src="img/about-01.jpg" alt="앤트워프 주방에서 요리를 플레이팅하는 EMBERIC의 셰프" width="683" height="1024" loading="lazy">
+        </div>
+        <div class="about__img-wrap about__img-wrap--right" data-parallax="right">
+          <img src="img/about-02.jpg" alt="EMBERIC에서 장작불로 마무리한 스테이크와 감자튀김" width="683" height="1024" loading="lazy">
+        </div>
+      </div>
+      <div class="about__text">
+        <h2 class="about__heading">손으로 지핀 불,<br>자부심으로 내는 한 접시.</h2>
+        <p class="about__quote">"제게 중요한 건 두 가지입니다. 모든 접시가 정확한 상태로 패스를 떠나는 것, 그리고 이 공간이 오래 머물고 싶은 곳이 되는 것."</p>
+        <p class="about__body">미카 레예스는 바쁜 브라스리에서 일하던 틈틈이 주말마다 이웃들에게 요리를 대접하며, 엠버레인의 화목 그릴 하나로 EMBERIC을 시작했습니다. 3년이 지난 지금은 완전한 오픈 키친이 되었지만 원칙은 그대로입니다 — 정직한 부위, 진짜 불, 회전율을 위해 서둘러 내보내는 요리는 없다는 것.</p>
+        <p class="about__signature">— 미카 레예스, 헤드 셰프 &amp; 오너</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COLLECTION ===== -->
+  <section class="collection" id="collection">
+    <div class="collection__header">
+      <h2 class="section-heading">제철 재료로,<br><em>매 계절 새롭게.</em></h2>
+    </div>
+
+    <div class="card-marquee" aria-hidden="true">
+      <div class="card-marquee__track" id="cardMarqueeTrack">
+        <div class="card-marquee__item" style="transform:rotate(-6deg)"><img src="img/menu-card-01.jpg" alt="" loading="lazy"></div>
+        <div class="card-marquee__item" style="transform:rotate(5deg)"><img src="img/about-02.jpg" alt="" loading="lazy"></div>
+        <div class="card-marquee__item card-marquee__item--cta" style="transform:rotate(-7deg)">
+          <svg viewBox="0 0 48 48"><path d="M8 20h32v6H8z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M10 26h28v16H10z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 20v22M24 20c-4-6-12-6-12-1s6 3 12 1zM24 20c4-6 12-6 12-1s-6 3-12 1z" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+          <h3>기프트 바우처</h3>
+          <p>선물 고민될 때, EMBERIC 바우처는 언제나 좋은 선택입니다.</p>
+        </div>
+        <div class="card-marquee__item" style="transform:rotate(4deg)"><img src="img/about-01.jpg" alt="" loading="lazy"></div>
+        <div class="card-marquee__item" style="transform:rotate(-5deg)"><img src="img/menu-card-02.jpg" alt="" loading="lazy"></div>
+
+        <div class="card-marquee__item" style="transform:rotate(-6deg)"><img src="img/menu-card-01.jpg" alt="" loading="lazy"></div>
+        <div class="card-marquee__item" style="transform:rotate(5deg)"><img src="img/about-02.jpg" alt="" loading="lazy"></div>
+        <div class="card-marquee__item card-marquee__item--cta" style="transform:rotate(-7deg)">
+          <svg viewBox="0 0 48 48"><path d="M8 20h32v6H8z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M10 26h28v16H10z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 20v22M24 20c-4-6-12-6-12-1s6 3 12 1zM24 20c4-6 12-6 12-1s-6 3-12 1z" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+          <h3>기프트 바우처</h3>
+          <p>선물 고민될 때, EMBERIC 바우처는 언제나 좋은 선택입니다.</p>
+        </div>
+        <div class="card-marquee__item" style="transform:rotate(4deg)"><img src="img/about-01.jpg" alt="" loading="lazy"></div>
+        <div class="card-marquee__item" style="transform:rotate(-5deg)"><img src="img/menu-card-02.jpg" alt="" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="menu-list">
+      <div class="menu-cat">
+        <div class="menu-cat__head">
+          <span class="menu-cat__icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="24" r="6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3>스타터</h3>
+        </div>
+        <ul class="menu-cat__items">
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M2 18 12 4l10 14z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="15" r="1" fill="currentColor"/><circle cx="14" cy="12" r="1" fill="currentColor"/></svg></span><span class="item-name">부라타 치즈와 토마토</span><b>₩18,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 16c0-5 4-9 8-9s8 4 8 9-4 5-8 5-8 0-8-5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">소고기 타르타르</span><b>₩21,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M3 12h18a9 4.5 0 01-18 0z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 8c-1-1 .5-2-.5-4M15 8c-1-1 .5-2-.5-4" stroke="currentColor" stroke-width="1.4"/></svg></span><span class="item-name">오늘의 수프</span><b>₩12,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-4 0-7 3-7 7 0 3 2 5 2 8a2 2 0 004 0c0-2-1-3-1-5M12 3c4 0 7 3 7 7 0 3-2 5-2 8a2 2 0 01-4 0c0-2 1-3 1-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">숯불 문어구이</span><b>₩24,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M2 18 12 4l10 14z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="15" r="1" fill="currentColor"/><circle cx="14" cy="12" r="1" fill="currentColor"/></svg></span><span class="item-name">까망베르 구이</span><b>₩17,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 20c0-9 7-16 16-16 0 9-7 16-16 16z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c3-3 7-6 12-12" stroke="currentColor" stroke-width="1.4"/></svg></span><span class="item-name">가든 샐러드</span><b>₩14,000</b></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat__head">
+          <span class="menu-cat__icon"><svg viewBox="0 0 48 48"><path d="M8 30c0-10 8-20 18-20 6 0 10 4 10 10 0 7-6 10-12 10-4 0-8 2-8 6 0 4-4 8-8 8-4 0-6-3-6-6 0-3 2-5 6-8z" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></span>
+          <h3>스테이크 &amp; 메인</h3>
+        </div>
+        <ul class="menu-cat__items">
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 9c1 2 1 4 0 6M12 9c1 2 1 4 0 6M17 9c1 2 1 4 0 6" stroke="currentColor" stroke-width="1.2"/></svg></span><span class="item-name">립아이 300g</span><b>₩58,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 9c1 2 1 4 0 6M12 9c1 2 1 4 0 6M17 9c1 2 1 4 0 6" stroke="currentColor" stroke-width="1.2"/></svg></span><span class="item-name">바베트 스테이크</span><b>₩39,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M3 12c4-5 10-6 14-3-1 1-1 5 0 6-4 3-10 2-14-3z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M17 9l4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="11" r=".8" fill="currentColor"/></svg></span><span class="item-name">연어구이</span><b>₩32,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M9 4c3 0 6 3 6 7 0 2-1 3-2 4l4 4a1.5 1.5 0 01-2 2l-4-4c-1 1-2 2-4 2-4 0-7-3-7-7s3-8 9-8z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">로스트 치킨 수프림</span><b>₩28,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 5v14M9 5v14M14 5v14M4 8h10M4 12h10M4 16h10" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M14 8c4 0 6 2 6 4s-2 4-6 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">폭립 조림</span><b>₩36,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 14l7 7" stroke="currentColor" stroke-width="1.8"/><circle cx="21" cy="21" r="1.4" fill="currentColor"/></svg></span><span class="item-name">양갈비</span><b>₩42,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 14l7 7" stroke="currentColor" stroke-width="1.8"/><circle cx="21" cy="21" r="1.4" fill="currentColor"/></svg></span><span class="item-name">포크 토마호크</span><b>₩34,000</b></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat__head">
+          <span class="menu-cat__icon"><svg viewBox="0 0 48 48"><path d="M8 24a16 16 0 1032 0" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M14 24c2-6 6-10 10-10M20 24c2-5 5-8 8-8M26 24c1-4 4-6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3>파스타 &amp; 리조토</h3>
+        </div>
+        <ul class="menu-cat__items">
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M3 18c4-1 5-4 4-7-1-2 1-4 3-3 1 3 4 3 5 0 2-1 4 1 3 3-1 3 0 6 4 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">딸리아뗄레 라구</span><b>₩24,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 11c0-4 4-7 8-7s8 3 8 7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 11v6a3 3 0 006 0v-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">와일드 머쉬룸 리조토</span><b>₩23,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><ellipse cx="10" cy="14" rx="7" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="8" r="2" fill="currentColor"/></svg></span><span class="item-name">트러플 까르보나라</span><b>₩27,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M3 18c4-1 5-4 4-7-1-2 1-4 3-3 1 3 4 3 5 0 2-1 4 1 3 3-1 3 0 6 4 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">해산물 링귀네</span><b>₩29,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="1" opacity=".5"/></svg></span><span class="item-name">단호박 라비올리</span><b>₩22,000</b></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat__head">
+          <span class="menu-cat__icon"><svg viewBox="0 0 48 48"><path d="M8 24h32a16 8 0 01-32 0z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M18 16c-2-3 1-5-1-8M24 16c-2-3 1-5-1-8M30 16c-2-3 1-5-1-8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3>수프 &amp; 사이드</h3>
+        </div>
+        <ul class="menu-cat__items">
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 4c2 0 3 1 3 3M8 4c1 1 1 2 0 3M11 4c1 1 0 3-1 3" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M7 8c6 0 11 5 11 11-6 0-11-5-11-11z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">프렌치 어니언 수프</span><b>₩13,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M5 21V9M9 21V6M13 21V7M17 21V9M3 21h18" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span><span class="item-name">트러플 프라이</span><b>₩11,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 20c0-9 7-16 16-16 0 9-7 16-16 16z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c3-3 7-6 12-12" stroke="currentColor" stroke-width="1.4"/></svg></span><span class="item-name">크림 시금치</span><b>₩9,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 4c2 0 3 1 3 3M8 4c1 1 1 2 0 3M11 4c1 1 0 3-1 3" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M7 8c6 0 11 5 11 11-6 0-11-5-11-11z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">뿌리채소 구이</span><b>₩9,000</b></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat__head">
+          <span class="menu-cat__icon"><svg viewBox="0 0 48 48"><path d="M10 34 24 10l14 24z" fill="none" stroke="currentColor" stroke-width="2.5"/><line x1="10" y1="34" x2="38" y2="34" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="18" r="2" fill="currentColor"/></svg></span>
+          <h3>디저트</h3>
+        </div>
+        <ul class="menu-cat__items">
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M5 10h14l-1 9a2 2 0 01-2 2H8a2 2 0 01-2-2z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 10h16" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">크렘 브륄레</span><b>₩12,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M4 20 12 4l8 16z" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="4" y1="20" x2="20" y2="20" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="item-name">몰튼 초콜릿 케이크</span><b>₩13,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1" opacity=".5"/></svg></span><span class="item-name">타르트 타탱</span><b>₩12,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M2 18 12 4l10 14z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="15" r="1" fill="currentColor"/><circle cx="14" cy="12" r="1" fill="currentColor"/></svg></span><span class="item-name">치즈 보드</span><b>₩18,000</b></li>
+          <li><span class="item-icon"><svg viewBox="0 0 24 24"><path d="M5 9h11v6a5.5 5.5 0 01-11 0z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 10h2a2.5 2.5 0 010 5h-2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="6" r="1.6" fill="currentColor"/></svg></span><span class="item-name">아포가토</span><b>₩10,000</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-card__media"><img src="img/feature-01.jpg" alt="EMBERIC에서 장작불로 마무리한 스테이크" loading="lazy"></div>
+      <div class="feature-card__text">
+        <h3 class="feature-card__title">이달의 <em>엠버</em> 립아이</h3>
+        <p class="feature-card__body">이번 달의 스포트라이트는 300g 드라이에이징 립아이입니다. 장작불로 마무리하고 훈연 본마로 버터를 곁들여 패스에서 레스팅합니다. 통마리 정형, 소량 한정 — 이 부위가 소진되면 다음 시즌까지 만날 수 없습니다.</p>
+        <div class="feature-card__row"><span class="feature-card__price">₩58,000</span><a href="#contact" class="btn btn--primary btn--sm">직원에게 문의하기</a></div>
+      </div>
+      <div class="feature-card__media"><img src="img/about-02.jpg" alt="EMBERIC에서 플레이팅한 스테이크와 감자튀김" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews" id="reviews">
+    <span class="reviews__watermark" aria-hidden="true">Reviews</span>
+    <div class="reviews__header">
+      <h2 class="section-heading">고객들의<br><em>이야기.</em></h2>
+    </div>
+    <div class="reviews__list">
+      <article class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__quote">별생각 없이 립아이를 시켰는데 이제는 이것만 시켜요. 매번 정확히 원하는 굽기로 나옵니다.</p>
+        <div class="review-card__who"><span class="avatar" style="--avatar-bg:var(--primary-500)">레</span><div><b>레나 V.</b><small>앤트워프</small></div></div>
+      </article>
+      <article class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__quote">가볍게 한 끼 하러 왔다가 디저트까지 먹고 갔어요. 직원들이 스페셜 메뉴판만이 아니라 메뉴 전체를 제대로 알고 있어요.</p>
+        <div class="review-card__who"><span class="avatar" style="--avatar-bg:var(--primary-700)">테</span><div><b>테오 B.</b><small>헨트</small></div></div>
+      </article>
+      <article class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__quote">트러플 프라이 하나만으로도 로테르담에서 올 가치가 있어요. 테이블 전체가 5분간 조용해졌습니다.</p>
+        <div class="review-card__who"><span class="avatar" style="--avatar-bg:var(--primary-400)">사</span><div><b>사미 K.</b><small>로테르담</small></div></div>
+      </article>
+      <article class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__quote">작은 주방인데 실력은 큰 레스토랑급이에요. 매주 바뀌는 파스타 스페셜이 한 번도 실망시킨 적이 없습니다.</p>
+        <div class="review-card__who"><span class="avatar" style="--avatar-bg:var(--primary-600)">누</span><div><b>누르 D.</b><small>브뤼셀</small></div></div>
+      </article>
+      <article class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__quote">주말엔 예약이 금방 차서 이제는 미리 예약하는 습관이 생겼어요. 일주일 일정을 여기 맞춰도 아깝지 않아요.</p>
+        <div class="review-card__who"><span class="avatar" style="--avatar-bg:var(--primary-800)">요</span><div><b>요나스 P.</b><small>앤트워프</small></div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / VISIT ===== -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <h2 class="section-heading contact__heading">궁금한 점이<br><em>있으신가요?</em></h2>
+      <div class="contact__cols">
+        <div class="contact__col">
+          <p class="contact__line"><span>전화</span><a href="tel:+3232249512">(+32) 3 224 95 12</a></p>
+          <p class="contact__line"><span>이메일</span><a href="mailto:hello@emberic.example">hello@emberic.example</a></p>
+        </div>
+        <div class="contact__col" id="visit">
+          <dl class="hours">
+            <div><dt>월 — 금</dt><dd>11:00 – 19:00</dd></div>
+            <div><dt>토요일</dt><dd>10:00 – 18:00</dd></div>
+            <div><dt>일요일</dt><dd>휴무</dd></div>
+          </dl>
+          <div class="contact__visit-row">
+            <p class="contact__address">벨기에 앤트워프 2000<br>엠버레인 14</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__cols">
+    <div class="footer__col">
+      <span class="footer__col-label">소셜</span>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M14 3v10.5a3.5 3.5 0 11-3-3.46" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 3c.3 2.4 2 4.2 4.4 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M14 21v-7h2.5l.5-3H14V9c0-1 .3-1.7 1.7-1.7H17V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V11H8v3h2.5v7z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <span class="footer__col-label">문의</span>
+      <a href="tel:+3232249512">(+32) 3 224 95 12</a>
+      <a href="mailto:hello@emberic.example">hello@emberic.example</a>
+    </div>
+    <div class="footer__col">
+      <span class="footer__col-label">주소</span>
+      <p>벨기에 앤트워프 2000,<br>엠버레인 14</p>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2026 EMBERIC. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

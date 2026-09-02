@@ -1,0 +1,299 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>OSMERE — Quiet Materials, Considered Cuts</title>
+<meta name="description" content="OSMERE is a contemporary clothing studio built on quiet materials and considered cuts — new arrivals, best sellers, and the SS26 campaign.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor">
+  <div class="cursor__ring"><span class="cursor__label" id="cursorLabel"></span></div>
+  <div class="cursor__dot"></div>
+</div>
+
+<header class="gnb" id="gnb">
+  <div class="container gnb__row">
+    <a href="#top" class="gnb__logo" data-cursor="Top">OSMERE</a>
+    <button class="gnb__trigger" id="gnbTrigger" type="button" aria-expanded="false" aria-controls="gnbOverlay">
+      <span class="gnb__trigger-dot"></span>
+      <span class="gnb__trigger-text"><span class="label">Menu</span><span class="copy">Close</span></span>
+    </button>
+  </div>
+
+  <nav class="gnb__overlay" id="gnbOverlay">
+    <div class="gnb__overlay-blob b1"></div>
+    <div class="gnb__overlay-blob b2"></div>
+    <div class="gnb__overlay-inner">
+      <ul class="gnb__overlay-list">
+        <li class="gnb__overlay-item">
+          <a href="#arrivals" class="gnb__overlay-link" data-nav-link>
+            <span class="word" style="--i:0"><span>Arrivals</span></span>
+          </a>
+        </li>
+        <li class="gnb__overlay-item">
+          <a href="#categories" class="gnb__overlay-link" data-nav-link>
+            <span class="word" style="--i:1"><span>Categories</span></span>
+          </a>
+        </li>
+        <li class="gnb__overlay-item">
+          <a href="#best" class="gnb__overlay-link" data-nav-link>
+            <span class="word" style="--i:2"><span>Best</span></span> <span class="word" style="--i:3"><span>Sellers</span></span>
+          </a>
+        </li>
+        <li class="gnb__overlay-item">
+          <a href="#bold" class="gnb__overlay-link" data-nav-link>
+            <span class="word" style="--i:2"><span>Story</span></span>
+          </a>
+        </li>
+        <li class="gnb__overlay-item">
+          <a href="#campaign" class="gnb__overlay-link" data-nav-link>
+            <span class="word" style="--i:3"><span>Campaign</span></span>
+          </a>
+        </li>
+        <li class="gnb__overlay-item">
+          <a href="#footer" class="gnb__overlay-link" data-nav-link>
+            <span class="word" style="--i:4"><span>Contact</span></span>
+          </a>
+        </li>
+      </ul>
+      <div class="gnb__overlay-foot">
+        <span>EST. 2024 — SEOUL</span>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" data-cursor="Visit">Instagram</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="hero__frame">
+      <div class="hero__media">
+        <img src="img/hero-main.jpg" alt="OSMERE — hero editorial photograph">
+      </div>
+      <div class="hero__scrim"></div>
+      <p class="hero__count">Collection 01</p>
+      <div class="hero__content">
+        <p class="hero__mark">Osmere Studio</p>
+        <h1 class="hero__title" data-lines>
+          <span class="line-inner"><span>OSMERE</span></span>
+        </h1>
+        <p class="hero__sub">Quiet materials, considered cuts — clothing built for how you actually live.</p>
+        <div class="hero__links">
+          <a href="#bold" data-cursor="Read">[ dress with intent ]</a>
+          <a href="#arrivals" data-cursor="Shop">[ view arrivals ]</a>
+        </div>
+      </div>
+      <div class="hero__scroll-cue"></div>
+    </div>
+  </section>
+
+  <section class="arrivals" id="arrivals">
+    <div class="container">
+      <div class="arrivals__head">
+        <h2 class="arrivals__title reveal-up">New Arrivals</h2>
+        <p class="arrivals__count reveal-up">01 — 06<br>Drag to browse</p>
+      </div>
+    </div>
+    <div class="arrivals__track" id="arrivalsTrack">
+      <article class="arrivals__card">
+        <a class="arrivals__card-media" href="#arrivals" data-cursor="View">
+          <span class="arrivals__card-tag">New</span>
+          <img src="img/product-01.jpg" alt="Wrapped wool coat in camel">
+        </a>
+        <div class="arrivals__card-info">
+          <span class="arrivals__card-title">Wrapped Wool Coat</span>
+          <span class="arrivals__card-price">$228</span>
+        </div>
+        <p class="arrivals__card-meta">Camel · XS–L</p>
+      </article>
+      <article class="arrivals__card">
+        <a class="arrivals__card-media" href="#arrivals" data-cursor="View">
+          <img src="img/product-02.jpg" alt="Heavy rib turtleneck sweater">
+        </a>
+        <div class="arrivals__card-info">
+          <span class="arrivals__card-title">Heavy Rib Turtleneck</span>
+          <span class="arrivals__card-price">$96</span>
+        </div>
+        <p class="arrivals__card-meta">Oat · XS–M</p>
+      </article>
+      <article class="arrivals__card">
+        <a class="arrivals__card-media" href="#arrivals" data-cursor="View">
+          <span class="arrivals__card-tag">Bestseller</span>
+          <img src="img/product-03.jpg" alt="Oversized denim jacket">
+        </a>
+        <div class="arrivals__card-info">
+          <span class="arrivals__card-title">Oversized Denim Jacket</span>
+          <span class="arrivals__card-price">$148</span>
+        </div>
+        <p class="arrivals__card-meta">Washed Indigo · S–L</p>
+      </article>
+      <article class="arrivals__card">
+        <a class="arrivals__card-media" href="#arrivals" data-cursor="View">
+          <img src="img/product-04.jpg" alt="Draped layered fabric dress">
+        </a>
+        <div class="arrivals__card-info">
+          <span class="arrivals__card-title">Draped Layer Dress</span>
+          <span class="arrivals__card-price">$214</span>
+        </div>
+        <p class="arrivals__card-meta">Sand · XS–L</p>
+      </article>
+      <article class="arrivals__card">
+        <a class="arrivals__card-media" href="#arrivals" data-cursor="View">
+          <img src="img/product-05.jpg" alt="Structured mini bag with accessories">
+        </a>
+        <div class="arrivals__card-info">
+          <span class="arrivals__card-title">Structured Mini Bag</span>
+          <span class="arrivals__card-price">$132</span>
+        </div>
+        <p class="arrivals__card-meta">Cognac · One Size</p>
+      </article>
+      <article class="arrivals__card">
+        <a class="arrivals__card-media" href="#arrivals" data-cursor="View">
+          <img src="img/product-06.jpg" alt="Ankle leather boot">
+        </a>
+        <div class="arrivals__card-info">
+          <span class="arrivals__card-title">Ankle Leather Boot</span>
+          <span class="arrivals__card-price">$186</span>
+        </div>
+        <p class="arrivals__card-meta">Espresso · 36–41</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="categories" id="categories">
+    <div class="container">
+      <div class="categories__row">
+        <h2 class="categories__title reveal-up">Shop by Category</h2>
+      </div>
+    </div>
+    <div class="categories__track" id="categoriesTrack">
+      <a class="categories__item" href="#arrivals" data-cursor="Shop">
+        <img src="img/category-01.jpg" alt="Outerwear category">
+        <span class="categories__item-label">Outerwear</span>
+      </a>
+      <a class="categories__item" href="#arrivals" data-cursor="Shop">
+        <img src="img/category-02.jpg" alt="Knitwear category">
+        <span class="categories__item-label">Knitwear</span>
+      </a>
+      <a class="categories__item" href="#arrivals" data-cursor="Shop">
+        <img src="img/category-03.jpg" alt="Denim category">
+        <span class="categories__item-label">Denim</span>
+      </a>
+      <a class="categories__item" href="#arrivals" data-cursor="Shop">
+        <img src="img/category-04.jpg" alt="Accessories category">
+        <span class="categories__item-label">Accessories</span>
+      </a>
+      <a class="categories__item" href="#arrivals" data-cursor="Shop">
+        <img src="img/category-05.jpg" alt="Footwear category">
+        <span class="categories__item-label">Footwear</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="best" id="best">
+    <div class="container">
+      <h2 class="best__title reveal-up">Best Sellers</h2>
+    </div>
+    <div class="container">
+      <div class="best__frame" id="bestFrame" data-cursor="View">
+        <img src="img/best-full.jpg" alt="The Signature Coat — best-selling piece">
+        <div class="best__scrim"></div>
+        <div class="best__top">
+          <span class="best__eyebrow">Icon Piece</span>
+          <span class="best__eyebrow">04 / 128 sold this week</span>
+        </div>
+        <div class="best__bottom">
+          <span class="best__name">The Signature Coat</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bold" id="bold">
+    <div class="bold__bg">
+      <img src="img/bold-bg.jpg" alt="OSMERE brand story background">
+    </div>
+    <div class="container bold__inner">
+      <p class="bold__line reveal-up">Made for</p>
+      <p class="bold__line is-right reveal-up">The long <strong>wear</strong></p>
+      <p class="bold__caption reveal-up">Our story — quiet materials, honest construction, since 2024.</p>
+    </div>
+  </section>
+
+  <section class="campaign" id="campaign">
+    <div class="campaign__media">
+      <img src="img/campaign-main.jpg" alt="OSMERE SS26 campaign visual">
+    </div>
+    <div class="campaign__scrim"></div>
+    <p class="campaign__title">Campaign</p>
+    <p class="campaign__spec">SS26 / Movement<br>Shot on location</p>
+    <div class="campaign__sub">
+      <span>In Motion</span>
+      <span>The <strong>Wrap</strong> Dress</span>
+    </div>
+    <p class="campaign__season">SS 26</p>
+  </section>
+
+  <section class="motion" id="motion">
+    <div class="motion__pin">
+      <div class="motion__reveal" id="motionReveal">
+        <img src="img/motion-poster.jpg" alt="OSMERE in motion">
+      </div>
+      <div class="motion__head">
+        <h2 class="motion__title">Feel the <em>movement</em></h2>
+        <p class="motion__scroll">Scroll to reveal — <strong>Osmere SS26</strong></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer__bg">
+    <img src="img/footer-bg.jpg" alt="">
+  </div>
+  <div class="container footer__inner">
+    <div class="footer__top">
+      <p class="footer__brand">Osmere</p>
+
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <a class="footer__link" href="#arrivals"><span class="label">Arrivals</span><span class="copy">Arrivals</span></a>
+        <a class="footer__link" href="#categories"><span class="label">Categories</span><span class="copy">Categories</span></a>
+        <a class="footer__link" href="#best"><span class="label">Best Sellers</span><span class="copy">Best Sellers</span></a>
+        <a class="footer__link" href="#campaign"><span class="label">Campaign</span><span class="copy">Campaign</span></a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Studio</h4>
+        <a class="footer__link" href="#bold"><span class="label">Our Story</span><span class="copy">Our Story</span></a>
+        <a class="footer__link" href="#footer"><span class="label">Contact</span><span class="copy">Contact</span></a>
+        <a class="footer__link" href="#footer"><span class="label">Shipping &amp; Returns</span><span class="copy">Shipping &amp; Returns</span></a>
+        <a class="footer__link" href="#footer"><span class="label">FAQ</span><span class="copy">FAQ</span></a>
+      </div>
+
+      <form class="footer__form" id="footerForm">
+        <p>Subscribe <em>(latest drops)</em></p>
+        <label class="footer__form-field">
+          <input type="email" name="email" placeholder="Email address" required autocomplete="email">
+        </label>
+        <button type="submit" data-cursor="Send">Subscribe</button>
+      </form>
+
+      <div class="footer__bottom">
+        <span>©2026 Osmere</span>
+        <div class="footer__legal-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

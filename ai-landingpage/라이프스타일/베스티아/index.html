@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VESTIA — Considered Clothing, Made to Be Kept</title>
+<meta name="description" content="VESTIA는 절제된 럭셔리를 지향하는 기성복 아틀리에입니다. 천연 원단으로 재단하고 손으로 마감한 옷은 한 시즌이 아닌 평생을 함께합니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23262319'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23faf8f4' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gnb" id="gnb">
+  <div class="container gnb__row">
+    <a href="#home" class="gnb__logo">VESTIA</a>
+    <button class="gnb__trigger" id="gnbTrigger" aria-expanded="false" aria-controls="gnbOverlay">
+      <span class="gnb__trigger-dot"></span>
+      <span class="gnb__trigger-text">
+        <span class="label" id="gnbTriggerLabel">메뉴</span>
+        <span class="copy" id="gnbTriggerCopy">닫기</span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<nav class="gnb__overlay" id="gnbOverlay">
+  <span class="gnb__overlay-blob b1"></span>
+  <span class="gnb__overlay-blob b2"></span>
+  <div class="gnb__overlay-inner">
+    <ul class="gnb__overlay-list">
+      <li class="gnb__overlay-item"><a class="gnb__overlay-link" data-anchor-link href="#home"><span class="word" style="--i:0"><span>홈</span></span></a></li>
+      <li class="gnb__overlay-item"><a class="gnb__overlay-link" data-anchor-link href="#about"><span class="word" style="--i:1"><span>소개</span></span></a></li>
+      <li class="gnb__overlay-item"><a class="gnb__overlay-link" data-anchor-link href="#process"><span class="word" style="--i:2"><span>공정</span></span></a></li>
+      <li class="gnb__overlay-item"><a class="gnb__overlay-link" data-anchor-link href="#collection"><span class="word" style="--i:3"><span>컬렉션</span></span></a></li>
+      <li class="gnb__overlay-item"><a class="gnb__overlay-link" data-anchor-link href="#book"><span class="word" style="--i:4"><span>예약</span></span></a></li>
+    </ul>
+    <div class="gnb__overlay-foot">
+      <span><a href="mailto:hello@vestia-atelier.com">hello@vestia-atelier.com</a></span>
+      <span>서울 · 2019년 설립</span>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__frame" id="heroFrame">
+      <div class="hero__media">
+        <img src="img/hero-bg.jpg" alt="천연 원단으로 지은 VESTIA 의상을 입은 모델" width="2400" height="3000">
+      </div>
+      <div class="hero__scrim"></div>
+      <div class="hero__content" id="heroContent">
+        <span class="hero__mark">Vestia Atelier</span>
+        <h1 class="hero__title" data-lines>
+          <span class="line-inner" style="--stagger:0"><span>신중하게 지은 옷,</span></span>
+          <span class="line-inner" style="--stagger:1"><span>오래도록 <em>간직</em>하도록.</span></span>
+        </h1>
+        <p class="hero__sub">매일 입는 옷이라면, 평생을 함께할 <b>자격이 있습니다.</b></p>
+        <span class="hero__scroll-cue"></span>
+      </div>
+    </div>
+
+    <div class="hero__intro">
+      <div class="container hero__intro-grid">
+        <p>VESTIA는 기성복을 맞춤복처럼 설계하는, 절제된 럭셔리 아틀리에입니다.</p>
+        <p>모든 VESTIA 의상은 천연 장섬유 원단으로 재단하고 손으로 마감해, 한 벌의 옷이 한 시즌이 아니라 수십 년 동안 입고 고쳐 입고 물려줄 수 있도록 만듭니다.</p>
+        <a href="#book" class="btn" data-anchor-link>피팅 예약하기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT (DressDiscover equivalent) -->
+  <section class="about" id="about">
+    <div class="about__pin">
+      <div class="about__lines">
+        <p class="about__line" data-swap-line="0">베스티아의 본질</p>
+        <p class="about__line" data-swap-line="1">장인의 손끝과 영속성이 만나는 곳</p>
+      </div>
+      <div class="about__content" id="aboutContent">
+        <span class="eyebrow">철학</span>
+        <h3>천천히, 의도적으로.</h3>
+        <p>우리는 더 적게, 더 좋은 옷을 만듭니다 — 모든 패턴을 손으로 그리고, 세월이 흐를수록 해지는 대신 부드러워지는 원단만을 고릅니다.</p>
+        <a href="#process" class="btn" data-anchor-link>공정 살펴보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (FullSizeScrollerStepper equivalent) -->
+  <section class="process" id="process">
+    <div class="process__head">
+      <h2 class="reveal-up">원단에서 패턴으로, 그리고 옷으로.</h2>
+      <p class="reveal-up">오래 입기 위해 설계된 공정, 입는 옷이 곧 간직하는 옷이 되도록.</p>
+    </div>
+
+    <div class="process__runway" id="processRunway">
+      <div class="process__pin">
+        <div class="process__item" data-step="0">
+          <img src="img/process-01.jpg" alt="가지런히 접어둔 천연 원단, 재단을 앞둔 모습" loading="lazy">
+        </div>
+        <div class="process__item" data-step="1">
+          <img src="img/process-02.jpg" alt="손으로 패턴을 뜨고 재단하는 과정" loading="lazy">
+        </div>
+        <div class="process__item" data-step="2">
+          <img src="img/process-03.jpg" alt="완성된 VESTIA 수작업 의상" loading="lazy">
+        </div>
+
+        <div class="process__points" id="processPoints">
+          <span class="process__point is-active"></span>
+          <span class="process__point"></span>
+          <span class="process__point"></span>
+        </div>
+
+        <div class="process__track" id="processTrack">
+          <span class="process__label is-active" data-label="0">원단</span>
+          <span class="process__label" data-label="1">패턴</span>
+          <span class="process__label" data-label="2">완성</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL STATEMENT (SecondaryHero #1) -->
+  <section class="editorial">
+    <div class="container editorial__inner">
+      <h3 class="editorial__title" data-lines>
+        <span class="line-inner" style="--stagger:0"><span>매일 입지만,</span></span>
+        <span class="line-inner" style="--stagger:1"><span>결코 바래지 않도록.</span></span>
+      </h3>
+      <p class="reveal-up">대부분의 옷은 언젠가 버려지도록 만들어집니다. 우리는 그것이 좋은 원단의 낭비라고 생각합니다.</p>
+      <p class="reveal-up">VESTIA의 옷은 버려지기 위해서가 아니라 고쳐 입기 위해 재단됩니다 — 보강된 솔기, 천연 원단, 그리고 뜯고 수선하고 다시 마감할 수 있는 구조로 만들어집니다. 모든 옷은 짧은 상담에서 시작되어, 처음 입는 VESTIA도 열 번째 옷처럼 몸에 맞습니다.</p>
+      <a href="#process" class="btn" data-anchor-link>공정 알아보기</a>
+    </div>
+  </section>
+
+  <!-- FOUNDER QUOTE (SecondaryHero #2, quote styling) -->
+  <section class="editorial editorial--quote">
+    <div class="container editorial__inner">
+      <p class="editorial__title reveal-up">"유행은 빠르게 지나가지만, 우리는 변하지 않는 것을 만듭니다."</p>
+      <p class="editorial__author reveal-up">엘레나 보스, 베스티아 창업자</p>
+    </div>
+  </section>
+
+  <!-- COLLECTION (MediaGridPush equivalent) -->
+  <section class="collection" id="collection">
+    <h2 class="collection__head reveal-up">당신의 옷장은 언제까지나 간직할 가치가 있습니다.</h2>
+
+    <div class="collection__grid">
+      <div class="collection__item tall"><img src="img/gallery-01.jpg" alt="VESTIA 의상, 전신 에디토리얼 컷" loading="lazy"></div>
+      <div class="collection__item"><img src="img/gallery-02.jpg" alt="VESTIA 의상 디테일" loading="lazy"></div>
+      <div class="collection__item"><img src="img/gallery-03.jpg" alt="VESTIA 원단 텍스처 디테일" loading="lazy"></div>
+      <div class="collection__item tall"><img src="img/gallery-04.jpg" alt="VESTIA 의상, 스타일링 컷" loading="lazy"></div>
+      <div class="collection__item"><img src="img/gallery-05.jpg" alt="VESTIA 의상 클로즈업" loading="lazy"></div>
+      <div class="collection__item"><img src="img/gallery-06.jpg" alt="VESTIA 의상, 플랫레이 컷" loading="lazy"></div>
+    </div>
+
+    <div class="collection__push">
+      <a href="#book" class="btn" data-anchor-link>컬렉션 둘러보기</a>
+    </div>
+    <div class="collection__fade"></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>VESTIA</span><span>VESTIA</span><span>VESTIA</span><span>VESTIA</span><span>VESTIA</span><span>VESTIA</span>
+      <span>VESTIA</span><span>VESTIA</span><span>VESTIA</span><span>VESTIA</span><span>VESTIA</span><span>VESTIA</span>
+    </div>
+  </div>
+
+  <!-- POETIC QUOTE (LargeQuote equivalent) -->
+  <section class="quote">
+    <div class="container">
+      <span class="quote__coin" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1"/>
+          <path d="M8 12.5L10.5 15L16 9" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </span>
+      <p class="quote__lines reveal-up">정성이 원단이 되고, 그 원단이 잘 살아낸 삶이 되는 솔기를 발견했다.</p>
+      <p class="quote__note reveal-up">베스티아 노트에서</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA (Reassurance equivalent) -->
+  <section class="cta-final" id="book">
+    <div class="container cta-final__inner">
+      <h2 class="reveal-up">당신의 옷장은 신중하게 채워질 자격이 있습니다</h2>
+      <p class="reveal-up">그 여정을 함께할 수 있다면 영광이겠습니다.</p>
+      <a href="mailto:hello@vestia-atelier.com" class="btn reveal-up">상담 예약하기</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__top">
+    <div class="footer__brand">VESTIA</div>
+
+    <div class="footer__col">
+      <h4>바로가기</h4>
+      <a class="footer__link" data-anchor-link href="#home"><span class="label">홈</span><span class="copy">홈</span></a>
+      <a class="footer__link" data-anchor-link href="#book"><span class="label">예약</span><span class="copy">예약</span></a>
+      <a class="footer__link" data-anchor-link href="#process"><span class="label">공정</span><span class="copy">공정</span></a>
+      <a class="footer__link" data-anchor-link href="#about"><span class="label">소개</span><span class="copy">소개</span></a>
+    </div>
+
+    <div class="footer__col">
+      <h4>문의</h4>
+      <a class="footer__link" href="mailto:hello@vestia-atelier.com"><span class="label">hello@vestia-atelier.com</span><span class="copy">hello@vestia-atelier.com</span></a>
+      <a class="footer__link" href="tel:+18005550142"><span class="label">+1 (800) 555-0142</span><span class="copy">+1 (800) 555-0142</span></a>
+    </div>
+
+    <div class="footer__col">
+      <h4>소셜</h4>
+      <a class="footer__link" href="#"><span class="label">Instagram</span><span class="copy">Instagram</span></a>
+      <a class="footer__link" href="#"><span class="label">Pinterest</span><span class="copy">Pinterest</span></a>
+    </div>
+
+    <div class="footer__form">
+      <p>소식 받아보기</p>
+      <form class="footer__form-field" onsubmit="return false">
+        <input type="email" placeholder="이메일 주소를 입력하세요" required>
+        <button type="submit">구독하기</button>
+      </form>
+    </div>
+
+    <div class="footer__scene">
+      <img src="img/footer-scene.jpg" alt="베스티아 아틀리에 내부" loading="lazy">
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Vestia Atelier. 모든 권리 보유.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

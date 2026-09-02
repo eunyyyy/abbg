@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kadence® — Global Run Club</title>
+<meta name="description" content="kadence®는 전 세계 도시를 잇는 러닝 커뮤니티입니다. 다음 런 일정과 참여 방법을 확인하고, 당신만의 케이던스를 찾아보세요.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0c'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='700' font-size='34' fill='%23f4c430' text-anchor='middle'%3Ek%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="cursor" data-cursor></div>
+
+<div class="pageloader" data-pageloader>
+  <span class="u-h3" style="font-weight:700">kadence<sup>&reg;</sup></span>
+</div>
+
+<nav class="nav" data-nav>
+  <div class="nav__inner u-container">
+    <a href="#top" class="logo-link" data-cursor-target>kadence<sup>&reg;</sup></a>
+    <div class="nav-link_wrapper gnb">
+      <a href="#runs" class="text-draw" data-nav-link data-cursor-target>
+        <span class="text-draw__span u-button-text">커뮤니티 런</span>
+        <span class="text-draw__box"></span>
+      </a>
+      <a href="#calendar" class="text-draw" data-nav-link data-cursor-target>
+        <span class="text-draw__span u-button-text">일정</span>
+        <span class="text-draw__box"></span>
+      </a>
+      <a href="#join" class="text-draw" data-nav-link data-cursor-target>
+        <span class="text-draw__span u-button-text">참여 방법</span>
+        <span class="text-draw__box"></span>
+      </a>
+      <a href="#about" class="text-draw" data-nav-link data-cursor-target>
+        <span class="text-draw__span u-button-text">철학</span>
+        <span class="text-draw__box"></span>
+      </a>
+    </div>
+    <button class="nav__burger" data-burger-toggle aria-label="메뉴 열기" data-cursor-target>
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="burger" data-burger>
+  <div class="burger__links">
+    <a href="#runs" class="text-draw" data-burger-link data-cursor-target>
+      <h3 class="u-h3">커뮤니티 런</h3><span class="text-draw__box"></span>
+    </a>
+    <a href="#calendar" class="text-draw" data-burger-link data-cursor-target>
+      <h3 class="u-h3">일정</h3><span class="text-draw__box"></span>
+    </a>
+    <a href="#join" class="text-draw" data-burger-link data-cursor-target>
+      <h3 class="u-h3">참여 방법</h3><span class="text-draw__box"></span>
+    </a>
+    <a href="#about" class="text-draw" data-burger-link data-cursor-target>
+      <h3 class="u-h3">철학</h3><span class="text-draw__box"></span>
+    </a>
+  </div>
+  <div class="burger__footer">
+    <span class="tag u-mono-small">다음 런 — 리스본 24.02</span>
+    <a href="#calendar" class="text-draw" data-burger-link data-cursor-target>
+      <span class="text-draw__span u-button-text">일정 보기</span>
+      <span class="text-draw__box"></span>
+    </a>
+  </div>
+</div>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero__bg">
+      <video autoplay muted loop playsinline poster="img/hero-run-poster.jpg" data-cursor-zone="default">
+        <source src="video/hero-run.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero__content">
+      <div class="hero__wordmark" data-reveal>kadence<sup>&reg;</sup></div>
+      <p class="hero__tagline u-mono-large" data-reveal>글로벌 런 클럽</p>
+    </div>
+    <div class="hero__signature" data-reveal>
+      <strong class="u-button-text">Noa Kessler</strong>
+      <span class="u-body u-opacity">kadence&reg; 공동 창립자</span>
+    </div>
+    <div class="hero__run" data-reveal>
+      <span class="tag u-mono-small">다음 런</span>
+      <div class="hero__run-top">
+        <div>
+          <p class="u-button-text">리스본</p>
+          <div class="hero__run-date u-details">
+            <span>24</span><span>.</span><span>02</span>
+          </div>
+        </div>
+      </div>
+      <a href="#calendar" class="btn btn--base" data-cursor-target>
+        <span class="btn__fill"></span>
+        <span class="btn__label"><span class="is-default">런 참여하기</span><span class="is-hover">런 참여하기</span></span>
+      </a>
+    </div>
+    <div class="hero__scroll-cue u-mono-small">
+      <span>스크롤</span>
+      <div class="hero__scroll-line"><span></span></div>
+    </div>
+  </section>
+
+  <section class="runs section-pad" id="runs">
+    <div class="u-container u-grid">
+      <div class="runs__head" data-reveal>
+        <h2 class="u-h2">러너를 하나로.<br><span class="muted">도시마다, 한 걸음씩.</span></h2>
+      </div>
+      <h3 class="u-h3 runs__sub" data-reveal><span class="js-scroll-fill"><span class="word">공동</span> <span class="word">창립자</span> <span class="word">노아와</span> <span class="word">함께,</span> <span class="word">전</span> <span class="word">세계</span> <span class="word">도시를</span> <span class="word">순회하는</span> <span class="word">커뮤니티</span> <span class="word">런에</span> <span class="word">참여하세요.</span> <span class="word">대화와</span> <span class="word">연결,</span> <span class="word">그리고</span> <span class="word">함께</span> <span class="word">달리는</span> <span class="word">소박한</span> <span class="word">즐거움을</span> <span class="word">위해</span> <span class="word">준비한</span> <span class="word">5&ndash;8km</span> <span class="word">코스입니다.</span></span></h3>
+      <div class="runs__signature u-mono-large" data-reveal>kadence&reg; 런 클럽</div>
+
+      <div class="runs__grid">
+        <article class="run-card" data-reveal>
+          <div class="run-card__media"><img src="img/run-lisbon.jpg" alt="리스본에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="run-card__head">
+            <p class="u-mono-small u-opacity">다가오는 런</p>
+            <div class="run-card__date u-h5"><span>24</span><span>.</span><span>02</span></div>
+          </div>
+          <h4 class="u-h4 run-card__city">리스본</h4>
+          <div class="run-card__data">
+            <div class="run-card__data-row u-details"><span class="label">출발지</span><span>Rua de Santa Catarina 12</span></div>
+            <div class="run-card__data-row u-details"><span class="label">거리</span><span>5.25 KM</span></div>
+          </div>
+          <div class="run-card__cta">
+            <a href="#calendar" class="btn btn--dark" data-cursor-target>
+              <span class="btn__fill"></span>
+              <span class="btn__label"><span class="is-default">런 참여하기</span><span class="is-hover">런 참여하기</span></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="run-card" data-reveal>
+          <div class="run-card__media"><img src="img/run-copenhagen.jpg" alt="코펜하겐에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="run-card__head">
+            <p class="u-mono-small u-opacity">다가오는 런</p>
+            <div class="run-card__date u-h5"><span>06</span><span>.</span><span>03</span></div>
+          </div>
+          <h4 class="u-h4 run-card__city">코펜하겐</h4>
+          <div class="run-card__data">
+            <div class="run-card__data-row u-details"><span class="label">출발지</span><span>N&oslash;rrebrogade 16</span></div>
+            <div class="run-card__data-row u-details"><span class="label">거리</span><span>6.50 KM</span></div>
+          </div>
+          <div class="run-card__cta">
+            <a href="#calendar" class="btn btn--dark" data-cursor-target>
+              <span class="btn__fill"></span>
+              <span class="btn__label"><span class="is-default">런 참여하기</span><span class="is-hover">런 참여하기</span></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="run-card" data-reveal>
+          <div class="run-card__media"><img src="img/run-osaka.jpg" alt="오사카에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="run-card__head">
+            <p class="u-mono-small u-opacity">다가오는 런</p>
+            <div class="run-card__date u-h5"><span>22</span><span>.</span><span>04</span></div>
+          </div>
+          <h4 class="u-h4 run-card__city">오사카</h4>
+          <div class="run-card__data">
+            <div class="run-card__data-row u-details"><span class="label">출발지</span><span>Dotonbori 3-1</span></div>
+            <div class="run-card__data-row u-details"><span class="label">거리</span><span>5.80 KM</span></div>
+          </div>
+          <div class="run-card__cta">
+            <a href="#calendar" class="btn btn--dark" data-cursor-target>
+              <span class="btn__fill"></span>
+              <span class="btn__label"><span class="is-default">런 참여하기</span><span class="is-hover">런 참여하기</span></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="run-card" data-reveal>
+          <div class="run-card__media"><img src="img/run-auckland.jpg" alt="오클랜드에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="run-card__head">
+            <p class="u-mono-small u-opacity">다가오는 런</p>
+            <div class="run-card__date u-h5"><span>18</span><span>.</span><span>06</span></div>
+          </div>
+          <h4 class="u-h4 run-card__city">오클랜드</h4>
+          <div class="run-card__data">
+            <div class="run-card__data-row u-details"><span class="label">출발지</span><span>Tamaki Drive 8</span></div>
+            <div class="run-card__data-row u-details"><span class="label">거리</span><span>8.30 KM</span></div>
+          </div>
+          <div class="run-card__cta">
+            <a href="#calendar" class="btn btn--dark" data-cursor-target>
+              <span class="btn__fill"></span>
+              <span class="btn__label"><span class="is-default">런 참여하기</span><span class="is-hover">런 참여하기</span></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="run-card" data-reveal>
+          <div class="run-card__media"><img src="img/run-capetown.jpg" alt="케이프타운에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="run-card__head">
+            <p class="u-mono-small u-opacity">다가오는 런</p>
+            <div class="run-card__date u-h5"><span>27</span><span>.</span><span>08</span></div>
+          </div>
+          <h4 class="u-h4 run-card__city">케이프타운</h4>
+          <div class="run-card__data">
+            <div class="run-card__data-row u-details"><span class="label">출발지</span><span>Sea Point Promenade</span></div>
+            <div class="run-card__data-row u-details"><span class="label">거리</span><span>4.70 KM</span></div>
+          </div>
+          <div class="run-card__cta">
+            <a href="#calendar" class="btn btn--dark" data-cursor-target>
+              <span class="btn__fill"></span>
+              <span class="btn__label"><span class="is-default">런 참여하기</span><span class="is-hover">런 참여하기</span></span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="calendar section-pad" id="calendar">
+    <div class="calendar__bg"><img src="img/calendar-bg.jpg" alt="" loading="lazy" data-parallax></div>
+    <div class="calendar__container u-container">
+      <div class="calendar__head" data-reveal>
+        <h2 class="u-display">일정</h2>
+        <p class="calendar__sub u-h4">공동 창립자 노아와 함께 전 세계 도시를 순회하는 커뮤니티 런에 참여하세요. 대화를 위한 5&ndash;8km 코스입니다.</p>
+      </div>
+
+      <div class="calendar__slider" data-slider data-cursor-zone="grab">
+        <article class="cal-card">
+          <div class="cal-card__media"><img src="img/run-seoul.jpg" alt="서울에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="cal-card__head">
+            <h3 class="u-h4">서울</h3>
+            <div class="u-h5 muted"><span>27</span><span>.</span><span>08</span></div>
+          </div>
+          <div class="cal-card__data">
+            <div class="cal-card__data-row u-details"><span class="label">출발지</span><span>반포 한강공원</span></div>
+            <div class="cal-card__data-row u-details"><span class="label">거리</span><span>7.10 KM</span></div>
+          </div>
+          <a href="#join" class="btn btn--outline" data-cursor-target>
+            <span class="btn__fill"></span>
+            <span class="btn__label"><span class="is-default">자세히 보기</span><span class="is-hover">자세히 보기</span></span>
+          </a>
+        </article>
+
+        <article class="cal-card">
+          <div class="cal-card__media"><img src="img/run-vancouver.jpg" alt="밴쿠버에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="cal-card__head">
+            <h3 class="u-h4">밴쿠버</h3>
+            <div class="u-h5 muted"><span>18</span><span>.</span><span>09</span></div>
+          </div>
+          <div class="cal-card__data">
+            <div class="cal-card__data-row u-details"><span class="label">출발지</span><span>Stanley Park Seawall</span></div>
+            <div class="cal-card__data-row u-details"><span class="label">거리</span><span>8.90 KM</span></div>
+          </div>
+          <a href="#join" class="btn btn--outline" data-cursor-target>
+            <span class="btn__fill"></span>
+            <span class="btn__label"><span class="is-default">자세히 보기</span><span class="is-hover">자세히 보기</span></span>
+          </a>
+        </article>
+
+        <article class="cal-card">
+          <div class="cal-card__media"><img src="img/run-barcelona.jpg" alt="바르셀로나에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="cal-card__head">
+            <h3 class="u-h4">바르셀로나</h3>
+            <div class="u-h5 muted"><span>02</span><span>.</span><span>10</span></div>
+          </div>
+          <div class="cal-card__data">
+            <div class="cal-card__data-row u-details"><span class="label">출발지</span><span>Passeig Mar&iacute;tim 4</span></div>
+            <div class="cal-card__data-row u-details"><span class="label">거리</span><span>6.20 KM</span></div>
+          </div>
+          <a href="#join" class="btn btn--outline" data-cursor-target>
+            <span class="btn__fill"></span>
+            <span class="btn__label"><span class="is-default">자세히 보기</span><span class="is-hover">자세히 보기</span></span>
+          </a>
+        </article>
+
+        <article class="cal-card">
+          <div class="cal-card__media"><img src="img/run-auckland.jpg" alt="오클랜드에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="cal-card__head">
+            <h3 class="u-h4">오클랜드</h3>
+            <div class="u-h5 muted"><span>16</span><span>.</span><span>10</span></div>
+          </div>
+          <div class="cal-card__data">
+            <div class="cal-card__data-row u-details"><span class="label">출발지</span><span>Tamaki Drive 8</span></div>
+            <div class="cal-card__data-row u-details"><span class="label">거리</span><span>8.30 KM</span></div>
+          </div>
+          <a href="#join" class="btn btn--outline" data-cursor-target>
+            <span class="btn__fill"></span>
+            <span class="btn__label"><span class="is-default">자세히 보기</span><span class="is-hover">자세히 보기</span></span>
+          </a>
+        </article>
+
+        <article class="cal-card">
+          <div class="cal-card__media"><img src="img/run-capetown.jpg" alt="케이프타운에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="cal-card__head">
+            <h3 class="u-h4">케이프타운</h3>
+            <div class="u-h5 muted"><span>30</span><span>.</span><span>10</span></div>
+          </div>
+          <div class="cal-card__data">
+            <div class="cal-card__data-row u-details"><span class="label">출발지</span><span>Sea Point Promenade</span></div>
+            <div class="cal-card__data-row u-details"><span class="label">거리</span><span>4.70 KM</span></div>
+          </div>
+          <a href="#join" class="btn btn--outline" data-cursor-target>
+            <span class="btn__fill"></span>
+            <span class="btn__label"><span class="is-default">자세히 보기</span><span class="is-hover">자세히 보기</span></span>
+          </a>
+        </article>
+
+        <article class="cal-card">
+          <div class="cal-card__media"><img src="img/run-lisbon.jpg" alt="리스본에서 진행된 커뮤니티 런" loading="lazy"></div>
+          <div class="cal-card__head">
+            <h3 class="u-h4">리스본</h3>
+            <div class="u-h5 muted"><span>13</span><span>.</span><span>11</span></div>
+          </div>
+          <div class="cal-card__data">
+            <div class="cal-card__data-row u-details"><span class="label">출발지</span><span>Rua de Santa Catarina 12</span></div>
+            <div class="cal-card__data-row u-details"><span class="label">거리</span><span>5.25 KM</span></div>
+          </div>
+          <a href="#join" class="btn btn--outline" data-cursor-target>
+            <span class="btn__fill"></span>
+            <span class="btn__label"><span class="is-default">자세히 보기</span><span class="is-hover">자세히 보기</span></span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers section-pad" id="numbers">
+    <div class="u-container numbers__head">
+      <h3 class="u-h3 muted numbers__eyebrow" data-reveal>숫자로 보는 카덴스</h3>
+      <h2 class="u-h3 numbers__statement" data-reveal>48개 도시, 12,000명이 넘는 러너들. 케이던스는 숫자가 아니라 태도지만, 이 숫자들은 우리가 혼자 달리지 않는다는 증거입니다.</h2>
+    </div>
+    <div class="u-container numbers__grid">
+      <div class="stat-item" data-reveal>
+        <p class="stat-item__value" data-count-to="48">0</p>
+        <p class="u-mono-small stat-item__label">참여 도시</p>
+      </div>
+      <div class="stat-item" data-reveal>
+        <p class="stat-item__value" data-count-to="12000" data-format="comma" data-suffix="+">0</p>
+        <p class="u-mono-small stat-item__label">누적 참여 러너</p>
+      </div>
+      <div class="stat-item" data-reveal>
+        <p class="stat-item__value" data-count-to="6.4" data-decimals="1" data-suffix="km">0km</p>
+        <p class="u-mono-small stat-item__label">평균 런 거리</p>
+      </div>
+      <div class="stat-item" data-reveal>
+        <p class="stat-item__value" data-count-to="2019">0</p>
+        <p class="u-mono-small stat-item__label">런 클럽 시작한 해</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission section-pad" id="about">
+    <div class="u-container mission__head">
+      <h3 class="u-h3 muted mission__eyebrow" data-reveal>브랜드 철학</h3>
+      <h2 class="u-h3 mission__statement" data-reveal><span class="js-scroll-fill"><span class="word">케이던스는</span> <span class="word">발견하는</span> <span class="word">것이</span> <span class="word">아니라,</span> <span class="word">스스로</span> <span class="word">만들어가는</span> <span class="word">것입니다.</span> <span class="word">한</span> <span class="word">걸음,</span> <span class="word">한</span> <span class="word">걸음</span> <span class="word">신중하게</span> <span class="word">내딛으며,</span> <span class="word">같은</span> <span class="word">마음으로</span> <span class="word">달리는</span> <span class="word">도시의</span> <span class="word">러너들과</span> <span class="word">함께.</span></span></h2>
+    </div>
+    <div class="u-container mission__gallery">
+      <div class="mission__gallery-item large" data-reveal>
+        <img src="img/mission-large.jpg" alt="황금빛 노을 속, 힘차게 내딛는 러너의 한 걸음" loading="lazy" data-parallax>
+      </div>
+      <div class="mission__gallery-item small" data-reveal>
+        <img src="img/mission-small.jpg" alt="함께 모인 소규모 러너 그룹" loading="lazy" data-parallax>
+      </div>
+    </div>
+  </section>
+
+  <section class="join section-pad" id="join">
+    <div class="u-container u-grid">
+      <div class="join__head" data-reveal>
+        <h2 class="u-h2 join__headline">당신의 케이던스를,<br>이 도시에서 함께 찾아보세요.</h2>
+        <div class="join__tag">
+          <span class="u-mono-large muted">참여 방법</span>
+          <svg class="squiggle" width="70" height="20" viewBox="0 0 70 20" fill="none">
+            <path d="M2 15C10 4 18 4 25 12S40 18 48 8 62 3 68 10" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="join__grid">
+        <article class="step-card" data-reveal>
+          <p class="u-mono-large step-card__index">01</p>
+          <h3 class="u-h4 step-card__title">가까운 런 찾기</h3>
+          <p class="u-body step-card__body">캘린더에서 나와 가까운 도시의 런 일정을 확인하세요.</p>
+        </article>
+        <article class="step-card" data-reveal>
+          <p class="u-mono-large step-card__index">02</p>
+          <h3 class="u-h4 step-card__title">참가 의사 남기기</h3>
+          <p class="u-body step-card__body">출발 장소와 시간을 확인하고, 참가 의사를 알려주세요.</p>
+        </article>
+        <article class="step-card" data-reveal>
+          <p class="u-mono-large step-card__index">03</p>
+          <h3 class="u-h4 step-card__title">함께 달리기</h3>
+          <p class="u-body step-card__body">정해진 시간에 모여, 같은 속도로 함께 달립니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="footer">
+  <div class="u-container footer__nav">
+    <a href="#top" class="logo-link" data-cursor-target>kadence<sup>&reg;</sup></a>
+    <a href="https://instagram.com" target="_blank" rel="noopener" class="text-draw" data-cursor-target>
+      <span class="text-draw__span u-details">@kadence</span><span class="text-draw__box"></span>
+    </a>
+  </div>
+
+  <div class="u-container footer__cta">
+    <div class="footer__cta-heading" data-reveal>
+      <h3 class="u-display">준비되셨나요?</h3>
+      <span class="wordmark u-h2">kadence<sup>&reg;</sup></span>
+    </div>
+  </div>
+
+  <div class="u-container footer__bottom">
+    <div class="footer__newsletter">
+      <p class="u-button-text">카덴스&reg; 커뮤니티에<br>무료로 참여하세요!</p>
+      <p class="u-body u-opacity">이메일을 등록하면 새로운 런 일정과 커뮤니티 소식, 비하인드 스토리를 가장 먼저 받아보실 수 있습니다.</p>
+      <form class="footer__form" data-newsletter-form>
+        <input type="email" name="email" placeholder="이메일 주소" required>
+        <button type="submit" class="btn btn--newsletter btn--base" data-cursor-target>
+          <span class="btn__fill"></span>
+          <span class="btn__label"><span class="is-default">구독하기</span><span class="is-hover">구독하기</span></span>
+        </button>
+      </form>
+    </div>
+
+    <div class="footer__legal">
+      <p class="u-button-text u-opacity">&copy; 2026, kadence&reg;</p>
+      <div class="footer__legal-links">
+        <a href="mailto:support@kadence.com" class="text-draw" data-cursor-target>
+          <span class="text-draw__span u-details">support@kadence.com</span><span class="text-draw__box"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

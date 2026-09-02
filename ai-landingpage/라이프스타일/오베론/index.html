@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUBERON — Natural Cloth, Made to Last</title>
+<meta name="description" content="AUBERON은 리넨, 코튼, 울로 소량 제작하는 레디투웨어 아틀리에입니다 — SS26, 컬렉션, 크래프트, 그리고 스튜디오 저널을 만나보세요.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="top-bar" id="topbar">
+  <div class="announcement">
+    <div class="announcement__track">
+      <div class="announcement__item">손으로 재단하고 마감한, 소량 생산</div>
+      <div class="announcement__item">매주 목요일, 새로운 제품 입고</div>
+      <div class="announcement__item">30일 이내 무료 교환</div>
+      <div class="announcement__item">손으로 재단하고 마감한, 소량 생산</div>
+      <div class="announcement__item">매주 목요일, 새로운 제품 입고</div>
+      <div class="announcement__item">30일 이내 무료 교환</div>
+    </div>
+  </div>
+  <header class="header">
+    <div class="header__bg"></div>
+    <div class="header__inner container">
+      <nav class="header__menu">
+        <a href="#world" class="text-cta js-anchor">월드</a>
+        <a href="#shop" class="text-cta js-anchor">SS26</a>
+      </nav>
+      <div class="header__logo"><a href="#top" class="js-anchor">AUBERON</a></div>
+      <div class="header__right">
+        <a href="#collections" class="text-cta js-anchor">컬렉션</a>
+        <a href="#craft" class="text-cta js-anchor">크래프트</a>
+        <a href="#journal" class="text-cta js-anchor">저널</a>
+      </div>
+      <button class="header__burger" id="burger" aria-label="메뉴"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#world" class="js-anchor">월드</a>
+  <a href="#shop" class="js-anchor">SS26</a>
+  <a href="#collections" class="js-anchor">컬렉션</a>
+  <a href="#craft" class="js-anchor">크래프트</a>
+  <a href="#journal" class="js-anchor">저널</a>
+</div>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top">
+    <div class="hero__media">
+      <img class="js-swap-target" src="img/hero-main.jpg" alt="AUBERON 히어로 캠페인 이미지">
+    </div>
+    <div class="hero__content">
+      <h1>오래도록 입는,<br><em>내추럴 리넨</em></h1>
+      <p>적은 수량으로, 손으로 재단하고 마감한 신중한 레디투웨어.</p>
+      <div class="hero__buttons">
+        <a href="#world" class="button text-cta js-anchor">브랜드 스토리</a>
+      </div>
+    </div>
+    <!-- Fold/unfold shelf: collapsed to a peek by default, expands on hover (desktop) / tap
+         (mobile) to reveal all 8 looks — mirrors the reference's real hero-products.js
+         (content pinned to the right edge via .hero__products-absolute-right, container
+         width animates from a fixed collapsed width up to the content's full scrollWidth). -->
+    <div class="hero__products js-hero-products" data-swap-target=".hero__media .js-swap-target">
+      <div class="hero__products-absolute-right js-hero-products-content">
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-1.jpg" alt="룩 1"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-2.jpg" alt="룩 2"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-3.jpg" alt="룩 3"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-4.jpg" alt="룩 4"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-5.jpg" alt="룩 5"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-6.jpg" alt="룩 6"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-7.jpg" alt="룩 7"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/hero-look-8.jpg" alt="룩 8"></a></div>
+        <div class="hero-products__open-more"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MISSION / MANIFESTO ================= -->
+  <!-- Reference's real .mission__content is a single left-aligned block (max-width:77vw,
+       line-height:1) with the "Manifesto" eyebrow run in INLINE before the paragraph text,
+       not a centered stacked heading — restructured to match after the original pass
+       mistakenly built it as a centered block. -->
+  <section class="mission" id="world">
+    <div class="container">
+      <!-- Scroll-scrubbed text fill: each word starts dim, fills to full ink color as scroll
+           progress through this element advances, and un-fills again on scroll-up — continuous
+           and bidirectional (see script.js .js-scroll-fill), not a one-shot IntersectionObserver
+           reveal. -->
+      <h2 class="mission__content" data-reveal>
+        <span class="mission__heading text-cta">매니페스토</span><span class="js-scroll-fill"><span class="word">AUBERON은</span> <span class="word">자연</span> <span class="word">소재와</span> <span class="word">정직한</span> <span class="word">봉제,</span> <span class="word">그리고</span> <span class="word">기억을</span> <em><span class="word">담아내는</span></em> <span class="word">옷을</span> <span class="word">짓는</span> <span class="word">작은</span> <em><span class="word">아틀리에입니다.</span></em> <span class="word">우리는</span> <span class="word">리넨과</span> <span class="word">코튼,</span> <span class="word">울로</span> <span class="word">작업하며</span> <span class="word">속도보다</span> <span class="word">인내를,</span> <span class="word">장식보다</span> <span class="word">구조를</span> <span class="word">택합니다.</span></span>
+      </h2>
+    </div>
+  </section>
+
+  <!-- ================= SHOP (product tabs) ================= -->
+  <!-- Reference's real section-product-tabs.scss.css defines a two-column layout
+       (.product-tabs__heading at 24.3vw + .product-tabs__content taking the rest) that the
+       live homepage doesn't happen to use — reinstated here as the section title column,
+       with the product grid fixed to exactly 4 items in one row (no scroll/carousel, per
+       the CHEATSHEET hard rules) instead of the reference's tabbed Splide carousel. -->
+  <section class="shop" id="shop">
+    <div class="container shop__d-flex">
+      <div class="shop__heading" data-reveal>
+        <h2>일상에<br><em>스며드는</em> 옷</h2>
+        <p>당신이 고른 옷이, 그 계절을 넘어 오래도록 함께하기를.</p>
+      </div>
+
+      <div class="shop__content">
+        <div class="shop__grid">
+          <article class="product-card">
+            <div class="product-card__image">
+              <a href="#">
+                <img class="is-main" src="img/product-shirts-1-a.jpg" alt="필드 셔츠, 에크루">
+                <img class="is-hover" src="img/product-shirts-1-b.jpg" alt="필드 셔츠, 에크루, 다른 각도">
+              </a>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category text-cta">셔츠</span>
+              <h4 class="product-card__title">필드 셔츠 | 에크루</h4>
+              <div class="product-card__price">£145.00</div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-card__image">
+              <a href="#">
+                <img class="is-main" src="img/product-dresses-1-a.jpg" alt="메도우 원피스, 세이지">
+                <img class="is-hover" src="img/product-dresses-1-b.jpg" alt="메도우 원피스, 세이지, 다른 각도">
+              </a>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category text-cta">원피스</span>
+              <h4 class="product-card__title">메도우 원피스 | 세이지</h4>
+              <div class="product-card__price">£185.00</div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-card__image">
+              <a href="#">
+                <img class="is-main" src="img/product-outerwear-1-a.jpg" alt="울 오버코트, 차콜">
+                <img class="is-hover" src="img/product-outerwear-1-b.jpg" alt="울 오버코트, 차콜, 다른 각도">
+              </a>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category text-cta">아우터</span>
+              <h4 class="product-card__title">울 오버코트 | 차콜</h4>
+              <div class="product-card__price">£420.00</div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-card__image">
+              <a href="#">
+                <img class="is-main" src="img/product-dresses-3-a.jpg" alt="랩 원피스, 테라코타">
+                <img class="is-hover" src="img/product-dresses-3-b.jpg" alt="랩 원피스, 테라코타, 다른 각도">
+              </a>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category text-cta">원피스</span>
+              <h4 class="product-card__title">랩 원피스 | 테라코타</h4>
+              <div class="product-card__price">£175.00</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAMPAIGN BANNER (Collections) ================= -->
+  <section class="campaign" id="collections">
+    <div class="campaign__media">
+      <img class="js-swap-target" src="img/collection-banner.jpg" alt="코스탈 필즈 캠페인 이미지">
+    </div>
+    <div class="campaign__top container" data-reveal>
+      <h3><em>코스탈 필즈</em> 컬렉션을 만나보세요</h3>
+    </div>
+    <!-- Same fold/unfold shelf mechanism as the hero (hover/tap unfolds, click swaps the
+         banner image) — top-right here instead of bottom-right, matching this banner's
+         real reference position. -->
+    <div class="campaign__looks js-hero-products" data-swap-target=".campaign__media .js-swap-target">
+      <div class="campaign__looks-inner js-hero-products-content">
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/collection-look-1.jpg" alt="룩 1"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/collection-look-2.jpg" alt="룩 2"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/collection-look-3.jpg" alt="룩 3"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/collection-look-4.jpg" alt="룩 4"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/collection-look-5.jpg" alt="룩 5"></a></div>
+        <div class="hero-product"><a href="#" class="js-hero-product-link"><img src="img/collection-look-6.jpg" alt="룩 6"></a></div>
+        <div class="hero-products__open-more"></div>
+      </div>
+    </div>
+    <div class="campaign__bottom">
+      <h2><em>SS26</em></h2>
+    </div>
+  </section>
+
+  <!-- ================= FOCUS TILE (Signature) ================= -->
+  <!-- Scroll-pin grow: a tall runway supplies scroll distance while the pin sticks; JS grows
+       .js-pin-grow from its resting centered size/position up to cover the full viewport as
+       scroll progress advances, and shrinks it back to that exact resting size/position on
+       scroll-up — a pure function of scroll position (see script.js), not a one-shot reveal.
+       Desktop only (>=992px); mobile keeps a plain static image, matching how every other
+       heavier interaction in this build is desktop-gated. -->
+  <section class="signature">
+    <div class="signature__runway js-signature-runway">
+      <div class="signature__pin">
+        <a href="#" class="signature__link js-pin-grow">
+          <div class="signature__media">
+            <img src="img/signature-tile.jpg" alt="하우스 시그니처 컬렉션">
+          </div>
+          <div class="signature__content">
+            <h2 class="h5"><em>하우스</em> 시그니처</h2>
+            <span class="button text-cta">컬렉션 보기</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SPLIT EDIT BANNER ================= -->
+  <section class="edit">
+    <a href="#" class="edit__link">
+      <div class="edit__media">
+        <div class="edit__media-item"><img src="img/edit-left.jpg" alt="선블리치드 스트라이프 에디트, 룩 1"></div>
+        <div class="edit__media-item edit__media-item--caption">
+          <img src="img/edit-right.jpg" alt="선블리치드 스트라이프 에디트, 룩 2">
+          <p class="edit__caption">우리의 시그니처 스트라이프 원단으로 완성한 여름 에디트 — 느긋한 아침과 긴 점심을 위한, 편안한 실루엣.</p>
+        </div>
+      </div>
+      <div class="edit__text container">
+        <div class="edit__text-block" data-reveal>
+          <h2><em>선블리치드</em> 스트라이프</h2>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <!-- ================= CRAFT (story slider) ================= -->
+  <!-- Scroll-driven story stage: progress through a tall runway crossfades the active item.
+       No click/tab navigation — the CHEATSHEET hard rules forbid tabs/pagination/arrow-buttons,
+       so this mirrors the reference's "one story at a time" feel via scroll position instead
+       of the reference's real click-through thumbnail nav (same resolution used on VIREON's
+       Vision stepper and MOBILION's History timeline). -->
+  <section class="craft" id="craft">
+    <div class="craft__runway js-craft-runway">
+      <div class="craft__pin">
+        <div class="craft__item is-active" data-index="0" style="background:var(--primary-200)">
+          <div class="craft__media">
+            <img src="img/craft-story-1-main.jpg" alt="손으로 마감하는 디테일">
+          </div>
+          <div class="craft__content">
+            <h2>손으로 <em>짓는</em> 옷</h2>
+            <div class="craft__content-media"><img src="img/craft-story-1-detail.jpg" alt="원단 디테일"></div>
+            <p class="craft__desc">모든 옷은 스프레드시트가 아니라 재단대 위에서 시작됩니다. 작은 방직 공방과 함께, 하나하나 얼굴을 알 수 있을 만큼 적은 수량으로 손수 마무리합니다.</p>
+          </div>
+        </div>
+        <div class="craft__item" data-index="1" style="background:var(--secondary-300)">
+          <div class="craft__media">
+            <img src="img/craft-story-2-main.jpg" alt="AUBERON 창립자들">
+          </div>
+          <div class="craft__content">
+            <h2><em>창립자</em> 이야기</h2>
+            <div class="craft__content-media"><img src="img/craft-story-2-detail.jpg" alt="스튜디오 디테일"></div>
+            <p class="craft__desc">AUBERON은 두 친구와 한 대의 재봉틀, 그리고 '옷은 교체되는 것이 아니라 오래 지속되어야 한다'는 믿음에서 시작되었습니다.</p>
+          </div>
+        </div>
+        <div class="craft__item" data-index="2" style="background:var(--primary-200)">
+          <div class="craft__media">
+            <img src="img/craft-story-3-main.jpg" alt="시그니처 에디트 룩">
+          </div>
+          <div class="craft__content">
+            <h2><em>시그니처</em> 에디트</h2>
+            <div class="craft__content-media"><img src="img/craft-story-3-detail.jpg" alt="액세서리 디테일"></div>
+            <p class="craft__desc">매 시즌 돌아오는 원단으로 재단한, 가장 사랑받는 실루엣들의 작은 캡슐 컬렉션.</p>
+          </div>
+        </div>
+
+        <div class="craft__counter text-cta js-craft-counter">1 / 3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= JOURNAL ================= -->
+  <section class="journal" id="journal">
+    <div class="container">
+      <div class="journal__top" data-reveal>
+        <h2>스토리 &amp; 저널</h2>
+        <p>아틀리에의 기록 — 크래프트, 컬렉션, 그리고 옷 뒤의 사람들에 대하여.</p>
+      </div>
+      <!-- Prev/next arrows only become visible when there's actually content on that side
+           (scrollLeft > 0 / < max — see script.js), on top of the native drag/swipe that
+           already works on the strip; hidden on mobile where swipe alone is expected. -->
+      <div class="journal__carousel">
+        <button type="button" class="journal__arrow journal__arrow--prev" aria-label="이전 스토리 보기">‹</button>
+        <div class="journal__track">
+          <article class="journal-card">
+            <div class="journal-card__image"><a href="#"><img src="img/journal-1.jpg" alt="스튜디오 와일드 플라워스와의 인터뷰"></a></div>
+            <div class="journal-card__tags"><span class="journal-card__tag">월드</span><span class="journal-card__date">6월 24일</span></div>
+            <h5 class="journal-card__title">스튜디오 와일드 플라워스와의 인터뷰</h5>
+            <div class="journal-card__desc">SS26 프린트를 만든 플로럴 듀오 이야기.</div>
+          </article>
+          <article class="journal-card">
+            <div class="journal-card__image"><a href="#"><img src="img/journal-2.jpg" alt="야망의 실타래"></a></div>
+            <div class="journal-card__tags"><span class="journal-card__tag">프레스</span><span class="journal-card__date">4월 4일</span></div>
+            <h5 class="journal-card__title">야망의 실타래</h5>
+            <div class="journal-card__desc">현대적이고 신중한 제조 방식에 대한 특집.</div>
+          </article>
+          <article class="journal-card">
+            <div class="journal-card__image"><a href="#"><img src="img/journal-3.jpg" alt="핸드 피니싱의 기술"></a></div>
+            <div class="journal-card__tags"><span class="journal-card__tag">크래프트</span><span class="journal-card__date">3월 16일</span></div>
+            <h5 class="journal-card__title">핸드 피니싱의 기술</h5>
+            <div class="journal-card__desc">오래된 기술을, 오늘로 이어가다.</div>
+          </article>
+          <article class="journal-card">
+            <div class="journal-card__image"><a href="#"><img src="img/journal-4.jpg" alt="천연 염색에 관한 노트"></a></div>
+            <div class="journal-card__tags"><span class="journal-card__tag">크래프트</span><span class="journal-card__date">2월 20일</span></div>
+            <h5 class="journal-card__title">천연 염색에 관한 노트</h5>
+            <div class="journal-card__desc">정직하게 얻은 색.</div>
+          </article>
+          <article class="journal-card">
+            <div class="journal-card__image"><a href="#"><img src="img/journal-5.jpg" alt="해안에서 보낸 한 계절"></a></div>
+            <div class="journal-card__tags"><span class="journal-card__tag">컬렉션</span><span class="journal-card__date">2월 10일</span></div>
+            <h5 class="journal-card__title">해안에서 보낸 한 계절</h5>
+            <div class="journal-card__desc">SS26 캠페인 촬영 비하인드.</div>
+          </article>
+          <article class="journal-card">
+            <div class="journal-card__image"><a href="#"><img src="img/journal-6.jpg" alt="천천히 가는 방식"></a></div>
+            <div class="journal-card__tags"><span class="journal-card__tag">월드</span><span class="journal-card__date">12월 1일</span></div>
+            <h5 class="journal-card__title">천천히 가는 방식</h5>
+            <div class="journal-card__desc">사람의 속도로 일한다는 것.</div>
+          </article>
+        </div>
+        <button type="button" class="journal__arrow journal__arrow--next" aria-label="다음 스토리 보기">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOCIAL / INSTAGRAM MARQUEE ================= -->
+  <section class="social">
+    <a href="#" target="_blank" rel="noopener">
+      <div class="social__center">
+        <h4>함께 팔로우해요</h4>
+        <div class="text-cta">@auberon.house</div>
+      </div>
+      <div class="social__track">
+        <div class="social__item"><img src="img/social-1.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-2.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-3.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-4.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-5.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-6.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-7.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-8.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-1.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-2.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-3.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-4.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-5.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-6.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-7.jpg" alt=""></div>
+        <div class="social__item"><img src="img/social-8.jpg" alt=""></div>
+      </div>
+    </a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__bg"><img src="img/footer-bg.jpg" alt=""></div>
+  <div class="container footer__inner">
+    <div class="footer__logo">AUBERON</div>
+    <ul class="footer__info small-text">
+      <li>29 Thornbury Lane, London EC1R 4QT</li>
+      <li>hello@auberon-atelier.com</li>
+      <li>+44 20 7946 0958</li>
+    </ul>
+    <div class="copyright small-text">
+      <div class="copyright__text">© 2026, AUBERON</div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

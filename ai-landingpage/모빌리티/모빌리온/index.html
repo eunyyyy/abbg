@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모빌리온 | Mobilion — Future Mobility Platform for Connected Cities</title>
+<meta name="description" content="모빌리온은 실시간 데이터, AI 기반 관제, 전기차 인프라, 자율주행 연계 플랫폼을 통해 스마트 시티와 미래 교통을 연결하는 통합 모빌리티 솔루션을 제공합니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ GNB ============ -->
+<header class="gnb" id="gnb">
+  <div class="gnb__inner">
+    <a href="#hero" class="gnb__logo" data-nav-link>MOBILION</a>
+
+    <nav class="gnb__nav" id="gnbNav">
+      <a href="#company" class="gnb__link" data-nav-link>Company</a>
+      <a href="#technology" class="gnb__link" data-nav-link>Technology</a>
+      <a href="#solutions" class="gnb__link" data-nav-link>Solutions</a>
+      <a href="#esg" class="gnb__link" data-nav-link>ESG</a>
+      <a href="#impact" class="gnb__link" data-nav-link>Impact</a>
+      <a href="#partners" class="gnb__link" data-nav-link>Partners</a>
+    </nav>
+
+    <a href="#contact" class="btn btn--cta gnb__cta" data-nav-link data-ripple>문의하기</a>
+
+    <button class="gnb__toggle" id="gnbToggle" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__grid"></div>
+  <div class="hero__glow hero__glow--a"></div>
+  <div class="hero__glow hero__glow--b"></div>
+  <div class="hero__overlay"></div>
+
+  <div class="hero__network" aria-hidden="true">
+    <svg viewBox="0 0 520 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="90" y1="120" x2="260" y2="60" class="net-line"/>
+      <line x1="260" y1="60" x2="430" y2="150" class="net-line"/>
+      <line x1="90" y1="120" x2="150" y2="300" class="net-line"/>
+      <line x1="260" y1="60" x2="230" y2="260" class="net-line"/>
+      <line x1="430" y1="150" x2="380" y2="330" class="net-line"/>
+      <line x1="150" y1="300" x2="230" y2="260" class="net-line"/>
+      <line x1="230" y1="260" x2="380" y2="330" class="net-line"/>
+      <line x1="150" y1="300" x2="120" y2="480" class="net-line"/>
+      <line x1="230" y1="260" x2="280" y2="470" class="net-line"/>
+      <line x1="380" y1="330" x2="340" y2="500" class="net-line"/>
+      <line x1="280" y1="470" x2="340" y2="500" class="net-line"/>
+      <line x1="120" y1="480" x2="280" y2="470" class="net-line"/>
+      <circle cx="90" cy="120" r="4" class="net-dot"/>
+      <circle cx="260" cy="60" r="5" class="net-dot net-dot--pulse"/>
+      <circle cx="430" cy="150" r="4" class="net-dot"/>
+      <circle cx="150" cy="300" r="4" class="net-dot"/>
+      <circle cx="230" cy="260" r="6" class="net-dot net-dot--pulse net-dot--delay"/>
+      <circle cx="380" cy="330" r="4" class="net-dot"/>
+      <circle cx="120" cy="480" r="4" class="net-dot"/>
+      <circle cx="280" cy="470" r="5" class="net-dot net-dot--pulse"/>
+      <circle cx="340" cy="500" r="4" class="net-dot"/>
+    </svg>
+  </div>
+
+  <div class="container hero__content">
+    <p class="eyebrow" data-reveal="fade-up">Future Mobility Platform</p>
+    <h1 class="hero__title" data-reveal="fade-up" data-reveal-delay="1">
+      도시의 흐름을 연결하는<br>
+      <span class="text-gradient">모빌리티 기술</span>
+    </h1>
+    <p class="hero__body" data-reveal="fade-up" data-reveal-delay="2">
+      실시간 데이터, AI 기반 관제, 전기차 인프라, <br>
+      자율주행 연계 플랫폼까지.
+      모빌리온은 스마트 시티와 미래 교통을 연결하는<br>
+      통합 모빌리티 솔루션을 제공합니다.
+    </p>
+    <div class="hero__cta" data-reveal="fade-up" data-reveal-delay="3">
+      <a href="#solutions" class="btn btn--primary" data-nav-link data-ripple>솔루션 보기</a>
+      <a href="#company" class="btn btn--ghost" data-nav-link data-ripple>회사 소개</a>
+    </div>
+  </div>
+
+  <div class="hero__scroll">
+    <div class="hero__scroll-line"><i></i></div>
+  </div>
+</section>
+
+<!-- ============ 1. COMPANY SNAPSHOT ============ -->
+<section class="company" id="company">
+  <div class="company__visual" data-reveal="fade-in"></div>
+  <div class="container company__inner">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">Company</span>
+      <h2 class="section-title">Company Snapshot</h2>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card" data-reveal="fade-up" data-reveal-delay="0">
+        <span class="stat-label">설립</span>
+        <span class="stat-value"><span class="counter" data-target="2018" data-format="year">0</span></span>
+      </div>
+      <div class="stat-card" data-reveal="fade-up" data-reveal-delay="1">
+        <span class="stat-label">본사</span>
+        <span class="stat-value stat-value--text">서울특별시 마곡</span>
+      </div>
+      <div class="stat-card" data-reveal="fade-up" data-reveal-delay="2">
+        <span class="stat-label">임직원</span>
+        <span class="stat-value"><span class="counter" data-target="320">0</span>명</span>
+      </div>
+      <div class="stat-card" data-reveal="fade-up" data-reveal-delay="3">
+        <span class="stat-label">사업 분야</span>
+        <span class="stat-value stat-value--text stat-value--small">MaaS·AI 교통·EV 충전·스마트 시티</span>
+      </div>
+      <div class="stat-card" data-reveal="fade-up" data-reveal-delay="4">
+        <span class="stat-label">운영 도시</span>
+        <span class="stat-value"><span class="counter" data-target="12">0</span>개 도시</span>
+      </div>
+      <div class="stat-card" data-reveal="fade-up" data-reveal-delay="5">
+        <span class="stat-label">연간 데이터 처리</span>
+        <span class="stat-value"><span class="counter" data-target="18">0</span>억 건</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. VISION & MISSION ============ -->
+<section class="vision" id="vision">
+  <div class="vision__bg"></div>
+  <div class="vision__glow"></div>
+  <div class="container vision__inner">
+    <div class="vision__sticky">
+      <h3 class="vision__statement" data-reveal="fade-up">모든 이동이 더 안전하고<br>효율적인 도시를<br>만든다</h3>
+      <p class="vision__support" data-reveal="fade-up" data-reveal-delay="1">사람과 차량, 인프라가 실시간으로 연결되는 미래 교통 생태계를 구축하여 지속 가능한 이동 환경을 실현합니다.</p>
+    </div>
+
+    <div class="vision__boxes">
+      <div class="vision__box" data-reveal="fade-up" data-reveal-delay="0">
+        <div class="vision__box-icon">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="14" y="14" width="20" height="20" rx="3" stroke="currentColor" stroke-width="2"/><path d="M14 20H8M14 28H8M40 20H34M40 28H34M20 14V8M28 14V8M20 40V34M28 40V34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="24" r="2" fill="currentColor"/><circle cx="28" cy="24" r="2" fill="currentColor"/></svg>
+        </div>
+        <p>AI 기반 교통 최적화</p>
+      </div>
+      <div class="vision__box" data-reveal="fade-up" data-reveal-delay="1">
+        <div class="vision__box-icon">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M24 6C24 6 12 12 12 26C12 35 17 42 24 42C31 42 36 35 36 26C36 12 24 6 24 6Z" stroke="currentColor" stroke-width="2"/><path d="M24 42V20" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <p>탄소 배출 저감</p>
+      </div>
+      <div class="vision__box" data-reveal="fade-up" data-reveal-delay="2">
+        <div class="vision__box-icon">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="20" width="12" height="22" stroke="currentColor" stroke-width="2"/><rect x="20" y="10" width="12" height="32" stroke="currentColor" stroke-width="2"/><rect x="34" y="24" width="8" height="18" stroke="currentColor" stroke-width="2"/><path d="M10 20V15M26 10V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <p>스마트 시티 연결</p>
+      </div>
+      <div class="vision__box" data-reveal="fade-up" data-reveal-delay="3">
+        <div class="vision__box-icon">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="17" cy="14" r="6" stroke="currentColor" stroke-width="2"/><circle cx="33" cy="18" r="5" stroke="currentColor" stroke-width="2"/><path d="M5 40C5 32 10 27 17 27C24 27 29 32 29 40" stroke="currentColor" stroke-width="2"/><path d="M29 30C35 30 43 33 43 40" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <p>누구나 이용 가능한 이동 서비스</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. CORPORATE STRUCTURE ============ -->
+<section class="structure" id="structure">
+  <div class="container">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">Structure</span>
+      <h2 class="section-title">Integrated Mobility Ecosystem</h2>
+      <p class="section-desc">모빌리온은 기술 중심의 사업 구조를 기반으로 도시와 모빌리티를 연결합니다.</p>
+    </div>
+
+    <div class="unit-grid">
+      <article class="unit-card unit-card--featured" data-reveal="scale">
+        <div class="unit-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="10" rx="2" stroke="currentColor" stroke-width="2"/><rect x="6" y="24" width="36" height="10" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="15" r="2" fill="currentColor"/><circle cx="14" cy="29" r="2" fill="currentColor"/></svg>
+        </div>
+        <h3 class="unit-card__title">Mobility Platform</h3>
+        <p class="unit-card__desc">MaaS 플랫폼, 통합 이동 서비스, 예약 및 결제 시스템</p>
+      </article>
+
+      <article class="unit-card" data-reveal="fade-up" data-reveal-delay="1">
+        <div class="unit-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M6 30L16 18L24 26L42 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="42" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <h3 class="unit-card__title">AI Traffic Intelligence</h3>
+        <p class="unit-card__desc">실시간 교통 분석, 신호 최적화, 예측 알고리즘</p>
+      </article>
+
+      <article class="unit-card" data-reveal="fade-up" data-reveal-delay="2">
+        <div class="unit-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M25 6L12 26H22L20 42L36 20H25L25 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="unit-card__title">EV Infrastructure</h3>
+        <p class="unit-card__desc">충전소 운영, 에너지 관리, 스마트 충전 네트워크</p>
+      </article>
+
+      <article class="unit-card" data-reveal="fade-up" data-reveal-delay="3">
+        <div class="unit-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="14" height="14" stroke="currentColor" stroke-width="2"/><rect x="26" y="8" width="14" height="14" stroke="currentColor" stroke-width="2"/><rect x="8" y="26" width="14" height="14" stroke="currentColor" stroke-width="2"/><rect x="26" y="26" width="14" height="14" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <h3 class="unit-card__title">Smart City Solutions</h3>
+        <p class="unit-card__desc">도시 데이터 허브, 디지털 트윈, IoT 인프라</p>
+      </article>
+
+      <article class="unit-card" data-reveal="fade-up" data-reveal-delay="4">
+        <div class="unit-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M14 32C8 32 4 28 4 23C4 18 8 15 12 15C13 9 18 5 24 5C30 5 35 9 36 15C41 15 44 19 44 24C44 29 40 32 35 32H14Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="unit-card__title">Mobility Cloud</h3>
+        <p class="unit-card__desc">데이터 플랫폼, API 서비스, 클라우드 운영</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. OUR HISTORY ============ -->
+<section class="history" id="history">
+  <div class="history__pin">
+    <div class="container">
+      <div class="section-head" data-reveal="fade-up">
+        <span class="section-tag">History</span>
+        <h2 class="section-title">Our History</h2>
+      </div>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline__track">
+        <div class="timeline__progress" id="timelineProgress"></div>
+      <div class="timeline__item">
+        <span class="timeline__year">2018</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">모빌리온 설립</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__year">2019</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">AI 교통 분석 엔진 개발</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__year">2020</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">스마트 시티 실증 사업 참여</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__year">2021</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">전기차 충전 플랫폼 런칭</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__year">2022</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">자율주행 연계 관제 시스템 구축</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__year">2023</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">도시 통합 모빌리티 플랫폼 상용화</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__year">2024</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">국내 12개 도시 운영 확대</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__year">2026</span>
+        <span class="timeline__node"></span>
+        <span class="timeline__text">아시아 스마트 모빌리티 허브 구축 추진</span>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. CORE TECHNOLOGY ============ -->
+<section class="technology" id="technology">
+  <div class="technology__bg"></div>
+  <div class="technology__hover-bg" id="techHoverBg"></div>
+  <div class="container">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">Technology</span>
+      <h2 class="section-title">AI와 모빌리티,<br class="u-mobile-break"> 클라우드가 하나로 연결되어<br>도시의 교통을<br class="u-mobile-break"> 실시간으로 지능화합니다</h2>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card" data-reveal="fade-up" data-reveal-delay="0" data-bg="assets/images/technology-ai-traffic.jpg">
+        <span class="tech-card__num">01</span>
+        <h3 class="tech-card__title">AI Traffic Engine</h3>
+        <p class="tech-card__desc">실시간 차량 흐름 분석 및 신호 제어</p>
+      </div>
+      <div class="tech-card" data-reveal="fade-up" data-reveal-delay="1" data-bg="assets/images/tech-predictive-routing.jpg">
+        <span class="tech-card__num">02</span>
+        <h3 class="tech-card__title">Predictive Routing</h3>
+        <p class="tech-card__desc">혼잡 예측 기반 최적 경로 추천</p>
+      </div>
+      <div class="tech-card" data-reveal="fade-up" data-reveal-delay="2" data-bg="assets/images/tech-ev-energy.jpg">
+        <span class="tech-card__num">03</span>
+        <h3 class="tech-card__title">EV Energy Management</h3>
+        <p class="tech-card__desc">충전 부하 분산 및 에너지 효율 최적화</p>
+      </div>
+      <div class="tech-card" data-reveal="fade-up" data-reveal-delay="3" data-bg="assets/images/tech-digital-twin.jpg">
+        <span class="tech-card__num">04</span>
+        <h3 class="tech-card__title">Digital Twin City</h3>
+        <p class="tech-card__desc">도시 교통 환경 시뮬레이션</p>
+      </div>
+      <div class="tech-card" data-reveal="fade-up" data-reveal-delay="4" data-bg="assets/images/tech-v2x.jpg">
+        <span class="tech-card__num">05</span>
+        <h3 class="tech-card__title">V2X Connectivity</h3>
+        <p class="tech-card__desc">차량-인프라 실시간 통신 기술</p>
+      </div>
+      <div class="tech-card" data-reveal="fade-up" data-reveal-delay="5" data-bg="assets/images/tech-cloud-platform.jpg">
+        <span class="tech-card__num">06</span>
+        <h3 class="tech-card__title">Cloud Mobility Platform</h3>
+        <p class="tech-card__desc">대규모 교통 데이터 처리 및 API 서비스</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. MOBILITY SOLUTIONS ============ -->
+<section class="solutions" id="solutions">
+  <div class="container">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">Solutions</span>
+      <h2 class="section-title">도시를 연결하는<br>핵심 솔루션</h2>
+    </div>
+
+    <div class="solution-stack">
+      <article class="solution-card" data-reveal="fade-up" data-reveal-delay="0" data-bg="assets/images/sol-urban-platform.jpg" style="--stack-i:0">
+        <div class="solution-card__bg"></div>
+        <span class="solution-card__idx">01</span>
+        <h3 class="solution-card__title">Urban Mobility Platform</h3>
+        <p class="solution-card__desc">버스, 지하철, 공유 모빌리티를 하나의 서비스로 연결하는 통합 플랫폼</p>
+      </article>
+      <article class="solution-card" data-reveal="fade-up" data-reveal-delay="0" data-bg="assets/images/sol-traffic-control.jpg" style="--stack-i:1">
+        <div class="solution-card__bg"></div>
+        <span class="solution-card__idx">02</span>
+        <h3 class="solution-card__title">Smart Traffic Control</h3>
+        <p class="solution-card__desc">AI 기반 신호 제어와 교통 흐름 최적화</p>
+      </article>
+      <article class="solution-card" data-reveal="fade-up" data-reveal-delay="0" data-bg="assets/images/sol-ev-charge.jpg" style="--stack-i:2">
+        <div class="solution-card__bg"></div>
+        <span class="solution-card__idx">03</span>
+        <h3 class="solution-card__title">EV Charge Network</h3>
+        <p class="solution-card__desc">전기차 충전 인프라 운영 및 관리 시스템</p>
+      </article>
+      <article class="solution-card" data-reveal="fade-up" data-reveal-delay="0" data-bg="assets/images/solutions-autonomous.jpg" style="--stack-i:3">
+        <div class="solution-card__bg"></div>
+        <span class="solution-card__idx">04</span>
+        <h3 class="solution-card__title">Autonomous Mobility Hub</h3>
+        <p class="solution-card__desc">자율주행 차량 운영을 위한 통합 관제 플랫폼</p>
+      </article>
+      <article class="solution-card" data-reveal="fade-up" data-reveal-delay="0" data-bg="assets/images/sol-data-analytics.jpg" style="--stack-i:4">
+        <div class="solution-card__bg"></div>
+        <span class="solution-card__idx">05</span>
+        <h3 class="solution-card__title">Mobility Data Analytics</h3>
+        <p class="solution-card__desc">도시 교통 데이터를 분석하여 정책 및 운영 의사결정을 지원</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. TECHNOLOGY ARCHITECTURE ============ -->
+<section class="architecture" id="architecture">
+  <div class="architecture__bg"></div>
+  <div class="container">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">Architecture</span>
+      <h2 class="section-title">Connected Mobility Architecture</h2>
+    </div>
+
+    <div class="arch-flow">
+      <div class="arch-node" data-reveal="fade-up" data-reveal-delay="0">
+        <span class="arch-node__label">User App</span>
+      </div>
+      <div class="arch-connector"><span class="arch-connector__pulse"></span></div>
+      <div class="arch-node" data-reveal="fade-up" data-reveal-delay="1">
+        <span class="arch-node__label">Mobility Platform</span>
+      </div>
+      <div class="arch-connector"><span class="arch-connector__pulse"></span></div>
+      <div class="arch-node" data-reveal="fade-up" data-reveal-delay="2">
+        <span class="arch-node__label">Cloud Mobility Engine</span>
+      </div>
+      <div class="arch-connector"><span class="arch-connector__pulse"></span></div>
+      <div class="arch-node" data-reveal="fade-up" data-reveal-delay="3">
+        <span class="arch-node__label">AI Traffic Intelligence</span>
+      </div>
+      <div class="arch-connector"><span class="arch-connector__pulse"></span></div>
+      <div class="arch-node" data-reveal="fade-up" data-reveal-delay="4">
+        <span class="arch-node__label">Digital Twin &amp; IoT Infrastructure</span>
+      </div>
+      <div class="arch-connector"><span class="arch-connector__pulse"></span></div>
+      <div class="arch-node arch-node--end" data-reveal="fade-up" data-reveal-delay="5">
+        <span class="arch-node__label">City Transportation Network</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. ESG ============ -->
+<section class="esg" id="esg">
+  <div class="esg__bg"></div>
+  <div class="container">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">ESG</span>
+      <h2 class="section-title">ESG</h2>
+    </div>
+
+    <div class="esg-grid">
+      <article class="esg-card" data-reveal="fade-up" data-reveal-delay="0">
+        <div class="esg-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M24 6C24 6 12 12 12 26C12 35 17 42 24 42C31 42 36 35 36 26C36 12 24 6 24 6Z" stroke="currentColor" stroke-width="2"/><path d="M24 42V20" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <h3 class="esg-card__title">Environmental</h3>
+        <ul class="check-list">
+          <li><span class="check-list__icon">✓</span>AI 기반 교통 최적화</li>
+          <li><span class="check-list__icon">✓</span>탄소 배출 저감</li>
+          <li><span class="check-list__icon">✓</span>친환경 EV 인프라 확대</li>
+        </ul>
+      </article>
+
+      <article class="esg-card" data-reveal="fade-up" data-reveal-delay="1">
+        <div class="esg-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="17" cy="14" r="6" stroke="currentColor" stroke-width="2"/><circle cx="33" cy="18" r="5" stroke="currentColor" stroke-width="2"/><path d="M5 40C5 32 10 27 17 27C24 27 29 32 29 40" stroke="currentColor" stroke-width="2"/><path d="M29 30C35 30 43 33 43 40" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <h3 class="esg-card__title">Social</h3>
+        <ul class="check-list">
+          <li><span class="check-list__icon">✓</span>교통 약자를 위한 접근성 개선</li>
+          <li><span class="check-list__icon">✓</span>안전한 이동 환경 구축</li>
+          <li><span class="check-list__icon">✓</span>지역사회 교통 데이터 공유</li>
+        </ul>
+      </article>
+
+      <article class="esg-card" data-reveal="fade-up" data-reveal-delay="2">
+        <div class="esg-card__icon">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M24 5L40 12V22C40 33 33 40 24 43C15 40 8 33 8 22V12L24 5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M17 24L22 29L32 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="esg-card__title">Governance</h3>
+        <ul class="check-list">
+          <li><span class="check-list__icon">✓</span>데이터 보안 체계</li>
+          <li><span class="check-list__icon">✓</span>투명한 운영 관리</li>
+          <li><span class="check-list__icon">✓</span>ESG 기반 공급망 관리</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. IMPACT ============ -->
+<section class="impact" id="impact">
+  <div class="impact__grid-pattern"></div>
+  <div class="impact__glow"></div>
+  <div class="container">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">Impact</span>
+      <h2 class="section-title">Impact</h2>
+    </div>
+
+    <div class="impact-grid">
+      <div class="impact-card" data-reveal="fade-up" data-reveal-delay="0">
+        <span class="impact-card__value"><span class="counter" data-target="12">0</span></span>
+        <span class="impact-card__label">운영 도시</span>
+      </div>
+      <div class="impact-card" data-reveal="fade-up" data-reveal-delay="1">
+        <span class="impact-card__value"><span class="counter" data-target="18">0</span>억</span>
+        <span class="impact-card__label">연간 데이터 처리 건수</span>
+      </div>
+      <div class="impact-card" data-reveal="fade-up" data-reveal-delay="2">
+        <span class="impact-card__value"><span class="counter" data-target="320">0</span></span>
+        <span class="impact-card__label">전문 인력</span>
+      </div>
+      <div class="impact-card" data-reveal="fade-up" data-reveal-delay="3">
+        <span class="impact-card__value"><span class="counter" data-target="27" data-format="percent">0</span>%</span>
+        <span class="impact-card__label">평균 교통 혼잡 감소 효과</span>
+      </div>
+      <div class="impact-card" data-reveal="fade-up" data-reveal-delay="4">
+        <span class="impact-card__value"><span class="counter" data-target="31" data-format="percent">0</span>%</span>
+        <span class="impact-card__label">EV 충전 운영 효율 향상</span>
+      </div>
+      <div class="impact-card" data-reveal="fade-up" data-reveal-delay="5">
+        <span class="impact-card__value"><span class="counter" data-target="98.7" data-format="decimal">0</span>%</span>
+        <span class="impact-card__label">플랫폼 가동률</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. PARTNERS ============ -->
+<section class="partners" id="partners">
+  <div class="partners__bg"></div>
+  <div class="container">
+    <div class="section-head" data-reveal="fade-up">
+      <span class="section-tag">Partners</span>
+      <h2 class="section-title">Partners</h2>
+      <p class="section-desc">국내 지자체, 교통공사, 자동차 제조사, 에너지 기업, 스마트 시티 운영기관과 함께 미래 모빌리티 생태계를 구축하고 있습니다.</p>
+    </div>
+
+  </div>
+
+  <div class="partner-marquee" data-reveal="fade-up">
+    <div class="partner-marquee__track">
+      <div class="partner-logo">SEOUL MOBILITY AUTH</div>
+      <div class="partner-logo">KOREA TRANSIT CORP</div>
+      <div class="partner-logo">NATIONAL EV GRID</div>
+      <div class="partner-logo">CITYLINK HOLDINGS</div>
+      <div class="partner-logo">URBANWAY MOTORS</div>
+      <div class="partner-logo">GRIDPOWER ENERGY</div>
+      <div class="partner-logo">METRO INFRA GROUP</div>
+      <div class="partner-logo">SMARTCITY ALLIANCE</div>
+      <div class="partner-logo">PACIFIC EV ALLIANCE</div>
+      <div class="partner-logo">BLUEROUTE LOGISTICS</div>
+      <div class="partner-logo">NEXA TRANSIT LABS</div>
+      <div class="partner-logo">HANGANG SMART GRID</div>
+      <div class="partner-logo" aria-hidden="true">SEOUL MOBILITY AUTH</div>
+      <div class="partner-logo" aria-hidden="true">KOREA TRANSIT CORP</div>
+      <div class="partner-logo" aria-hidden="true">NATIONAL EV GRID</div>
+      <div class="partner-logo" aria-hidden="true">CITYLINK HOLDINGS</div>
+      <div class="partner-logo" aria-hidden="true">URBANWAY MOTORS</div>
+      <div class="partner-logo" aria-hidden="true">GRIDPOWER ENERGY</div>
+      <div class="partner-logo" aria-hidden="true">METRO INFRA GROUP</div>
+      <div class="partner-logo" aria-hidden="true">SMARTCITY ALLIANCE</div>
+      <div class="partner-logo" aria-hidden="true">PACIFIC EV ALLIANCE</div>
+      <div class="partner-logo" aria-hidden="true">BLUEROUTE LOGISTICS</div>
+      <div class="partner-logo" aria-hidden="true">NEXA TRANSIT LABS</div>
+      <div class="partner-logo" aria-hidden="true">HANGANG SMART GRID</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact__bg"></div>
+  <div class="contact__overlay"></div>
+  <div class="container contact__inner">
+    <div class="contact__main" data-reveal="fade-up">
+      <span class="section-tag">Contact</span>
+      <h2 class="contact__title">미래 모빌리티를 함께<br>설계할 파트너를 찾습니다</h2>
+      <p class="contact__desc">도시, 기업, 기관과 함께 더 안전하고 지속 가능한 이동 환경을 만들어갑니다.</p>
+      <a href="mailto:contact@mobilion.co.kr" class="btn btn--primary btn--lg" id="contactCta" data-ripple>문의하기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="footer__logo">MOBILION</span>
+      <span class="footer__slogan">Mobility + Beyond + Innovation</span>
+    </div>
+    <div class="footer__contact">
+      <p>모빌리온 (Mobilion) · 서울특별시 강서구 마곡중앙로 00</p>
+      <p>contact@mobilion.co.kr · 02-1234-5678</p>
+    </div>
+    <p class="footer__copyright">© 2026 Mobilion. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
