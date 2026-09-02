@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOM Burger & Wings | 치킨 러버의 버거</title>
+<meta name="description" content="바삭함에 진심인 치킨버거 & 메가윙 전문 브랜드, NOM Burger & Wings.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!--
+variant:
+typo=loud
+image=high
+color=accent
+
+image-radius=soft
+card-radius=soft
+button-radius=round
+
+border=hairline
+button-style=solid+outline
+fw=700/400
+spacing=space-section
+-->
+
+<!--
+Layout Declaration
+Header      — full-bleed (fixed)
+Hero        — full-bleed — 6-6
+About       — 5-7
+Menu:Burger — 6-3-3 / 3-3-3-3
+Menu:Wings  — 3-3-3-3
+Menu:Sides  — 4-4-4
+SNS         — full-bleed
+Store       — 7-5
+Event       — 3-3-3
+Franchise   — full-bleed — 8-4
+Footer      — full-bleed
+-->
+
+<header class="header" id="header">
+  <div class="container">
+    <a href="#top" class="logo">
+      <svg class="logo__mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="17" cy="17" r="17"/>
+        <path d="M17 25c-4.4 0-8-3.6-8-8V9h3v8c0 2.8 2.2 5 5 5s5-2.2 5-5V9h3v8c0 4.4-3.6 8-8 8Z"/>
+      </svg>
+      <span class="logo__word"><b>NOM</b><span>Burger &amp; Wings</span></span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#about">브랜드</a>
+      <a href="#menu">메뉴</a>
+      <a href="#event">이벤트</a>
+      <a href="#store">매장</a>
+      <a href="#franchise">창업</a>
+      <a href="#franchise" class="header__cta">창업 문의</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero — full-bleed — 6-6 -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__copy" data-reveal>
+          <span class="badge badge--inverse">Chicken Burger &amp; Wings</span>
+          <h1 class="hero__title">치킨 러버의 버거<br><em>NOM</em> Burger &amp; Wings</h1>
+          <p class="hero__desc">한 입 베어 무는 순간 바삭함이 다르다는 걸 압니다. 매일 튀겨내는 치킨과 두툼한 패티로 만든 NOM Burger &amp; Wings의 메뉴를 만나보세요.</p>
+          <div class="hero__actions">
+            <a href="#about" class="btn btn--accent">브랜드 소개</a>
+            <a href="#menu" class="btn btn--outline">메뉴 보기</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <img src="img/hero-burger.jpg" alt="NOM Burger & Wings 시그니처 치킨버거">
+        </div>
+      </div>
+    </div>
+    <span class="hero__scroll">Scroll</span>
+  </section>
+
+  <!-- About / Brand — 5-7 -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__copy" data-reveal>
+          <span class="badge">Brand</span>
+          <h2>바삭한 순간을<br>더 크게 만듭니다</h2>
+          <p>NOM Burger &amp; Wings는 국내산 닭가슴살을 매장에서 직접 튀겨내는 치킨버거 &amp; 메가윙 전문 브랜드입니다. 두꺼운 패티와 정직한 재료로 한 끼를 채우는 즐거움을 전합니다.</p>
+        </div>
+        <div class="about__stats" data-reveal-group>
+          <div class="stat" data-reveal><b>132개</b><span>전국 가맹 매장</span></div>
+          <div class="stat" data-reveal><b>320만개</b><span>연간 버거 판매량</span></div>
+          <div class="stat" data-reveal><b>4,200건</b><span>누적 창업 문의</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="menu__head" data-reveal>
+        <span class="badge">Menu</span>
+        <h2>NOM Burger &amp; Wings<br>메뉴를 소개합니다</h2>
+      </div>
+
+      <!-- Burger — 6-3-3 / 3-3-3-3 -->
+      <div class="menu__cat">
+        <div class="menu__cat-head">
+          <h3>버거</h3>
+          <span class="menu__cat-count">7 Menu</span>
+        </div>
+        <div class="grid" data-reveal-group>
+          <article class="menu-card menu-card--lg" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/burger-01.jpg" alt="버거 오리지널"></div>
+            <div class="menu-card__body"><b>버거 오리지널</b><span>바삭한 치킨패티와 담백한 소스의 기본기</span></div>
+          </article>
+          <article class="menu-card menu-card--sm" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/burger-02.jpg" alt="버거 크리미마요"></div>
+            <div class="menu-card__body"><b>버거 크리미마요</b><span>부드러운 마요 소스</span></div>
+          </article>
+          <article class="menu-card menu-card--sm" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/burger-03.jpg" alt="버거 로제"></div>
+            <div class="menu-card__body"><b>버거 로제</b><span>은은하게 매콤한 로제 소스</span></div>
+          </article>
+          <article class="menu-card menu-card--sm" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/burger-04.jpg" alt="버거 버팔로"></div>
+            <div class="menu-card__body"><b>버거 버팔로</b><span>강렬한 버팔로 소스</span></div>
+          </article>
+          <article class="menu-card menu-card--sm" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/burger-05.jpg" alt="버거 소이갈릭"></div>
+            <div class="menu-card__body"><b>버거 소이갈릭</b><span>짭짤한 간장 갈릭 소스</span></div>
+          </article>
+          <article class="menu-card menu-card--sm" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/burger-01.jpg" alt="버거 할라피뇨"></div>
+            <div class="menu-card__body"><b>버거 할라피뇨</b><span>알싸한 할라피뇨 한 조각</span></div>
+          </article>
+          <article class="menu-card menu-card--sm" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/burger-02.jpg" alt="버거 볼케이노"></div>
+            <div class="menu-card__body"><b>버거 볼케이노</b><span>매운맛 끝판왕</span></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Mega Wings — 3-3-3-3 -->
+      <div class="menu__cat">
+        <div class="menu__cat-head">
+          <h3>메가윙</h3>
+          <span class="menu__cat-count">6 Menu</span>
+        </div>
+        <div class="grid" data-reveal-group>
+          <article class="menu-card menu-card--wing" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/wings-01.jpg" alt="메가윙 오리지널"></div>
+            <div class="menu-card__body"><b>메가윙 오리지널</b><span>담백한 기본 시즈닝</span></div>
+          </article>
+          <article class="menu-card menu-card--wing" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/wings-02.jpg" alt="메가윙 크리미마요"></div>
+            <div class="menu-card__body"><b>메가윙 크리미마요</b><span>부드러운 마요 코팅</span></div>
+          </article>
+          <article class="menu-card menu-card--wing" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/wings-03.jpg" alt="메가윙 버팔로"></div>
+            <div class="menu-card__body"><b>메가윙 버팔로</b><span>진한 버팔로 소스</span></div>
+          </article>
+          <article class="menu-card menu-card--wing" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/wings-04.jpg" alt="메가윙 할라피뇨"></div>
+            <div class="menu-card__body"><b>메가윙 할라피뇨</b><span>알싸하게 매운맛</span></div>
+          </article>
+        </div>
+        <div class="menu-chip-row">
+          <span class="menu-chip">메가윙 소이갈릭</span>
+          <span class="menu-chip">메가윙 볼케이노</span>
+        </div>
+      </div>
+
+      <!-- Sides — 4-4-4 -->
+      <div class="menu__cat">
+        <div class="menu__cat-head">
+          <h3>사이드</h3>
+          <span class="menu__cat-count">6 Menu</span>
+        </div>
+        <div class="grid" data-reveal-group>
+          <article class="menu-card menu-card--side" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/side-01.jpg" alt="감자튀김"></div>
+            <div class="menu-card__body"><b>감자튀김</b><span>겉바속촉 클래식 프렌치프라이</span></div>
+          </article>
+          <article class="menu-card menu-card--side" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/side-02.jpg" alt="어니언링"></div>
+            <div class="menu-card__body"><b>어니언링</b><span>바삭한 튀김옷의 양파링</span></div>
+          </article>
+          <article class="menu-card menu-card--side" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/side-03.jpg" alt="코울슬로"></div>
+            <div class="menu-card__body"><b>코울슬로</b><span>새콤달콤 아삭한 양배추 샐러드</span></div>
+          </article>
+          <article class="menu-card menu-card--side" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/side-04.jpg" alt="치즈스틱"></div>
+            <div class="menu-card__body"><b>치즈스틱</b><span>쭉 늘어나는 모짜렐라</span></div>
+          </article>
+          <article class="menu-card menu-card--side" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/side-05.jpg" alt="츄러스윗"></div>
+            <div class="menu-card__body"><b>츄러스윗</b><span>달콤한 시나몬 츄러스</span></div>
+          </article>
+          <article class="menu-card menu-card--side" data-reveal>
+            <div class="menu-card__media"><img src="img/menu/side-01.jpg" alt="해쉬브라운"></div>
+            <div class="menu-card__body"><b>해쉬브라운</b><span>바삭한 감자 해쉬브라운</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SNS — full-bleed -->
+  <section class="sns section--tight">
+    <div class="container">
+      <div class="sns__copy" data-reveal>
+        <span class="badge badge--inverse">SNS</span>
+        <h3>NOM Burger &amp; Wings의 소식을<br>가장 빠르게 만나보세요</h3>
+      </div>
+      <div class="sns__links" data-reveal-group>
+        <a class="sns__link" href="#" data-reveal>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-1.9-.2-3.2-.5-4.1a4.6 4.6 0 0 0-3.2-3.2C17.2 4.2 12 4.2 12 4.2s-5.2 0-6.3.5A4.6 4.6 0 0 0 2.5 7.9C2.2 8.8 2 10.1 2 12s.2 3.2.5 4.1a4.6 4.6 0 0 0 3.2 3.2c1.1.5 6.3.5 6.3.5s5.2 0 6.3-.5a4.6 4.6 0 0 0 3.2-3.2c.3-.9.5-2.2.5-4.1ZM10 15.4V8.6L15.8 12 10 15.4Z"/></svg>
+          YouTube
+        </a>
+        <a class="sns__link" href="#" data-reveal>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.4.46.7.27 1.2.62 1.7 1.13.5.5.86 1.03 1.13 1.73.24.6.4 1.3.46 2.4.05 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4-.27.7-.62 1.2-1.13 1.7a4.7 4.7 0 0 1-1.73 1.13c-.6.24-1.3.4-2.4.46-1.1.05-1.4.06-4.1.06s-3 0-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.7 4.7 0 0 1-1.7-1.13 4.7 4.7 0 0 1-1.13-1.73c-.24-.6-.4-1.3-.46-2.4C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1.1.22-1.8.46-2.4.27-.7.62-1.2 1.13-1.7A4.7 4.7 0 0 1 5.6 2.66c.6-.24 1.3-.4 2.4-.46C9.1 2.2 9.3 2.2 12 2.2Zm0 1.8c-2.65 0-2.97 0-4.02.06-.9.04-1.4.2-1.72.32-.43.17-.74.37-1.06.7-.32.32-.52.63-.7 1.06-.12.32-.28.81-.32 1.72C4.13 9.03 4.12 9.35 4.12 12s0 2.97.06 4.02c.04.9.2 1.4.32 1.72.17.43.37.74.7 1.06.32.32.63.52 1.06.7.32.12.81.28 1.72.32C8.98 19.87 9.3 19.88 12 19.88s2.97 0 4.02-.06c.9-.04 1.4-.2 1.72-.32.43-.17.74-.37 1.06-.7.32-.32.52-.63.7-1.06.12-.32.28-.81.32-1.72.05-1.05.06-1.37.06-4.02s0-2.97-.06-4.02c-.04-.9-.2-1.4-.32-1.72a2.9 2.9 0 0 0-.7-1.06 2.9 2.9 0 0 0-1.06-.7c-.32-.12-.81-.28-1.72-.32C14.97 4.13 14.65 4.12 12 4.12Zm0 3.4A4.48 4.48 0 1 1 12 16.48 4.48 4.48 0 0 1 12 7.52Zm0 1.8a2.68 2.68 0 1 0 0 5.36 2.68 2.68 0 0 0 0-5.36Zm4.66-1.98a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"/></svg>
+          Instagram
+        </a>
+        <a class="sns__link" href="#" data-reveal>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.31 4.66 6.72-.2.75-.73 2.73-.84 3.15-.13.52.19.51.4.37.16-.1 2.6-1.76 3.66-2.48.68.1 1.38.15 2.12.15 5.52 0 10-3.58 10-8s-4.48-8-10-8Z"/></svg>
+          카카오채널
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store — 7-5 -->
+  <section class="section" id="store">
+    <div class="container">
+      <div class="store__grid">
+        <div class="store__media" data-reveal>
+          <img src="img/store-front.jpg" alt="NOM Burger & Wings 매장 전경">
+        </div>
+        <div class="store__copy" data-reveal>
+          <span class="badge">Store</span>
+          <h2>가장 가까운<br>NOM을 찾아보세요</h2>
+          <p>전국 매장에서 매일 갓 튀겨낸 바삭함을 만날 수 있습니다. 가까운 매장을 검색하고 픽업이나 배달로 편하게 주문하세요.</p>
+          <a href="#" class="btn btn--solid">매장 찾기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event — 3-3-3 -->
+  <section class="section section--tight" id="event">
+    <div class="container">
+      <div class="event__head" data-reveal>
+        <div>
+          <span class="badge">Event</span>
+          <h2>NOM Burger &amp; Wings의<br>다양한 이벤트를 확인하세요</h2>
+        </div>
+        <a href="#" class="btn btn--outline-dark">이벤트 더보기</a>
+      </div>
+      <div class="grid" data-reveal-group>
+        <article class="event-card" style="grid-column:span 4" data-reveal>
+          <span class="badge badge--accent">오픈 이벤트</span>
+          <b>NOM Burger &amp; Wings 인천송도점 오픈 기념 이벤트</b>
+          <time>2026.09.01(화) — 2026.09.30(수)</time>
+        </article>
+        <article class="event-card" style="grid-column:span 4" data-reveal>
+          <span class="badge badge--accent">브랜드 이벤트</span>
+          <b>배달 주문 시 사이드 메뉴 무료 증정</b>
+          <time>2026.09.05(토) — 2026.09.14(월)</time>
+        </article>
+        <article class="event-card" style="grid-column:span 4" data-reveal>
+          <span class="badge badge--accent">오픈 이벤트</span>
+          <b>NOM Burger &amp; Wings 대전둔산점 오픈 기념 이벤트</b>
+          <time>2026.09.10(목) — 2026.10.09(금)</time>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Franchise CTA — full-bleed — 8-4 -->
+  <section class="franchise section" id="franchise">
+    <div class="container">
+      <div class="franchise__copy" data-reveal>
+        <span class="badge badge--inverse">Franchise</span>
+        <h2>바삭함으로 시작하는<br>나만의 매장</h2>
+        <p>NOM Burger &amp; Wings와 함께할 파트너를 찾습니다. 상권 분석부터 오픈까지 든든하게 함께합니다.</p>
+      </div>
+      <div class="franchise__actions" data-reveal>
+        <a href="mailto:nom@nomburger.co.kr" class="btn btn--accent">창업 문의하기</a>
+        <span class="franchise__mail">nom@nomburger.co.kr</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <a href="#top" class="logo">
+        <svg class="logo__mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="17" fill="#fff"/>
+          <path d="M17 25c-4.4 0-8-3.6-8-8V9h3v8c0 2.8 2.2 5 5 5s5-2.2 5-5V9h3v8c0 4.4-3.6 8-8 8Z" fill="var(--brand-primary-600)"/>
+        </svg>
+        <span class="logo__word"><b>NOM</b><span>Burger &amp; Wings</span></span>
+      </a>
+      <div class="footer__sns">
+        <a href="#" aria-label="유튜브"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-1.9-.2-3.2-.5-4.1a4.6 4.6 0 0 0-3.2-3.2C17.2 4.2 12 4.2 12 4.2s-5.2 0-6.3.5A4.6 4.6 0 0 0 2.5 7.9C2.2 8.8 2 10.1 2 12s.2 3.2.5 4.1a4.6 4.6 0 0 0 3.2 3.2c1.1.5 6.3.5 6.3.5s5.2 0 6.3-.5a4.6 4.6 0 0 0 3.2-3.2c.3-.9.5-2.2.5-4.1ZM10 15.4V8.6L15.8 12 10 15.4Z"/></svg></a>
+        <a href="#" aria-label="인스타그램"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.4.46.7.27 1.2.62 1.7 1.13.5.5.86 1.03 1.13 1.73.24.6.4 1.3.46 2.4.05 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4-.27.7-.62 1.2-1.13 1.7a4.7 4.7 0 0 1-1.73 1.13c-.6.24-1.3.4-2.4.46-1.1.05-1.4.06-4.1.06s-3 0-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.7 4.7 0 0 1-1.7-1.13 4.7 4.7 0 0 1-1.13-1.73c-.24-.6-.4-1.3-.46-2.4C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1.1.22-1.8.46-2.4.27-.7.62-1.2 1.13-1.7A4.7 4.7 0 0 1 5.6 2.66c.6-.24 1.3-.4 2.4-.46C9.1 2.2 9.3 2.2 12 2.2Zm0 1.8c-2.65 0-2.97 0-4.02.06-.9.04-1.4.2-1.72.32-.43.17-.74.37-1.06.7-.32.32-.52.63-.7 1.06-.12.32-.28.81-.32 1.72C4.13 9.03 4.12 9.35 4.12 12s0 2.97.06 4.02c.04.9.2 1.4.32 1.72.17.43.37.74.7 1.06.32.32.63.52 1.06.7.32.12.81.28 1.72.32C8.98 19.87 9.3 19.88 12 19.88s2.97 0 4.02-.06c.9-.04 1.4-.2 1.72-.32.43-.17.74-.37 1.06-.7.32-.32.52-.63.7-1.06.12-.32.28-.81.32-1.72.05-1.05.06-1.37.06-4.02s0-2.97-.06-4.02c-.04-.9-.2-1.4-.32-1.72a2.9 2.9 0 0 0-.7-1.06 2.9 2.9 0 0 0-1.06-.7c-.32-.12-.81-.28-1.72-.32C14.97 4.13 14.65 4.12 12 4.12Zm0 3.4A4.48 4.48 0 1 1 12 16.48 4.48 4.48 0 0 1 12 7.52Zm0 1.8a2.68 2.68 0 1 0 0 5.36 2.68 2.68 0 0 0 0-5.36Zm4.66-1.98a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"/></svg></a>
+        <a href="#" aria-label="카카오채널"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.31 4.66 6.72-.2.75-.73 2.73-.84 3.15-.13.52.19.51.4.37.16-.1 2.6-1.76 3.66-2.48.68.1 1.38.15 2.12.15 5.52 0 10-3.58 10-8s-4.48-8-10-8Z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__info">
+      (주)놈에프앤비 &nbsp;|&nbsp; 대표자명 김도현 &nbsp;|&nbsp; 사업자등록번호 123-45-67890<br>
+      서울특별시 강남구 테헤란로 123 &nbsp;|&nbsp; 팩스 02-1234-5678
+    </div>
+    <div class="footer__bottom">
+      Copyright 2026 NOM F&amp;B, inc. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
