@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HALCYON | Join US!</title>
+<meta name="description" content="HALCYON 채용 - 세상에 없던 방식으로 일하는 클라우드 데이터보안 플랫폼, 가능성의 회로를 함께 그려볼 여러분을 기다립니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#top" class="logo">HALCYON</a>
+    <nav class="gnb" id="gnb">
+      <ul>
+        <li class="gnb-item">
+          <a href="#company">Company</a>
+          <ul class="dropdown">
+            <li><a href="#company">성장스토리</a></li>
+            <li><a href="#company">복리후생</a></li>
+            <li><a href="#company">오피스</a></li>
+          </ul>
+        </li>
+        <li class="gnb-item">
+          <a href="#jobs">Jobs</a>
+          <ul class="dropdown">
+            <li><a href="#jobs">채용공고</a></li>
+            <li><a href="#jobs">채용절차</a></li>
+            <li><a href="#jobs">FAQ</a></li>
+          </ul>
+        </li>
+        <li class="gnb-item">
+          <a href="#people">People</a>
+          <ul class="dropdown">
+            <li><a href="#people">인터뷰</a></li>
+          </ul>
+        </li>
+        <li class="gnb-item">
+          <a href="#culture">Culture</a>
+          <ul class="dropdown">
+            <li><a href="#culture">기업문화</a></li>
+          </ul>
+        </li>
+        <li class="gnb-item">
+          <a href="#jobs">인재Pool</a>
+          <ul class="dropdown">
+            <li><a href="#jobs">인재Pool 등록</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <a href="#" class="btn-login">로그인</a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#company">Company</a>
+  <a href="#jobs">Jobs</a>
+  <a href="#people">People</a>
+  <a href="#culture">Culture</a>
+  <a href="#jobs">인재Pool</a>
+  <a href="#" class="mobile-login">로그인</a>
+</div>
+
+<div class="ticker" id="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item">
+      <span class="ticker-badge">D-9</span>
+      <span class="ticker-text">경력직 채용공고(보안엔지니어)</span>
+      <span class="ticker-count">1/3</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">D-14</span>
+      <span class="ticker-text">경력직 채용공고(클라우드인프라)</span>
+      <span class="ticker-count">2/3</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">D-21</span>
+      <span class="ticker-text">경력직 채용공고(데이터사이언스)</span>
+      <span class="ticker-count">3/3</span>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <p class="hero-kicker" data-aos>The Boldest Challenge.<br>The Brightest Future.</p>
+      <div class="hero-title-row" data-aos>
+        <h1 class="hero-title">Join US!</h1>
+        <span class="hero-badge">HALCYON</span>
+      </div>
+      <p class="hero-body" data-aos>
+        새로운 역사를 만들어가고 있는 <strong>HALCYON</strong>이 놀라운 잠재력을 지닌 여러분을 기다립니다.<br>
+        가능성의 <span class="text-accent">회로</span>를 함께 그려볼까요?
+      </p>
+      <a href="#jobs" class="btn-primary" data-aos>채용공고 보기</a>
+    </div>
+    <div class="hero-graphic" data-aos aria-hidden="true">
+      <svg viewBox="0 0 520 620" class="circuit-svg" xmlns="http://www.w3.org/2000/svg">
+        <g class="circuit-lines" stroke="#EF3B24" stroke-width="2" fill="none" opacity="0.85">
+          <path d="M260 60 L260 160" />
+          <path d="M260 160 L150 220" />
+          <path d="M260 160 L370 220" />
+          <path d="M150 220 L150 300" />
+          <path d="M370 220 L370 300" />
+          <path d="M150 300 L230 350" />
+          <path d="M370 300 L290 350" />
+          <path d="M230 350 L290 350" />
+          <path d="M260 350 L260 420" />
+        </g>
+        <g class="circuit-nodes" fill="#EF3B24">
+          <circle cx="260" cy="60" r="10" />
+          <circle cx="260" cy="160" r="7" />
+          <circle cx="150" cy="220" r="7" />
+          <circle cx="370" cy="220" r="7" />
+          <circle cx="150" cy="300" r="7" />
+          <circle cx="370" cy="300" r="7" />
+          <circle cx="230" cy="350" r="7" />
+          <circle cx="290" cy="350" r="7" />
+          <circle cx="260" cy="60" r="18" opacity="0.18" class="pulse" />
+        </g>
+        <path class="squiggle" d="M260 420 C 220 460, 300 480, 250 510 C 210 535, 270 550, 260 580"
+          stroke="#FFB800" stroke-width="3" fill="none" stroke-linecap="round" />
+        <text x="180" y="612" class="squiggle-text" font-family="'Ubuntu', cursive">careers</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- COMPANY -->
+  <section class="section company" id="company">
+    <div class="container">
+      <p class="section-eyebrow" data-aos>Company</p>
+      <h2 class="section-title" data-aos>HALCYON을 소개합니다</h2>
+      <div class="company-grid">
+        <article class="card card-growth" data-aos>
+          <div class="card-chart" aria-hidden="true">
+            <span style="--h:30%"></span>
+            <span style="--h:42%"></span>
+            <span style="--h:58%"></span>
+            <span style="--h:71%"></span>
+            <span style="--h:100%"></span>
+          </div>
+          <h3>성장스토리</h3>
+          <p>HALCYON은 2016년 창업 이후 매출 12배 성장이라는 '놀라운 역사'를 만들었습니다. 그리고 이제 '새로운 역사'가 시작됩니다.</p>
+        </article>
+        <article class="card card-photo" data-aos>
+          <div class="card-img"><img src="img/benefits.jpg" alt="HALCYON 사무 공간" loading="lazy"></div>
+          <h3>복리후생</h3>
+          <p>유연근무제, 자기계발비, 건강검진 등 일과 삶의 균형을 지키는 다양한 복지로 구성원의 성장을 지원합니다.</p>
+        </article>
+        <article class="card card-photo" data-aos>
+          <div class="card-img"><img src="img/office-01.jpg" alt="HALCYON 오피스 전경" loading="lazy"></div>
+          <h3>오피스</h3>
+          <ul class="office-list">
+            <li>강남 본사(테헤란로)</li>
+            <li>판교 R&amp;D센터</li>
+            <li>부산 데이터센터</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOBS -->
+  <section class="section jobs" id="jobs">
+    <div class="container">
+      <p class="section-eyebrow" data-aos>Jobs</p>
+      <h2 class="section-title" data-aos>채용</h2>
+      <p class="section-lead" data-aos>변화와 혁신에 적극적으로 동참할 준비가 되어 있는 지원자를 기다립니다.</p>
+      <div class="jobs-grid">
+        <article class="job-card" data-aos>
+          <div class="job-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M24 4l16 7v13c0 11-7 18-16 20-9-2-16-9-16-20V11z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M17 24l5 5 10-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>채용중인 공고</h3>
+          <p>현재 진행중인 모든 채용 포지션을 확인하세요.</p>
+          <a href="#jobs" class="btn-pill">보기</a>
+        </article>
+        <article class="job-card" data-aos>
+          <div class="job-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><rect x="8" y="6" width="32" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M16 16h16M16 24h16M16 32h10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>채용절차</h3>
+          <p>경력 및 신입 채용 프로세스를 안내해 드립니다.</p>
+          <a href="#jobs" class="btn-pill">보기</a>
+        </article>
+        <article class="job-card" data-aos>
+          <div class="job-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M10 40c0-8 6-14 14-14s14 6 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>인재풀등록</h3>
+          <p>지금 지원하지 않아도 인재풀에 등록해 두세요.</p>
+          <a href="#jobs" class="btn-pill">보기</a>
+        </article>
+        <article class="job-card" data-aos>
+          <div class="job-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 16v10l7 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <h3>채용 FAQ</h3>
+          <p>지원자들이 자주 묻는 질문들을 모았습니다.</p>
+          <a href="#jobs" class="btn-pill">보기</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section class="section people" id="people">
+    <div class="container">
+      <p class="section-eyebrow" data-aos>People</p>
+      <h2 class="section-title" data-aos>인터뷰</h2>
+      <p class="section-lead" data-aos>좋은 동료와 함께 한다는 것은 회사 생활을 즐겁게 하는 원동력이기도 합니다.</p>
+      <div class="people-grid">
+        <article class="people-card" data-aos>
+          <img src="img/interview-01.jpg" alt="보안엔지니어링팀 한소율님" loading="lazy">
+          <div class="people-overlay">
+            <p class="people-quote">&ldquo;보안은 결국 사람에 대한 신뢰를 지키는 일&rdquo;</p>
+            <p class="people-name">보안엔지니어링팀 한소율님</p>
+          </div>
+        </article>
+        <article class="people-card" data-aos>
+          <img src="img/interview-02.jpg" alt="AI연구팀 정우빈님" loading="lazy">
+          <div class="people-overlay">
+            <p class="people-quote">&ldquo;실패한 실험도 데이터로 남는다&rdquo;</p>
+            <p class="people-name">AI연구팀 정우빈님</p>
+          </div>
+        </article>
+        <article class="people-card" data-aos>
+          <img src="img/interview-03.jpg" alt="클라우드인프라팀 배지현님" loading="lazy">
+          <div class="people-overlay">
+            <p class="people-quote">&ldquo;우리가 만든 회로가 곧 성장의 증거&rdquo;</p>
+            <p class="people-name">클라우드인프라팀 배지현님</p>
+          </div>
+        </article>
+        <article class="people-card" data-aos>
+          <img src="img/interview-04.jpg" alt="세일즈전략팀 오도현님" loading="lazy">
+          <div class="people-overlay">
+            <p class="people-quote">&ldquo;고객의 문제를 먼저 이해하는 것부터&rdquo;</p>
+            <p class="people-name">세일즈전략팀 오도현님</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTURE -->
+  <section class="section culture" id="culture">
+    <div class="container culture-grid">
+      <div class="culture-text" data-aos>
+        <p class="section-eyebrow">Culture</p>
+        <h2 class="section-title">기업문화</h2>
+        <p class="culture-copy">
+          HALCYON은 기존 패러다임을 뛰어넘어 '게임의 규칙'을 바꾸어 왔습니다.
+          정해진 답을 따르기보다 새로운 질문을 던지고, 데이터와 기술로 스스로 증명하는 문화를 만들어가고 있습니다.
+        </p>
+        <p class="culture-copy">함께 만들어가는 HALCYON의 성공방정식에 여러분을 초대합니다.</p>
+        <a href="#culture" class="link-more">자세히 보기 &rarr;</a>
+      </div>
+      <div class="culture-cards">
+        <div class="value-card" data-aos>
+          <h3>HALCYON's Formula for Growth</h3>
+          <span>People &amp; Culture</span>
+        </div>
+        <div class="value-card" data-aos>
+          <h3>A Self Driven Builder</h3>
+          <span>People</span>
+        </div>
+        <div class="value-card" data-aos>
+          <h3>A Deeply Focused Culture</h3>
+          <span>Culture</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="cta-band" data-aos>
+    <div class="cta-quote-mark" aria-hidden="true">&ldquo;</div>
+    <p class="cta-text">세상에 없던 방식으로 일하는 HALCYON,<br>이제 <span class="text-accent">당신의 시간</span>입니다</p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="logo footer-logo">HALCYON</span>
+    <div class="footer-info">
+      <p>사업자 등록번호 000-00-00000 &nbsp;|&nbsp; 대표자명 이서준</p>
+      <p>서울특별시 강남구 테헤란로 427, HALCYON타워 &nbsp;|&nbsp; <a href="mailto:careers@halcyon.io">careers@halcyon.io</a></p>
+    </div>
+    <div class="footer-sns">
+      <a href="#" aria-label="Instagram" class="sns-btn">IG</a>
+      <a href="#" aria-label="LinkedIn" class="sns-btn">IN</a>
+      <a href="#" aria-label="YouTube" class="sns-btn">YT</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
