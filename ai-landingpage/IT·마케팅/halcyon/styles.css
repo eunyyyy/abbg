@@ -196,10 +196,25 @@ main { position: relative; }
   color: var(--primary-500);
   pointer-events: none;
   white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-26px) rotate(var(--rot, 0deg));
+  transition: opacity .45s var(--ease), transform .45s var(--ease);
 }
-.thread-label--company { top: 23%; left: 5%; transform: rotate(-6deg); }
-.thread-label--jobs     { top: 44%; left: 58%; transform: rotate(4deg); }
-.thread-label--culture  { top: 71%; left: 5%; transform: rotate(-4deg); }
+/* Tied to the thread's own scroll progress (script.js), not a one-shot
+   reveal: appears top-to-bottom as the line reaches this section, and
+   retreats bottom-to-top if the user scrolls back up past it. */
+.thread-label.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--rot, 0deg));
+}
+/* top is set in px by script.js, measured from each real section's
+   offsetTop — a % of main's total height drifted out of sync with
+   the actual section boundaries whenever unrelated spacing changed
+   elsewhere on the page (e.g. the culture card gap), so anchor to
+   the real DOM position instead of a guessed percentage. */
+.thread-label--company { left: 5%; --rot: -6deg; }
+.thread-label--jobs     { left: 58%; --rot: 4deg; }
+.thread-label--culture  { left: 5%; --rot: -4deg; }
 
 @media (max-width: 768px) {
   .thread-svg, .thread-label { display: none; }
@@ -451,7 +466,14 @@ main { position: relative; }
 }
 .btn-primary:hover { background: var(--primary-600); transform: translateY(-3px); }
 
-.hero-graphic { display: flex; justify-content: center; align-items: center; }
+.hero-graphic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 5; /* above .thread-svg (z-index:3) so the thread visibly
+                 starts from BEHIND this graphic layer, not in front of it */
+}
 .hero-people-img { width: 100%; max-width: 420px; height: auto; }
 
 /* =========================================================
@@ -642,8 +664,8 @@ main { position: relative; }
 .culture-scroll {
   display: flex;
   flex-direction: column;
-  gap: 22vh;
-  padding: 8vh 0;
+  gap: 16px;
+  padding: 40px 0;
 }
 .value-card {
   background: linear-gradient(135deg, var(--primary-900), var(--primary-700));
@@ -785,7 +807,7 @@ main { position: relative; }
   .card-growth { grid-column: auto; }
 
   .culture-pin { position: static; top: auto; }
-  .culture-scroll { gap: 20px; padding: 0; }
+  .culture-scroll { gap: 16px; }
   .value-card { padding: 24px; }
   .value-card[data-aos] { transform: translateY(28px); }
 

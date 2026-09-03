@@ -196,8 +196,46 @@
     var pathLength = threadPath.getTotalLength();
     threadPath.style.strokeDasharray = pathLength;
 
+    /* Cursive labels are tied to the SAME scroll ratio driving the
+       thread itself (not a one-shot reveal) — each toggles on/off
+       exactly like the reference's own `sub_wrap-N` threshold classes
+       (`toggleClass('on', dashoffset < threshold)`): appearing
+       top-to-bottom the moment the line reaches that section, and
+       retreating bottom-to-top if the user scrolls back up past it.
+       Both the label's on-page position (top, in px) and its trigger
+       ratio are computed from the REAL section offsets rather than
+       guessed constants, so they can't drift out of sync if some
+       other section's height changes later. */
+    var thresholds = [
+      { el: document.getElementById('labelCompany'), target: document.getElementById('company'), topOffset: 130, leadPx: 0 },
+      { el: document.getElementById('labelJobs'), target: document.getElementById('jobs'), topOffset: 130, leadPx: 0 },
+      { el: document.getElementById('labelCulture'), target: document.getElementById('culture'), topOffset: -180, leadPx: 180 }
+    ];
+
+    var positionLabels = function () {
+      thresholds.forEach(function (t) {
+        if (!t.el || !t.target) return;
+        t.el.style.top = (t.target.offsetTop + t.topOffset) + 'px';
+      });
+    };
+    positionLabels();
+    /* Re-run after full load (images/fonts can still reflow section
+       heights after the initial synchronous pass) and on resize. */
+    window.addEventListener('load', positionLabels);
+    window.addEventListener('resize', positionLabels);
+
+    /* Computed fresh on every check (not cached) — target.offsetTop
+       and threadZone.offsetHeight can both shift as images/fonts
+       finish loading, and a cached ratio would silently go stale. */
+    function labelRatio(t) {
+      return ((t.target.offsetTop - t.leadPx) + (window.innerHeight - 80) * 0.5) / (threadZone.offsetHeight + 700);
+    }
+
     if (isCoarseThread || reduceMotionThread) {
       threadPath.style.strokeDashoffset = 0;
+      if (!isCoarseThread) {
+        thresholds.forEach(function (t) { if (t.el) t.el.classList.add('visible'); });
+      }
     } else {
       var threadTicking = false;
       var updateThreadPath = function () {
@@ -206,6 +244,9 @@
         var value = pathLength - pathLength * ratio;
         value = value < 0 ? 0 : value > pathLength ? pathLength : value;
         threadPath.style.strokeDashoffset = value;
+        thresholds.forEach(function (t) {
+          if (t.el) t.el.classList.toggle('visible', ratio >= labelRatio(t));
+        });
         threadTicking = false;
       };
       updateThreadPath();
