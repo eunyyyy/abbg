@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>하이드로겔·제형 전문 화장품 ODM | VERAHYDE(베라하이드)</title>
+<meta name="description" content="VERAHYDE(베라하이드)는 하이드로겔과 제형 기술을 전문으로 하는 화장품 ODM 뷰티 파운드리입니다. 브랜드의 아이디어를 성공적인 제품으로 완성합니다.">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="cursor" class="cursor" aria-hidden="true">
+  <div class="cursor__circle">
+    <svg class="cursor__arrow cursor__arrow--link" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="40" height="40" rx="20" fill="var(--primary-500)"></rect>
+      <path d="M17.5 14L25 14M25 14L25 22.5M25 14L14.5 24.5" stroke="white" stroke-width="2" stroke-linecap="square"></path>
+    </svg>
+    <svg class="cursor__arrow cursor__arrow--drag" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 12H20M4 12L8 8M4 12L8 16M20 12L16 8M20 12L16 16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </div>
+  <span class="cursor__label"></span>
+</div>
+
+<a class="skip-link" href="#top">본문 바로가기</a>
+
+<header class="gnb" id="gnb" data-theme="light">
+  <div class="gnb__inner">
+    <a href="#top" class="gnb__logo" data-cursor="link" data-cursor-label="TOP">VERAHYDE</a>
+    <nav class="gnb__nav" aria-label="주요 메뉴">
+      <a href="#company" data-cursor="link" data-cursor-label="VIEW">COMPANY</a>
+      <a href="#factory" data-cursor="link" data-cursor-label="VIEW">FACTORY</a>
+      <a href="#lab" data-cursor="link" data-cursor-label="VIEW">LAB</a>
+      <a href="#pr" data-cursor="link" data-cursor-label="VIEW">PR</a>
+      <a href="#esg" data-cursor="link" data-cursor-label="VIEW">ESG</a>
+    </nav>
+    <button class="gnb__hamburger" id="hamburgerBtn" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<!-- gnb__mobile is a DOM sibling of header.gnb, not a child: header.gnb carries a
+     `transform` (for the hide-on-scroll animation), which would otherwise make it the
+     containing block for a position:fixed descendant and collapse this overlay to the
+     header's own ~74px height instead of the full viewport. -->
+<nav class="gnb__mobile" id="gnbMobile" aria-label="모바일 메뉴">
+  <a href="#company">COMPANY</a>
+  <a href="#factory">FACTORY</a>
+  <a href="#lab">LAB</a>
+  <a href="#pr">PR</a>
+  <a href="#esg">ESG</a>
+</nav>
+
+<main id="top">
+
+  <section class="hero-scene">
+    <div class="hero" id="hero" data-theme="light">
+      <p class="eyebrow hero__eyebrow">YOUR SKIN, OUR SCIENCE</p>
+
+      <div class="hero__media">
+        <img class="hero__img" src="img/hero-product.jpg" alt="VERAHYDE 하이드로겔 포뮬레이션" width="900" height="670">
+      </div>
+
+      <div class="hero__text">
+        <h1 class="hero__title">
+          <span class="hero__title-line">A BEAUTY FOUNDRY</span>
+          <span class="hero__title-line hero__title-line--indent">WHERE SCIENCE BECOMES</span>
+          <span class="hero__title-line">SKINCARE</span>
+        </h1>
+        <p class="hero__sub">과학이 스킨케어가 되는 뷰티 파운드리<br>브랜드의 아이디어를 완성된 제품으로 구현합니다.</p>
+      </div>
+
+      <div class="hero__wordmark" aria-hidden="true">VERAHYDE</div>
+    </div>
+  </section>
+
+  <!-- .strip is a SIBLING of .hero-scene, not nested inside it: its negative
+       margin-top:-100vh must cancel against the FULL hero-scene runway height,
+       not against .hero's own sticky flow-height, or the overlap math breaks
+       and the strip renders overlapping the very top of the page instead of
+       sliding up under the hero as it releases. -->
+  <div class="strip" id="strip" data-theme="dark">
+    <div class="strip__overlay" aria-hidden="true"></div>
+    <div class="strip__wordmark" aria-hidden="true">VERAHYDE</div>
+    <p class="strip__tagline" aria-hidden="true">YOUR SKIN, OUR SCIENCE</p>
+    <div class="strip__grid" aria-hidden="true">
+      <img class="strip__img strip__img--1" src="img/diff-05.jpg" alt="" loading="lazy">
+      <img class="strip__img strip__img--2" src="img/diff-02.jpg" alt="" loading="lazy">
+      <img class="strip__img strip__img--3" src="img/diff-06.jpg" alt="" loading="lazy">
+      <img class="strip__img strip__img--4" src="img/diff-04.jpg" alt="" loading="lazy">
+    </div>
+  </div>
+
+  <section class="diff" id="company" data-theme="light">
+    <div class="diff__sticky">
+      <div class="diff__images" aria-hidden="true">
+        <img class="diff__img diff__img--1" src="img/diff-01.jpg" alt="" loading="lazy">
+        <img class="diff__img diff__img--2" src="img/diff-02.jpg" alt="" loading="lazy">
+        <img class="diff__img diff__img--3" src="img/diff-03.jpg" alt="" loading="lazy">
+        <img class="diff__img diff__img--4" src="img/diff-04.jpg" alt="" loading="lazy">
+        <img class="diff__img diff__img--5" src="img/diff-05.jpg" alt="" loading="lazy">
+        <img class="diff__img diff__img--6" src="img/diff-06.jpg" alt="" loading="lazy">
+      </div>
+      <div class="diff__heading">
+        <h2 class="diff__title">VERAHYDE MAKES<br>THE DIFFERENCE</h2>
+      </div>
+      <div class="diff__desc">
+        <p class="diff__desc-line">베라하이드가 만든 제품은, 시장에서 차이가 드러납니다.</p>
+        <p class="diff__desc-line">AI와 데이터가 제품을 평가하는 시대,</p>
+        <p class="diff__desc-line">제품은 더 이상 감각만으로 선택되지 않습니다.</p>
+        <p class="diff__desc-line">VERAHYDE는 축적된 기술과 경험, 데이터를 기반으로</p>
+        <p class="diff__desc-line">이 기준들이 제품의 완성도로 이어지도록 설계하고 생산합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers" aria-label="주요 지표" data-theme="light">
+    <div class="numbers__head">
+      <h2 class="numbers__title">THE NUMBERS<br>BEHIND THE BRANDS</h2>
+      <p class="numbers__sub">브랜드와 함께 만든 성장, 숫자로 증명합니다.</p>
+    </div>
+    <div class="numbers__list">
+      <div class="numbers__row" data-target="890" data-decimals="0">
+        <div class="numbers__label">
+          <span class="numbers__label-kr">매출액 ₩</span>
+          <span class="numbers__label-en">REVENUE 2025</span>
+        </div>
+        <div class="numbers__value"><span class="numbers__num">0</span>억</div>
+        <img class="numbers__thumb" src="img/numbers-01.jpg" alt="" loading="lazy">
+      </div>
+      <div class="numbers__row" data-target="21.4" data-decimals="1">
+        <div class="numbers__label">
+          <span class="numbers__label-kr">해외 매출 CAGR</span>
+          <span class="numbers__label-en">OVERSEAS REVENUE CAGR</span>
+        </div>
+        <div class="numbers__value"><span class="numbers__num">0.0</span>%</div>
+        <img class="numbers__thumb" src="img/numbers-02.jpg" alt="" loading="lazy">
+      </div>
+      <div class="numbers__row" data-target="74" data-decimals="0">
+        <div class="numbers__label">
+          <span class="numbers__label-kr">글로벌 파트너</span>
+          <span class="numbers__label-en">GLOBAL PARTNER BRANDS</span>
+        </div>
+        <div class="numbers__value"><span class="numbers__num">0</span>+</div>
+        <img class="numbers__thumb" src="img/numbers-03.jpg" alt="" loading="lazy">
+      </div>
+      <div class="numbers__row" data-target="268" data-decimals="0">
+        <div class="numbers__label">
+          <span class="numbers__label-kr">연간 신제품 론칭규모</span>
+          <span class="numbers__label-en">ANNUAL NEW LAUNCHING SCALE</span>
+        </div>
+        <div class="numbers__value"><span class="numbers__num">0</span> <svg class="numbers__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <img class="numbers__thumb" src="img/numbers-04.jpg" alt="" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="formula-scene" id="lab" data-theme="light">
+    <div class="formula" id="formulaStage">
+      <p class="eyebrow">EVERY FORMULA. EVERY CATEGORY.</p>
+      <p class="formula__sub-kr">피부에 닿는 모든 순간을 설계합니다</p>
+
+      <div class="formula__icons" id="formulaIcons" aria-hidden="true">
+        <span class="formula__icon"></span>
+        <span class="formula__icon"></span>
+        <span class="formula__icon"></span>
+        <span class="formula__icon"></span>
+        <span class="formula__icon"></span>
+        <span class="formula__icon"></span>
+      </div>
+
+      <div class="formula__stage">
+        <img class="formula__bg" data-index="0" src="img/formula-01.jpg" alt="">
+        <img class="formula__bg" data-index="1" src="img/formula-02.jpg" alt="">
+        <img class="formula__bg" data-index="2" src="img/formula-03.jpg" alt="">
+        <img class="formula__bg" data-index="3" src="img/formula-04.jpg" alt="">
+        <img class="formula__bg" data-index="4" src="img/formula-05.jpg" alt="">
+        <img class="formula__bg" data-index="5" src="img/formula-06.jpg" alt="">
+        <h3 class="formula__title">FORMULA<br class="mobile-only">&nbsp;CATEGORY</h3>
+      </div>
+
+      <div class="formula__foot">
+        <div class="formula__label" id="formulaLabel">
+          <span class="formula__label-en">SPRAYABLE HYDROGEL</span>
+          <span class="formula__label-kr">스프레이 하이드로겔</span>
+        </div>
+        <p class="formula__desc" id="formulaDesc">초미세 입자화 및 분사 최적화 시스템을 이용한 스프레이 형태 하이드로겔 처방 기술. 미세 분사와 피부 밀착형 텍스처를 구현합니다.</p>
+        <div class="formula__pagination" aria-hidden="true">
+          <span class="pg-active" id="pgActive">01</span>
+          <span class="pg-sep">—</span>
+          <span class="pg-total">06</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="odm-scene" id="factory" data-theme="light">
+    <div class="odm">
+      <div class="odm__head">
+        <h2 class="odm__title">BEYOND ODM<br>BEAUTY FOUNDRY BY VERAHYDE</h2>
+        <p class="odm__sub">단순한 ODM을 넘어, 브랜드는 방향에 집중하고 우리는 결과를 만듭니다.</p>
+      </div>
+      <div class="odm__panels" id="odmPanels">
+        <div class="odm__panel">
+          <img class="odm__panel-img" src="img/odm-01.jpg" alt="" loading="lazy">
+          <div class="odm__panel-overlay"></div>
+          <h3 class="odm__panel-title">ENGINEER</h3>
+          <p class="odm__panel-desc">브랜드가 시장과 고객에 집중할 수 있도록 제품 전략 및 개발 구조 설계</p>
+        </div>
+        <div class="odm__panel">
+          <img class="odm__panel-img" src="img/odm-02.jpg" alt="" loading="lazy">
+          <div class="odm__panel-overlay"></div>
+          <h3 class="odm__panel-title">FORMULATE</h3>
+          <p class="odm__panel-desc">글로벌 데이터와 축적된 개발 경험을 기반으로 정교한 포뮬레이션과 높은 제품 완성도 구현</p>
+        </div>
+        <div class="odm__panel">
+          <img class="odm__panel-img" src="img/odm-03.jpg" alt="" loading="lazy">
+          <div class="odm__panel-overlay"></div>
+          <h3 class="odm__panel-title">INTEGRATE</h3>
+          <p class="odm__panel-desc">개발·생산·공급 전 과정을 연결하는 통합 운영 구조와 확장 기반</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark" id="pr" data-theme="dark">
+    <div class="marquee marquee--brands" aria-hidden="true">
+      <div class="marquee__track">
+        <span class="marquee__item">LUMINEL</span>
+        <span class="marquee__item">CELLUENA</span>
+        <span class="marquee__item">AURABLOOM</span>
+        <span class="marquee__item">NUDERM</span>
+        <span class="marquee__item">GLOWKIT</span>
+        <span class="marquee__item">MURENNA</span>
+        <span class="marquee__item">DERMASIA</span>
+        <span class="marquee__item">PUROSKIN</span>
+        <span class="marquee__item">LUMINEL</span>
+        <span class="marquee__item">CELLUENA</span>
+        <span class="marquee__item">AURABLOOM</span>
+        <span class="marquee__item">NUDERM</span>
+        <span class="marquee__item">GLOWKIT</span>
+        <span class="marquee__item">MURENNA</span>
+        <span class="marquee__item">DERMASIA</span>
+        <span class="marquee__item">PUROSKIN</span>
+      </div>
+    </div>
+
+    <div class="magazine">
+      <div class="magazine__head">
+        <h2 class="magazine__title">VERAHYDE<br>BEAUTY INSIGHT<br>MAGAZINE</h2>
+        <p class="magazine__desc">지금 뷰티 시장이 주목하는 키워드와 트렌드, 그리고 그에 맞는 제형과 원료를 엄선해 소개합니다. 브랜드 기획에 영감을 더하는 뷰티 인사이트를 확인해보세요.</p>
+        <div class="magazine__pagination" aria-hidden="true">
+          <span class="pg-active">02</span>
+          <span class="pg-sep">—</span>
+          <span class="pg-total">06</span>
+        </div>
+      </div>
+
+      <div class="magazine__track" id="magazineTrack" data-cursor="drag" data-cursor-label="DRAG">
+        <div class="magazine__item">
+          <img src="img/mag-01.jpg" alt="" loading="lazy" draggable="false">
+          <span class="magazine__label">VERAHYDE MEGA ITEMS</span>
+        </div>
+        <div class="magazine__item">
+          <img src="img/mag-02.jpg" alt="" loading="lazy" draggable="false">
+          <span class="magazine__label">DERMA COSMETIC</span>
+        </div>
+        <div class="magazine__item">
+          <img src="img/mag-01.jpg" alt="" loading="lazy" draggable="false">
+          <span class="magazine__label">HYDROGEL TREND</span>
+        </div>
+        <div class="magazine__item">
+          <img src="img/mag-02.jpg" alt="" loading="lazy" draggable="false">
+          <span class="magazine__label">KOREAN SPA SKINCARE</span>
+        </div>
+      </div>
+
+      <div class="marquee marquee--categories" aria-hidden="true">
+        <div class="marquee__track marquee__track--reverse">
+          <span class="marquee__item marquee__item--outline">HYDROGEL</span>
+          <span class="marquee__item marquee__item--outline">HAIR CARE</span>
+          <span class="marquee__item marquee__item--outline">BODY SKINCARE</span>
+          <span class="marquee__item marquee__item--outline">VERAHYDE MEGA ITEMS</span>
+          <span class="marquee__item marquee__item--outline">DERMA COSMETIC</span>
+          <span class="marquee__item marquee__item--outline">KOREAN SPA SKINCARE</span>
+          <span class="marquee__item marquee__item--outline">HYDROGEL</span>
+          <span class="marquee__item marquee__item--outline">HAIR CARE</span>
+          <span class="marquee__item marquee__item--outline">BODY SKINCARE</span>
+          <span class="marquee__item marquee__item--outline">VERAHYDE MEGA ITEMS</span>
+          <span class="marquee__item marquee__item--outline">DERMA COSMETIC</span>
+          <span class="marquee__item marquee__item--outline">KOREAN SPA SKINCARE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="esg" id="esg" data-theme="light">
+    <div class="esg__inner">
+      <p class="eyebrow">ESG COMMITMENT</p>
+      <h2 class="esg__title">RESPONSIBLE BEAUTY<br>FOR THE NEXT DECADE</h2>
+      <p class="esg__desc">지속 가능한 원료와 공정으로, 더 나은 내일의 기준을 만듭니다.</p>
+      <div class="esg__stats">
+        <div class="esg__stat">
+          <span class="esg__num">72%</span>
+          <span class="esg__label">재활용 소재 패키지 적용률<br>RECYCLED PACKAGING</span>
+        </div>
+        <div class="esg__stat">
+          <span class="esg__num">2028</span>
+          <span class="esg__label">오송 공장 탄소중립 전환 목표<br>CARBON-NEUTRAL FACTORY</span>
+        </div>
+        <div class="esg__stat">
+          <span class="esg__num">100%</span>
+          <span class="esg__label">전 제품 동물실험 반대 원칙<br>CRUELTY-FREE FORMULATION</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <p class="footer__tagline">YOUR SKIN<br>OUR SCIENCE</p>
+    <div class="footer__cols">
+      <div class="footer__info">
+        <p>(주)베라하이드 · 대표 정한울 / 오세인</p>
+        <p>경기 화성시 향남읍 KA로 128</p>
+        <p>사업자등록번호 : 214-86-73920</p>
+        <p>031-822-4790 · FAX 031-822-4791</p>
+        <p>verahyde_pr@verahyde.co.kr</p>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2026 VERAHYDE CO., LTD. ALL RIGHTS RESERVED.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram" data-cursor="link" data-cursor-label="">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" data-cursor="link" data-cursor-label="">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="2.5" y="6" width="19" height="12" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M11 9.8L15 12L11 14.2V9.8Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer__wordmark" aria-hidden="true">VERAHYDE</div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="맨 위로 이동" data-cursor="link" data-cursor-label="">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
