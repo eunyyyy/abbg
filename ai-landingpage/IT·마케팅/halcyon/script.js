@@ -162,31 +162,44 @@
   }
 
   /* ---------------------------------------------------------
-     6. Scroll thread — a line spools down the page as you scroll,
-        proportional to how far through the page you are (the
-        reference site's spool-of-thread motif, made interactive)
+     6. Scroll thread — same mechanism as the reference site:
+        a real SVG path (getTotalLength) whose stroke-dashoffset
+        is scrubbed by scroll position relative to the content
+        zone it runs through. Reference formula (ui.js):
+          ratio = (scrollY - zoneTop) / (zoneHeight + 700)
+          dashoffset = clamp(length - length*ratio, 0, length)
+        On mobile the reference draws the line fully and skips
+        the scroll-linked animation — same here.
   --------------------------------------------------------- */
-  var threadFill = document.getElementById('threadFill');
-  var threadBead = document.getElementById('threadBead');
-  if (threadFill && threadBead) {
-    var threadTicking = false;
-    var updateThread = function () {
-      var doc = document.documentElement;
-      var scrollTop = window.pageYOffset || doc.scrollTop;
-      var scrollable = doc.scrollHeight - window.innerHeight;
-      var progress = scrollable > 0 ? Math.min(1, Math.max(0, scrollTop / scrollable)) : 0;
-      threadFill.style.transform = 'scaleY(' + progress + ')';
-      threadBead.style.top = (progress * 100) + '%';
-      threadTicking = false;
-    };
-    window.addEventListener('scroll', function () {
-      if (!threadTicking) {
-        requestAnimationFrame(updateThread);
-        threadTicking = true;
-      }
-    }, { passive: true });
-    window.addEventListener('resize', updateThread);
-    updateThread();
+  var threadPath = document.getElementById('threadPath');
+  var threadZone = document.getElementById('threadZone');
+  if (threadPath && threadZone) {
+    var isCoarseThread = window.matchMedia('(max-width: 768px)').matches;
+    var reduceMotionThread = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pathLength = threadPath.getTotalLength();
+    threadPath.style.strokeDasharray = pathLength;
+
+    if (isCoarseThread || reduceMotionThread) {
+      threadPath.style.strokeDashoffset = 0;
+    } else {
+      var threadTicking = false;
+      var updateThreadPath = function () {
+        var scrollY = window.pageYOffset + (window.innerHeight - 80) * 0.5;
+        var ratio = (scrollY - threadZone.offsetTop) / (threadZone.offsetHeight + 700);
+        var value = pathLength - pathLength * ratio;
+        value = value < 0 ? 0 : value > pathLength ? pathLength : value;
+        threadPath.style.strokeDashoffset = value;
+        threadTicking = false;
+      };
+      updateThreadPath();
+      window.addEventListener('scroll', function () {
+        if (!threadTicking) {
+          requestAnimationFrame(updateThreadPath);
+          threadTicking = true;
+        }
+      }, { passive: true });
+      window.addEventListener('resize', updateThreadPath);
+    }
   }
 
   /* ---------------------------------------------------------

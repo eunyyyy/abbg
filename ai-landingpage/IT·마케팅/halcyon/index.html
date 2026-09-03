@@ -92,12 +92,6 @@
 
 <main id="top">
 
-  <div class="thread-rail" aria-hidden="true">
-    <div class="thread-track"></div>
-    <div class="thread-fill" id="threadFill"></div>
-    <div class="thread-bead" id="threadBead"></div>
-  </div>
-
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-inner">
@@ -113,35 +107,34 @@
       <a href="#jobs" class="btn-primary" data-aos>채용공고 보기</a>
     </div>
     <div class="hero-graphic" data-aos aria-hidden="true">
-      <svg viewBox="0 0 520 620" class="circuit-svg" xmlns="http://www.w3.org/2000/svg">
-        <g class="circuit-lines" stroke="#EF3B24" stroke-width="2" fill="none" opacity="0.85">
-          <path d="M260 60 L260 160" />
-          <path d="M260 160 L150 220" />
-          <path d="M260 160 L370 220" />
-          <path d="M150 220 L150 300" />
-          <path d="M370 220 L370 300" />
-          <path d="M150 300 L230 350" />
-          <path d="M370 300 L290 350" />
-          <path d="M230 350 L290 350" />
-          <path d="M260 350 L260 420" />
-        </g>
-        <g class="circuit-nodes" fill="#EF3B24">
-          <circle cx="260" cy="60" r="10" />
-          <circle cx="260" cy="160" r="7" />
-          <circle cx="150" cy="220" r="7" />
-          <circle cx="370" cy="220" r="7" />
-          <circle cx="150" cy="300" r="7" />
-          <circle cx="370" cy="300" r="7" />
-          <circle cx="230" cy="350" r="7" />
-          <circle cx="290" cy="350" r="7" />
-          <circle cx="260" cy="60" r="18" opacity="0.18" class="pulse" />
-        </g>
-        <path class="squiggle" d="M260 420 C 220 460, 300 480, 250 510 C 210 535, 270 550, 260 580"
-          stroke="#FFB800" stroke-width="3" fill="none" stroke-linecap="round" />
-        <text x="180" y="612" class="squiggle-text" font-family="'Ubuntu', cursive">careers</text>
-      </svg>
+      <img src="img/hero-people.png" alt="" class="hero-people-img">
     </div>
   </section>
+
+  <div class="thread-zone" id="threadZone">
+  <svg class="thread-svg" id="threadSvg" viewBox="0 0 1200 3400" preserveAspectRatio="none" aria-hidden="true">
+    <path id="threadPath" d="M 60,0
+      C 60,120 200,90 220,180
+      S 90,300 70,380
+      C 50,460 260,470 300,540
+      S 140,640 160,720
+      C 180,800 380,780 420,860
+      S 220,960 210,1040
+      C 200,1120 360,1160 400,1230
+      S 180,1300 150,1380
+      C 120,1460 340,1480 380,1560
+      S 200,1650 190,1740
+      C 180,1830 400,1840 440,1920
+      S 240,2020 220,2100
+      C 200,2180 380,2200 420,2280
+      S 200,2380 180,2460
+      C 160,2540 360,2560 400,2640
+      S 220,2740 210,2820
+      C 200,2900 340,2920 360,3000
+      S 180,3100 170,3180
+      C 160,3260 260,3300 260,3400"
+      fill="none" />
+  </svg>
 
   <!-- COMPANY -->
   <section class="section company" id="company">
@@ -289,7 +282,7 @@
       </div>
     </div>
   </section>
-
+  </div>
 
 </main>
 
