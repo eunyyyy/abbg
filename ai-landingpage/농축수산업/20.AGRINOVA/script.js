@@ -333,17 +333,19 @@
   }
 
   /* ---------------------------------------------------------
-     VOICES — testimonial crossfade with autoplay + manual
-     prev/next + thumbnail rail, fully keyboard/pointer usable.
+     VOICES — testimonial crossfade, autoplay only. No click-to-
+     jump controls (thumbnail rail / prev-next arrows) on purpose:
+     CHEATSHEET_18_EN.md's Hard Rules ban pagination/arrow-nav
+     chrome, and a clickable "jump to slide" control is pagination
+     by another name even when styled as a thumbnail rail. The dot
+     row below is a passive state indicator only, not a button.
   --------------------------------------------------------- */
   function initTestimonials() {
     var stage = document.getElementById("voiceStage");
     if (!stage) return;
     var photos = Array.prototype.slice.call(stage.querySelectorAll(".voice-photo img"));
     var cards = Array.prototype.slice.call(stage.querySelectorAll(".voice-card"));
-    var thumbs = Array.prototype.slice.call(stage.querySelectorAll(".voice-thumb"));
-    var prevBtn = document.getElementById("voicePrev");
-    var nextBtn = document.getElementById("voiceNext");
+    var dots = Array.prototype.slice.call(stage.querySelectorAll(".voice-dot"));
     if (!cards.length) return;
 
     var index = 0;
@@ -353,24 +355,14 @@
       index = (i + cards.length) % cards.length;
       photos.forEach(function (p, pi) { p.classList.toggle("is-active", pi === index); });
       cards.forEach(function (c, ci) { c.classList.toggle("is-active", ci === index); });
-      thumbs.forEach(function (t, ti) { t.classList.toggle("is-active", ti === index); });
+      dots.forEach(function (d, di) { d.classList.toggle("is-active", di === index); });
     }
     function next() { show(index + 1); }
-    function prev() { show(index - 1); }
     function restart() {
       if (timer) clearInterval(timer);
       timer = setInterval(next, 5500);
     }
 
-    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); restart(); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { next(); restart(); });
-    thumbs.forEach(function (t, i) {
-      t.addEventListener("click", function () { show(i); restart(); });
-    });
-    stage.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight") { next(); restart(); }
-      if (e.key === "ArrowLeft") { prev(); restart(); }
-    });
     stage.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
     stage.addEventListener("mouseleave", restart);
 
