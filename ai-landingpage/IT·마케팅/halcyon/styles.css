@@ -80,6 +80,7 @@
 
   --font-kr: 'NanumSquareNeo', -apple-system, 'Malgun Gothic', sans-serif;
   --font-en: 'Ubuntu', -apple-system, sans-serif;
+  --font-script: 'Caveat', cursive;
 
   --container-max: 1200px;
   --header-h: 100px;
@@ -164,11 +165,11 @@ h1, h2, h3, p { margin: 0; }
    SCROLL THREAD — same mechanism as the reference site: a real
    SVG path whose stroke-dashoffset is scrubbed by scroll position
    (reference uses `.bg_line path` + getTotalLength() + a scroll
-   handler; reimplemented here with our own thread artwork)
+   handler; reimplemented here with our own thread artwork). Runs
+   the full height of <main>, starting behind the hero's right
+   graphic and zigzagging down to the last section.
    ========================================================= */
-.thread-zone {
-  position: relative;
-}
+main { position: relative; }
 .thread-svg {
   position: absolute;
   inset: 0;
@@ -186,8 +187,22 @@ h1, h2, h3, p { margin: 0; }
   stroke-linejoin: round;
   opacity: 0.55;
 }
+.thread-label {
+  position: absolute;
+  z-index: 4;
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: clamp(36px, 4vw, 52px);
+  color: var(--primary-500);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.thread-label--company { top: 23%; left: 5%; transform: rotate(-6deg); }
+.thread-label--jobs     { top: 44%; left: 58%; transform: rotate(4deg); }
+.thread-label--culture  { top: 71%; left: 5%; transform: rotate(-4deg); }
+
 @media (max-width: 768px) {
-  .thread-svg { display: none; }
+  .thread-svg, .thread-label { display: none; }
 }
 
 /* =========================================================
@@ -326,17 +341,30 @@ h1, h2, h3, p { margin: 0; }
   z-index: 90;
 }
 .ticker-track {
-  display: flex;
+  position: relative;
   height: 100%;
-  transition: transform .6s var(--ease);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
 }
 .ticker-item {
-  min-width: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 14px;
-  padding: 0 var(--side-pad);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform .5s var(--ease), opacity .5s var(--ease);
+}
+.ticker-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ticker-item.leave {
+  opacity: 0;
+  transform: translateY(-100%);
 }
 .ticker-badge {
   background: var(--primary-500);
@@ -583,13 +611,19 @@ h1, h2, h3, p { margin: 0; }
 .people-name { font-size: 13px; opacity: 0.85; }
 
 /* =========================================================
-   CULTURE
+   CULTURE — left column pins in place while the right column's
+   value cards scroll past it, bottom-to-top, keyed to the right
+   column's own (taller) content length
    ========================================================= */
 .culture-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: center;
+  align-items: start;
+}
+.culture-pin {
+  position: sticky;
+  top: calc(var(--header-h) + 44px + 40px);
 }
 .culture-copy {
   font-size: 18px;
@@ -605,9 +639,14 @@ h1, h2, h3, p { margin: 0; }
   border-bottom: 2px solid var(--primary-500);
   padding-bottom: 2px;
 }
-.culture-cards { display: flex; flex-direction: column; gap: 20px; }
+.culture-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 22vh;
+  padding: 8vh 0;
+}
 .value-card {
-  background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+  background: linear-gradient(135deg, var(--primary-900), var(--primary-700));
   border-radius: var(--radius-card);
   padding: 32px 36px;
   color: var(--gray-0);
@@ -616,8 +655,11 @@ h1, h2, h3, p { margin: 0; }
   transition: transform .3s var(--ease);
 }
 .value-card:nth-child(2) { background: linear-gradient(135deg, var(--primary-700), var(--primary-500)); }
-.value-card:nth-child(3) { background: linear-gradient(135deg, var(--gold-800), var(--gold-500)); }
+.value-card:nth-child(3) { background: linear-gradient(135deg, var(--primary-500), var(--primary-300)); }
 .value-card:hover { transform: translateX(8px); }
+.value-card[data-aos] { transform: translateY(70px); }
+.value-card[data-aos].aos-in { transform: translateY(0); }
+.value-card[data-aos]:hover.aos-in { transform: translateX(8px); }
 .value-card h3 {
   font-family: var(--font-en);
   font-size: 22px;
@@ -730,7 +772,8 @@ h1, h2, h3, p { margin: 0; }
   .hero-body { font-size: 16px; margin-bottom: 28px; }
   .btn-primary { font-size: 16px; padding: 15px 32px; width: 100%; text-align: center; }
 
-  .ticker-item { padding: 0 var(--side-pad-mobile); gap: 8px; }
+  .ticker-track { padding: 0 var(--side-pad-mobile); }
+  .ticker-item { gap: 8px; }
   .ticker-text { font-size: 12px; }
 
   .section { padding: 72px 0; }
@@ -741,8 +784,10 @@ h1, h2, h3, p { margin: 0; }
   .card { padding: 28px; }
   .card-growth { grid-column: auto; }
 
-  .culture-cards { gap: 14px; }
+  .culture-pin { position: static; top: auto; }
+  .culture-scroll { gap: 20px; padding: 0; }
   .value-card { padding: 24px; }
+  .value-card[data-aos] { transform: translateY(28px); }
 
   .footer { padding: 40px var(--side-pad-mobile); }
   .footer-inner { flex-direction: column; align-items: flex-start; text-align: left; }

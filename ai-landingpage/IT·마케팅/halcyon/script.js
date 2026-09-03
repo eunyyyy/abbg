@@ -2,18 +2,35 @@
   'use strict';
 
   /* ---------------------------------------------------------
-     1. Notice ticker — auto-rotate every 3s
+     1. Notice ticker — auto-rotate every 3s, bottom-to-top reveal
+        (each incoming item slides up from below/fades in; the
+        outgoing item slides further up/fades out — no horizontal
+        movement)
   --------------------------------------------------------- */
   var track = document.getElementById('tickerTrack');
   if (track) {
     var items = track.querySelectorAll('.ticker-item');
     var count = items.length;
-    var idx = 0;
-    if (count > 1) {
-      setInterval(function () {
-        idx = (idx + 1) % count;
-        track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-      }, 3000);
+    if (count) {
+      items[0].classList.add('active');
+      var idx = 0;
+      if (count > 1) {
+        setInterval(function () {
+          var prevIdx = idx;
+          idx = (idx + 1) % count;
+          items[prevIdx].classList.remove('active');
+          items[prevIdx].classList.add('leave');
+          items[idx].classList.add('active');
+          (function (el) {
+            setTimeout(function () {
+              el.style.transition = 'none';
+              el.classList.remove('leave');
+              void el.offsetHeight; /* force reflow before re-enabling transition */
+              el.style.transition = '';
+            }, 520);
+          })(items[prevIdx]);
+        }, 3000);
+      }
     }
   }
 
@@ -172,7 +189,7 @@
         the scroll-linked animation — same here.
   --------------------------------------------------------- */
   var threadPath = document.getElementById('threadPath');
-  var threadZone = document.getElementById('threadZone');
+  var threadZone = document.getElementById('top');
   if (threadPath && threadZone) {
     var isCoarseThread = window.matchMedia('(max-width: 768px)').matches;
     var reduceMotionThread = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
