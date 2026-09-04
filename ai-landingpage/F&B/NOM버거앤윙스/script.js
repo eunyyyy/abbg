@@ -45,6 +45,20 @@
     revealTargets.forEach((el) => el.classList.add('is-visible'));
   }
 
+  /* ---------- SNS 섹션 캐릭터 3종 팝업 (스크롤 내리면 튀어오르고, 올리면 다시 사라짐) ---------- */
+  const snsPop = document.getElementById('snsPop');
+  if (snsPop && 'IntersectionObserver' in window) {
+    const popObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          snsPop.classList.toggle('is-popped', entry.isIntersecting);
+        });
+      },
+      { threshold: 0.35 }
+    );
+    popObserver.observe(snsPop);
+  }
+
   /* ---------- 재료 레이어 생성 (개별 SVG가 3D로 흩어졌다가 조립됨) ----------
      레이어 순서/오프셋을 바꾸려면 이 배열만 수정하면 됩니다. */
   const INGREDIENT_LAYERS = [
@@ -80,8 +94,10 @@
     const rect = ingredientsAssembly.getBoundingClientRect();
     const assemblyW = rect.width || 400;
     const assemblyH = rect.height || 600;
-    const SPREAD_X = assemblyW * 0.62;              // 0%: 중구난방으로 흩어지는 가로 범위
-    const SPREAD_Y = Math.min(680, assemblyH * 0.86); // 0%: 흩어지는 세로 범위
+    // 세로로 길게 흩어지지 않고, 가로로 넓게 사방에 패턴처럼 흩어지도록
+    // 가로 범위는 넉넉하게, 세로 범위는 좁게 제한
+    const SPREAD_X = assemblyW * 0.46;
+    const SPREAD_Y = Math.min(220, assemblyH * 0.32);
     const MERGE_RANGE = Math.min(140, assemblyH * 0.2); // 100%: 하나의 버거로 조립됐을 때의 총 범위(px)
     const spacingMerge = MERGE_RANGE / (n - 1);
 
@@ -108,7 +124,9 @@
       img.style.setProperty('--s0', s0.toFixed(3));
       img.style.setProperty('--o0', o0.toFixed(3));
       img.style.setProperty('--r0', r0.toFixed(1) + 'deg');
-      img.style.zIndex = String(Math.round(100 + Math.random() * 100));
+      // 조립됐을 때(100%) 실제 버거처럼 올바른 상/하 레이어 순서로 겹치도록 고정 z-index 사용
+      // (흩어진 상태의 무작위 배치와 무관하게, 합쳐진 결과물의 앞뒤 순서는 항상 일정해야 함)
+      img.style.zIndex = String(n - i);
       ingredientsAssembly.appendChild(img);
     });
   }

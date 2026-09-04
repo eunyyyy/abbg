@@ -115,7 +115,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
    White / Black / Key-color only, per context
    ========================================================= */
 .logo{display:inline-flex;align-items:center;gap:10px;}
-.logo-mark{width:104px;height:auto;flex:none;color:#fff;transition:color .3s ease;}
+.logo-mark{height:26px;width:auto;flex:none;color:#fff;transition:color .3s ease;}
 .logo-mark path{fill:currentColor;}
 .header.is-scrolled .logo-mark{color:var(--brand-primary-600);}
 .footer .logo-mark{color:#fff;}
@@ -195,9 +195,9 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .about__stats{grid-column:7/13;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);align-content:start;
   margin-top:var(--space-9);}
 .stat{padding:var(--space-6) var(--space-5);border:var(--border-1);border-radius:var(--radius-md);}
-.stat b{display:block;font-size:var(--fs-h2);font-weight:var(--fw-strong);color:var(--brand-primary-600);}
-.stat__unit{font-size:14px;font-weight:var(--fw-strong);margin-left:2px;}
-.stat span{display:block;margin-top:var(--space-2);font-size:14px;color:var(--text-subtle);}
+.stat b{display:flex;align-items:baseline;gap:2px;font-size:var(--fs-h2);font-weight:var(--fw-strong);color:var(--brand-primary-600);}
+.stat__unit{font-size:14px;}
+.stat > span{display:block;margin-top:var(--space-2);font-size:14px;color:var(--text-subtle);}
 
 /* =========================================================
    Menu — tabs + carousel
@@ -244,7 +244,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 /* =========================================================
    Ingredients — deconstructed → assembled, marquee background
    ========================================================= */
-.ingredients{position:relative;height:240vh;background:var(--gray-950);}
+.ingredients{position:relative;height:240vh;background:var(--brand-primary-600);}
 .ingredients__pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .marquee{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:6vw;
   transform:rotate(-4deg) scale(1.15);pointer-events:none;}
@@ -259,8 +259,8 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 
 /* 개별 재료 SVG 레이어가 3D로 흩어져 있다가 스크롤에 따라 하나의 버거로 조립됨
    (레이어 목록/오프셋은 script.js의 INGREDIENT_LAYERS 배열에서 생성) */
-.ingredients__assembly{position:relative;z-index:2;width:min(560px,88vw);height:min(78vh,720px);}
-.ing-layer{position:absolute;left:50%;top:50%;max-width:38%;height:auto;
+.ingredients__assembly{position:relative;z-index:2;width:min(1100px,92vw);height:min(64vh,600px);}
+.ing-layer{position:absolute;left:50%;top:50%;max-width:19%;height:auto;
   --ox:0px;--oy:0px;--my:0px;--r0:0deg;--s0:1;--o0:1;
   transform:translate(-50%,-50%)
     translate(calc(var(--ox) * (1 - var(--ip,0))), calc(var(--oy) * (1 - var(--ip,0)) + var(--my) * var(--ip,0)))
@@ -270,16 +270,30 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   /* 흩어져 있을 때만 그림자가 보이고, 조립되며(ip→1) 그림자가 사라짐 */
   filter:drop-shadow(0 calc(8px * (1 - var(--ip,0))) calc(14px * (1 - var(--ip,0))) rgba(0,0,0,calc(.32 * (1 - var(--ip,0)))));
   will-change:transform,opacity;}
-.ingredients__caption{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:3;
-  text-align:center;color:#fff;}
-.ingredients__caption b{display:block;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-secondary-400);}
-.ingredients__caption span{display:block;margin-top:8px;font-size:15px;color:var(--text-subtle-inverse);}
+.ingredients__caption{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);z-index:3;
+  text-align:center;color:#fff;width:90%;max-width:900px;}
+.ingredients__caption b{display:block;font-size:var(--fs-h1);font-weight:var(--fw-strong);
+  letter-spacing:var(--display-tracking);text-transform:uppercase;color:var(--brand-secondary-400);line-height:var(--lh-h1);}
+.ingredients__caption span{display:block;margin-top:var(--space-3);font-size:var(--fs-body-1);color:var(--text-subtle-inverse);}
 
 /* =========================================================
    SNS strip — full-bleed
    ========================================================= */
-.sns{background:var(--brand-primary-900);color:#fff;}
+.sns{position:relative;background:var(--brand-primary-600);color:#fff;padding-bottom:calc(var(--space-9) + 120px);}
 .sns .container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;}
+
+/* 섹션 바텀 중앙에 숨어있다가, 스크롤에 진입하면 각자 다른 방향으로 튀어오름(역방향도 가능) */
+.sns__pop{position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:min(640px,90%);height:0;pointer-events:none;z-index:2;}
+.sns__pop-item{position:absolute;bottom:0;left:50%;height:auto;
+  opacity:0;transform:translate(-50%,30px) scale(.5) rotate(0deg);
+  transition:transform .85s cubic-bezier(.34,1.56,.64,1),opacity .5s ease;}
+.sns__pop-item--fry{width:118px;}
+.sns__pop-item--burger{width:138px;}
+.sns__pop-item--coke{width:104px;}
+.sns__pop.is-popped .sns__pop-item--fry{opacity:1;transform:translate(calc(-50% - 180px),-96px) scale(1) rotate(-10deg);}
+.sns__pop.is-popped .sns__pop-item--burger{opacity:1;transform:translate(-50%,-176px) scale(1) rotate(3deg);}
+.sns__pop.is-popped .sns__pop-item--coke{opacity:1;transform:translate(calc(-50% + 180px),-96px) scale(1) rotate(10deg);}
 .sns__copy h3{max-width:26ch;}
 .sns__links{display:flex;gap:var(--space-4);}
 .sns__link{display:flex;align-items:center;gap:10px;padding:14px 24px;border-radius:var(--radius-circle);
@@ -431,7 +445,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
     --fs-h0:30px; --fs-h1:26px; --fs-h2:22px; --fs-h3:19px;
     --fs-body-1:16px; --fs-body-2:15px;
     --space-section:var(--space-9);}
-  .logo-mark{width:82px;}
+  .logo-mark{height:20px;}
   .hero-pin{height:180vh;}
   /* 모바일: CTA 버튼 아래에 이미지가 위치했다가, 스크롤을 내리면 풀스크린으로 확대됨
      (배경색은 데스크톱과 동일한 --brand-primary-600 유지, 오버라이드 없음) */
