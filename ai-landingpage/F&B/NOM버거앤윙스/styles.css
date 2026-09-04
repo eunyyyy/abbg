@@ -221,6 +221,15 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .menu-carousel__item b{display:block;margin-top:var(--space-4);font-size:17px;font-weight:var(--fw-strong);}
 .menu-carousel__item span{display:block;margin-top:4px;font-size:13px;color:var(--text-subtle);}
 
+/* 버거 탭 — 끊김 없는 무한 자동 슬라이드(우→좌) + 호버 시 이미지 1.5배 확대 */
+.menu-carousel--auto{overflow:hidden;cursor:default;scroll-snap-type:none;}
+.menu-carousel--auto .menu-carousel__track{display:flex;gap:var(--space-6);width:max-content;
+  animation:menuAutoScroll 24s linear infinite;}
+.menu-carousel--auto .menu-carousel__circle{overflow:visible;}
+.menu-carousel--auto .menu-carousel__circle img{transition:transform .35s ease;}
+.menu-carousel--auto .menu-carousel__item:hover .menu-carousel__circle img{transform:scale(1.5);}
+@keyframes menuAutoScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
 /* =========================================================
    Ingredients — deconstructed → assembled, marquee background
    ========================================================= */
@@ -237,11 +246,15 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 @keyframes marqueeLtr{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 @keyframes marqueeRtl{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-.ingredients__stage{position:relative;z-index:2;width:min(720px,80vw);aspect-ratio:1/1;}
-.ingredients__stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
-  transition:opacity .1s linear;}
-.ingredients__source{opacity:calc(1 - var(--ip,0));transform:scale(calc(1.08 - var(--ip,0) * .08));}
-.ingredients__merged{opacity:var(--ip,0);transform:scale(calc(.94 + var(--ip,0) * .06));}
+/* 흩어진 재료 → 스크롤에 따라 세로로 모여 하나의 버거가 되는 스택 */
+.ingredients__stack{position:relative;z-index:2;width:min(460px,72vw);height:min(64vh,600px);}
+.ing-piece{position:absolute;left:50%;top:50%;
+  --sx:0px;--sy:0px;--sr:0deg;--my:0px;
+  transform:translate(-50%,-50%)
+    translate(calc(var(--sx) * (1 - var(--ip,0))), calc(var(--sy) * (1 - var(--ip,0)) + var(--my) * var(--ip,0)))
+    rotate(calc(var(--sr) * (1 - var(--ip,0))));
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.28));
+  will-change:transform;}
 .ingredients__caption{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:3;
   text-align:center;color:#fff;}
 .ingredients__caption b{display:block;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-secondary-400);}
@@ -274,24 +287,33 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
    ========================================================= */
 .event__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5);flex-wrap:wrap;
   margin-bottom:var(--space-8);}
-.event-card{border:var(--border-1);border-radius:var(--radius-md);padding:var(--space-6);
-  display:flex;flex-direction:column;gap:var(--space-4);height:100%;}
+.event-track-wrap{overflow:hidden;margin-top:var(--space-2);padding-block:var(--space-2);}
+.event-track{display:flex;gap:var(--grid-gutter-lg);width:max-content;animation:eventSlide 28s linear infinite;}
+.event-track-wrap:hover .event-track{animation-play-state:paused;}
+.event-card{flex:0 0 380px;border:var(--border-1);border-radius:var(--radius-md);padding:var(--space-6);
+  display:flex;flex-direction:column;gap:var(--space-4);background:#fff;
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;}
+.event-card:hover{transform:scale(1.045);box-shadow:0 24px 48px rgba(17,17,17,.16);
+  border-color:transparent;position:relative;z-index:2;}
 .event-card .badge{align-self:flex-start;}
 .event-card b{font-size:20px;font-weight:var(--fw-strong);line-height:1.4;}
 .event-card time{font-size:14px;color:var(--text-subtle);margin-top:auto;padding-top:var(--space-4);
   border-top:var(--border-1);}
+@keyframes eventSlide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* =========================================================
-   Recommend gallery — new section (after Event)
+   Signature — Event 다음, 좌/우 타이틀 + 중앙 원형 배경 포토카드
    ========================================================= */
-.recommend__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5);margin-top:var(--space-8);}
-.recommend-card{position:relative;border-radius:var(--radius-md);overflow:hidden;aspect-ratio:3/4;}
-.recommend-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-.recommend-card:hover img{transform:scale(1.06);}
-.recommend-card::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.65) 100%);}
-.recommend-card b{position:absolute;left:var(--space-5);right:var(--space-5);bottom:var(--space-5);z-index:1;
-  color:#fff;font-size:17px;font-weight:var(--fw-strong);}
+.signature__grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--space-8);}
+.signature__copy{max-width:20ch;}
+.signature__copy--left{text-align:right;justify-self:end;}
+.signature__copy--right{text-align:left;justify-self:start;color:var(--brand-secondary-600);}
+.signature__copy--right .badge{margin-bottom:var(--space-4);}
+.signature__media{position:relative;width:min(320px,60vw);}
+.signature__blob{position:absolute;inset:-14% -34% -14% -14%;z-index:0;border-radius:50%;
+  background:var(--brand-primary-100);}
+.signature__media img{position:relative;z-index:1;width:100%;aspect-ratio:3/4;object-fit:cover;
+  border-radius:var(--radius-lg);box-shadow:0 30px 60px rgba(17,17,17,.16);}
 
 /* =========================================================
    Franchise CTA — full-bleed — 8-4
@@ -304,13 +326,29 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   align-items:center;gap:var(--space-6);}
 .franchise__copy{grid-column:1/8;}
 .franchise__copy p{margin-top:var(--space-5);color:var(--text-subtle-inverse);max-width:42ch;}
-.franchise__actions{grid-column:8/13;display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4);}
-.franchise__mascot{position:absolute;right:var(--gutter);bottom:-20px;width:150px;z-index:2;opacity:.92;pointer-events:none;}
+.franchise__actions{grid-column:8/13;position:relative;display:flex;flex-direction:column;
+  align-items:flex-end;justify-content:center;gap:var(--space-4);}
+.franchise__mascot{position:absolute;left:50%;bottom:calc(100% - 52px);transform:translateX(-50%);
+  width:280px;z-index:0;opacity:.96;pointer-events:none;}
+.franchise__actions .btn{position:relative;z-index:1;}
 
 /* =========================================================
    Footer — full-bleed, slides up to cover Franchise
    ========================================================= */
-.footer{position:relative;z-index:1;background:var(--gray-950);color:var(--text-subtle-inverse);padding-block:var(--space-9) 0;}
+.footer{position:relative;z-index:1;background:var(--gray-950);color:var(--text-subtle-inverse);
+  padding-block:0 0;overflow:visible;}
+.footer__mascot{position:absolute;left:50%;top:-210px;transform:translateX(-50%);width:260px;
+  z-index:2;pointer-events:none;}
+.footer__band{position:relative;z-index:1;overflow:hidden;background:var(--brand-primary-600);
+  padding-block:var(--space-4);}
+.footer__band-track{display:flex;align-items:center;gap:var(--space-8);width:max-content;
+  animation:footerBandScroll 20s linear infinite;}
+.footer__band-logo{display:flex;align-items:center;gap:var(--space-3);white-space:nowrap;
+  font-size:22px;font-weight:var(--fw-strong);color:#fff;}
+.footer__band-logo svg{width:64px;height:auto;color:#fff;flex:none;}
+.footer__band-logo svg path{fill:currentColor;}
+@keyframes footerBandScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.footer .container{padding-block:var(--space-9) 0;}
 .footer__info{font-size:14px;line-height:1.9;color:var(--gray-400);}
 .footer__sns{display:flex;gap:var(--space-3);margin-top:var(--space-6);}
 .footer__sns a{width:40px;height:40px;border-radius:var(--radius-circle);border:1px solid rgba(255,255,255,.18);
@@ -319,7 +357,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .footer__sns svg{width:16px;height:16px;}
 .footer__bottom{padding-block:var(--space-5);border-top:1px solid rgba(255,255,255,.1);
   font-size:13px;color:var(--gray-500);}
-.footer__wordmark{width:100%;padding-inline:var(--gutter);}
+.footer__wordmark{width:100%;max-width:var(--container-default);margin-inline:auto;padding-inline:var(--gutter);}
 .footer__wordmark svg{width:100%;height:auto;color:#fff;opacity:.08;}
 .footer__wordmark svg path{fill:currentColor;}
 
@@ -344,8 +382,9 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   .store__media,.store__copy{grid-column:1/13;}
   .store__copy{margin-top:var(--space-6);}
   .franchise__copy,.franchise__actions{grid-column:1/13;}
-  .franchise__actions{margin-top:var(--space-6);align-items:flex-start;}
-  .recommend__grid{grid-template-columns:repeat(2,1fr);}
+  .franchise__actions{margin-top:var(--space-8);align-items:flex-end;}
+  .signature__grid{grid-template-columns:1fr;justify-items:center;text-align:center;gap:var(--space-6);}
+  .signature__copy--left,.signature__copy--right{text-align:center;justify-self:center;max-width:none;}
 }
 @media (max-width:768px){
   :root{--gutter:15px;
@@ -366,8 +405,11 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   .sns .container{flex-direction:column;align-items:flex-start;}
   .menu-carousel__item,.menu-carousel__circle{width:160px;height:160px;}
   .event__head{align-items:flex-start;}
-  .recommend__grid{grid-template-columns:1fr 1fr;gap:var(--space-3);}
-  .franchise__mascot{width:96px;right:var(--gutter);bottom:-10px;}
+  .event-card{flex-basis:280px;}
+  .franchise__actions{margin-top:170px;}
+  .franchise__mascot{width:150px;bottom:calc(100% - 16px);}
+  .footer__mascot{width:160px;top:-90px;}
+  .ingredients__stack{transform:scale(.62);}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;}
