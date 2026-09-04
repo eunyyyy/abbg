@@ -287,10 +287,8 @@ Footer       — full-bleed
         <div class="marquee__row marquee__row--rtl"><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span></div>
         <div class="marquee__row marquee__row--ltr"><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span></div>
       </div>
-      <div class="ingredients__stage2" aria-label="흩어진 재료가 스크롤에 따라 하나의 버거로 합쳐지는 애니메이션">
-        <img class="ing-frame ing-frame--spread" src="svg/1.svg" alt="펼쳐진 재료">
-        <img class="ing-frame ing-frame--merged" src="svg/2.svg" alt="합쳐진 버거">
-      </div>
+      <!-- 개별 재료 레이어는 script.js의 INGREDIENT_LAYERS 배열로 생성됩니다 -->
+      <div class="ingredients__assembly" id="ingredientsAssembly" aria-label="흩어진 재료 레이어가 스크롤에 따라 하나의 버거로 조립되는 애니메이션"></div>
       <div class="ingredients__caption">
         <b>Fresh Ingredients</b>
         <span>신선한 재료가 모여, 하나의 바삭함이 됩니다</span>
@@ -386,22 +384,23 @@ Footer       — full-bleed
     </div>
   </section>
 
-  <!-- Signature — 이벤트 다음, 원본 사이트 7번째 섹션 레이아웃(좌/우 타이틀 + 중앙 원형 배경 포토카드) -->
-  <section class="section section--tight signature" id="signature">
-    <div class="container signature__grid">
-      <div class="signature__copy signature__copy--left" data-reveal>
-        <h2>바삭함을<br>사랑하는 당신을 위한</h2>
-      </div>
-      <div class="signature__media" data-reveal>
-        <span class="signature__blob" aria-hidden="true"></span>
+  <!-- Signature — 이벤트 다음, 마스킹된 중앙 사진이 스크롤에 따라 풀스크린으로 확장(핀 고정) -->
+  <div class="signature-pin-wrap" id="signaturePinWrap">
+    <section class="section section--tight signature" id="signature">
+      <div class="signature__media">
         <img src="img/hero-burger.jpg" alt="NOM 시그니처 버거">
       </div>
-      <div class="signature__copy signature__copy--right" data-reveal>
-        <span class="badge badge--accent">Signature</span>
-        <h2>NOM<br>Burger&amp;Wings</h2>
+      <div class="container signature__grid">
+        <div class="signature__copy signature__copy--left">
+          <h2>바삭함을 사랑하는<br>당신을 위한</h2>
+        </div>
+        <div class="signature__copy signature__copy--right">
+          <span class="badge badge--accent">Signature</span>
+          <h2>NOM<br>Burger&amp;Wings</h2>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- Franchise CTA — full-bleed — 8-4 (sticky, covered by footer) -->
   <section class="franchise section" id="franchise">
@@ -412,7 +411,7 @@ Footer       — full-bleed
         <p>NOM Burger &amp; Wings와 함께할 파트너를 찾습니다. 상권 분석부터 오픈까지 든든하게 함께합니다.</p>
       </div>
       <div class="franchise__actions" data-reveal>
-        <img class="franchise__mascot" src="svg/buger-character.svg" alt="NOM 버거 캐릭터">
+        <img class="franchise__face" src="svg/face.svg" alt="">
         <a href="mailto:nom@nomburger.co.kr" class="btn btn--accent">창업 문의하기</a>
       </div>
     </div>

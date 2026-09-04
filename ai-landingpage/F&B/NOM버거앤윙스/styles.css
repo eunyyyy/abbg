@@ -53,11 +53,20 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Pretendard',sans-serif;font-weight:var(--fw-base);
   font-size:var(--fs-body-1);line-height:var(--lh-body);letter-spacing:var(--tracking-kr);
-  color:var(--text-default);background:var(--color-canvas);overflow-x:hidden;}
+  color:var(--text-default);background:var(--color-canvas);overflow-x:hidden;
+  cursor:url('svg/mouse-default.svg') 14 14,auto;}
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 ul,ol{list-style:none;}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
+button{font:inherit;color:inherit;background:none;border:none;
+  cursor:url('svg/mouse-over,clicked.svg') 14 14,pointer;}
+
+/* ---------- 커스텀 마우스 커서 — 기본/오버·클릭 ---------- */
+a,.menu-tab,.event-card,.menu-carousel__item,[role="tab"],
+.footer__sns a,.recommend-card,.nav-toggle,input,textarea,select{
+  cursor:url('svg/mouse-over,clicked.svg') 14 14,pointer;}
+a:active,button:active,.btn:active,.menu-tab:active{
+  cursor:url('svg/mouse-over,clicked.svg') 14 14,pointer;}
 :focus-visible{outline:2px solid var(--brand-primary-600);outline-offset:3px;}
 
 /* ---------- type ---------- */
@@ -246,15 +255,18 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 @keyframes marqueeLtr{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 @keyframes marqueeRtl{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* 흩어진 재료(1.svg) → 스크롤에 따라 하나의 버거(2.svg)로 크로스페이드
-   1.svg는 세로로 매우 긴 비율(146:1160)이라 뷰포트 높이에 맞춰 폭을 줄이고,
-   2.svg(149:204)도 같은 폭을 공유해 두 프레임의 가로 비율을 맞춘다. */
-.ingredients__stage2{position:relative;z-index:2;width:min(112px,10.5vh);}
-.ing-frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:100%;height:auto;transition:opacity .1s linear;
-  filter:drop-shadow(0 8px 14px rgba(0,0,0,.3));}
-.ing-frame--spread{opacity:calc(1 - var(--ip,0));}
-.ing-frame--merged{opacity:var(--ip,0);}
+/* 개별 재료 SVG 레이어가 3D로 흩어져 있다가 스크롤에 따라 하나의 버거로 조립됨
+   (레이어 목록/오프셋은 script.js의 INGREDIENT_LAYERS 배열에서 생성) */
+.ingredients__assembly{position:relative;z-index:2;width:min(560px,88vw);height:min(78vh,720px);}
+.ing-layer{position:absolute;left:50%;top:50%;max-width:38%;height:auto;
+  --ox:0px;--oy:0px;--my:0px;--r0:0deg;--s0:1;--o0:1;
+  transform:translate(-50%,-50%)
+    translate(calc(var(--ox) * (1 - var(--ip,0))), calc(var(--oy) * (1 - var(--ip,0)) + var(--my) * var(--ip,0)))
+    rotate(calc(var(--r0) * (1 - var(--ip,0))))
+    scale(calc(var(--s0) + (1 - var(--s0)) * var(--ip,0)));
+  opacity:calc(var(--o0) + (1 - var(--o0)) * var(--ip,0));
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.32));
+  will-change:transform,opacity;}
 .ingredients__caption{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:3;
   text-align:center;color:#fff;}
 .ingredients__caption b{display:block;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-secondary-400);}
@@ -302,18 +314,36 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 @keyframes eventSlide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* =========================================================
-   Signature — Event 다음, 좌/우 타이틀 + 중앙 원형 배경 포토카드
+   Signature — Event 다음. 핀 고정 + 중앙 마스킹 사진이
+   스크롤에 따라 풀스크린으로 확장(좌/우 텍스트는 가운데 도달 시점에 페이드)
    ========================================================= */
-.signature__grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--space-8);}
-.signature__copy{max-width:20ch;}
-.signature__copy--left{text-align:right;justify-self:end;}
-.signature__copy--right{text-align:left;justify-self:start;color:var(--brand-secondary-600);}
+.signature-pin-wrap{position:relative;height:220vh;}
+.signature{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;--sp:0;}
+.signature__grid{position:relative;z-index:2;width:100%;display:grid;
+  grid-template-columns:1fr 380px 1fr;align-items:center;gap:var(--space-8);}
+.signature__copy{max-width:20ch;transition:none;}
+.signature__copy--left{grid-column:1;text-align:right;justify-self:end;
+  opacity:calc(1 - var(--sp,0) * 1.6);transform:translateX(calc(var(--sp,0) * -60px));}
+.signature__copy--right{grid-column:3;text-align:left;justify-self:start;color:var(--brand-secondary-600);
+  opacity:calc(1 - var(--sp,0) * 1.6);transform:translateX(calc(var(--sp,0) * 60px));}
 .signature__copy--right .badge{margin-bottom:var(--space-4);}
-.signature__media{position:relative;width:min(320px,60vw);}
-.signature__blob{position:absolute;inset:-14% -34% -14% -14%;z-index:0;border-radius:50%;
-  background:var(--brand-primary-100);}
-.signature__media img{position:relative;z-index:1;width:100%;aspect-ratio:3/4;object-fit:cover;
-  border-radius:var(--radius-lg);box-shadow:0 30px 60px rgba(17,17,17,.16);}
+.signature__media{position:absolute;z-index:1;overflow:hidden;
+  --minset-y:calc(20vh * (1 - var(--sp,0)));
+  --minset-x:calc((50vw - 190px) * (1 - var(--sp,0)));
+  top:var(--minset-y);
+  bottom:var(--minset-y);
+  left:var(--minset-x);
+  right:var(--minset-x);
+  border-radius:calc(var(--radius-lg) * (1 - var(--sp,0)));
+  box-shadow:0 30px 60px rgba(17,17,17,.16);}
+/* img는 position:fixed 대신, 부모(.signature__media)의 현재 인셋을 반대로 상쇄하는
+   position:absolute 오프셋을 사용 — .signature가 sticky로 뷰포트에 고정된 동안
+   이미지가 "배경 고정"처럼 보이면서도 overflow:hidden 마스킹이 정상적으로 적용됨
+   (position:fixed 자식은 overflow:hidden 조상의 클리핑을 우회하는 스펙상 한계 회피) */
+.signature__media img{position:absolute;max-width:none;
+  top:calc(-1 * var(--minset-y));
+  left:calc(-1 * var(--minset-x));
+  width:100vw;height:100vh;object-fit:cover;}
 
 /* =========================================================
    Franchise CTA — full-bleed — 8-4
@@ -326,27 +356,24 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   align-items:center;gap:var(--space-6);}
 .franchise__copy{grid-column:1/8;}
 .franchise__copy p{margin-top:var(--space-5);color:var(--text-subtle-inverse);max-width:42ch;}
-.franchise__actions{grid-column:8/13;position:relative;display:flex;flex-direction:column;
-  align-items:flex-end;justify-content:center;gap:var(--space-4);}
-.franchise__mascot{position:absolute;left:50%;bottom:calc(100% - 52px);transform:translateX(-50%);
-  width:280px;z-index:0;opacity:.96;pointer-events:none;}
-.franchise__actions .btn{position:relative;z-index:1;}
+.franchise__actions{grid-column:8/13;position:relative;display:flex;flex-direction:row;
+  align-items:center;justify-content:flex-end;gap:var(--space-4);}
+.franchise__face{width:48px;height:auto;flex:none;}
 
 /* =========================================================
    Footer — full-bleed, slides up to cover Franchise
    ========================================================= */
 .footer{position:relative;z-index:1;background:var(--gray-950);color:var(--text-subtle-inverse);
   padding-block:0 0;overflow:visible;}
-.footer__mascot{position:absolute;left:50%;top:-210px;transform:translateX(-50%);width:260px;
+.footer__mascot{position:absolute;right:var(--gutter);left:auto;top:-210px;width:260px;
   z-index:2;pointer-events:none;}
 .footer__band{position:relative;z-index:1;overflow:hidden;background:var(--brand-primary-600);
   padding-block:var(--space-4);}
 .footer__band-track{display:flex;align-items:center;gap:var(--space-8);width:max-content;
   animation:footerBandScroll 20s linear infinite;}
 .footer__band-logo{display:flex;align-items:center;gap:var(--space-3);white-space:nowrap;
-  font-size:22px;font-weight:var(--fw-strong);color:#fff;}
-.footer__band-logo svg{width:64px;height:auto;color:#fff;flex:none;}
-.footer__band-logo svg path{fill:currentColor;}
+  font-size:22px;font-weight:var(--fw-strong);color:#fff;opacity:.5;}
+.footer__band-logo svg{width:64px;height:auto;flex:none;fill:currentColor;}
 @keyframes footerBandScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .footer .container{padding-block:var(--space-9) 0;}
 .footer__info{font-size:14px;line-height:1.9;color:var(--gray-400);}
@@ -382,9 +409,9 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   .store__media,.store__copy{grid-column:1/13;}
   .store__copy{margin-top:var(--space-6);}
   .franchise__copy,.franchise__actions{grid-column:1/13;}
-  .franchise__actions{margin-top:var(--space-8);align-items:flex-end;}
+  .franchise__actions{margin-top:var(--space-8);justify-content:flex-end;}
   .signature__grid{grid-template-columns:1fr;justify-items:center;text-align:center;gap:var(--space-6);}
-  .signature__copy--left,.signature__copy--right{text-align:center;justify-self:center;max-width:none;}
+  .signature__copy--left,.signature__copy--right{grid-column:auto;text-align:center;justify-self:center;max-width:none;}
 }
 @media (max-width:768px){
   :root{--gutter:15px;
@@ -403,13 +430,13 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   .nav a{font-size:22px;color:#fff;opacity:1;}
   .nav-toggle{display:block;z-index:101;}
   .sns .container{flex-direction:column;align-items:flex-start;}
+  .sns__links{flex-wrap:wrap;}
   .menu-carousel__item,.menu-carousel__circle{width:160px;height:160px;}
   .event__head{align-items:flex-start;}
   .event-card{flex-basis:280px;}
-  .franchise__actions{margin-top:170px;}
-  .franchise__mascot{width:150px;bottom:calc(100% - 16px);}
-  .footer__mascot{width:160px;top:-90px;}
-  .ingredients__stage2{width:min(96px,11vh);}
+  .footer__mascot{width:150px;top:-80px;right:var(--gutter);}
+  .ingredients__assembly{width:min(320px,90vw);height:min(70vh,560px);}
+  .ing-layer{max-width:48%;}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;}
