@@ -233,7 +233,8 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 /* 버거 탭 — 끊김 없는 무한 자동 슬라이드(우→좌) + 호버 시 이미지 1.5배 확대 */
 .menu-carousel--auto{overflow:hidden;cursor:default;scroll-snap-type:none;}
 .menu-carousel--auto .menu-carousel__track{display:flex;gap:var(--space-6);width:max-content;
-  animation:menuAutoScroll 24s linear infinite;}
+  animation:menuAutoScroll 24s linear infinite;will-change:transform;
+  backface-visibility:hidden;transform:translateZ(0);}
 .menu-carousel--auto .menu-carousel__circle{overflow:visible;}
 .menu-carousel--auto .menu-carousel__circle img{transition:transform .35s ease;}
 .menu-carousel--auto .menu-carousel__item:hover .menu-carousel__circle img{transform:scale(1.5);}
@@ -300,7 +301,8 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .event__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5);flex-wrap:wrap;
   margin-bottom:var(--space-8);}
 .event-track-wrap{overflow:hidden;margin-top:var(--space-2);padding-block:var(--space-2);}
-.event-track{display:flex;gap:var(--grid-gutter-lg);width:max-content;animation:eventSlide 28s linear infinite;}
+.event-track{display:flex;gap:var(--grid-gutter-lg);width:max-content;animation:eventSlide 28s linear infinite;
+  will-change:transform;backface-visibility:hidden;}
 .event-track-wrap:hover .event-track{animation-play-state:paused;}
 .event-card{flex:0 0 380px;border:var(--border-1);border-radius:var(--radius-md);padding:var(--space-6);
   display:flex;flex-direction:column;gap:var(--space-4);background:#fff;
@@ -370,14 +372,16 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .footer__band{position:relative;z-index:1;overflow:hidden;background:var(--brand-primary-600);
   padding-block:var(--space-4);}
 .footer__band-track{display:flex;align-items:center;gap:var(--space-8);width:max-content;
-  animation:footerBandScroll 20s linear infinite;}
+  animation:footerBandScroll 20s linear infinite;will-change:transform;
+  backface-visibility:hidden;transform:translateZ(0);}
 .footer__band-logo{display:flex;align-items:center;gap:var(--space-3);white-space:nowrap;
   font-size:22px;font-weight:var(--fw-strong);color:#fff;opacity:.5;}
 .footer__band-logo svg{width:64px;height:auto;flex:none;fill:currentColor;}
 @keyframes footerBandScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .footer .container{padding-block:var(--space-9) 0;}
+.footer__row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;}
 .footer__info{font-size:14px;line-height:1.9;color:var(--gray-400);}
-.footer__sns{display:flex;gap:var(--space-3);margin-top:var(--space-6);}
+.footer__sns{display:flex;align-items:center;gap:var(--space-3);}
 .footer__sns a{width:40px;height:40px;border-radius:var(--radius-circle);border:1px solid rgba(255,255,255,.18);
   display:flex;align-items:center;justify-content:center;transition:border-color .2s,background-color .2s;}
 .footer__sns a:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);}
