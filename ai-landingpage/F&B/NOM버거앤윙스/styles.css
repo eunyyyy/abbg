@@ -246,15 +246,15 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 @keyframes marqueeLtr{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 @keyframes marqueeRtl{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* 흩어진 재료 → 스크롤에 따라 세로로 모여 하나의 버거가 되는 스택 */
-.ingredients__stack{position:relative;z-index:2;width:min(460px,72vw);height:min(64vh,600px);}
-.ing-piece{position:absolute;left:50%;top:50%;
-  --sx:0px;--sy:0px;--sr:0deg;--my:0px;
-  transform:translate(-50%,-50%)
-    translate(calc(var(--sx) * (1 - var(--ip,0))), calc(var(--sy) * (1 - var(--ip,0)) + var(--my) * var(--ip,0)))
-    rotate(calc(var(--sr) * (1 - var(--ip,0))));
-  filter:drop-shadow(0 8px 14px rgba(0,0,0,.28));
-  will-change:transform;}
+/* 흩어진 재료(1.svg) → 스크롤에 따라 하나의 버거(2.svg)로 크로스페이드
+   1.svg는 세로로 매우 긴 비율(146:1160)이라 뷰포트 높이에 맞춰 폭을 줄이고,
+   2.svg(149:204)도 같은 폭을 공유해 두 프레임의 가로 비율을 맞춘다. */
+.ingredients__stage2{position:relative;z-index:2;width:min(112px,10.5vh);}
+.ing-frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:100%;height:auto;transition:opacity .1s linear;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.3));}
+.ing-frame--spread{opacity:calc(1 - var(--ip,0));}
+.ing-frame--merged{opacity:var(--ip,0);}
 .ingredients__caption{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:3;
   text-align:center;color:#fff;}
 .ingredients__caption b{display:block;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-secondary-400);}
@@ -409,7 +409,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   .franchise__actions{margin-top:170px;}
   .franchise__mascot{width:150px;bottom:calc(100% - 16px);}
   .footer__mascot{width:160px;top:-90px;}
-  .ingredients__stack{transform:scale(.62);}
+  .ingredients__stage2{width:min(96px,11vh);}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;}
