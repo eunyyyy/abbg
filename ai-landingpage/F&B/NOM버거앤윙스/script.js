@@ -110,6 +110,11 @@
       const ox = (Math.random() * 2 - 1) * SPREAD_X;
       const oy = (Math.random() * 2 - 1) * SPREAD_Y;
       const my = d * spacingMerge;
+      // 조립(100%) 완료 시에도 재료가 완전히 한 줄로 숨지 않고, 번(위/아래)만 중앙 정렬,
+      // 나머지 재료는 살짝 좌우로 어긋나게 겹쳐서 각 재료의 가장자리가 보이는
+      // "플랫 버거 일러스트" 느낌으로 조립됨 (첨부 레퍼런스 이미지 참고)
+      const isBun = layer.file.indexOf('빵') === 0;
+      const mx = isBun ? 0 : (i % 2 === 0 ? -1 : 1) * (14 + (i % 4) * 6);
       const s0 = 0.45 + rnd * 1.35;               // 랜덤 크기 (0.45~1.8배)
       const o0 = 0.6 + rnd2 * 0.4;                // 랜덤 불투명도 (0.6~1)
       const r0 = (Math.random() * 2 - 1) * 55;    // 랜덤 회전 (-55~55deg), 중구난방하게
@@ -120,6 +125,7 @@
       img.alt = layer.alt;
       img.style.setProperty('--ox', ox.toFixed(1) + 'px');
       img.style.setProperty('--oy', oy.toFixed(1) + 'px');
+      img.style.setProperty('--mx', mx.toFixed(1) + 'px');
       img.style.setProperty('--my', my.toFixed(1) + 'px');
       img.style.setProperty('--s0', s0.toFixed(3));
       img.style.setProperty('--o0', o0.toFixed(3));

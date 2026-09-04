@@ -195,7 +195,8 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .about__stats{grid-column:7/13;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);align-content:start;
   margin-top:var(--space-9);}
 .stat{padding:var(--space-6) var(--space-5);border:var(--border-1);border-radius:var(--radius-md);}
-.stat b{display:flex;align-items:baseline;gap:2px;font-size:var(--fs-h2);font-weight:var(--fw-strong);color:var(--brand-primary-600);}
+.stat b{display:flex;align-items:baseline;gap:2px;color:var(--brand-primary-600);}
+.stat__num{font-size:16px;font-weight:700;color:var(--brand-primary-600);}
 .stat__unit{font-size:14px;}
 .stat > span{display:block;margin-top:var(--space-2);font-size:14px;color:var(--text-subtle);}
 
@@ -232,7 +233,9 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .menu-carousel__item span{display:block;margin-top:4px;font-size:13px;color:var(--text-subtle);}
 
 /* 버거 탭 — 끊김 없는 무한 자동 슬라이드(우→좌) + 호버 시 이미지 1.5배 확대 */
-.menu-carousel--auto{overflow:hidden;cursor:default;scroll-snap-type:none;}
+/* 좌/우 여백 없이 뷰포트 전체 너비로 흐르는 인피니티 슬라이드 */
+.menu-carousel--auto{overflow:hidden;cursor:default;scroll-snap-type:none;
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);}
 .menu-carousel--auto .menu-carousel__track{display:flex;gap:var(--space-6);width:max-content;
   animation:menuAutoScroll 24s linear infinite;will-change:transform;
   backface-visibility:hidden;transform:translateZ(0);}
@@ -244,7 +247,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 /* =========================================================
    Ingredients — deconstructed → assembled, marquee background
    ========================================================= */
-.ingredients{position:relative;height:240vh;background:var(--brand-primary-600);}
+.ingredients{position:relative;height:240vh;background:#181C95;}
 .ingredients__pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .marquee{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:6vw;
   transform:rotate(-4deg) scale(1.15);pointer-events:none;}
@@ -261,9 +264,9 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
    (레이어 목록/오프셋은 script.js의 INGREDIENT_LAYERS 배열에서 생성) */
 .ingredients__assembly{position:relative;z-index:2;width:min(1100px,92vw);height:min(64vh,600px);}
 .ing-layer{position:absolute;left:50%;top:50%;max-width:19%;height:auto;
-  --ox:0px;--oy:0px;--my:0px;--r0:0deg;--s0:1;--o0:1;
+  --ox:0px;--oy:0px;--mx:0px;--my:0px;--r0:0deg;--s0:1;--o0:1;
   transform:translate(-50%,-50%)
-    translate(calc(var(--ox) * (1 - var(--ip,0))), calc(var(--oy) * (1 - var(--ip,0)) + var(--my) * var(--ip,0)))
+    translate(calc(var(--ox) * (1 - var(--ip,0)) + var(--mx) * var(--ip,0)), calc(var(--oy) * (1 - var(--ip,0)) + var(--my) * var(--ip,0)))
     rotate(calc(var(--r0) * (1 - var(--ip,0))))
     scale(calc(var(--s0) + (1 - var(--s0)) * var(--ip,0)));
   opacity:calc(var(--o0) + (1 - var(--o0)) * var(--ip,0));
@@ -279,7 +282,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 /* =========================================================
    SNS strip — full-bleed
    ========================================================= */
-.sns{position:relative;background:var(--brand-primary-600);color:#fff;padding-bottom:calc(var(--space-9) + 120px);}
+.sns{position:relative;background:#181C95;color:#fff;padding-bottom:calc(var(--space-9) + 120px);}
 .sns .container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;}
 
 /* 섹션 바텀 중앙에 숨어있다가, 스크롤에 진입하면 각자 다른 방향으로 튀어오름(역방향도 가능) */
@@ -459,6 +462,13 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   .nav-toggle{display:block;z-index:101;}
   .sns .container{flex-direction:column;align-items:flex-start;}
   .sns__links{flex-wrap:wrap;}
+  /* 팝업 캐릭터가 좁은 화면 밖으로 튀어나가 잘리지 않도록 이동 거리/크기 축소 */
+  .sns__pop-item--fry{width:84px;}
+  .sns__pop-item--burger{width:100px;}
+  .sns__pop-item--coke{width:76px;}
+  .sns__pop.is-popped .sns__pop-item--fry{transform:translate(calc(-50% - 104px),-70px) scale(1) rotate(-10deg);}
+  .sns__pop.is-popped .sns__pop-item--burger{transform:translate(-50%,-128px) scale(1) rotate(3deg);}
+  .sns__pop.is-popped .sns__pop-item--coke{transform:translate(calc(-50% + 104px),-70px) scale(1) rotate(10deg);}
   /* 브랜드 통계 카드 3개 — 가로 대신 세로로 쌓기 */
   .about__stats{grid-template-columns:1fr;}
   /* 메뉴 탭 버튼 — 좌우 스와이프 */
