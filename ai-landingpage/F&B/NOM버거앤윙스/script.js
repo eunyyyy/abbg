@@ -75,24 +75,28 @@
   if (ingredientsAssembly) {
     const n = INGREDIENT_LAYERS.length;
     const mid = (n - 1) / 2;
-    // 컨테이너 실제 높이에 비례해서 흩어지는 범위를 정함 — 모바일 등 작은 뷰포트에서
-    // 캡션 문구와 겹치지 않도록 반응형으로 축소됨
-    const assemblyH = ingredientsAssembly.getBoundingClientRect().height || 600;
-    const SPREAD_RANGE = Math.min(700, assemblyH * 0.92); // 0%: 층층이 멀리 흩어지는 총 범위(px)
-    const MERGE_RANGE = Math.min(140, assemblyH * 0.2);   // 100%: 하나의 버거로 압축 결합됐을 때의 총 범위(px)
-    const spacingSpread = SPREAD_RANGE / (n - 1);
+    // 컨테이너 실제 크기에 비례해서 흩어지는 범위를 정함 — 모바일 등 작은 뷰포트에서도
+    // 화면 비율에 맞춰 자동으로 축소됨
+    const rect = ingredientsAssembly.getBoundingClientRect();
+    const assemblyW = rect.width || 400;
+    const assemblyH = rect.height || 600;
+    const SPREAD_X = assemblyW * 0.62;              // 0%: 중구난방으로 흩어지는 가로 범위
+    const SPREAD_Y = Math.min(680, assemblyH * 0.86); // 0%: 흩어지는 세로 범위
+    const MERGE_RANGE = Math.min(140, assemblyH * 0.2); // 100%: 하나의 버거로 조립됐을 때의 총 범위(px)
     const spacingMerge = MERGE_RANGE / (n - 1);
+
+    // 매번 로드할 때마다 다른 배치가 되도록 순수 랜덤(시드 없음) — 재료마다
+    // 랜덤한 위치·크기·회전으로 중구난방하게 흩어져 있다가 스크롤로 조립됨
     INGREDIENT_LAYERS.forEach((layer, i) => {
-      const d = i - mid;
-      const sign = i % 2 === 0 ? -1 : 1;
-      // 레이어마다 수렴 속도가 다르게 느껴지도록 개별 비율(rate)을 살짝 흔들어줌 (0.82~1.18)
-      const rate = 1 + ((i % 5) - 2) * 0.045;
-      const ox = sign * (50 + Math.abs(d) * 10) * rate;
-      const oy = d * spacingSpread * rate;
+      const d = i - mid; // 조립 시(100%) 정렬되는 상/하 순서는 유지 — 뭉쳤을 때 버거 모양이 되도록
+      const rnd = Math.random();
+      const rnd2 = Math.random();
+      const ox = (Math.random() * 2 - 1) * SPREAD_X;
+      const oy = (Math.random() * 2 - 1) * SPREAD_Y;
       const my = d * spacingMerge;
-      const s0 = Math.max(0.72, 1 - Math.abs(d) * 0.022);
-      const o0 = Math.max(0.5, 1 - Math.abs(d) * 0.03);
-      const r0 = sign * (7 + Math.abs(d) * 0.9);
+      const s0 = 0.45 + rnd * 1.35;               // 랜덤 크기 (0.45~1.8배)
+      const o0 = 0.6 + rnd2 * 0.4;                // 랜덤 불투명도 (0.6~1)
+      const r0 = (Math.random() * 2 - 1) * 55;    // 랜덤 회전 (-55~55deg), 중구난방하게
 
       const img = document.createElement('img');
       img.className = 'ing-layer';
@@ -104,9 +108,40 @@
       img.style.setProperty('--s0', s0.toFixed(3));
       img.style.setProperty('--o0', o0.toFixed(3));
       img.style.setProperty('--r0', r0.toFixed(1) + 'deg');
-      img.style.zIndex = String(n - i);
+      img.style.zIndex = String(Math.round(100 + Math.random() * 100));
       ingredientsAssembly.appendChild(img);
     });
+  }
+
+  /* ---------- 브랜드 통계 숫자 카운팅 ---------- */
+  const statNums = document.querySelectorAll('.stat__num');
+  if (statNums.length && 'IntersectionObserver' in window) {
+    const countUp = (el) => {
+      const target = parseFloat(el.dataset.countTo || '0');
+      const useComma = el.dataset.format === 'comma';
+      const duration = 1400;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = clamp((now - start) / duration, 0, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const value = Math.round(target * eased);
+        el.textContent = useComma ? value.toLocaleString('ko-KR') : String(value);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const statObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            countUp(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    statNums.forEach((el) => statObserver.observe(el));
   }
 
   /* ---------- scroll-progress pins (hero fullscreen reveal + ingredients/signature) ---------- */
