@@ -278,6 +278,31 @@ h4,.h3{font-family:var(--font-kr);font-size:var(--fs-h3);font-weight:var(--fw-st
 .voice-dot.is-active{background:var(--color-secondary-600);transform:scale(1.35);}
 
 /* =========================================================
+   CONTACT — 도입 문의
+   ========================================================= */
+.contact{background:var(--color-primary-900);color:var(--color-gray-0);}
+.contact__grid{display:grid;grid-template-columns:7fr 5fr;gap:var(--grid-gutter-lg);align-items:center;}
+.contact__copy h2{color:var(--color-gray-0);max-width:10ch;}
+.contact__copy p{margin-top:var(--space-5);color:rgba(250,247,240,.62);max-width:42ch;}
+.contact__actions{margin-top:var(--space-8);display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-6);}
+.contact__btn{display:inline-flex;align-items:center;padding:16px 32px;border-radius:var(--radius-circle);
+  background:var(--color-secondary-600);color:var(--color-primary-900);font-weight:600;
+  white-space:nowrap;transition:background .25s var(--ease-out),transform .25s var(--ease-out);}
+.contact__btn:hover{background:var(--color-secondary-500);transform:translateY(-2px);}
+.contact__tel{font-family:var(--font-mono);font-size:14px;letter-spacing:.02em;color:rgba(250,247,240,.55);
+  border-bottom:1px solid rgba(250,247,240,.25);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.contact__tel:hover{color:var(--color-gray-0);border-color:rgba(250,247,240,.6);}
+.contact__media{position:relative;aspect-ratio:4/3;border-radius:var(--radius-md);overflow:hidden;}
+.contact__media img{width:100%;height:100%;object-fit:cover;}
+.contact__media::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(11,29,20,0) 40%,rgba(11,29,20,.55) 100%);}
+
+@media (max-width:1024px){
+  .contact__grid{grid-template-columns:1fr;}
+  .contact__media{order:-1;aspect-ratio:16/9;}
+}
+
+/* =========================================================
    FOOTER
    ========================================================= */
 .footer{background:var(--color-gray-11);color:rgba(250,247,240,.72);padding-block:var(--space-9) var(--space-7);}
