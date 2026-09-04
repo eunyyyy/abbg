@@ -27,27 +27,37 @@ spacing=space-section
 
 <!--
 Layout Declaration
-Header      — full-bleed (fixed)
-Hero        — full-bleed — 6-6
-About       — 5-7
-Menu:Burger — 6-3-3 / 3-3-3-3
-Menu:Wings  — 3-3-3-3
-Menu:Sides  — 4-4-4
-SNS         — full-bleed
-Store       — 7-5
-Event       — 3-3-3
-Franchise   — full-bleed — 8-4
-Footer      — full-bleed
+Header       — full-bleed (fixed)
+Hero         — full-bleed — 6-6 (pinned fullscreen-image reveal)
+About        — 5-7
+Menu         — tabs + carousel (버거/메가윙/사이드/음료)
+Ingredients  — full-bleed (pinned, marquee background)
+SNS          — full-bleed
+Store        — 7-5
+Event        — 3-3-3
+Recommend    — 4-4-4-4
+Franchise    — full-bleed — 8-4 (sticky, covered by footer)
+Footer       — full-bleed
 -->
 
 <header class="header" id="header">
   <div class="container">
     <a href="#top" class="logo">
-      <svg class="logo__mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="17" cy="17" r="17"/>
-        <path d="M17 25c-4.4 0-8-3.6-8-8V9h3v8c0 2.8 2.2 5 5 5s5-2.2 5-5V9h3v8c0 4.4-3.6 8-8 8Z"/>
+      <svg class="logo-mark" viewBox="0 0 84 11" xmlns="http://www.w3.org/2000/svg">
+        <path d="M80.671 8.1C80.571 8.1 80.521 8.05 80.521 7.95V6.978C80.521 6.886 80.551 6.826 80.611 6.798L81.835 6.072V5.448L80.611 4.788C80.551 4.752 80.521 4.69 80.521 4.602V2.688C80.521 2.644 80.527 2.608 80.539 2.58C80.555 2.552 80.577 2.528 80.605 2.508L81.883 1.572C81.927 1.54 81.963 1.52 81.991 1.512C82.019 1.504 82.047 1.5 82.075 1.5H83.533C83.633 1.5 83.683 1.55 83.683 1.65V2.592C83.683 2.66 83.677 2.706 83.665 2.73C83.657 2.754 83.637 2.774 83.605 2.79L82.471 3.402V4.098L83.683 4.698C83.751 4.726 83.785 4.786 83.785 4.878V6.72C83.785 6.82 83.751 6.9 83.683 6.96L82.405 8.022C82.341 8.074 82.261 8.1 82.165 8.1H80.671Z"/>
+        <path d="M76.1412 10.098C76.0412 10.098 75.9912 10.048 75.9912 9.948V9.012C75.9912 8.932 76.0212 8.888 76.0812 8.88L76.9572 8.658L77.5812 8.328C77.6412 8.296 77.6712 8.234 77.6712 8.142V7.158L77.1072 7.68C77.0392 7.748 76.9592 7.782 76.8672 7.782L75.8472 7.818C75.7552 7.818 75.6752 7.786 75.6072 7.722L74.5092 6.618C74.4412 6.554 74.4072 6.474 74.4072 6.378V3.042C74.4072 2.946 74.4412 2.866 74.5092 2.802L75.7092 1.602C75.7772 1.534 75.8572 1.5 75.9492 1.5H79.1592C79.2592 1.5 79.3092 1.55 79.3092 1.65V8.862C79.3092 8.97 79.2752 9.05 79.2072 9.102L78.4092 9.612L77.4012 10.032C77.3412 10.056 77.2952 10.072 77.2632 10.08C77.2352 10.092 77.1872 10.098 77.1192 10.098H76.1412ZM76.6512 6.522H77.0712C77.1992 6.522 77.2872 6.496 77.3352 6.444C77.3832 6.392 77.4072 6.3 77.4072 6.168V2.898H76.6512C76.5192 2.898 76.4292 2.924 76.3812 2.976C76.3332 3.028 76.3092 3.12 76.3092 3.252V6.168C76.3092 6.3 76.3332 6.392 76.3812 6.444C76.4292 6.496 76.5192 6.522 76.6512 6.522Z"/>
+        <path d="M68.2945 8.1C68.1945 8.1 68.1445 8.05 68.1445 7.95V1.65C68.1445 1.55 68.1945 1.5 68.2945 1.5H71.5045C71.5965 1.5 71.6765 1.534 71.7445 1.602L72.9445 2.802C73.0125 2.866 73.0465 2.946 73.0465 3.042V7.95C73.0465 8.05 72.9965 8.1 72.8965 8.1H71.2945C71.1945 8.1 71.1445 8.05 71.1445 7.95V3.282C71.1445 3.094 71.0505 3 70.8625 3H70.0465V7.95C70.0465 8.05 69.9965 8.1 69.8965 8.1H68.2945Z"/>
+        <path d="M65.0015 8.1C64.9015 8.1 64.8515 8.05 64.8515 7.95V1.65C64.8515 1.55 64.9015 1.5 65.0015 1.5H66.5975C66.6975 1.5 66.7475 1.55 66.7475 1.65V7.95C66.7475 8.05 66.6975 8.1 66.5975 8.1H65.0015ZM64.9715 1.002C64.8915 1.002 64.8515 0.962 64.8515 0.882V0.12C64.8515 0.0399997 64.8915 0 64.9715 0H66.6395C66.7115 0 66.7475 0.0399997 66.7475 0.12V0.882C66.7475 0.962 66.7115 1.002 66.6395 1.002H64.9715Z"/>
+        <path d="M56.2685 8.10002C56.1725 8.10002 56.0925 8.06602 56.0285 7.99802L54.8285 6.79802C54.7605 6.73402 54.7265 6.65402 54.7265 6.55802V0.25202C54.7265 0.15202 54.7765 0.10202 54.8765 0.10202H56.5745C56.6745 0.10202 56.7245 0.15202 56.7245 0.25202V6.49202H58.0685V0.25202C58.0685 0.15202 58.1185 0.10202 58.2185 0.10202H59.9165C60.0165 0.10202 60.0665 0.15202 60.0665 0.25202V6.49202H61.4045V0.25202C61.4045 0.15202 61.4545 0.10202 61.5545 0.10202H63.2585C63.3585 0.10202 63.4085 0.15202 63.4085 0.25202V6.55802C63.4085 6.65402 63.3745 6.73402 63.3065 6.79802L62.1065 7.99802C62.0385 8.06602 61.9585 8.10002 61.8665 8.10002H60.4565C60.3645 8.10002 60.2845 8.06602 60.2165 7.99802L59.2085 6.99002H58.9265L57.9185 7.99802C57.8505 8.06602 57.7705 8.10002 57.6785 8.10002H56.2685Z"/>
+        <path d="M50.6929 8.1C50.5929 8.1 50.5429 8.05 50.5429 7.95V1.65C50.5429 1.55 50.5929 1.5 50.6929 1.5H51.6049C51.6809 1.5 51.7469 1.534 51.8029 1.602L52.3909 2.28L53.0449 1.572C53.0889 1.524 53.1449 1.5 53.2129 1.5H53.8609C53.9609 1.5 54.0109 1.55 54.0109 1.65V2.94C54.0109 3.004 54.0069 3.048 53.9989 3.072C53.9909 3.092 53.9689 3.114 53.9329 3.138L52.4449 4.236V7.95C52.4449 8.05 52.3949 8.1 52.2949 8.1H50.6929Z"/>
+        <path d="M47.02 8.1C46.98 8.1 46.936 8.094 46.888 8.082C46.844 8.07 46.802 8.06 46.762 8.052L45.694 7.788L44.47 7.38C44.35 7.34 44.29 7.224 44.29 7.032V3.042C44.29 2.946 44.324 2.866 44.392 2.802L45.592 1.602C45.66 1.534 45.74 1.5 45.832 1.5H47.752C47.844 1.5 47.924 1.534 47.992 1.602L49.192 2.802C49.26 2.866 49.294 2.946 49.294 3.042V5.502H46.072L46.03 6.3L46.882 6.582L48.412 6.69C48.48 6.702 48.514 6.748 48.514 6.828V7.95C48.514 8.05 48.464 8.1 48.364 8.1H47.02ZM46.78 4.56H46.894C47.09 4.56 47.246 4.486 47.362 4.338C47.482 4.19 47.542 3.99 47.542 3.738V3.618C47.542 3.37 47.482 3.172 47.362 3.024C47.246 2.876 47.09 2.802 46.894 2.802H46.774C46.582 2.802 46.428 2.876 46.312 3.024C46.2 3.172 46.144 3.37 46.144 3.618V3.738C46.144 3.99 46.2 4.19 46.312 4.338C46.428 4.486 46.584 4.56 46.78 4.56Z"/>
+        <path d="M39.7662 10.098C39.6662 10.098 39.6162 10.048 39.6162 9.948V9.012C39.6162 8.932 39.6462 8.888 39.7062 8.88L40.5822 8.658L41.2062 8.328C41.2662 8.296 41.2962 8.234 41.2962 8.142V7.158L40.7322 7.68C40.6642 7.748 40.5842 7.782 40.4922 7.782L39.4722 7.818C39.3802 7.818 39.3002 7.786 39.2322 7.722L38.1342 6.618C38.0662 6.554 38.0322 6.474 38.0322 6.378V3.042C38.0322 2.946 38.0662 2.866 38.1342 2.802L39.3342 1.602C39.4022 1.534 39.4822 1.5 39.5742 1.5H42.7842C42.8842 1.5 42.9342 1.55 42.9342 1.65V8.862C42.9342 8.97 42.9002 9.05 42.8322 9.102L42.0342 9.612L41.0262 10.032C40.9662 10.056 40.9202 10.072 40.8882 10.08C40.8602 10.092 40.8122 10.098 40.7442 10.098H39.7662ZM40.2762 6.522H40.6962C40.8242 6.522 40.9122 6.496 40.9602 6.444C41.0082 6.392 41.0322 6.3 41.0322 6.168V2.898H40.2762C40.1442 2.898 40.0542 2.924 40.0062 2.976C39.9582 3.028 39.9342 3.12 39.9342 3.252V6.168C39.9342 6.3 39.9582 6.392 40.0062 6.444C40.0542 6.496 40.1442 6.522 40.2762 6.522Z"/>
+        <path d="M33.3115 8.1C33.2155 8.1 33.1355 8.066 33.0715 7.998L31.8715 6.798C31.8035 6.734 31.7695 6.654 31.7695 6.558V1.65C31.7695 1.55 31.8195 1.5 31.9195 1.5H33.5215C33.6215 1.5 33.6715 1.55 33.6715 1.65V6.318C33.6715 6.506 33.7635 6.6 33.9475 6.6H34.7695V1.65C34.7695 1.55 34.8195 1.5 34.9195 1.5H36.5215C36.6215 1.5 36.6715 1.55 36.6715 1.65V7.95C36.6715 8.05 36.6215 8.1 36.5215 8.1H33.3115Z"/>
+        <path d="M25.1527 8.10002C25.0527 8.10002 25.0027 8.05002 25.0027 7.95002V0.25202C25.0027 0.15202 25.0527 0.10202 25.1527 0.10202H28.7647C28.8567 0.10202 28.9367 0.13402 29.0047 0.19802L30.2047 1.39802C30.2687 1.46602 30.3007 1.54602 30.3007 1.63802V2.89802C30.3007 2.93802 30.2927 2.97002 30.2767 2.99402C30.2607 3.01802 30.2367 3.04602 30.2047 3.07802L29.2627 3.91802L29.1727 4.14002L29.2627 4.30202L30.2047 5.14202C30.2367 5.17402 30.2607 5.20202 30.2767 5.22602C30.2927 5.24602 30.3007 5.27802 30.3007 5.32202V6.55802C30.3007 6.65402 30.2687 6.73402 30.2047 6.79802L29.0047 7.99802C28.9367 8.06602 28.8567 8.10002 28.7647 8.10002H25.1527ZM27.5407 6.75002C27.8727 6.75002 28.0987 6.68402 28.2187 6.55202C28.3427 6.42002 28.4047 6.17002 28.4047 5.80202C28.4047 5.43002 28.3427 5.17802 28.2187 5.04602C28.0987 4.91402 27.8727 4.84802 27.5407 4.84802C27.2127 4.84802 26.9867 4.91402 26.8627 5.04602C26.7427 5.17802 26.6827 5.43002 26.6827 5.80202C26.6827 6.17002 26.7427 6.42002 26.8627 6.55202C26.9867 6.68402 27.2127 6.75002 27.5407 6.75002ZM27.5407 3.34802C27.8727 3.34802 28.0987 3.28202 28.2187 3.15002C28.3427 3.01802 28.4047 2.76802 28.4047 2.40002C28.4047 2.03202 28.3427 1.78202 28.2187 1.65002C28.0987 1.51802 27.8727 1.45202 27.5407 1.45202C27.2127 1.45202 26.9867 1.51802 26.8627 1.65002C26.7427 1.78202 26.6827 2.03202 26.6827 2.40002C26.6827 2.76802 26.7427 3.01802 26.8627 3.15002C26.9867 3.28202 27.2127 3.34802 27.5407 3.34802Z"/>
+        <path d="M13.568 8.10002C13.468 8.10002 13.418 8.05002 13.418 7.95002V1.44002C13.418 1.34802 13.452 1.26802 13.52 1.20002L14.516 0.19802C14.584 0.13402 14.664 0.10202 14.756 0.10202H16.13C16.222 0.10202 16.302 0.13402 16.37 0.19802L17.378 1.21202H17.66L18.668 0.19802C18.736 0.13402 18.816 0.10202 18.908 0.10202H20.276C20.372 0.10202 20.452 0.13402 20.516 0.19802L21.518 1.20002C21.586 1.26802 21.62 1.34802 21.62 1.44002V7.95002C21.62 8.05002 21.57 8.10002 21.47 8.10002H19.766C19.666 8.10002 19.616 8.05002 19.616 7.95002V1.69802H18.518V7.95002C18.518 8.05002 18.468 8.10002 18.368 8.10002H16.67C16.57 8.10002 16.52 8.05002 16.52 7.95002V1.69802H15.416V7.95002C15.416 8.05002 15.366 8.10002 15.266 8.10002H13.568Z"/>
+        <path d="M8.08106 8.10002C7.98906 8.10002 7.90906 8.06602 7.84106 7.99802L6.64106 6.79802C6.57306 6.73402 6.53906 6.65402 6.53906 6.55802V1.63802C6.53906 1.54602 6.57306 1.46602 6.64106 1.39802L7.84106 0.19802C7.90906 0.13402 7.98906 0.10202 8.08106 0.10202H10.4391C10.5351 0.10202 10.6151 0.13402 10.6791 0.19802L11.8791 1.39802C11.9471 1.46602 11.9811 1.54602 11.9811 1.63802V6.55802C11.9811 6.65402 11.9471 6.73402 11.8791 6.79802L10.6791 7.99802C10.6151 8.06602 10.5351 8.10002 10.4391 8.10002H8.08106ZM8.78906 6.49802H9.73106C9.89906 6.49802 9.98306 6.38602 9.98306 6.16202V2.04002C9.98306 1.81202 9.89906 1.69802 9.73106 1.69802H8.78906C8.62506 1.69802 8.54306 1.81202 8.54306 2.04002V6.16202C8.54306 6.38602 8.62506 6.49802 8.78906 6.49802Z"/>
+        <path d="M0.15 8.10002C0.05 8.10002 0 8.05002 0 7.95002V0.25202C0 0.15202 0.05 0.10202 0.15 0.10202H3.558C3.654 0.10202 3.734 0.13402 3.798 0.19802L4.998 1.39802C5.066 1.46602 5.1 1.54602 5.1 1.63802V7.95002C5.1 8.05002 5.05 8.10002 4.95 8.10002H3.252C3.152 8.10002 3.102 8.05002 3.102 7.95002V1.69802H1.998V7.95002C1.998 8.05002 1.948 8.10002 1.848 8.10002H0.15Z"/>
       </svg>
-      <span class="logo__word"><b>NOM</b><span>Burger &amp; Wings</span></span>
     </a>
 
     <nav class="nav" id="nav">
@@ -56,7 +66,6 @@ Footer      — full-bleed
       <a href="#event">이벤트</a>
       <a href="#store">매장</a>
       <a href="#franchise">창업</a>
-      <a href="#franchise" class="header__cta">창업 문의</a>
     </nav>
 
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
@@ -67,26 +76,27 @@ Footer      — full-bleed
 
 <main id="top">
 
-  <!-- Hero — full-bleed — 6-6 -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero__grid">
-        <div class="hero__copy" data-reveal>
-          <span class="badge badge--inverse">Chicken Burger &amp; Wings</span>
-          <h1 class="hero__title">치킨 러버의 버거<br><em>NOM</em> Burger &amp; Wings</h1>
-          <p class="hero__desc">한 입 베어 무는 순간 바삭함이 다르다는 걸 압니다. 매일 튀겨내는 치킨과 두툼한 패티로 만든 NOM Burger &amp; Wings의 메뉴를 만나보세요.</p>
-          <div class="hero__actions">
-            <a href="#about" class="btn btn--accent">브랜드 소개</a>
-            <a href="#menu" class="btn btn--outline">메뉴 보기</a>
+  <!-- Hero — pinned fullscreen-image reveal — 6-6 -->
+  <div class="hero-pin" id="heroPin">
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__copy" data-reveal>
+            <span class="badge badge--inverse">Chicken Burger &amp; Wings</span>
+            <h1 class="hero__title">치킨 러버의 버거<br><em>NOM</em> Burger &amp; Wings</h1>
+            <p class="hero__desc">한 입 베어 무는 순간 바삭함이 다르다는 걸 압니다. 매일 튀겨내는 치킨과 두툼한 패티로 만든 NOM Burger &amp; Wings의 메뉴를 만나보세요.</p>
+            <div class="hero__actions">
+              <a href="#about" class="btn btn--accent">브랜드 소개</a>
+              <a href="#menu" class="btn btn--outline">메뉴 보기</a>
+            </div>
           </div>
         </div>
-        <div class="hero__media">
-          <img src="img/hero-burger.jpg" alt="NOM Burger & Wings 시그니처 치킨버거">
-        </div>
       </div>
-    </div>
-    <span class="hero__scroll">Scroll</span>
-  </section>
+      <div class="hero__media">
+        <img src="img/hero-burger.jpg" alt="NOM Burger & Wings 시그니처 치킨버거">
+      </div>
+    </section>
+  </div>
 
   <!-- About / Brand — 5-7 -->
   <section class="section" id="about">
@@ -106,7 +116,7 @@ Footer      — full-bleed
     </div>
   </section>
 
-  <!-- Menu -->
+  <!-- Menu — tabs + carousel -->
   <section class="section" id="menu">
     <div class="container">
       <div class="menu__head" data-reveal>
@@ -114,106 +124,134 @@ Footer      — full-bleed
         <h2>NOM Burger &amp; Wings<br>메뉴를 소개합니다</h2>
       </div>
 
-      <!-- Burger — 6-3-3 / 3-3-3-3 -->
-      <div class="menu__cat">
-        <div class="menu__cat-head">
-          <h3>버거</h3>
-          <span class="menu__cat-count">7 Menu</span>
-        </div>
-        <div class="grid" data-reveal-group>
-          <article class="menu-card menu-card--lg" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/burger-01.jpg" alt="버거 오리지널"></div>
-            <div class="menu-card__body"><b>버거 오리지널</b><span>바삭한 치킨패티와 담백한 소스의 기본기</span></div>
-          </article>
-          <article class="menu-card menu-card--sm" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/burger-02.jpg" alt="버거 크리미마요"></div>
-            <div class="menu-card__body"><b>버거 크리미마요</b><span>부드러운 마요 소스</span></div>
-          </article>
-          <article class="menu-card menu-card--sm" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/burger-03.jpg" alt="버거 로제"></div>
-            <div class="menu-card__body"><b>버거 로제</b><span>은은하게 매콤한 로제 소스</span></div>
-          </article>
-          <article class="menu-card menu-card--sm" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/burger-04.jpg" alt="버거 버팔로"></div>
-            <div class="menu-card__body"><b>버거 버팔로</b><span>강렬한 버팔로 소스</span></div>
-          </article>
-          <article class="menu-card menu-card--sm" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/burger-05.jpg" alt="버거 소이갈릭"></div>
-            <div class="menu-card__body"><b>버거 소이갈릭</b><span>짭짤한 간장 갈릭 소스</span></div>
-          </article>
-          <article class="menu-card menu-card--sm" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/burger-01.jpg" alt="버거 할라피뇨"></div>
-            <div class="menu-card__body"><b>버거 할라피뇨</b><span>알싸한 할라피뇨 한 조각</span></div>
-          </article>
-          <article class="menu-card menu-card--sm" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/burger-02.jpg" alt="버거 볼케이노"></div>
-            <div class="menu-card__body"><b>버거 볼케이노</b><span>매운맛 끝판왕</span></div>
-          </article>
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab is-active" data-tab="burger" role="tab" aria-selected="true">버거</button>
+        <button class="menu-tab" data-tab="wings" role="tab" aria-selected="false">메가윙</button>
+        <button class="menu-tab" data-tab="sides" role="tab" aria-selected="false">사이드</button>
+        <button class="menu-tab" data-tab="drinks" role="tab" aria-selected="false">음료</button>
+      </div>
+
+      <!-- 버거 (누끼 컷아웃) -->
+      <div class="menu-panel is-active" data-panel="burger">
+        <div class="menu-carousel">
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle"><img src="img/no-bg/hambuger1.png" alt="버거 오리지널"></div>
+            <b>버거 오리지널</b><span>바삭한 패티 &middot; 담백한 소스</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle"><img src="img/no-bg/hambuger2.png" alt="버거 클래식햄"></div>
+            <b>버거 클래식햄</b><span>담백한 햄과 치즈</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle"><img src="img/no-bg/hambuger3.png" alt="버거 크리스피"></div>
+            <b>버거 크리스피</b><span>바삭한 크리스피 패티</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle"><img src="img/no-bg/hambuger4.png" alt="버거 치즈더블"></div>
+            <b>버거 치즈더블</b><span>치즈 듬뿍 더블 패티</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle"><img src="img/no-bg/hambuger5.png" alt="버거 베이컨"></div>
+            <b>버거 베이컨</b><span>훈제 베이컨 &middot; 스모키 소스</span>
+          </div>
         </div>
       </div>
 
-      <!-- Mega Wings — 3-3-3-3 -->
-      <div class="menu__cat">
-        <div class="menu__cat-head">
-          <h3>메가윙</h3>
-          <span class="menu__cat-count">6 Menu</span>
-        </div>
-        <div class="grid" data-reveal-group>
-          <article class="menu-card menu-card--wing" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/wings-01.jpg" alt="메가윙 오리지널"></div>
-            <div class="menu-card__body"><b>메가윙 오리지널</b><span>담백한 기본 시즈닝</span></div>
-          </article>
-          <article class="menu-card menu-card--wing" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/wings-02.jpg" alt="메가윙 크리미마요"></div>
-            <div class="menu-card__body"><b>메가윙 크리미마요</b><span>부드러운 마요 코팅</span></div>
-          </article>
-          <article class="menu-card menu-card--wing" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/wings-03.jpg" alt="메가윙 버팔로"></div>
-            <div class="menu-card__body"><b>메가윙 버팔로</b><span>진한 버팔로 소스</span></div>
-          </article>
-          <article class="menu-card menu-card--wing" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/wings-04.jpg" alt="메가윙 할라피뇨"></div>
-            <div class="menu-card__body"><b>메가윙 할라피뇨</b><span>알싸하게 매운맛</span></div>
-          </article>
-        </div>
-        <div class="menu-chip-row">
-          <span class="menu-chip">메가윙 소이갈릭</span>
-          <span class="menu-chip">메가윙 볼케이노</span>
+      <!-- 메가윙 -->
+      <div class="menu-panel" data-panel="wings">
+        <div class="menu-carousel">
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/wings-01.jpg" alt="메가윙 오리지널"></div>
+            <b>메가윙 오리지널</b><span>담백한 기본 시즈닝</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/wings-02.jpg" alt="메가윙 크리미마요"></div>
+            <b>메가윙 크리미마요</b><span>부드러운 마요 코팅</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/wings-03.jpg" alt="메가윙 버팔로"></div>
+            <b>메가윙 버팔로</b><span>진한 버팔로 소스</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/wings-04.jpg" alt="메가윙 할라피뇨"></div>
+            <b>메가윙 할라피뇨</b><span>알싸하게 매운맛</span>
+          </div>
         </div>
       </div>
 
-      <!-- Sides — 4-4-4 -->
-      <div class="menu__cat">
-        <div class="menu__cat-head">
-          <h3>사이드</h3>
-          <span class="menu__cat-count">6 Menu</span>
+      <!-- 사이드 -->
+      <div class="menu-panel" data-panel="sides">
+        <div class="menu-carousel">
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/side-01.jpg" alt="감자튀김"></div>
+            <b>감자튀김</b><span>겉바속촉 클래식 프라이</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/side-02.jpg" alt="어니언링"></div>
+            <b>어니언링</b><span>바삭한 튀김옷 양파링</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/side-03.jpg" alt="코울슬로"></div>
+            <b>코울슬로</b><span>새콤달콤 양배추 샐러드</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/side-04.jpg" alt="치즈스틱"></div>
+            <b>치즈스틱</b><span>쭉 늘어나는 모짜렐라</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--photo"><img src="img/menu/side-05.jpg" alt="츄러스윗"></div>
+            <b>츄러스윗</b><span>달콤한 시나몬 츄러스</span>
+          </div>
         </div>
-        <div class="grid" data-reveal-group>
-          <article class="menu-card menu-card--side" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/side-01.jpg" alt="감자튀김"></div>
-            <div class="menu-card__body"><b>감자튀김</b><span>겉바속촉 클래식 프렌치프라이</span></div>
-          </article>
-          <article class="menu-card menu-card--side" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/side-02.jpg" alt="어니언링"></div>
-            <div class="menu-card__body"><b>어니언링</b><span>바삭한 튀김옷의 양파링</span></div>
-          </article>
-          <article class="menu-card menu-card--side" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/side-03.jpg" alt="코울슬로"></div>
-            <div class="menu-card__body"><b>코울슬로</b><span>새콤달콤 아삭한 양배추 샐러드</span></div>
-          </article>
-          <article class="menu-card menu-card--side" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/side-04.jpg" alt="치즈스틱"></div>
-            <div class="menu-card__body"><b>치즈스틱</b><span>쭉 늘어나는 모짜렐라</span></div>
-          </article>
-          <article class="menu-card menu-card--side" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/side-05.jpg" alt="츄러스윗"></div>
-            <div class="menu-card__body"><b>츄러스윗</b><span>달콤한 시나몬 츄러스</span></div>
-          </article>
-          <article class="menu-card menu-card--side" data-reveal>
-            <div class="menu-card__media"><img src="img/menu/side-01.jpg" alt="해쉬브라운"></div>
-            <div class="menu-card__body"><b>해쉬브라운</b><span>바삭한 감자 해쉬브라운</span></div>
-          </article>
+      </div>
+
+      <!-- 음료 -->
+      <div class="menu-panel" data-panel="drinks">
+        <div class="menu-carousel">
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l-1 15a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 3Z"/><path d="M5 8h14"/></svg>
+            </div>
+            <b>콜라</b><span>시원한 탄산 콜라</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l-1 15a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 3Z"/><path d="M5 8h14"/></svg>
+            </div>
+            <b>제로콜라</b><span>당류 없는 제로 콜라</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l-1 15a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 3Z"/><path d="M5 8h14"/></svg>
+            </div>
+            <b>스프라이트</b><span>상큼한 사이다</span>
+          </div>
+          <div class="menu-carousel__item">
+            <div class="menu-carousel__circle menu-carousel__circle--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l-1 15a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 3Z"/><path d="M5 8h14"/></svg>
+            </div>
+            <b>아이스티</b><span>달콤한 복숭아 아이스티</span>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ingredients — pinned, marquee background -->
+  <section class="ingredients">
+    <div class="ingredients__pin" id="ingredientsPin">
+      <div class="marquee">
+        <div class="marquee__row marquee__row--ltr"><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span></div>
+        <div class="marquee__row marquee__row--rtl"><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span></div>
+        <div class="marquee__row marquee__row--ltr"><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span><span>NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;NOM BURGER&amp;WINGS&nbsp;&nbsp;&nbsp;</span></div>
+      </div>
+      <div class="ingredients__stage">
+        <img class="ingredients__source" src="svg/buger-source.svg" alt="흩어진 버거 재료">
+        <img class="ingredients__merged" src="img/no-bg/hambuger1.png" alt="완성된 NOM 버거">
+      </div>
+      <div class="ingredients__caption">
+        <b>Fresh Ingredients</b>
+        <span>신선한 재료가 모여, 하나의 바삭함이 됩니다</span>
       </div>
     </div>
   </section>
@@ -252,7 +290,7 @@ Footer      — full-bleed
         <div class="store__copy" data-reveal>
           <span class="badge">Store</span>
           <h2>가장 가까운<br>NOM을 찾아보세요</h2>
-          <p>전국 매장에서 매일 갓 튀겨낸 바삭함을 만날 수 있습니다. 가까운 매장을 검색하고 픽업이나 배달로 편하게 주문하세요.</p>
+          <p>전국 매장에서 매일 갓 튀겨낸 바삭함을 만날 수 있습니다.<br>가까운 매장을 검색하고 픽업이나 배달로 편하게 주문하세요.</p>
           <a href="#" class="btn btn--solid">매장 찾기</a>
         </div>
       </div>
@@ -289,7 +327,23 @@ Footer      — full-bleed
     </div>
   </section>
 
-  <!-- Franchise CTA — full-bleed — 8-4 -->
+  <!-- Recommend gallery — new section (Event 다음) -->
+  <section class="section section--tight" id="recommend">
+    <div class="container">
+      <div data-reveal>
+        <span class="badge">Recommend</span>
+        <h2>지금, 가장 인기 있는<br>NOM의 메뉴</h2>
+      </div>
+      <div class="recommend__grid" data-reveal-group>
+        <div class="recommend-card" data-reveal><img src="img/pc0031076440.jpg" alt="버거 오리지널"><b>버거 오리지널</b></div>
+        <div class="recommend-card" data-reveal><img src="img/pc003113513.jpg" alt="버거 클래식햄"><b>버거 클래식햄</b></div>
+        <div class="recommend-card" data-reveal><img src="img/pc003421746.jpg" alt="버거 크리스피"><b>버거 크리스피</b></div>
+        <div class="recommend-card" data-reveal><img src="img/td0131t364838.jpg" alt="버거 치즈더블"><b>버거 치즈더블</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Franchise CTA — full-bleed — 8-4 (sticky, covered by footer) -->
   <section class="franchise section" id="franchise">
     <div class="container">
       <div class="franchise__copy" data-reveal>
@@ -299,38 +353,46 @@ Footer      — full-bleed
       </div>
       <div class="franchise__actions" data-reveal>
         <a href="mailto:nom@nomburger.co.kr" class="btn btn--accent">창업 문의하기</a>
-        <span class="franchise__mail">nom@nomburger.co.kr</span>
       </div>
     </div>
+    <img class="franchise__mascot" src="svg/buger-character.svg" alt="NOM 버거 캐릭터">
   </section>
 
-</main>
-
-<footer class="footer">
+  <footer class="footer">
   <div class="container">
-    <div class="footer__top">
-      <a href="#top" class="logo">
-        <svg class="logo__mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="17" fill="#fff"/>
-          <path d="M17 25c-4.4 0-8-3.6-8-8V9h3v8c0 2.8 2.2 5 5 5s5-2.2 5-5V9h3v8c0 4.4-3.6 8-8 8Z" fill="var(--brand-primary-600)"/>
-        </svg>
-        <span class="logo__word"><b>NOM</b><span>Burger &amp; Wings</span></span>
-      </a>
-      <div class="footer__sns">
-        <a href="#" aria-label="유튜브"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-1.9-.2-3.2-.5-4.1a4.6 4.6 0 0 0-3.2-3.2C17.2 4.2 12 4.2 12 4.2s-5.2 0-6.3.5A4.6 4.6 0 0 0 2.5 7.9C2.2 8.8 2 10.1 2 12s.2 3.2.5 4.1a4.6 4.6 0 0 0 3.2 3.2c1.1.5 6.3.5 6.3.5s5.2 0 6.3-.5a4.6 4.6 0 0 0 3.2-3.2c.3-.9.5-2.2.5-4.1ZM10 15.4V8.6L15.8 12 10 15.4Z"/></svg></a>
-        <a href="#" aria-label="인스타그램"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.4.46.7.27 1.2.62 1.7 1.13.5.5.86 1.03 1.13 1.73.24.6.4 1.3.46 2.4.05 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4-.27.7-.62 1.2-1.13 1.7a4.7 4.7 0 0 1-1.73 1.13c-.6.24-1.3.4-2.4.46-1.1.05-1.4.06-4.1.06s-3 0-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.7 4.7 0 0 1-1.7-1.13 4.7 4.7 0 0 1-1.13-1.73c-.24-.6-.4-1.3-.46-2.4C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1.1.22-1.8.46-2.4.27-.7.62-1.2 1.13-1.7A4.7 4.7 0 0 1 5.6 2.66c.6-.24 1.3-.4 2.4-.46C9.1 2.2 9.3 2.2 12 2.2Zm0 1.8c-2.65 0-2.97 0-4.02.06-.9.04-1.4.2-1.72.32-.43.17-.74.37-1.06.7-.32.32-.52.63-.7 1.06-.12.32-.28.81-.32 1.72C4.13 9.03 4.12 9.35 4.12 12s0 2.97.06 4.02c.04.9.2 1.4.32 1.72.17.43.37.74.7 1.06.32.32.63.52 1.06.7.32.12.81.28 1.72.32C8.98 19.87 9.3 19.88 12 19.88s2.97 0 4.02-.06c.9-.04 1.4-.2 1.72-.32.43-.17.74-.37 1.06-.7.32-.32.52-.63.7-1.06.12-.32.28-.81.32-1.72.05-1.05.06-1.37.06-4.02s0-2.97-.06-4.02c-.04-.9-.2-1.4-.32-1.72a2.9 2.9 0 0 0-.7-1.06 2.9 2.9 0 0 0-1.06-.7c-.32-.12-.81-.28-1.72-.32C14.97 4.13 14.65 4.12 12 4.12Zm0 3.4A4.48 4.48 0 1 1 12 16.48 4.48 4.48 0 0 1 12 7.52Zm0 1.8a2.68 2.68 0 1 0 0 5.36 2.68 2.68 0 0 0 0-5.36Zm4.66-1.98a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"/></svg></a>
-        <a href="#" aria-label="카카오채널"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.31 4.66 6.72-.2.75-.73 2.73-.84 3.15-.13.52.19.51.4.37.16-.1 2.6-1.76 3.66-2.48.68.1 1.38.15 2.12.15 5.52 0 10-3.58 10-8s-4.48-8-10-8Z"/></svg></a>
-      </div>
-    </div>
     <div class="footer__info">
       (주)놈에프앤비 &nbsp;|&nbsp; 대표자명 김도현 &nbsp;|&nbsp; 사업자등록번호 123-45-67890<br>
       서울특별시 강남구 테헤란로 123 &nbsp;|&nbsp; 팩스 02-1234-5678
+    </div>
+    <div class="footer__sns">
+      <a href="#" aria-label="유튜브"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-1.9-.2-3.2-.5-4.1a4.6 4.6 0 0 0-3.2-3.2C17.2 4.2 12 4.2 12 4.2s-5.2 0-6.3.5A4.6 4.6 0 0 0 2.5 7.9C2.2 8.8 2 10.1 2 12s.2 3.2.5 4.1a4.6 4.6 0 0 0 3.2 3.2c1.1.5 6.3.5 6.3.5s5.2 0 6.3-.5a4.6 4.6 0 0 0 3.2-3.2c.3-.9.5-2.2.5-4.1ZM10 15.4V8.6L15.8 12 10 15.4Z"/></svg></a>
+      <a href="#" aria-label="인스타그램"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.4.46.7.27 1.2.62 1.7 1.13.5.5.86 1.03 1.13 1.73.24.6.4 1.3.46 2.4.05 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4-.27.7-.62 1.2-1.13 1.7a4.7 4.7 0 0 1-1.73 1.13c-.6.24-1.3.4-2.4.46-1.1.05-1.4.06-4.1.06s-3 0-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.7 4.7 0 0 1-1.7-1.13 4.7 4.7 0 0 1-1.13-1.73c-.24-.6-.4-1.3-.46-2.4C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1.1.22-1.8.46-2.4.27-.7.62-1.2 1.13-1.7A4.7 4.7 0 0 1 5.6 2.66c.6-.24 1.3-.4 2.4-.46C9.1 2.2 9.3 2.2 12 2.2Zm0 1.8c-2.65 0-2.97 0-4.02.06-.9.04-1.4.2-1.72.32-.43.17-.74.37-1.06.7-.32.32-.52.63-.7 1.06-.12.32-.28.81-.32 1.72C4.13 9.03 4.12 9.35 4.12 12s0 2.97.06 4.02c.04.9.2 1.4.32 1.72.17.43.37.74.7 1.06.32.32.63.52 1.06.7.32.12.81.28 1.72.32C8.98 19.87 9.3 19.88 12 19.88s2.97 0 4.02-.06c.9-.04 1.4-.2 1.72-.32.43-.17.74-.37 1.06-.7.32-.32.52-.63.7-1.06.12-.32.28-.81.32-1.72.05-1.05.06-1.37.06-4.02s0-2.97-.06-4.02c-.04-.9-.2-1.4-.32-1.72a2.9 2.9 0 0 0-.7-1.06 2.9 2.9 0 0 0-1.06-.7c-.32-.12-.81-.28-1.72-.32C14.97 4.13 14.65 4.12 12 4.12Zm0 3.4A4.48 4.48 0 1 1 12 16.48 4.48 4.48 0 0 1 12 7.52Zm0 1.8a2.68 2.68 0 1 0 0 5.36 2.68 2.68 0 0 0 0-5.36Zm4.66-1.98a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"/></svg></a>
+      <a href="#" aria-label="카카오채널"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.31 4.66 6.72-.2.75-.73 2.73-.84 3.15-.13.52.19.51.4.37.16-.1 2.6-1.76 3.66-2.48.68.1 1.38.15 2.12.15 5.52 0 10-3.58 10-8s-4.48-8-10-8Z"/></svg></a>
     </div>
     <div class="footer__bottom">
       Copyright 2026 NOM F&amp;B, inc. All rights reserved.
     </div>
   </div>
-</footer>
+  <div class="footer__wordmark">
+    <svg viewBox="0 0 84 11" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80.671 8.1C80.571 8.1 80.521 8.05 80.521 7.95V6.978C80.521 6.886 80.551 6.826 80.611 6.798L81.835 6.072V5.448L80.611 4.788C80.551 4.752 80.521 4.69 80.521 4.602V2.688C80.521 2.644 80.527 2.608 80.539 2.58C80.555 2.552 80.577 2.528 80.605 2.508L81.883 1.572C81.927 1.54 81.963 1.52 81.991 1.512C82.019 1.504 82.047 1.5 82.075 1.5H83.533C83.633 1.5 83.683 1.55 83.683 1.65V2.592C83.683 2.66 83.677 2.706 83.665 2.73C83.657 2.754 83.637 2.774 83.605 2.79L82.471 3.402V4.098L83.683 4.698C83.751 4.726 83.785 4.786 83.785 4.878V6.72C83.785 6.82 83.751 6.9 83.683 6.96L82.405 8.022C82.341 8.074 82.261 8.1 82.165 8.1H80.671Z"/>
+      <path d="M76.1412 10.098C76.0412 10.098 75.9912 10.048 75.9912 9.948V9.012C75.9912 8.932 76.0212 8.888 76.0812 8.88L76.9572 8.658L77.5812 8.328C77.6412 8.296 77.6712 8.234 77.6712 8.142V7.158L77.1072 7.68C77.0392 7.748 76.9592 7.782 76.8672 7.782L75.8472 7.818C75.7552 7.818 75.6752 7.786 75.6072 7.722L74.5092 6.618C74.4412 6.554 74.4072 6.474 74.4072 6.378V3.042C74.4072 2.946 74.4412 2.866 74.5092 2.802L75.7092 1.602C75.7772 1.534 75.8572 1.5 75.9492 1.5H79.1592C79.2592 1.5 79.3092 1.55 79.3092 1.65V8.862C79.3092 8.97 79.2752 9.05 79.2072 9.102L78.4092 9.612L77.4012 10.032C77.3412 10.056 77.2952 10.072 77.2632 10.08C77.2352 10.092 77.1872 10.098 77.1192 10.098H76.1412ZM76.6512 6.522H77.0712C77.1992 6.522 77.2872 6.496 77.3352 6.444C77.3832 6.392 77.4072 6.3 77.4072 6.168V2.898H76.6512C76.5192 2.898 76.4292 2.924 76.3812 2.976C76.3332 3.028 76.3092 3.12 76.3092 3.252V6.168C76.3092 6.3 76.3332 6.392 76.3812 6.444C76.4292 6.496 76.5192 6.522 76.6512 6.522Z"/>
+      <path d="M68.2945 8.1C68.1945 8.1 68.1445 8.05 68.1445 7.95V1.65C68.1445 1.55 68.1945 1.5 68.2945 1.5H71.5045C71.5965 1.5 71.6765 1.534 71.7445 1.602L72.9445 2.802C73.0125 2.866 73.0465 2.946 73.0465 3.042V7.95C73.0465 8.05 72.9965 8.1 72.8965 8.1H71.2945C71.1945 8.1 71.1445 8.05 71.1445 7.95V3.282C71.1445 3.094 71.0505 3 70.8625 3H70.0465V7.95C70.0465 8.05 69.9965 8.1 69.8965 8.1H68.2945Z"/>
+      <path d="M65.0015 8.1C64.9015 8.1 64.8515 8.05 64.8515 7.95V1.65C64.8515 1.55 64.9015 1.5 65.0015 1.5H66.5975C66.6975 1.5 66.7475 1.55 66.7475 1.65V7.95C66.7475 8.05 66.6975 8.1 66.5975 8.1H65.0015ZM64.9715 1.002C64.8915 1.002 64.8515 0.962 64.8515 0.882V0.12C64.8515 0.0399997 64.8915 0 64.9715 0H66.6395C66.7115 0 66.7475 0.0399997 66.7475 0.12V0.882C66.7475 0.962 66.7115 1.002 66.6395 1.002H64.9715Z"/>
+      <path d="M56.2685 8.10002C56.1725 8.10002 56.0925 8.06602 56.0285 7.99802L54.8285 6.79802C54.7605 6.73402 54.7265 6.65402 54.7265 6.55802V0.25202C54.7265 0.15202 54.7765 0.10202 54.8765 0.10202H56.5745C56.6745 0.10202 56.7245 0.15202 56.7245 0.25202V6.49202H58.0685V0.25202C58.0685 0.15202 58.1185 0.10202 58.2185 0.10202H59.9165C60.0165 0.10202 60.0665 0.15202 60.0665 0.25202V6.49202H61.4045V0.25202C61.4045 0.15202 61.4545 0.10202 61.5545 0.10202H63.2585C63.3585 0.10202 63.4085 0.15202 63.4085 0.25202V6.55802C63.4085 6.65402 63.3745 6.73402 63.3065 6.79802L62.1065 7.99802C62.0385 8.06602 61.9585 8.10002 61.8665 8.10002H60.4565C60.3645 8.10002 60.2845 8.06602 60.2165 7.99802L59.2085 6.99002H58.9265L57.9185 7.99802C57.8505 8.06602 57.7705 8.10002 57.6785 8.10002H56.2685Z"/>
+      <path d="M50.6929 8.1C50.5929 8.1 50.5429 8.05 50.5429 7.95V1.65C50.5429 1.55 50.5929 1.5 50.6929 1.5H51.6049C51.6809 1.5 51.7469 1.534 51.8029 1.602L52.3909 2.28L53.0449 1.572C53.0889 1.524 53.1449 1.5 53.2129 1.5H53.8609C53.9609 1.5 54.0109 1.55 54.0109 1.65V2.94C54.0109 3.004 54.0069 3.048 53.9989 3.072C53.9909 3.092 53.9689 3.114 53.9329 3.138L52.4449 4.236V7.95C52.4449 8.05 52.3949 8.1 52.2949 8.1H50.6929Z"/>
+      <path d="M47.02 8.1C46.98 8.1 46.936 8.094 46.888 8.082C46.844 8.07 46.802 8.06 46.762 8.052L45.694 7.788L44.47 7.38C44.35 7.34 44.29 7.224 44.29 7.032V3.042C44.29 2.946 44.324 2.866 44.392 2.802L45.592 1.602C45.66 1.534 45.74 1.5 45.832 1.5H47.752C47.844 1.5 47.924 1.534 47.992 1.602L49.192 2.802C49.26 2.866 49.294 2.946 49.294 3.042V5.502H46.072L46.03 6.3L46.882 6.582L48.412 6.69C48.48 6.702 48.514 6.748 48.514 6.828V7.95C48.514 8.05 48.464 8.1 48.364 8.1H47.02ZM46.78 4.56H46.894C47.09 4.56 47.246 4.486 47.362 4.338C47.482 4.19 47.542 3.99 47.542 3.738V3.618C47.542 3.37 47.482 3.172 47.362 3.024C47.246 2.876 47.09 2.802 46.894 2.802H46.774C46.582 2.802 46.428 2.876 46.312 3.024C46.2 3.172 46.144 3.37 46.144 3.618V3.738C46.144 3.99 46.2 4.19 46.312 4.338C46.428 4.486 46.584 4.56 46.78 4.56Z"/>
+      <path d="M39.7662 10.098C39.6662 10.098 39.6162 10.048 39.6162 9.948V9.012C39.6162 8.932 39.6462 8.888 39.7062 8.88L40.5822 8.658L41.2062 8.328C41.2662 8.296 41.2962 8.234 41.2962 8.142V7.158L40.7322 7.68C40.6642 7.748 40.5842 7.782 40.4922 7.782L39.4722 7.818C39.3802 7.818 39.3002 7.786 39.2322 7.722L38.1342 6.618C38.0662 6.554 38.0322 6.474 38.0322 6.378V3.042C38.0322 2.946 38.0662 2.866 38.1342 2.802L39.3342 1.602C39.4022 1.534 39.4822 1.5 39.5742 1.5H42.7842C42.8842 1.5 42.9342 1.55 42.9342 1.65V8.862C42.9342 8.97 42.9002 9.05 42.8322 9.102L42.0342 9.612L41.0262 10.032C40.9662 10.056 40.9202 10.072 40.8882 10.08C40.8602 10.092 40.8122 10.098 40.7442 10.098H39.7662ZM40.2762 6.522H40.6962C40.8242 6.522 40.9122 6.496 40.9602 6.444C41.0082 6.392 41.0322 6.3 41.0322 6.168V2.898H40.2762C40.1442 2.898 40.0542 2.924 40.0062 2.976C39.9582 3.028 39.9342 3.12 39.9342 3.252V6.168C39.9342 6.3 39.9582 6.392 40.0062 6.444C40.0542 6.496 40.1442 6.522 40.2762 6.522Z"/>
+      <path d="M33.3115 8.1C33.2155 8.1 33.1355 8.066 33.0715 7.998L31.8715 6.798C31.8035 6.734 31.7695 6.654 31.7695 6.558V1.65C31.7695 1.55 31.8195 1.5 31.9195 1.5H33.5215C33.6215 1.5 33.6715 1.55 33.6715 1.65V6.318C33.6715 6.506 33.7635 6.6 33.9475 6.6H34.7695V1.65C34.7695 1.55 34.8195 1.5 34.9195 1.5H36.5215C36.6215 1.5 36.6715 1.55 36.6715 1.65V7.95C36.6715 8.05 36.6215 8.1 36.5215 8.1H33.3115Z"/>
+      <path d="M25.1527 8.10002C25.0527 8.10002 25.0027 8.05002 25.0027 7.95002V0.25202C25.0027 0.15202 25.0527 0.10202 25.1527 0.10202H28.7647C28.8567 0.10202 28.9367 0.13402 29.0047 0.19802L30.2047 1.39802C30.2687 1.46602 30.3007 1.54602 30.3007 1.63802V2.89802C30.3007 2.93802 30.2927 2.97002 30.2767 2.99402C30.2607 3.01802 30.2367 3.04602 30.2047 3.07802L29.2627 3.91802L29.1727 4.14002L29.2627 4.30202L30.2047 5.14202C30.2367 5.17402 30.2607 5.20202 30.2767 5.22602C30.2927 5.24602 30.3007 5.27802 30.3007 5.32202V6.55802C30.3007 6.65402 30.2687 6.73402 30.2047 6.79802L29.0047 7.99802C28.9367 8.06602 28.8567 8.10002 28.7647 8.10002H25.1527ZM27.5407 6.75002C27.8727 6.75002 28.0987 6.68402 28.2187 6.55202C28.3427 6.42002 28.4047 6.17002 28.4047 5.80202C28.4047 5.43002 28.3427 5.17802 28.2187 5.04602C28.0987 4.91402 27.8727 4.84802 27.5407 4.84802C27.2127 4.84802 26.9867 4.91402 26.8627 5.04602C26.7427 5.17802 26.6827 5.43002 26.6827 5.80202C26.6827 6.17002 26.7427 6.42002 26.8627 6.55202C26.9867 6.68402 27.2127 6.75002 27.5407 6.75002ZM27.5407 3.34802C27.8727 3.34802 28.0987 3.28202 28.2187 3.15002C28.3427 3.01802 28.4047 2.76802 28.4047 2.40002C28.4047 2.03202 28.3427 1.78202 28.2187 1.65002C28.0987 1.51802 27.8727 1.45202 27.5407 1.45202C27.2127 1.45202 26.9867 1.51802 26.8627 1.65002C26.7427 1.78202 26.6827 2.03202 26.6827 2.40002C26.6827 2.76802 26.7427 3.01802 26.8627 3.15002C26.9867 3.28202 27.2127 3.34802 27.5407 3.34802Z"/>
+      <path d="M13.568 8.10002C13.468 8.10002 13.418 8.05002 13.418 7.95002V1.44002C13.418 1.34802 13.452 1.26802 13.52 1.20002L14.516 0.19802C14.584 0.13402 14.664 0.10202 14.756 0.10202H16.13C16.222 0.10202 16.302 0.13402 16.37 0.19802L17.378 1.21202H17.66L18.668 0.19802C18.736 0.13402 18.816 0.10202 18.908 0.10202H20.276C20.372 0.10202 20.452 0.13402 20.516 0.19802L21.518 1.20002C21.586 1.26802 21.62 1.34802 21.62 1.44002V7.95002C21.62 8.05002 21.57 8.10002 21.47 8.10002H19.766C19.666 8.10002 19.616 8.05002 19.616 7.95002V1.69802H18.518V7.95002C18.518 8.05002 18.468 8.10002 18.368 8.10002H16.67C16.57 8.10002 16.52 8.05002 16.52 7.95002V1.69802H15.416V7.95002C15.416 8.05002 15.366 8.10002 15.266 8.10002H13.568Z"/>
+      <path d="M8.08106 8.10002C7.98906 8.10002 7.90906 8.06602 7.84106 7.99802L6.64106 6.79802C6.57306 6.73402 6.53906 6.65402 6.53906 6.55802V1.63802C6.53906 1.54602 6.57306 1.46602 6.64106 1.39802L7.84106 0.19802C7.90906 0.13402 7.98906 0.10202 8.08106 0.10202H10.4391C10.5351 0.10202 10.6151 0.13402 10.6791 0.19802L11.8791 1.39802C11.9471 1.46602 11.9811 1.54602 11.9811 1.63802V6.55802C11.9811 6.65402 11.9471 6.73402 11.8791 6.79802L10.6791 7.99802C10.6151 8.06602 10.5351 8.10002 10.4391 8.10002H8.08106ZM8.78906 6.49802H9.73106C9.89906 6.49802 9.98306 6.38602 9.98306 6.16202V2.04002C9.98306 1.81202 9.89906 1.69802 9.73106 1.69802H8.78906C8.62506 1.69802 8.54306 1.81202 8.54306 2.04002V6.16202C8.54306 6.38602 8.62506 6.49802 8.78906 6.49802Z"/>
+      <path d="M0.15 8.10002C0.05 8.10002 0 8.05002 0 7.95002V0.25202C0 0.15202 0.05 0.10202 0.15 0.10202H3.558C3.654 0.10202 3.734 0.13402 3.798 0.19802L4.998 1.39802C5.066 1.46602 5.1 1.54602 5.1 1.63802V7.95002C5.1 8.05002 5.05 8.10002 4.95 8.10002H3.252C3.152 8.10002 3.102 8.05002 3.102 7.95002V1.69802H1.998V7.95002C1.998 8.05002 1.948 8.10002 1.848 8.10002H0.15Z"/>
+    </svg>
+  </div>
+  </footer>
+
+</main>
 
 <script src="script.js"></script>
 </body>

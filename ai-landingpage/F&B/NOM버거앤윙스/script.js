@@ -44,4 +44,73 @@
   } else {
     revealTargets.forEach((el) => el.classList.add('is-visible'));
   }
+
+  /* ---------- scroll-progress pins (hero fullscreen reveal + ingredients merge) ---------- */
+  const heroPin = document.getElementById('heroPin');
+  const hero = document.getElementById('hero');
+  const ingredientsSection = document.querySelector('.ingredients');
+  const ingredientsPin = document.getElementById('ingredientsPin');
+
+  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+  const pinProgress = (pinEl) => {
+    const rect = pinEl.getBoundingClientRect();
+    const scrollable = rect.height - window.innerHeight;
+    if (scrollable <= 0) return 1;
+    return clamp(-rect.top / scrollable, 0, 1);
+  };
+
+  let ticking = false;
+  const updatePins = () => {
+    ticking = false;
+    if (heroPin && hero) {
+      hero.style.setProperty('--p', pinProgress(heroPin).toFixed(4));
+    }
+    if (ingredientsSection && ingredientsPin) {
+      ingredientsPin.style.setProperty('--ip', pinProgress(ingredientsSection).toFixed(4));
+    }
+  };
+  const requestPinUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updatePins);
+    }
+  };
+  updatePins();
+  window.addEventListener('scroll', requestPinUpdate, { passive: true });
+  window.addEventListener('resize', requestPinUpdate);
+
+  /* ---------- menu tabs ---------- */
+  const menuTabs = document.querySelectorAll('.menu-tab');
+  const menuPanels = document.querySelectorAll('.menu-panel');
+  menuTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      menuTabs.forEach((t) => {
+        t.classList.toggle('is-active', t === tab);
+        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+      });
+      menuPanels.forEach((panel) => {
+        panel.classList.toggle('is-active', panel.dataset.panel === target);
+      });
+    });
+  });
+
+  /* ---------- carousel drag-to-scroll (mouse) ---------- */
+  document.querySelectorAll('.menu-carousel').forEach((carousel) => {
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX;
+      scrollStart = carousel.scrollLeft;
+    });
+    window.addEventListener('mouseup', () => { isDown = false; });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      carousel.scrollLeft = scrollStart - (e.pageX - startX);
+    });
+  });
 })();
