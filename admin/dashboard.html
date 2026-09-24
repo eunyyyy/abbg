@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>관리자 대시보드 · AI WEB</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308090d'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='700' fill='%23ff7a45' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- Shown until auth state resolves (config missing, checking session, or redirecting to login) -->
+<div id="admin-gate-msg" class="admin-gate">
+  <div class="admin-card">
+    <div class="admin-card__logo">AI<span>&nbsp;</span>WEB <small style="font-family:var(--font-en);font-size:11px;letter-spacing:.1em;color:var(--text-faint);margin-left:8px;">ADMIN</small></div>
+    <div id="admin-notice" class="admin-notice" style="display:none;">
+      설정 필요 — 관리자 대시보드는 Firebase 설정 완료 후 활성화됩니다. (관리자: FIREBASE_SETUP.md 참고)
+    </div>
+    <p id="admin-gate-loading" class="admin-card__sub">로그인 상태를 확인하는 중입니다…</p>
+  </div>
+</div>
+
+<div id="admin-shell" class="admin-shell">
+  <header class="admin-topbar">
+    <div class="admin-topbar__brand">AI<span>&nbsp;</span>WEB <small>ADMIN</small></div>
+    <div class="admin-topbar__right">
+      <span class="admin-topbar__email" id="admin-user-email"></span>
+      <button type="button" class="admin-logout" id="admin-logout-btn">로그아웃</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <nav class="admin-tabs" role="tablist" aria-label="관리 메뉴">
+      <button type="button" class="admin-tab is-active" id="tab-btn-feedback" role="tab" aria-selected="true">피드백 관리</button>
+      <button type="button" class="admin-tab" id="tab-btn-projects" role="tab" aria-selected="false">프로젝트 관리</button>
+    </nav>
+
+    <!-- ================= FEEDBACK TAB ================= -->
+    <section class="admin-panel is-active" id="tab-panel-feedback">
+      <div class="admin-panel__head">
+        <div>
+          <h2>피드백 관리</h2>
+          <p>방문자가 남긴 실시간 피드백을 확인하고 삭제할 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="admin-filters">
+        <input type="text" id="fb-search" placeholder="댓글/작성자 검색…">
+        <select id="fb-project-filter">
+          <option value="">전체 프로젝트</option>
+        </select>
+      </div>
+
+      <div id="fb-admin-list" class="admin-fb-list">
+        <p class="admin-empty">불러오는 중…</p>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS TAB ================= -->
+    <section class="admin-panel" id="tab-panel-projects">
+      <div class="admin-panel__head">
+        <div>
+          <h2>프로젝트 관리</h2>
+          <p>공개 사이트의 마퀴·프로젝트 목록·피드백 선택기에 표시되는 16개(+) 프로젝트를 관리합니다.</p>
+        </div>
+      </div>
+
+      <div class="admin-seed-row">
+        <button type="button" class="admin-mini-btn" id="projects-seed-btn">시드 데이터 불러오기 (최초 1회)</button>
+      </div>
+
+      <form id="project-add-form" class="admin-project-form">
+        <div class="field">
+          <label for="pf-number">번호</label>
+          <input type="text" id="pf-number" maxlength="3" required>
+        </div>
+        <div class="field">
+          <label for="pf-name">이름</label>
+          <input type="text" id="pf-name" required>
+        </div>
+        <div class="field">
+          <label for="pf-category">카테고리</label>
+          <input type="text" id="pf-category" required>
+        </div>
+        <div class="field">
+          <label for="pf-url">라이브 URL</label>
+          <input type="url" id="pf-url" required>
+        </div>
+        <button type="submit" class="pill pill--solid">추가</button>
+      </form>
+
+      <div style="overflow-x:auto;">
+        <table class="admin-project-table">
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>이름</th>
+              <th>카테고리</th>
+              <th>URL</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="projects-admin-tbody">
+            <tr><td colspan="5" class="admin-empty">불러오는 중…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module" src="js/admin-dashboard.js"></script>
+</body>
+</html>

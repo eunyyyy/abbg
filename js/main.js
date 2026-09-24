@@ -110,15 +110,14 @@
   }
 
   /* ---------- feedback: project picker (buttons + mobile select stay in sync) ---------- */
-  var pickerBtns = document.querySelectorAll('.picker__btn');
-  var pickerSelect = document.querySelector('.picker-select');
   var hiddenNo = document.getElementById('fb-project-no');
   var hiddenName = document.getElementById('fb-project-name');
   var hiddenCategory = document.getElementById('fb-project-category');
   var selectedLabel = document.getElementById('fb-selected-label');
 
   function selectProject(no, name, category) {
-    pickerBtns.forEach(function (b) { b.classList.toggle('is-active', b.dataset.no === no); });
+    document.querySelectorAll('.picker__btn').forEach(function (b) { b.classList.toggle('is-active', b.dataset.no === no); });
+    var pickerSelect = document.querySelector('.picker-select');
     if (pickerSelect) pickerSelect.value = no;
     if (hiddenNo) hiddenNo.value = no;
     if (hiddenName) hiddenName.value = name;
@@ -126,17 +125,111 @@
     if (selectedLabel) selectedLabel.textContent = no + ' · ' + name;
   }
 
-  pickerBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      selectProject(btn.dataset.no, btn.dataset.name, btn.dataset.category);
+  // Re-run after every render (initial static markup, and again if/when the
+  // project list is swapped in from Firestore) so click/change handlers are
+  // always bound to whatever picker elements currently exist in the DOM.
+  function bindPicker() {
+    var pickerBtns = document.querySelectorAll('.picker__btn');
+    var pickerSelect = document.querySelector('.picker-select');
+
+    pickerBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        selectProject(btn.dataset.no, btn.dataset.name, btn.dataset.category);
+      });
     });
-  });
-  if (pickerSelect) {
-    pickerSelect.addEventListener('change', function () {
-      var opt = pickerSelect.options[pickerSelect.selectedIndex];
-      selectProject(opt.value, opt.dataset.name, opt.dataset.category);
-    });
+    if (pickerSelect) {
+      pickerSelect.addEventListener('change', function () {
+        var opt = pickerSelect.options[pickerSelect.selectedIndex];
+        selectProject(opt.value, opt.dataset.name, opt.dataset.category);
+      });
+    }
+    // default to the first project selected
+    if (pickerBtns.length) selectProject(pickerBtns[0].dataset.no, pickerBtns[0].dataset.name, pickerBtns[0].dataset.category);
   }
-  // default to project 01 selected
-  if (pickerBtns.length) selectProject(pickerBtns[0].dataset.no, pickerBtns[0].dataset.name, pickerBtns[0].dataset.category);
+  bindPicker();
+  window.__aiwebBindPicker = bindPicker; // exposed for the project-sync block below
+
+  /* ---------- project list: render from data + Firestore-with-fallback sync ----------
+     The page ships with the 16 projects baked into static HTML (marquee track,
+     project list, feedback picker) so it renders correctly with zero JS and
+     with Firestore unreachable/unconfigured. Once a real Firebase project is
+     wired up (js/firebase-config.js), this swaps all three in for live data
+     from the `projects` collection — see FIREBASE_SETUP.md / admin/ Project tab.
+     Any failure here is caught and silently ignored, leaving the proven-good
+     static markup exactly as shipped. */
+  (function () {
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function marqueeCardHtml(p) {
+      var img = p.cover
+        ? '<img src="' + escapeHtml(p.cover) + '" alt="' + escapeHtml(p.name) + ' 커버" loading="lazy" width="480" height="270">'
+        : '';
+      return '<a class="marquee__card" href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener" aria-label="' + escapeHtml(p.name) + ' 라이브 페이지로 이동">' +
+        img +
+        '<span class="marquee__meta"><span class="marquee__no">' + escapeHtml(p.number) + '</span><span class="marquee__name">' + escapeHtml(p.name) + '</span></span>' +
+        '</a>';
+    }
+    function plistRowHtml(p) {
+      return '<li class="plist__row"><a class="plist__link" href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener">' +
+        '<span class="plist__no">' + escapeHtml(p.number) + '</span>' +
+        '<span class="plist__name">' + escapeHtml(p.name) + '</span>' +
+        '<span class="plist__cat">' + escapeHtml(p.category) + '</span>' +
+        '<span class="plist__arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H8M19 5V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '</a></li>';
+    }
+    function pickerBtnHtml(p) {
+      return '<button type="button" class="picker__btn" data-no="' + escapeHtml(p.number) + '" data-name="' + escapeHtml(p.name) + '" data-category="' + escapeHtml(p.category) + '">' +
+        '<span class="picker__no">' + escapeHtml(p.number) + '</span><span class="picker__name">' + escapeHtml(p.name) + '</span>' +
+        '</button>';
+    }
+    function pickerOptionHtml(p) {
+      return '<option value="' + escapeHtml(p.number) + '" data-name="' + escapeHtml(p.name) + '" data-category="' + escapeHtml(p.category) + '">' + escapeHtml(p.number) + ' · ' + escapeHtml(p.name) + '</option>';
+    }
+
+    function renderProjectsUI(list) {
+      if (!list || !list.length) return;
+      var track = document.querySelector('.marquee__track');
+      var plistEl = document.querySelector('.plist');
+      var pickerEl = document.querySelector('.picker');
+      var pickerSelectEl = document.querySelector('.picker-select');
+      if (!track || !plistEl || !pickerEl || !pickerSelectEl) return;
+
+      var cardsHtml = list.map(marqueeCardHtml).join('');
+      track.innerHTML = cardsHtml + cardsHtml; // duplicated for the seamless -50% loop
+      plistEl.innerHTML = list.map(plistRowHtml).join('');
+      pickerEl.innerHTML = list.map(pickerBtnHtml).join('');
+      pickerSelectEl.innerHTML = list.map(pickerOptionHtml).join('');
+
+      if (typeof window.__aiwebBindPicker === 'function') window.__aiwebBindPicker();
+    }
+
+    (async function syncProjectsFromFirestore() {
+      try {
+        var cfgMod = await import('./firebase-config.js');
+        if (!cfgMod.isFirebaseConfigured()) return; // stay on static/fallback markup
+
+        var appMod = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js');
+        var fsMod = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
+
+        var app = appMod.initializeApp(cfgMod.firebaseConfig);
+        var db = fsMod.getFirestore(app);
+        var projectsCol = fsMod.collection(db, 'projects');
+        var q = fsMod.query(projectsCol, fsMod.orderBy('number', 'asc'));
+        var snap = await fsMod.getDocs(q);
+
+        var list = [];
+        snap.forEach(function (doc) { list.push(doc.data()); });
+        if (list.length) renderProjectsUI(list);
+      } catch (err) {
+        console.error('project list sync error, keeping fallback UI', err);
+        // no-op: the static/fallback markup already shipped with the page stays visible
+      }
+    })();
+  })();
 })();

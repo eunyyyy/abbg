@@ -1,15 +1,9 @@
 // AI WEB portfolio hub — realtime project feedback (Firestore)
 // Loaded as <script type="module" src="js/firebase-feedback.js">
 
-// TODO: paste the real Firebase project config here — see FIREBASE_SETUP.md
-const firebaseConfig = {
-  apiKey: "REPLACE_ME",
-  authDomain: "REPLACE_ME.firebaseapp.com",
-  projectId: "REPLACE_ME",
-  storageBucket: "REPLACE_ME.appspot.com",
-  messagingSenderId: "REPLACE_ME",
-  appId: "REPLACE_ME"
-};
+// Real Firebase project config lives in js/firebase-config.js (shared with
+// js/main.js and the admin/ section) — see FIREBASE_SETUP.md.
+import { firebaseConfig, isFirebaseConfigured } from './firebase-config.js';
 
 const noticeEl = document.getElementById('feedback-notice');
 const formEl = document.getElementById('feedback-form');
@@ -62,7 +56,7 @@ function renderHistory(docs) {
 }
 
 async function init() {
-  if (!firebaseConfig || firebaseConfig.apiKey === 'REPLACE_ME') {
+  if (!isFirebaseConfigured()) {
     // Firebase project not configured yet — keep the rest of the page fully functional,
     // just show an inline notice instead of throwing/crashing.
     showNotice();
