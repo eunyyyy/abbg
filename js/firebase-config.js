@@ -8,12 +8,12 @@
 // static/hardcoded content and shows a "설정 필요" style inline notice
 // instead of throwing — see isFirebaseConfigured() below.
 export const firebaseConfig = {
-  apiKey: "REPLACE_ME",
-  authDomain: "REPLACE_ME.firebaseapp.com",
-  projectId: "REPLACE_ME",
-  storageBucket: "REPLACE_ME.appspot.com",
-  messagingSenderId: "REPLACE_ME",
-  appId: "REPLACE_ME"
+  apiKey: "AIzaSyD6QyIcNnOCkFzCkHajh7byugE5yvJCRU8",
+  authDomain: "abbg-ai-web.firebaseapp.com",
+  projectId: "abbg-ai-web",
+  storageBucket: "abbg-ai-web.firebasestorage.app",
+  messagingSenderId: "378541599563",
+  appId: "1:378541599563:web:1dce33fb2b21dbd6b296ce"
 };
 
 export function isFirebaseConfigured() {

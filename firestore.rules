@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /feedback/{docId} {
+      allow read: if true;
+      allow create: if
+        request.resource.data.keys().hasOnly(['projectNumber','projectName','category','comment','author','createdAt']) &&
+        request.resource.data.projectNumber is string &&
+        request.resource.data.projectNumber.size() == 2 &&
+        request.resource.data.projectName is string &&
+        request.resource.data.projectName.size() > 0 && request.resource.data.projectName.size() <= 60 &&
+        request.resource.data.category is string &&
+        request.resource.data.category.size() > 0 && request.resource.data.category.size() <= 30 &&
+        request.resource.data.comment is string &&
+        request.resource.data.comment.size() > 0 && request.resource.data.comment.size() <= 500 &&
+        (!('author' in request.resource.data) ||
+          (request.resource.data.author is string && request.resource.data.author.size() <= 40)) &&
+        request.resource.data.createdAt == request.time;
+      allow update: if false;
+      // 로그인한 관리자(admin/ 대시보드)만 피드백을 삭제할 수 있습니다.
+      allow delete: if request.auth != null;
+    }
+
+    match /projects/{docId} {
+      // 공개 사이트(js/main.js)는 누구나 읽을 수 있어야 마퀴/프로젝트 목록/피드백 선택기가 뜹니다.
+      allow read: if true;
+      // 프로젝트 추가/수정/삭제는 로그인한 관리자만 (admin/ 대시보드의 프로젝트 관리 탭).
+      allow create, update, delete: if request.auth != null;
+    }
+  }
+}
