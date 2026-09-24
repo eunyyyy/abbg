@@ -221,11 +221,20 @@
         var db = fsMod.getFirestore(app);
         var projectsCol = fsMod.collection(db, 'projects');
         var q = fsMod.query(projectsCol, fsMod.orderBy('number', 'asc'));
-        var snap = await fsMod.getDocs(q);
 
-        var list = [];
-        snap.forEach(function (doc) { list.push(doc.data()); });
-        if (list.length) renderProjectsUI(list);
+        // Live subscription (not a one-time fetch): whenever the admin
+        // dashboard adds/edits/deletes a project, every open copy of this
+        // page re-renders the marquee/plist/picker automatically, with no
+        // reload needed. If the very first snapshot is empty (Firestore not
+        // seeded yet), the static/fallback markup already in the page stays
+        // put — renderProjectsUI() only touches the DOM when list.length > 0.
+        fsMod.onSnapshot(q, function (snap) {
+          var list = [];
+          snap.forEach(function (doc) { list.push(doc.data()); });
+          if (list.length) renderProjectsUI(list);
+        }, function (err) {
+          console.error('project list onSnapshot error, keeping fallback UI', err);
+        });
       } catch (err) {
         console.error('project list sync error, keeping fallback UI', err);
         // no-op: the static/fallback markup already shipped with the page stays visible
