@@ -30,7 +30,7 @@ service cloud.firestore {
     match /feedback/{docId} {
       allow read: if true;
       allow create: if
-        request.resource.data.keys().hasOnly(['projectNumber','projectName','category','comment','author','createdAt']) &&
+        request.resource.data.keys().hasOnly(['projectNumber','projectName','category','comment','author','status','createdAt']) &&
         request.resource.data.projectNumber is string &&
         request.resource.data.projectNumber.size() == 2 &&
         request.resource.data.projectName is string &&
@@ -41,8 +41,14 @@ service cloud.firestore {
         request.resource.data.comment.size() > 0 && request.resource.data.comment.size() <= 500 &&
         (!('author' in request.resource.data) ||
           (request.resource.data.author is string && request.resource.data.author.size() <= 40)) &&
+        // every new feedback starts out 대기중(pending) — only an admin update can move it on
+        request.resource.data.status == 'pending' &&
         request.resource.data.createdAt == request.time;
-      allow update: if false;
+      // 상태값(대기중/진행중/반영완료)과 답글은 로그인한 관리자만 수정할 수 있고,
+      // 그 외 필드(작성자가 쓴 내용)는 절대 건드릴 수 없습니다.
+      allow update: if request.auth != null &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','reply','repliedAt']) &&
+        request.resource.data.status in ['pending','in_progress','done'];
       // 로그인한 관리자(admin/ 대시보드)만 피드백을 삭제할 수 있습니다.
       allow delete: if request.auth != null;
     }
@@ -58,7 +64,7 @@ service cloud.firestore {
 ```
 
 이 규칙은:
-- `feedback` 컬렉션 — 누구나 **읽기**, 정해진 필드 형식을 지킨 **생성**은 그대로 공개 허용하고, **삭제**는 로그인한 관리자만 가능하도록(관리자 대시보드의 "삭제" 버튼) 바뀌었습니다. 수정은 여전히 전부 차단됩니다.
+- `feedback` 컬렉션 — 누구나 **읽기**, 정해진 필드 형식을 지킨 **생성**은 그대로 공개 허용(신규 피드백은 항상 `status: 'pending'`(대기중)으로 시작), **삭제**는 로그인한 관리자만 가능. **수정**은 로그인한 관리자가 `status`(대기중/진행중/반영완료)와 `reply`(답글)만 바꿀 수 있도록 허용되고, 그 외 필드는 절대 수정할 수 없습니다.
 - `projects` 컬렉션 — 누구나 **읽기**는 가능하지만, **생성/수정/삭제**는 로그인한 관리자만 가능합니다 (관리자 대시보드의 프로젝트 관리 탭에서 추가/수정/삭제 및 최초 시드 데이터 불러오기에 사용).
 
 ## 5. 웹 앱 등록 → firebaseConfig 복사

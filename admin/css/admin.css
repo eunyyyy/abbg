@@ -108,10 +108,25 @@ body.admin-body{
   display:grid; grid-template-columns: 1fr auto; gap:14px; align-items:start;
   padding:16px 18px; border:1px solid var(--line); border-radius:14px; background: var(--bg-raise);
 }
-.admin-fb-row__meta{ display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; margin-bottom:8px; font-size:12px; color: var(--text-faint); }
+.admin-fb-row__meta{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:8px; font-size:12px; color: var(--text-faint); }
 .admin-fb-row__project{ color: var(--teal); font-weight:600; font-family: var(--font-en); }
 .admin-fb-row__author{ color: var(--text-dim); }
 .admin-fb-row__comment{ font-size:14.5px; color: var(--text); line-height:1.6; }
+
+.admin-status-select{
+  font-family: var(--font-en); font-size:11px; font-weight:700; letter-spacing:.02em;
+  background: var(--bg); border:1px solid var(--line-strong); border-radius:999px;
+  padding:4px 10px; color: var(--text); cursor:pointer;
+}
+.admin-status-select:focus{ outline:none; border-color: var(--teal); }
+
+.admin-reply-box{ margin-top:12px; display:flex; flex-direction:column; gap:8px; max-width:520px; }
+.admin-reply-box__input{
+  width:100%; min-height:64px; resize:vertical; background: var(--bg); border:1px solid var(--line);
+  border-radius:10px; padding:10px 12px; color: var(--text); font-family: var(--font-kr); font-size:13px; line-height:1.6;
+}
+.admin-reply-box__input:focus{ outline:none; border-color: var(--teal); }
+.admin-reply-box .admin-mini-btn{ align-self:flex-start; }
 .admin-danger-btn{
   font-family: var(--font-en); font-size:12px; font-weight:600; color:#ff9a8c;
   background: rgba(232,67,47,.1); border:1px solid rgba(232,67,47,.35); border-radius:999px; padding:8px 14px;

@@ -33,6 +33,14 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+var STATUS_LABEL = { pending: '대기중', in_progress: '진행중', done: '반영 완료' };
+var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'is-done' };
+
+function statusBadgeHtml(status) {
+  var key = STATUS_LABEL[status] ? status : 'pending'; // legacy docs with no status render as 대기중
+  return '<span class="status-badge ' + STATUS_CLASS[key] + '">' + STATUS_LABEL[key] + '</span>';
+}
+
 function renderHistory(docs) {
   if (!historyListEl) return;
   if (!docs.length) {
@@ -42,14 +50,19 @@ function renderHistory(docs) {
   historyListEl.innerHTML = docs.map(function (data) {
     var dateStr = formatDate(data.createdAt);
     var author = data.author ? escapeHtml(data.author) : '익명';
+    var replyHtml = data.reply
+      ? '<div class="history-item__reply"><span class="history-item__reply-label">AI WEB 답변</span>' + escapeHtml(data.reply) + '</div>'
+      : '';
     return (
       '<div class="history-item">' +
         '<div class="history-item__meta">' +
           '<span class="history-item__project">' + escapeHtml(data.projectNumber) + ' · ' + escapeHtml(data.projectName) + '</span>' +
+          statusBadgeHtml(data.status) +
           '<span>' + dateStr + '</span>' +
         '</div>' +
         '<div class="history-item__comment">' + escapeHtml(data.comment) + '</div>' +
         '<div class="history-item__author">' + author + '</div>' +
+        replyHtml +
       '</div>'
     );
   }).join('');
@@ -119,6 +132,7 @@ async function init() {
             projectName: name,
             category: category,
             comment: comment,
+            status: 'pending', // 대기중 — 관리자가 관리자페이지에서 진행중/반영완료로 바꿀 수 있습니다
             createdAt: serverTimestamp()
           };
           if (author) payload.author = author;

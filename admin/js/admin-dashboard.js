@@ -95,13 +95,32 @@ function boot(fs) {
 }
 
 /* ==================== FEEDBACK TAB ==================== */
+var STATUS_LABEL = { pending: '대기중', in_progress: '진행중', done: '반영 완료' };
+
 function initFeedbackTab(fs) {
   var listEl = document.getElementById('fb-admin-list');
   var searchEl = document.getElementById('fb-search');
   var projectFilterEl = document.getElementById('fb-project-filter');
   var allDocs = []; // [{ id, ...data }]
 
+  function statusSelectHtml(d) {
+    var current = STATUS_LABEL[d.status] ? d.status : 'pending';
+    return '<select class="admin-status-select" data-action="set-status" data-id="' + d.id + '">' +
+      Object.keys(STATUS_LABEL).map(function (key) {
+        return '<option value="' + key + '"' + (key === current ? ' selected' : '') + '>' + STATUS_LABEL[key] + '</option>';
+      }).join('') +
+      '</select>';
+  }
+
   function render() {
+    // Preserve any reply text the admin is mid-typing (not yet saved) across
+    // re-renders — onSnapshot can fire for unrelated reasons (another row's
+    // status changed, a new feedback came in) while a draft is in progress.
+    var drafts = {};
+    listEl.querySelectorAll('.admin-reply-box__input').forEach(function (ta) {
+      if (document.activeElement === ta) drafts[ta.dataset.id] = ta.value;
+    });
+
     var term = (searchEl.value || '').trim().toLowerCase();
     var projectNo = projectFilterEl.value;
 
@@ -121,20 +140,31 @@ function initFeedbackTab(fs) {
 
     listEl.innerHTML = filtered.map(function (d) {
       var author = d.author ? escapeHtml(d.author) : '익명';
+      var replyVal = d.reply ? escapeHtml(d.reply) : '';
       return (
         '<div class="admin-fb-row" data-id="' + d.id + '">' +
           '<div>' +
             '<div class="admin-fb-row__meta">' +
               '<span class="admin-fb-row__project">' + escapeHtml(d.projectNumber || '') + ' · ' + escapeHtml(d.projectName || '') + '</span>' +
+              statusSelectHtml(d) +
               '<span>' + formatDate(d.createdAt) + '</span>' +
               '<span class="admin-fb-row__author">' + author + '</span>' +
             '</div>' +
             '<div class="admin-fb-row__comment">' + escapeHtml(d.comment || '') + '</div>' +
+            '<div class="admin-reply-box">' +
+              '<textarea class="admin-reply-box__input" data-id="' + d.id + '" placeholder="사용자에게 보여질 답변을 입력하세요...">' + replyVal + '</textarea>' +
+              '<button type="button" class="admin-mini-btn" data-action="save-reply" data-id="' + d.id + '">답글 저장</button>' +
+            '</div>' +
           '</div>' +
           '<button type="button" class="admin-danger-btn" data-action="delete-feedback" data-id="' + d.id + '">삭제</button>' +
         '</div>'
       );
     }).join('');
+
+    Object.keys(drafts).forEach(function (id) {
+      var ta = listEl.querySelector('.admin-reply-box__input[data-id="' + id + '"]');
+      if (ta) { ta.value = drafts[id]; ta.focus(); }
+    });
   }
 
   var q = fs.query(fs.collection(fs.db, 'feedback'), fs.orderBy('createdAt', 'desc'));
@@ -148,17 +178,56 @@ function initFeedbackTab(fs) {
   });
 
   listEl.addEventListener('click', async function (e) {
-    var btn = e.target.closest('[data-action="delete-feedback"]');
-    if (!btn) return;
-    var id = btn.dataset.id;
-    if (!confirm('이 피드백을 삭제할까요? 되돌릴 수 없습니다.')) return;
-    btn.disabled = true;
+    var delBtn = e.target.closest('[data-action="delete-feedback"]');
+    var replyBtn = e.target.closest('[data-action="save-reply"]');
+
+    if (delBtn) {
+      var id = delBtn.dataset.id;
+      if (!confirm('이 피드백을 삭제할까요? 되돌릴 수 없습니다.')) return;
+      delBtn.disabled = true;
+      try {
+        await fs.deleteDoc(fs.doc(fs.db, 'feedback', id));
+      } catch (err) {
+        console.error('feedback delete error', err);
+        alert('삭제에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        delBtn.disabled = false;
+      }
+      return;
+    }
+
+    if (replyBtn) {
+      var rid = replyBtn.dataset.id;
+      var textarea = listEl.querySelector('.admin-reply-box__input[data-id="' + rid + '"]');
+      var text = (textarea && textarea.value || '').trim();
+      replyBtn.disabled = true;
+      try {
+        await fs.updateDoc(fs.doc(fs.db, 'feedback', rid), {
+          reply: text,
+          repliedAt: fs.serverTimestamp()
+        });
+      } catch (err) {
+        console.error('feedback reply save error', err);
+        alert('답글 저장에 실패했습니다.');
+      } finally {
+        replyBtn.disabled = false;
+      }
+      return;
+    }
+  });
+
+  listEl.addEventListener('change', async function (e) {
+    var sel = e.target.closest('[data-action="set-status"]');
+    if (!sel) return;
+    var id = sel.dataset.id;
+    var newStatus = sel.value;
+    sel.disabled = true;
     try {
-      await fs.deleteDoc(fs.doc(fs.db, 'feedback', id));
+      await fs.updateDoc(fs.doc(fs.db, 'feedback', id), { status: newStatus });
     } catch (err) {
-      console.error('feedback delete error', err);
-      alert('삭제에 실패했습니다. 잠시 후 다시 시도해주세요.');
-      btn.disabled = false;
+      console.error('feedback status update error', err);
+      alert('상태 변경에 실패했습니다.');
+    } finally {
+      sel.disabled = false;
     }
   });
 
