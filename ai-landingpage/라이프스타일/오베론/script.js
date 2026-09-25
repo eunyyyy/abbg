@@ -3,9 +3,17 @@
 
   /* ---------- Header solid/transparent state ---------- */
   const topBar = document.getElementById('topbar');
+  const darkHeaderSections = Array.from(document.querySelectorAll('.hero,.campaign,.edit,.craft'));
   function updateHeaderState(){
-    if (window.scrollY > 10) topBar.classList.add('is-solid');
-    else topBar.classList.remove('is-solid');
+    topBar.classList.toggle('is-solid', window.scrollY > 10);
+    const announcement = topBar.querySelector('.announcement');
+    const probeY = (announcement ? announcement.offsetHeight : 0) + 36;
+    const dark = darkHeaderSections.some(section => {
+      const rect = section.getBoundingClientRect();
+      return rect.top <= probeY && rect.bottom >= probeY;
+    });
+    topBar.classList.toggle('is-dark', dark);
+    topBar.classList.toggle('is-light', !dark);
   }
   updateHeaderState();
   window.addEventListener('scroll', updateHeaderState, { passive: true });
@@ -16,10 +24,16 @@
   function closeMobileMenu(){
     mobileMenu.classList.remove('is-open');
     document.body.classList.remove('header-open');
+    burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', '메뉴 열기');
   }
   burger.addEventListener('click', () => {
     const isOpen = mobileMenu.classList.toggle('is-open');
     document.body.classList.toggle('header-open', isOpen);
+    burger.classList.toggle('is-open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+    burger.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
   });
 
   /* ---------- GNB anchor-scroll (offsets for the fixed header) ---------- */

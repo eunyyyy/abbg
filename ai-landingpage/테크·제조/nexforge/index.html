@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXFORGE — 정밀이 짓는 산업</title>
+<title>NEXFORGE 정밀이 짓는 산업</title>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -28,21 +28,17 @@
 </header>
 
 <section class="hero section--inverse" id="top">
-  <div class="hero__glow" aria-hidden="true"></div>
-  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <video class="hero__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <source src="assets/hero-smart-factory.mp4" type="video/mp4">
+  </video>
+  <div class="hero__scrim" aria-hidden="true"></div>
   <div class="container container--wide hero__inner">
     <p class="badge badge--inverse">Precision Engineering Group</p>
     <h1 class="hero__title display display--md">벼려낸 정밀함이,<br><em>산업의 내일</em>을 만듭니다</h1>
-    <p class="hero__lede">정밀단조부터 스마트팩토리, 에너지 플랜트, 해양 엔지니어링까지 — 넥스포지는 대한민국 중공업의 기술 표준을 만들어갑니다.</p>
+    <p class="hero__lede">정밀단조부터 스마트팩토리, 에너지 플랜트, 해양 엔지니어링까지 넥스포지는 대한민국 중공업의 기술 표준을 만들어갑니다.</p>
     <div class="hero__actions">
       <a href="#business" class="btn btn--solid btn--inverse">사업분야 살펴보기</a>
       <a href="#esg" class="btn btn--solid btn--inverse">ESG 리포트 보기</a>
-    </div>
-    <div class="ticker">
-      <div><b class="mono">1998</b><span>창립연도</span></div>
-      <div><b class="mono">6,200+</b><span>임직원 수</span></div>
-      <div><b class="mono">8</b><span>글로벌 생산거점</span></div>
-      <div><b class="mono">2.4조원</b><span>연간 매출</span></div>
     </div>
   </div>
 </section>
@@ -57,10 +53,10 @@
       </div>
       <div class="col-7">
         <div class="stat-grid">
-          <div><b class="mono">1998</b><span>창립연도</span></div>
-          <div><b class="mono">6,200+</b><span>임직원 수</span></div>
-          <div><b class="mono">8</b><span>글로벌 생산거점</span></div>
-          <div><b class="mono">2.4조원</b><span>연간 매출</span></div>
+          <div><b class="mono" data-count="1998">0</b><span>창립연도</span></div>
+          <div><b class="mono" data-count="6200" data-format="plus">0</b><span>임직원 수</span></div>
+          <div><b class="mono" data-count="8">0</b><span>글로벌 생산거점</span></div>
+          <div><b class="mono" data-count="24" data-format="trillion">0</b><span>연간 매출</span></div>
         </div>
       </div>
     </div>
@@ -76,40 +72,36 @@
     <div class="grid">
       <div class="col-3">
         <div class="biz-card">
-          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 30 22 8l14 22"/><path d="M14 30h16"/><path d="M22 8v8"/></svg></div>
+          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 30 22 8l14 22"/><path d="M14 30h16"/><path d="M22 8v8"/></svg></div>
           <div>
             <h3 class="h3">정밀단조</h3>
-            <span class="en">Precision Forging</span>
           </div>
           <p>1,000°C 이상의 열간단조 공정으로 항공, 발전, 조선용 초정밀 부품을 생산합니다.</p>
         </div>
       </div>
       <div class="col-3">
         <div class="biz-card">
-          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="9" width="26" height="26"/><path d="M9 20h26M20 9v26"/></svg></div>
+          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="26" height="26"/><path d="M9 20h26M20 9v26"/></svg></div>
           <div>
             <h3 class="h3">스마트팩토리 자동화</h3>
-            <span class="en">Smart Factory Automation</span>
           </div>
           <p>로봇 자동화 라인과 데이터 기반 품질관제 시스템으로 생산 효율을 혁신합니다.</p>
         </div>
       </div>
       <div class="col-3">
         <div class="biz-card">
-          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="22" cy="22" r="13"/><path d="M22 13v9l7 4"/></svg></div>
+          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2"><circle cx="22" cy="22" r="13"/><path d="M22 13v9l7 4"/></svg></div>
           <div>
             <h3 class="h3">에너지 플랜트 설비</h3>
-            <span class="en">Energy Plant Equipment</span>
           </div>
           <p>발전 터빈과 수소 인프라 설비 등 차세대 에너지 플랜트의 핵심 부품을 공급합니다.</p>
         </div>
       </div>
       <div class="col-3">
         <div class="biz-card">
-          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 30c4 4 8 4 12 0s8-4 12 0 8 4 8 0"/><path d="M14 30V13l14-5v22"/></svg></div>
+          <div class="biz-card__icon-tile"><svg class="biz-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 30c4 4 8 4 12 0s8-4 12 0 8 4 8 0"/><path d="M14 30V13l14-5v22"/></svg></div>
           <div>
             <h3 class="h3">해양·오프쇼어 엔지니어링</h3>
-            <span class="en">Marine &amp; Offshore Engineering</span>
           </div>
           <p>선박용 대형 단조품과 해양플랜트 구조물을 설계하고 제작합니다.</p>
         </div>
@@ -126,26 +118,17 @@
       <p class="measure subtle">정밀단조부터 품질검증까지 넥스포지의 모든 공정은 독자 개발한 시뮬레이션 기술과 자동화 검사 시스템을 통해 오차 없이 이어집니다.</p>
     </div>
     <div class="process" style="margin-bottom:var(--space-9);">
-      <div class="step" data-step><b class="mono">01</b><strong>설계</strong><em>Design</em></div>
-      <div class="step" data-step><b class="mono">02</b><strong>해석</strong><em>Simulation</em></div>
-      <div class="step" data-step><b class="mono">03</b><strong>단조</strong><em>Forging</em></div>
-      <div class="step" data-step><b class="mono">04</b><strong>정밀가공</strong><em>Machining</em></div>
-      <div class="step" data-step><b class="mono">05</b><strong>품질검증</strong><em>Verification</em></div>
+      <div class="step" data-step><b class="mono">01</b><strong>설계</strong></div>
+      <div class="step" data-step><b class="mono">02</b><strong>해석</strong></div>
+      <div class="step" data-step><b class="mono">03</b><strong>단조</strong></div>
+      <div class="step" data-step><b class="mono">04</b><strong>정밀가공</strong></div>
+      <div class="step" data-step><b class="mono">05</b><strong>품질검증</strong></div>
     </div>
-    <div class="grid">
-      <div class="col-7">
-        <div class="cert-grid">
-          <div><b class="mono">320건</b><span>보유 특허</span></div>
-          <div><b class="mono">180명</b><span>연구 인력</span></div>
-          <div><b class="mono">4.2%</b><span>매출 대비 R&amp;D 투자</span></div>
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="cert-note">
-          <span>Quality Certification</span>
-          <p>ISO 9001 · ISO 14001 · ISO 45001 · KS인증 — 전 생산거점 통합 품질경영 체계를 유지하고 있습니다.</p>
-        </div>
-      </div>
+    <div class="cert-grid">
+      <div><b class="mono">320건</b><span>보유 특허</span></div>
+      <div><b class="mono">180명</b><span>연구 인력</span></div>
+      <div><b class="mono">4.2%</b><span>매출 대비 R&amp;D 투자</span></div>
+      <div><b class="mono">4종</b><span>품질 인증</span><p>ISO 9001 · ISO 14001 · ISO 45001 · KS인증<br>전 생산거점 통합 품질경영 체계를 유지</p></div>
     </div>
   </div>
 </section>
@@ -203,7 +186,7 @@
     <div class="grid">
       <div class="col-6">
         <div class="net-col">
-          <h4>국내 · Domestic</h4>
+          <h4>국내</h4>
           <ul>
             <li><b>본사 · 울산</b><span>Headquarters</span></li>
             <li><b>창원 정밀가공센터</b><span>Machining</span></li>
@@ -214,7 +197,7 @@
       </div>
       <div class="col-6">
         <div class="net-col">
-          <h4>해외 · Overseas</h4>
+          <h4>해외</h4>
           <ul>
             <li><b>베트남 하이퐁 생산법인</b><span>Vietnam</span></li>
             <li><b>미국 휴스턴 엔지니어링센터</b><span>USA</span></li>

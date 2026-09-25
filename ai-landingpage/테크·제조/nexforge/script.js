@@ -20,9 +20,14 @@
     });
   });
 
-  window.addEventListener('scroll', function(){
+  var hero = document.getElementById('top');
+  function updateHeader(){
     header.classList.toggle('is-scrolled', window.scrollY > 8);
-  }, { passive: true });
+    var heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+    header.classList.toggle('is-inverse', heroBottom > header.offsetHeight * .55);
+  }
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
 
   function movePill(link){
     if(!link) return;
@@ -55,7 +60,7 @@
       entries.forEach(function(entry){
         if(entry.isIntersecting){
           var idx = Array.prototype.indexOf.call(steps, entry.target);
-          setTimeout(function(){ entry.target.classList.add('is-visible'); }, idx * 110);
+          setTimeout(function(){ entry.target.classList.add('is-visible'); }, idx * 180);
           stepObs.unobserve(entry.target);
         }
       });
@@ -189,6 +194,5 @@
     window.addEventListener('resize', function(){ resize(); seed(); if(reduced) draw(); });
   }
 
-  initIndustrialCanvas(document.getElementById('heroCanvas'), 42);
   initIndustrialCanvas(document.getElementById('ctaCanvas'), 91);
 })();

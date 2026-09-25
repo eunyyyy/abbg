@@ -393,12 +393,12 @@ body.header-open{overflow:hidden}
 .shop__content{width:100%}
 @media(min-width:992px){.shop__content{width:calc(100% - 24.3vw)}}
 
-.shop__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.shop__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 @media(max-width:767px){.shop__grid{grid-template-columns:repeat(2,1fr)}}
 
 .product-card{position:relative}
 .product-card__image{position:relative;overflow:hidden;background:var(--primary-300)}
-.product-card__image a{display:block;padding-bottom:150%;position:relative}
+.product-card__image a,.product-card__media-inner{display:block;padding-bottom:150%;position:relative}
 .product-card__image img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transition:opacity .3s ease-in;
@@ -418,6 +418,7 @@ body.header-open{overflow:hidden}
 .campaign{position:relative;height:92vh;min-height:520px;overflow:hidden}
 .campaign__media{position:absolute;inset:0}
 .campaign__media img{width:100%;height:100%;object-fit:cover}
+.campaign::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(19,16,13,.38);pointer-events:none}
 .campaign__top{position:absolute;top:60px;left:0;right:0;z-index:2;color:var(--paper)}
 .campaign__top h3{color:var(--paper);margin:0;max-width:640px}
 /* Fold/unfold shelf (shares .js-hero-products behavior with the hero — see script.js)
@@ -600,7 +601,7 @@ body.header-open{overflow:hidden}
 @media(max-width:767px){.journal__arrow{display:none}}
 .journal__track{
   display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);
-  gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  gap:0;overflow-x:auto;scroll-snap-type:x mandatory;
   padding:0 var(--container-pad) 4px;scrollbar-width:none;
   /* without this, the browser's own snap-to-padding math can rest the very first card a few
      px off scrollLeft:0 on load — which the new prev-arrow's "is there content to the left"
@@ -618,8 +619,8 @@ body.header-open{overflow:hidden}
 .journal-card__tags{display:flex;align-items:center;justify-content:space-between;margin:13px 0 7px}
 .journal-card__tag{font-style:italic;font-family:'Fraunces',serif;font-size:var(--fs-md)}
 .journal-card__date{font-size:var(--fs-xs);color:var(--gray-500)}
-.journal-card__title{font-size:var(--fs-body-lg);margin:0 0 8px}
-.journal-card__desc{font-size:var(--fs-md);color:var(--gray-600)}
+.journal-card__title{font-size:16px;font-weight:600;margin:14px 0 8px}
+.journal-card__desc{font-size:15px;line-height:1.6;color:var(--gray-600)}
 
 /* =========================================================
    SOCIAL / INSTAGRAM MARQUEE
@@ -688,4 +689,48 @@ body.header-open{overflow:hidden}
 @media(max-width:420px){
   .hero__content{max-width:88%}
   .campaign__top h3{font-size:26px}
+}
+
+/* Feedback refinement */
+@font-face{font-family:'MaruBuri';src:url('font/MaruBuri-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'MaruBuri';src:url('font/MaruBuri-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+body,p,li,a,button,.product-card__title,.journal-card__title,.journal-card__desc{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+h1,h2,h3,.header__logo,.footer__logo,.mobile-menu a{font-family:'MaruBuri',serif;letter-spacing:-.025em}
+h1,.h1{font-size:clamp(40px,5.4vw,72px);line-height:1.08}
+h2,.h2{font-size:clamp(32px,4.2vw,56px);line-height:1.12}
+h3,.h3{font-size:clamp(25px,3vw,40px)}
+
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,17,14,.62),rgba(20,17,14,.08) 70%);pointer-events:none}
+.hero__media{z-index:0}.hero__content{z-index:2}
+
+.mission{margin:0;padding:120px 0}
+.mission__content{max-width:980px;margin:0 auto;text-align:center;font-size:clamp(28px,3.4vw,48px);line-height:1.35;letter-spacing:-.035em}
+.mission__content em{font-weight:600}
+
+.product-card__title{font-size:16px;font-weight:600;letter-spacing:-.015em}
+.campaign__top h3{font-size:clamp(28px,3.6vw,48px)}
+
+.top-bar.is-light .header__bg{height:100%;background:rgba(245,240,232,.94)}
+.top-bar.is-light .header__menu a,.top-bar.is-light .header__logo,.top-bar.is-light .header__logo a,.top-bar.is-light .header__right a{color:var(--ink)}
+.top-bar.is-light .header__burger span{background:var(--ink)}
+.top-bar.is-dark .header__bg{height:100%;background:rgba(20,17,14,.32);backdrop-filter:blur(10px)}
+.top-bar.is-dark .header__menu a,.top-bar.is-dark .header__logo,.top-bar.is-dark .header__logo a,.top-bar.is-dark .header__right a{color:var(--paper)}
+.top-bar.is-dark .header__burger span{background:var(--paper)}
+
+.header__burger{height:22px;justify-content:center;position:relative;z-index:101}
+.header__burger.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.header__burger.is-open span:nth-child(2){opacity:0}
+.header__burger.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.header__burger span{transition:transform .3s ease,opacity .3s ease,background .3s ease}
+.header__burger.is-open span{background:var(--ink)!important}
+
+.footer{padding:64px 0 0;background:var(--primary-200)}
+.footer__info{margin-bottom:20px}
+
+@media(max-width:767px){
+  .mission{padding:120px 0}
+  .mission__content{font-size:clamp(25px,7.6vw,34px);line-height:1.45}
+  .shop__grid{grid-template-columns:repeat(2,1fr);gap:0}
+  .product-card__content{padding:12px 10px 22px}
+  .journal__track{grid-auto-columns:78%;gap:0}
 }

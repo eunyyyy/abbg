@@ -1050,3 +1050,27 @@ body.has-custom-cursor [data-cursor]{cursor:none}
 }
 
 .hero__count,.hero__mark,.arrivals__count,.arrivals__card-meta,.bold__caption,.campaign__title,.campaign__spec,.campaign__season,.motion__scroll{font-size:16px!important}
+
+/* Feedback refinement */
+.gnb__overlay-link{font-size:clamp(28px,5.2vw,64px);}
+.arrivals__card{max-width:340px;}
+.arrivals__card-media{aspect-ratio:4/5;}
+
+.atelier{padding:clamp(88px,10vw,156px) 0;background:var(--color-bg-alt);}
+.atelier__grid{display:grid;grid-template-columns:1.05fr .9fr .7fr;gap:16px;align-items:end;}
+.atelier__copy{align-self:center;padding-right:clamp(20px,5vw,80px);}
+.atelier__eyebrow{font:var(--font-eyebrow-mono);text-transform:uppercase;margin-bottom:28px;color:var(--color-text-muted);}
+.atelier__copy h2{font:var(--font-display-2);margin-bottom:28px;}
+.atelier__copy>p:last-child{max-width:42ch;font-size:16px;line-height:1.8;color:var(--color-text-muted);}
+.atelier__image{aspect-ratio:4/5;overflow:hidden;}
+.atelier__image--tall{aspect-ratio:3/5;}
+.atelier__image img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-out-quart);}
+.atelier__image:hover img{transform:scale(1.035);}
+
+@media screen and (max-width:767px){
+  .gnb__overlay-link{font-size:clamp(28px,10vw,44px);}
+  .arrivals__card{width:72vw;max-width:300px;}
+  .atelier__grid{grid-template-columns:1fr 1fr;gap:0;}
+  .atelier__copy{grid-column:1/-1;padding:0 0 48px;}
+  .atelier__image,.atelier__image--tall{aspect-ratio:4/5;}
+}
