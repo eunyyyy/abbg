@@ -1,6 +1,6 @@
 // AI WEB portfolio hub — canonical project list
 //
-// This is the single source of truth for the 16 shipped projects. It is used:
+// This is the single source of truth for the 17 shipped projects. It is used:
 //  1. As the fallback the public site (js/main.js) renders from when Firestore
 //     is unreachable or js/firebase-config.js is still on the placeholder config.
 //  2. As the payload the admin Project tab's "시드 데이터 불러오기" button writes
@@ -31,5 +31,6 @@ export const PROJECTS_FALLBACK = [
   { number: '13', name: 'HALCYON', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/halcyon/', cover: 'img/covers/halcyon.jpg' },
   { number: '14', name: 'AGRINOVA', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/20.AGRINOVA/', cover: 'img/covers/agrinova.jpg' },
   { number: '15', name: 'VERAHYDE', category: '바이오·헬스케어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%B0%94%EC%9D%B4%EC%98%A4%C2%B7%ED%97%AC%EC%8A%A4%EC%BC%80%EC%96%B4/21.VERAHYDE/', cover: 'img/covers/verahyde.jpg' },
-  { number: '16', name: 'COGNOVA', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/22.COGNOVA/', cover: 'img/covers/cognova.jpg' }
+  { number: '16', name: 'COGNOVA', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/22.COGNOVA/', cover: 'img/covers/cognova.jpg' },
+  { number: '17', name: 'LUMOLAB', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/23.LUMOLAB/', cover: 'img/covers/lumolab.jpg' }
 ];
