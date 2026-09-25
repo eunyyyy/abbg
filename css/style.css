@@ -421,11 +421,18 @@ h1,h2,h3,h4,p{ margin:0; }
    order. Without this, the logo/tagline/info row render invisibly underneath
    the (now fully opaque, background-color-backed) gradient layer. */
 .footer > .container,.footer__watermark,.footer__copyright-row{ position:relative; z-index:1; }
-.footer__top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; padding-bottom:60px; border-bottom:1px solid var(--line); }
+/* Single row, no divider — matches Figma's footer-top exactly: brand block
+   and info block are two flex:1 siblings side by side, not stacked with a
+   border between them (that was a structural bug, not a Figma treatment). */
+.footer__top{ display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start; padding-bottom:48px; }
+.footer__brand{ flex:1 1 280px; display:flex; flex-direction:column; gap:14px; min-width:0; }
 .footer__logo{ font-family: var(--font-en); font-weight:700; font-size:26px; }
 .footer__logo span{ color: var(--orange); }
-.footer__tagline{ color: var(--text-dim); font-size:14px; max-width:320px; margin-top:14px; }
-.footer__info{ display:flex; align-items:center; gap:36px; padding:26px 0; font-size:12.5px; color: rgba(255,255,255,.8); letter-spacing:.03em; flex-wrap:wrap; }
+.footer__tagline{ color: var(--text-dim); font-size:14px; max-width:320px; }
+.footer__info{ flex:1 1 280px; display:flex; align-items:center; justify-content:flex-end; gap:36px; font-size:12.5px; color: rgba(255,255,255,.8); letter-spacing:.03em; flex-wrap:wrap; }
+@media (max-width: 640px){
+  .footer__info{ flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:4px; }
+}
 .footer__watermark{
   font-family: var(--font-en); font-weight:700; text-align:center;
   font-size: clamp(60px, 26vw, 380px); line-height:.86; letter-spacing:-.02em;
