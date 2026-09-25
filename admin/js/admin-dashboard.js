@@ -96,6 +96,16 @@ function boot(fs) {
 
 /* ==================== FEEDBACK TAB ==================== */
 var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
+var PROJECT_DOWNLOAD_RELEASE = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/';
+
+function projectArchiveUrl(projectNumber, projectName) {
+  var slug = String(projectName || '')
+    .normalize('NFKD')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'project';
+  return PROJECT_DOWNLOAD_RELEASE + 'project-' + encodeURIComponent(projectNumber) + '-' + slug + '.zip';
+}
 
 function initFeedbackTab(fs) {
   var listEl = document.getElementById('fb-admin-list');
@@ -141,6 +151,11 @@ function initFeedbackTab(fs) {
     listEl.innerHTML = filtered.map(function (d) {
       var author = d.author ? escapeHtml(d.author) : '익명';
       var replyVal = d.reply ? escapeHtml(d.reply) : '';
+      var downloadHtml = d.status === 'done'
+        ? '<a class="admin-project-download" href="' + projectArchiveUrl(d.projectNumber || '', d.projectName || '') + '" download>' +
+            '<span aria-hidden="true">&#8595;</span> 프로젝트 ZIP 다운로드' +
+          '</a>'
+        : '<p class="admin-project-download-note">반영 완료로 변경하면 프로젝트 ZIP 다운로드가 활성화됩니다.</p>';
       return (
         '<div class="admin-fb-row" data-id="' + d.id + '">' +
           '<div>' +
@@ -155,6 +170,7 @@ function initFeedbackTab(fs) {
               '<textarea class="admin-reply-box__input" data-id="' + d.id + '" placeholder="사용자에게 보여질 답변을 입력하세요...">' + replyVal + '</textarea>' +
               '<button type="button" class="admin-mini-btn" data-action="save-reply" data-id="' + d.id + '">답글 저장</button>' +
             '</div>' +
+            downloadHtml +
           '</div>' +
           '<button type="button" class="admin-danger-btn" data-action="delete-feedback" data-id="' + d.id + '">삭제</button>' +
         '</div>'

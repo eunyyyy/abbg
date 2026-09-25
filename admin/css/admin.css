@@ -127,6 +127,13 @@ body.admin-body{
 }
 .admin-reply-box__input:focus{ outline:none; border-color: var(--teal); }
 .admin-reply-box .admin-mini-btn{ align-self:flex-start; }
+.admin-project-download{
+  display:inline-flex; align-items:center; gap:7px; margin-top:12px; padding:7px 12px;
+  border:1px solid rgba(45,212,191,.35); border-radius:999px; background:rgba(45,212,191,.07);
+  color:var(--teal); font-size:11.5px; font-weight:600; transition:all .2s;
+}
+.admin-project-download:hover{ color:var(--text); border-color:var(--teal); background:rgba(45,212,191,.14); }
+.admin-project-download-note{ margin-top:10px; font-size:11.5px; color:var(--text-faint); }
 .admin-danger-btn{
   font-family: var(--font-en); font-size:12px; font-weight:600; color:#ff9a8c;
   background: rgba(232,67,47,.1); border:1px solid rgba(232,67,47,.35); border-radius:999px; padding:8px 14px;

@@ -1,0 +1,38 @@
+name: Build project ZIP downloads
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ai-landingpage/**'
+      - 'js/projects-data.js'
+      - '.github/scripts/package-projects.mjs'
+      - '.github/workflows/project-downloads.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: project-downloads
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create project archives
+        run: node .github/scripts/package-projects.mjs
+
+      - name: Create or update download release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view project-downloads >/dev/null 2>&1; then
+            gh release create project-downloads \
+              --title "Project ZIP downloads" \
+              --notes "Automatically updated archives for completed feedback downloads."
+          fi
+          gh release upload project-downloads project-downloads/* --clobber

@@ -35,6 +35,16 @@ function escapeHtml(str) {
 
 var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
 var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'is-done' };
+var PROJECT_DOWNLOAD_RELEASE = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/';
+
+function projectArchiveUrl(projectNumber, projectName) {
+  var slug = String(projectName || '')
+    .normalize('NFKD')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'project';
+  return PROJECT_DOWNLOAD_RELEASE + 'project-' + encodeURIComponent(projectNumber) + '-' + slug + '.zip';
+}
 // Custom hover-cursor text for the two clickable statuses (see
 // initHistoryInteractions) — both link through to the project; 진행중
 // keeps the ordinary cursor and isn't clickable.
@@ -71,6 +81,12 @@ function renderHistory(docs) {
     var replyHtml = data.reply
       ? '<div class="history-item__reply"><span class="history-item__reply-label">AI WEB 답변</span>' + escapeHtml(data.reply) + '</div>'
       : '';
+    var downloadHtml = statusKey === 'done'
+      ? '<a class="history-item__download" data-action="download-project" href="' +
+          projectArchiveUrl(data.projectNumber || '', data.projectName || '') + '" download>' +
+          '<span aria-hidden="true">&#8595;</span> 프로젝트 파일 다운로드 <small>ZIP</small>' +
+        '</a>'
+      : '';
     return (
       '<div class="history-item" data-status="' + statusKey + '" data-project-no="' + escapeHtml(data.projectNumber || '') + '"' +
         (clickable ? ' role="link" tabindex="0"' : '') + '>' +
@@ -84,6 +100,7 @@ function renderHistory(docs) {
           '<span class="history-item__date">' + dateStr + '</span>' +
         '</div>' +
         replyHtml +
+        downloadHtml +
       '</div>'
     );
   }).join('');
@@ -105,6 +122,11 @@ function initHistoryInteractions() {
     document.body.appendChild(cursorEl);
 
     historyListEl.addEventListener('mouseover', function (e) {
+      if (e.target.closest && e.target.closest('[data-action="download-project"]')) {
+        cursorEl.classList.remove('is-visible');
+        activeItem = null;
+        return;
+      }
       var item = e.target.closest && e.target.closest('.history-item');
       if (!item) return;
       var text = STATUS_CURSOR_TEXT[item.dataset.status];
@@ -137,10 +159,15 @@ function initHistoryInteractions() {
     if (url) window.open(url, '_blank', 'noopener');
   }
   historyListEl.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('[data-action="download-project"]')) {
+      e.stopPropagation();
+      return;
+    }
     openProject(e.target.closest && e.target.closest('.history-item'));
   });
   historyListEl.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
+    if (e.target.closest && e.target.closest('[data-action="download-project"]')) return;
     var item = e.target.closest && e.target.closest('.history-item');
     if (!item || !isClickableStatus(item.dataset.status)) return;
     e.preventDefault();
