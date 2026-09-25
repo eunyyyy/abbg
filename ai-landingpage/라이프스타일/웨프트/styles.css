@@ -426,9 +426,11 @@ body.nav-locked{overflow:hidden;}
 .process{background:var(--g-150); padding-block:96px;}
 .process__grid{
   display:grid;
-  grid-template-columns:7fr 5fr;
+  grid-template-columns:minmax(280px,5fr) minmax(0,7fr);
   gap:64px;
+  align-items:start;
 }
+.process__lead{grid-column:1;grid-row:1;position:sticky;top:calc(var(--nav-h) + 40px);}
 .process__eyebrow{color:var(--p-600);}
 .process__title{
   margin-top:20px;
@@ -445,8 +447,22 @@ body.nav-locked{overflow:hidden;}
   color:var(--g-700);
   max-width:420px;
 }
-.process__list{display:flex; flex-direction:column; gap:36px;}
-.process__step{display:flex; gap:24px;}
+.process__list{grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:16px;}
+.process__step{
+  display:flex;
+  align-items:flex-start;
+  gap:24px;
+  padding:28px 30px;
+  border-radius:24px;
+  background:var(--s-300);
+  box-shadow:0 10px 28px rgba(64,27,52,.08);
+}
+.process__step.reveal{transform:translateY(48px);transition-duration:.72s;}
+.process__step.reveal.is-visible{transform:translateY(0);}
+.process__step:nth-child(1){transition-delay:0s;}
+.process__step:nth-child(2){transition-delay:.12s;}
+.process__step:nth-child(3){transition-delay:.24s;}
+.process__step:nth-child(4){transition-delay:.36s;}
 .process__step-num{
   font-family:var(--font-display);
   font-weight:800;
@@ -538,7 +554,7 @@ body.nav-locked{overflow:hidden;}
   z-index:1;
   pointer-events:none;
 }
-.promo__tile--about .promo__emblem{right:auto; left:-30px; bottom:-30px;}
+.promo__tile--about .promo__emblem{right:-30px;left:auto;bottom:-30px;}
 .promo__tile .promo__emblem{opacity:.22;transform:translate(18%,18%) scale(.72);transform-origin:center}
 .promo__copy{position:relative;z-index:2;max-width:36rem}
 
@@ -666,7 +682,8 @@ body.nav-locked{overflow:hidden;}
   .promo__tile{min-height:440px; padding:40px;}
   .footer__grid{grid-template-columns:1fr;}
   .intro__grid, .process__grid{grid-template-columns:1fr; gap:32px;}
-  .process__lead{order:-1;}
+  .process__lead{grid-column:auto;grid-row:auto;position:static;order:-1;}
+  .process__list{grid-column:auto;grid-row:auto;}
   .stats__grid{grid-template-columns:repeat(2, 1fr); gap:32px 24px;}
 }
 
@@ -686,7 +703,7 @@ body.nav-locked{overflow:hidden;}
   .shelf{padding-block:80px 64px;}
   .intro{padding-block:64px;}
   .process{padding-block:64px;}
-  .process__step{gap:16px;}
+  .process__step{gap:16px;padding:22px 20px;border-radius:18px;}
   .stats{padding-block:48px;}
   .stats__grid{grid-template-columns:1fr; gap:24px;}
   .stat{border-left:none; border-top:1px solid rgba(255,255,255,.3); padding:16px 0 0;}
@@ -741,15 +758,6 @@ body.nav-locked{overflow:hidden;}
 .nav-overlay__close{color:var(--p-950)}
 .nav-overlay__list a{color:var(--p-950)}
 .nav-overlay__list a:hover{color:var(--p-700)}
-.nav-overlay__character{
-  position:absolute;
-  right:clamp(32px,8vw,140px);
-  bottom:clamp(32px,7vw,100px);
-  width:clamp(110px,18vw,240px);
-  image-rendering:auto;
-  transform:rotate(8deg);
-  filter:drop-shadow(10px 14px 0 rgba(5,31,23,.16));
-}
 
 .poster-archive{padding:24px 0 104px;background:var(--paper);overflow:hidden}
 .poster-archive__head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:30px}
@@ -761,6 +769,8 @@ body.nav-locked{overflow:hidden;}
   height:clamp(500px,57vw,760px);
   padding-inline:clamp(18px,3.1vw,48px);
   gap:0;
+  border-radius:28px;
+  background:var(--g-200);
   overflow:hidden;
   overscroll-behavior:contain;
   touch-action:pan-y;
@@ -837,7 +847,7 @@ body.nav-locked{overflow:hidden;}
 .promo__tile{
   align-items:flex-end;
   justify-content:flex-start;
-  text-align:right;
+  text-align:left;
 }
 .promo__copy{margin-top:32px;}
 
@@ -849,7 +859,6 @@ body.nav-locked{overflow:hidden;}
 
 @media (max-width:768px){
   .custom-cursor{display:none}
-  .nav-overlay__character{right:24px;bottom:28px;width:110px}
   .poster-archive{padding:8px 0 72px}
   .poster-archive__head{display:block;margin-bottom:20px}
   .poster-archive__head p{margin-top:12px;text-align:left;max-width:290px}
@@ -858,6 +867,7 @@ body.nav-locked{overflow:hidden;}
     min-height:460px;
     max-height:620px;
     gap:0;
+    border-radius:20px;
     padding-inline:18px;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
