@@ -165,6 +165,25 @@
     return list.filter(function (p) { return p.category === industry; });
   }
 
+  var PROJECT_LIST_VISIBLE_LIMIT = 15;
+  function syncProjectListScrollLimit(plistEl) {
+    window.requestAnimationFrame(function () {
+      var visibleRows = Array.prototype.filter.call(plistEl.querySelectorAll('.plist__row'), function (row) {
+        return row.style.display !== 'none';
+      });
+      if (visibleRows.length > PROJECT_LIST_VISIBLE_LIMIT) {
+        var visibleHeight = visibleRows.slice(0, PROJECT_LIST_VISIBLE_LIMIT).reduce(function (sum, row) {
+          return sum + row.offsetHeight;
+        }, 0);
+        plistEl.style.setProperty('--plist-visible-height', (visibleHeight + plistEl.clientTop) + 'px');
+        plistEl.classList.add('is-scrollable');
+      } else {
+        plistEl.classList.remove('is-scrollable');
+        plistEl.style.removeProperty('--plist-visible-height');
+      }
+    });
+  }
+
   /* =========================================================
      Project-List section: industry + project filter dropdowns
      ========================================================= */
@@ -202,6 +221,8 @@
         var matchesProject = !projectNo || row.querySelector('.plist__no').textContent.trim() === projectNo;
         row.style.display = matchesIndustry && matchesProject ? '' : 'none';
       });
+      plistEl.scrollTop = 0;
+      syncProjectListScrollLimit(plistEl);
     }
 
     populateIndustryOptions();
@@ -213,6 +234,7 @@
       applyFilter();
     });
     projectSel.addEventListener('change', applyFilter);
+    window.addEventListener('resize', function () { syncProjectListScrollLimit(plistEl); });
 
     window.__aiwebRebindPlistFilters = function () {
       populateIndustryOptions();
