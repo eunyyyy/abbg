@@ -395,7 +395,7 @@ body.nav-locked{overflow:hidden;}
 /* =========================================================
    Intro / manifesto ("About WEFT")
    ========================================================= */
-.intro{padding-block:96px;}
+.intro{background:var(--paper);padding-block:96px;}
 .intro__grid{
   display:grid;
   grid-template-columns:5fr 7fr;
@@ -423,7 +423,7 @@ body.nav-locked{overflow:hidden;}
 /* =========================================================
    Process ("How it's made")
    ========================================================= */
-.process{background:#fff;padding-block:96px;}
+.process{background:var(--paper);padding-block:96px;}
 .process__grid{
   display:grid;
   grid-template-columns:minmax(280px,5fr) minmax(0,7fr);
