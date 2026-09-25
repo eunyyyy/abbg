@@ -69,17 +69,18 @@ h1,h2,h3,h4,p{ margin:0; }
 
 /* ---------- buttons ---------- */
 .pill{
-  display:inline-flex; align-items:center; gap:10px;
-  padding: 15px 28px; border-radius: var(--radius-pill);
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding: 15px 28px; min-height:50px; border-radius: var(--radius-pill);
   font-family: var(--font-en); font-weight:600; font-size:14px;
   letter-spacing:.02em; border:1px solid transparent;
   transition: transform .35s var(--ease), background .3s, border-color .3s, color .3s;
   white-space:nowrap;
 }
 .pill--solid{ background: var(--text); color:#0a0a0d; }
-.pill--solid:hover{ transform: translateY(-2px); background: linear-gradient(120deg, var(--orange), var(--red)); color:#0a0a0d; }
+.pill--solid:hover{ transform: translateY(-2px); background: linear-gradient(120deg, var(--teal), var(--teal-deep)); color:#0a0a0d; }
 .pill--outline{ background:transparent; color: var(--text); border-color: var(--line-strong); }
 .pill--outline:hover{ transform: translateY(-2px); border-color: var(--teal); color: var(--teal); }
+.pill--block{ display:flex; width:100%; }
 .pill svg{ width:15px; height:15px; }
 
 /* =========================================================
@@ -149,20 +150,21 @@ h1,h2,h3,h4,p{ margin:0; }
    INTRO  (hero statement + studio image, merged section)
    ========================================================= */
 .intro{ position:relative; padding: 96px 0 110px; overflow:hidden; background: var(--bg); }
-/* Mouse-reactive blended gradient — several radial-gradients sharing one
-   moving centre (--gx/--gy, lerped toward the cursor in js/main.js's
-   initIntroGradient) plus a fixed per-layer offset, so the whole cluster
-   drifts together. Pure color, no text/shapes drawn into this layer. */
+/* Mouse-REPELLED blended gradient — 6 independent radial-gradients, each
+   with its own base anchor (--gxN/--gyN) that gets pushed away from the
+   cursor (magnet-repulsion, see initRepelGradient in js/main.js) and eases
+   back to its base position on mouseleave. Pure color, no text/shapes. */
 .intro__art{
   position:absolute; inset:0; z-index:0; pointer-events:none;
-  --gx: 50%; --gy: 42%;
+  --gx1:30%; --gy1:28%; --gx2:72%; --gy2:22%; --gx3:68%; --gy3:60%;
+  --gx4:28%; --gy4:58%; --gx5:52%; --gy5:36%; --gx6:50%; --gy6:42%;
   background:
-    radial-gradient(38% 44% at calc(var(--gx) - 20%) calc(var(--gy) - 14%), #F45F7A, transparent 70%),
-    radial-gradient(34% 38% at calc(var(--gx) + 22%) calc(var(--gy) - 20%), #E8B8C2, transparent 70%),
-    radial-gradient(44% 48% at calc(var(--gx) + 18%) calc(var(--gy) + 18%), #55CEC5, transparent 72%),
-    radial-gradient(38% 42% at calc(var(--gx) - 22%) calc(var(--gy) + 16%), #3AADB0, transparent 70%),
-    radial-gradient(30% 34% at calc(var(--gx) + 2%) calc(var(--gy) - 6%), #D7785D, transparent 68%),
-    radial-gradient(50% 54% at var(--gx) var(--gy), #006B70, transparent 76%);
+    radial-gradient(38% 44% at var(--gx1) var(--gy1), #F45F7A, transparent 70%),
+    radial-gradient(34% 38% at var(--gx2) var(--gy2), #E8B8C2, transparent 70%),
+    radial-gradient(44% 48% at var(--gx3) var(--gy3), #55CEC5, transparent 72%),
+    radial-gradient(38% 42% at var(--gx4) var(--gy4), #3AADB0, transparent 70%),
+    radial-gradient(30% 34% at var(--gx5) var(--gy5), #D7785D, transparent 68%),
+    radial-gradient(50% 54% at var(--gx6) var(--gy6), #006B70, transparent 76%);
   filter: blur(60px) saturate(1.1);
   opacity:.92;
 }
@@ -179,7 +181,7 @@ h1,h2,h3,h4,p{ margin:0; }
   margin-bottom:22px; text-shadow: 0 4px 24px rgba(0,0,0,.7);
 }
 .intro__sub{
-  font-size: clamp(15px,1.7vw,18px); color: var(--text-dim);
+  font-size: clamp(15px,1.7vw,18px); color: rgba(255,255,255,.8);
   max-width:640px; margin:0 auto 38px; text-shadow: 0 2px 16px rgba(0,0,0,.7);
 }
 .intro__actions{ display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; }
@@ -270,55 +272,26 @@ h1,h2,h3,h4,p{ margin:0; }
 }
 
 /* =========================================================
-   GHOST-REPEAT HEADLINE + DARK CTA
-   ========================================================= */
-.ghost-cta{ position:relative; padding: 60px 0 0; background: var(--bg); overflow:hidden; }
-.ghost-cta__repeat{
-  font-family: var(--font-en); font-weight:700; text-align:center;
-  font-size: clamp(40px, 9vw, 120px); line-height:1; letter-spacing:-.02em;
-  color: rgba(255,255,255,.05);
-  filter: blur(6px);
-  overflow:hidden;
-  padding-bottom: 20px;
-}
-.ghost-cta__repeat-track{ display:flex; width:max-content; animation: ghost-cta-marquee 34s linear infinite; }
-.ghost-cta__repeat-item{ white-space:nowrap; }
-@keyframes ghost-cta-marquee{
-  from{ transform: translateX(0); }
-  to{ transform: translateX(-50%); }
-}
-.ghost-cta__panel{
-  position:relative; padding: 120px 0 140px; text-align:center;
-  overflow:hidden; background: var(--bg);
-  --gx: 50%; --gy: 50%;
-}
-/* Single mouse-reactive gradient orb (matches Figma's "Gradient Orb — Multi
-   Fill" ellipse) — warm-to-teal blend sharing one moving centre via
-   --gx/--gy, same lerp-to-cursor pattern as .intro__art and .footer. */
-.ghost-cta__panel::before{
-  content:''; position:absolute; z-index:0; pointer-events:none;
-  left:50%; top:50%; width:820px; height:820px; transform: translate(-50%,-50%);
-  background:
-    radial-gradient(40% 40% at calc(var(--gx) - 18%) calc(var(--gy) - 10%), rgba(255,122,69,.95), transparent 68%),
-    radial-gradient(36% 36% at calc(var(--gx) - 4%) calc(var(--gy) + 14%), rgba(232,67,47,.8), transparent 68%),
-    radial-gradient(44% 44% at calc(var(--gx) + 16%) calc(var(--gy) + 4%), rgba(35,194,180,.85), transparent 70%),
-    radial-gradient(38% 38% at calc(var(--gx) + 26%) calc(var(--gy) - 12%), rgba(20,107,122,.6), transparent 68%);
-  filter: blur(70px) saturate(1.15);
-}
-@media (max-width: 767px){
-  .ghost-cta__panel::before{ width:520px; height:520px; }
-}
-.ghost-cta__inner{ position:relative; z-index:1; max-width:640px; margin:0 auto; }
-.ghost-cta__panel h2{
-  font-family: var(--font-kr); font-weight:700; color:#fff;
-  font-size: clamp(28px,4.6vw,44px); margin-bottom:20px; letter-spacing:-.01em;
-}
-.ghost-cta__panel p{ color: rgba(255,255,255,.78); font-size:15.5px; margin-bottom:34px; }
-
-/* =========================================================
    FEEDBACK
    ========================================================= */
-.feedback{ padding: 120px 0 130px; background: var(--bg); border-top:1px solid var(--line); }
+.feedback{ position:relative; overflow:hidden; padding: 120px 0 130px; background: var(--bg); border-top:1px solid var(--line); }
+/* Figma's "Gradient Orb — Multi Fill" component, reused here exactly as it
+   appears in the source file (peeking in from the bottom-right corner) —
+   same 4-layer color/blend recipe as the orb, each layer mouse-repelled
+   independently like .intro__art / .footer (see initRepelGradient). */
+.feedback__art{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  --gx1:90%; --gy1:88%; --gx2:96%; --gy2:94%; --gx3:80%; --gy3:96%; --gx4:86%; --gy4:76%;
+  background:
+    radial-gradient(46% 46% at var(--gx1) var(--gy1), #0E7787, transparent 72%),
+    radial-gradient(40% 40% at var(--gx2) var(--gy2), rgba(56,214,208,.9), transparent 68%),
+    radial-gradient(46% 46% at var(--gx3) var(--gy3), rgba(255,138,76,.85), transparent 68%),
+    radial-gradient(42% 42% at var(--gx4) var(--gy4), rgba(233,52,79,.7), transparent 68%);
+  background-blend-mode: normal, screen, screen, overlay;
+  filter: blur(80px) saturate(1.1);
+  opacity:.6;
+}
+.feedback > .container{ position:relative; z-index:1; }
 .feedback__layout{ display:grid; grid-template-columns: 1fr 1fr; gap:64px; margin-top:56px; align-items:start; }
 
 .picker{ display:flex; flex-direction:column; gap:16px; margin-bottom:22px; }
@@ -353,23 +326,24 @@ h1,h2,h3,h4,p{ margin:0; }
 
 .feedback__history h3{ font-family: var(--font-en); font-size:16px; font-weight:700; margin-bottom:20px; color: var(--text-dim); letter-spacing:.04em; text-transform:uppercase; }
 .history-list{ display:flex; flex-direction:column; gap:14px; max-height:520px; overflow-y:auto; padding-right:6px; }
-.history-item{ padding:18px 20px; border:1px solid var(--line); border-radius:14px; background: var(--bg-raise); transition: border-color .25s, background .25s; }
-.history-item[data-status="done"]{ cursor:none; }
-.history-item[data-status="done"]:hover{ border-color: rgba(255,255,255,.22); background: var(--bg-raise); }
-.history-item[data-status="pending"]{ cursor:none; }
-.history-item__meta{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; font-size:12.5px; color: var(--text-faint); }
-.history-item__project{ color: var(--teal); font-weight:600; }
-.history-item__comment{ font-size:14.5px; color: var(--text); line-height:1.6; }
-.history-item__author{ margin-top:8px; font-size:12.5px; color: var(--text-faint); }
-.history-empty{ color: var(--text-faint); font-size:14px; padding:20px 0; }
-
-.status-badge{
-  display:inline-flex; align-items:center; font-family: var(--font-en); font-size:11px; font-weight:700;
-  letter-spacing:.04em; padding:3px 10px; border-radius:999px; white-space:nowrap;
+.history-item{
+  display:flex; flex-direction:column; gap:8px;
+  padding:18px 20px; border:1px solid var(--line); border-radius:14px; background: var(--bg-raise);
+  transition: border-color .25s, opacity .25s;
 }
-.status-badge.is-pending{ color: var(--teal); background: rgba(35,194,180,.12); border:1px solid rgba(35,194,180,.35); }
-.status-badge.is-progress{ color:#ffb98f; background: rgba(255,122,69,.12); border:1px solid rgba(255,122,69,.35); }
-.status-badge.is-done{ color: var(--text-faint); background: rgba(255,255,255,.06); border:1px solid var(--line-strong); }
+.history-item[data-status="done"]{ cursor:none; opacity:.6; }
+.history-item[data-status="done"]:hover{ border-color: rgba(255,255,255,.22); opacity:1; }
+.history-item[data-status="pending"]{ cursor:none; }
+.history-item__meta{ display:flex; align-items:center; gap:12px; font-size:12px; }
+.history-item__project{ color: var(--teal); font-weight:500; }
+.history-item__author{ color: var(--text-faint); font-weight:400; }
+.history-item__comment{ font-size:14.5px; color: var(--text); line-height:1.6; }
+.history-item__statusrow{ display:flex; align-items:center; gap:8px; font-size:12px; }
+.history-item__status.is-pending{ color: var(--teal); }
+.history-item__status.is-progress{ color:#ffb98f; }
+.history-item__status.is-done{ color: var(--text-faint); }
+.history-item__date{ color: var(--text-faint); }
+.history-empty{ color: var(--text-faint); font-size:14px; padding:20px 0; }
 
 .history-item__reply{
   margin-top:12px; padding:12px 14px; border-radius:10px; background: rgba(45,212,191,.06); border:1px solid rgba(45,212,191,.2);
@@ -408,31 +382,28 @@ h1,h2,h3,h4,p{ margin:0; }
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer{ position:relative; background: var(--bg); padding-top: 90px; overflow:hidden; --gx: 50%; --gy: 45%; }
-/* Same 6-color blend as the hero (.intro__art) — matches the Figma footer
-   treatment (watermark on a warm-to-teal gradient wash), and shares the
-   same mouse-reactive --gx/--gy pattern as .intro__art / .ghost-cta__panel. */
+.footer{ position:relative; background: var(--bg); padding-top: 90px; overflow:hidden; --gx1:36%; --gy1:5%; --gx2:-4%; --gy2:98%; --gx3:67%; --gy3:67%; }
+/* Exact Figma footer recipe: dark base + red(overlay) + orange(screen) +
+   teal(screen), each independently mouse-repelled (initRepelGradient) —
+   matches the same recipe Figma uses for the hero (WeAre-2) background. */
 .footer::before{
   content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background:
-    radial-gradient(42% 60% at calc(var(--gx) - 38%) calc(var(--gy) - 15%), #F45F7A, transparent 68%),
-    radial-gradient(36% 50% at calc(var(--gx) - 20%) calc(var(--gy) + 20%), #D7785D, transparent 68%),
-    radial-gradient(40% 55% at calc(var(--gx) + 5%) calc(var(--gy) - 30%), #E8B8C2, transparent 66%),
-    radial-gradient(46% 62% at calc(var(--gx) + 22%) calc(var(--gy) + 25%), #55CEC5, transparent 68%),
-    radial-gradient(50% 65% at calc(var(--gx) + 40%) var(--gy), #3AADB0, transparent 70%),
-    radial-gradient(55% 70% at calc(var(--gx) + 45%) calc(var(--gy) + 40%), #006B70, transparent 74%);
-  filter: blur(70px) saturate(1.1);
-  opacity:.55;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(45% 45% at var(--gx1) var(--gy1), rgba(233,52,79,.82), rgba(233,52,79,.22) 55%, transparent 100%),
+    radial-gradient(50% 50% at var(--gx2) var(--gy2), rgba(255,138,76,.98), rgba(255,90,61,.38) 50%, transparent 100%),
+    radial-gradient(42% 42% at var(--gx3) var(--gy3), rgba(56,214,208,.94), rgba(25,184,186,.44) 48%, transparent 100%);
+  background-blend-mode: overlay, screen, screen;
 }
 .footer__top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; padding-bottom:60px; border-bottom:1px solid var(--line); }
 .footer__logo{ font-family: var(--font-en); font-weight:700; font-size:26px; }
 .footer__logo span{ color: var(--orange); }
 .footer__tagline{ color: var(--text-dim); font-size:14px; max-width:320px; margin-top:14px; }
-.footer__info{ display:flex; align-items:center; gap:36px; padding:26px 0; font-size:12.5px; color: var(--text-faint); letter-spacing:.03em; flex-wrap:wrap; }
+.footer__info{ display:flex; align-items:center; gap:36px; padding:26px 0; font-size:12.5px; color: rgba(255,255,255,.8); letter-spacing:.03em; flex-wrap:wrap; }
 .footer__watermark{
   font-family: var(--font-en); font-weight:700; text-align:center;
-  font-size: clamp(60px, 16vw, 220px); line-height:.86; letter-spacing:-.02em;
-  color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.14);
+  font-size: clamp(60px, 26vw, 380px); line-height:.86; letter-spacing:-.02em;
+  color:#fff; opacity:.1;
   padding: 10px 0 20px; user-select:none;
 }
 .footer__copyright-row{ display:flex; justify-content:center; padding-bottom:24px; font-size:11.5px; color: var(--text-faint); }
@@ -443,5 +414,4 @@ h1,h2,h3,h4,p{ margin:0; }
 @media (max-width: 767px){
   .intro{ padding-top:120px; }
   .plist-section,.feedback{ padding: 80px 0; }
-  .ghost-cta__panel{ padding: 90px 0 110px; }
 }

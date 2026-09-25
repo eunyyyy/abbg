@@ -74,36 +74,38 @@
   }
 
   /* =========================================================
-     Mouse-reactive gradient backgrounds
+     Mouse-REPELLED gradient backgrounds
      Every section with a blended radial-gradient (.intro__art,
-     .ghost-cta__panel's orb, .footer's wash) shares one moving
-     centre point per section via CSS custom properties --gx/--gy,
-     lerped toward the cursor while it's over that section and
-     eased back to a default centre on mouseleave. The rAF loop
-     only runs while actively interpolating, not continuously at
-     rest. `targetEl` is the element the custom properties are set
-     on — for real layers (.intro__art) that's the layer itself;
-     for ::before-based orbs (ghost-cta, footer) it's the section
-     itself, since custom properties inherit down into pseudo-
-     elements but can't be set on them directly.
+     .feedback__art, .footer's wash) is built from N independent
+     radial-gradient layers, each with its own base anchor point
+     (--gxN/--gyN). Instead of the whole cluster being attracted
+     toward the cursor, each layer is individually pushed AWAY
+     from it — like same-pole magnets repelling — with the push
+     strength falling off with distance, then eases back to its
+     base position on mouseleave. `targetEl` is the element the
+     custom properties are set on — a real layer div (.intro__art,
+     .feedback__art) or the section itself for a ::before-based
+     wash (.footer), since custom properties inherit down into
+     pseudo-elements but can't be set on them directly.
      ========================================================= */
-  function initCursorGradient(sectionEl, targetEl, defaultX, defaultY, clampX, clampY) {
+  function initRepelGradient(sectionEl, targetEl, blobs, radius, maxPush) {
     if (!sectionEl || !targetEl || reduceMotion) return;
 
-    var targetX = defaultX, targetY = defaultY;
-    var currentX = defaultX, currentY = defaultY;
+    var state = blobs.map(function (b) {
+      return { baseX: b[0], baseY: b[1], curX: b[0], curY: b[1], targetX: b[0], targetY: b[1] };
+    });
     var rafId = null;
 
     function tick() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      targetEl.style.setProperty('--gx', currentX.toFixed(2) + '%');
-      targetEl.style.setProperty('--gy', currentY.toFixed(2) + '%');
-      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
-        rafId = requestAnimationFrame(tick);
-      } else {
-        rafId = null;
-      }
+      var moving = false;
+      state.forEach(function (s, i) {
+        s.curX += (s.targetX - s.curX) * 0.1;
+        s.curY += (s.targetY - s.curY) * 0.1;
+        targetEl.style.setProperty('--gx' + (i + 1), s.curX.toFixed(2) + '%');
+        targetEl.style.setProperty('--gy' + (i + 1), s.curY.toFixed(2) + '%');
+        if (Math.abs(s.targetX - s.curX) > 0.05 || Math.abs(s.targetY - s.curY) > 0.05) moving = true;
+      });
+      rafId = moving ? requestAnimationFrame(tick) : null;
     }
     function ensureLoop() {
       if (rafId === null) rafId = requestAnimationFrame(tick);
@@ -111,22 +113,33 @@
 
     sectionEl.addEventListener('mousemove', function (e) {
       var rect = sectionEl.getBoundingClientRect();
-      var x = ((e.clientX - rect.left) / rect.width) * 100;
-      var y = ((e.clientY - rect.top) / rect.height) * 100;
-      // clamp so the gradient cluster never slides fully off the section
-      targetX = Math.max(clampX[0], Math.min(clampX[1], x));
-      targetY = Math.max(clampY[0], Math.min(clampY[1], y));
+      var mx = ((e.clientX - rect.left) / rect.width) * 100;
+      var my = ((e.clientY - rect.top) / rect.height) * 100;
+      state.forEach(function (s) {
+        var dx = s.baseX - mx, dy = s.baseY - my;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+        // Linear falloff within `radius`: full maxPush right under the
+        // cursor, fading to 0 at the edge of the influence radius — a much
+        // more directly-felt "magnet" push than 1/distance, which is nearly
+        // imperceptible once the cursor is more than a few percent away.
+        var falloff = Math.max(0, 1 - dist / radius);
+        var push = maxPush * falloff;
+        s.targetX = s.baseX + (dx / dist) * push;
+        s.targetY = s.baseY + (dy / dist) * push;
+      });
       ensureLoop();
     });
     sectionEl.addEventListener('mouseleave', function () {
-      targetX = defaultX;
-      targetY = defaultY;
+      state.forEach(function (s) { s.targetX = s.baseX; s.targetY = s.baseY; });
       ensureLoop();
     });
   }
-  initCursorGradient(document.querySelector('.intro'), document.querySelector('.intro__art'), 50, 42, [20, 80], [15, 75]);
-  initCursorGradient(document.querySelector('.ghost-cta__panel'), document.querySelector('.ghost-cta__panel'), 50, 50, [35, 65], [35, 65]);
-  initCursorGradient(document.querySelector('.footer'), document.querySelector('.footer'), 50, 45, [35, 65], [30, 60]);
+  initRepelGradient(document.querySelector('.intro'), document.querySelector('.intro__art'),
+    [[30, 28], [72, 22], [68, 60], [28, 58], [52, 36], [50, 42]], 55, 26);
+  initRepelGradient(document.querySelector('.footer'), document.querySelector('.footer'),
+    [[36, 5], [-4, 98], [67, 67]], 55, 24);
+  initRepelGradient(document.querySelector('.feedback'), document.querySelector('.feedback__art'),
+    [[90, 88], [96, 94], [80, 96], [86, 76]], 45, 20);
 
   /* =========================================================
      Shared project data — read from the static DOM at boot,

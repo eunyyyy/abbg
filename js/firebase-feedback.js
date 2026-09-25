@@ -39,11 +39,6 @@ var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'i
 // initHistoryInteractions) — 진행중 keeps the ordinary cursor.
 var STATUS_CURSOR_TEXT = { done: '프로젝트 이동', pending: '피드백 반영중' };
 
-function statusBadgeHtml(status) {
-  var key = STATUS_LABEL[status] ? status : 'pending'; // legacy docs with no status render as 대기중
-  return '<span class="status-badge ' + STATUS_CLASS[key] + '">' + STATUS_LABEL[key] + '</span>';
-}
-
 // Looks up a project's live URL straight from the rendered .plist rows
 // (rather than duplicating project data here) so it always reflects
 // whatever main.js currently has mounted — static fallback or Firestore sync.
@@ -78,12 +73,14 @@ function renderHistory(docs) {
       '<div class="history-item" data-status="' + statusKey + '" data-project-no="' + escapeHtml(data.projectNumber || '') + '"' +
         (isDone ? ' role="link" tabindex="0"' : '') + '>' +
         '<div class="history-item__meta">' +
-          '<span class="history-item__project">' + escapeHtml(data.projectNumber) + ' · ' + escapeHtml(data.projectName) + '</span>' +
-          statusBadgeHtml(data.status) +
-          '<span>' + dateStr + '</span>' +
+          '<span class="history-item__project">' + escapeHtml(data.projectName) + '</span>' +
+          '<span class="history-item__author">' + author + '</span>' +
         '</div>' +
         '<div class="history-item__comment">' + escapeHtml(data.comment) + '</div>' +
-        '<div class="history-item__author">' + author + '</div>' +
+        '<div class="history-item__statusrow">' +
+          '<span class="history-item__status ' + STATUS_CLASS[statusKey] + '">' + STATUS_LABEL[statusKey] + '</span>' +
+          '<span class="history-item__date">' + dateStr + '</span>' +
+        '</div>' +
         replyHtml +
       '</div>'
     );
