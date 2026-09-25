@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 
-<link rel="stylesheet" href="css/style.css?v=20260926-2">
+<link rel="stylesheet" href="css/style.css?v=20260926-3">
 </head>
 <body>
 
@@ -307,7 +307,15 @@
 
         <div class="feedback__history">
           <h3>실시간 피드백</h3>
-          <input type="search" id="feedback-history-search" class="feedback-history-search" placeholder="프로젝트·작성자·피드백 검색" aria-label="실시간 피드백 검색">
+          <div class="feedback-history-filters">
+            <select id="feedback-history-status" aria-label="피드백 상태">
+              <option value="">전체 상태</option>
+              <option value="pending">반영 대기</option>
+              <option value="in_progress">진행중</option>
+              <option value="done">반영 완료</option>
+            </select>
+            <input type="search" id="feedback-history-search" class="feedback-history-search" placeholder="프로젝트·작성자·피드백 검색" aria-label="실시간 피드백 검색">
+          </div>
           <div id="history-list" class="history-list">
             <p class="history-empty">피드백을 불러오는 중입니다…</p>
           </div>
@@ -341,6 +349,6 @@
 
 <script src="js/hero-gl.js"></script>
 <script src="js/main.js?v=20260926-2"></script>
-<script type="module" src="js/firebase-feedback.js?v=20260926-2"></script>
+<script type="module" src="js/firebase-feedback.js?v=20260926-3"></script>
 </body>
 </html>

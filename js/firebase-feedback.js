@@ -6,6 +6,7 @@ const formEl = document.getElementById('feedback-form');
 const statusEl = document.getElementById('feedback-status');
 const historyListEl = document.getElementById('history-list');
 const historySearchEl = document.getElementById('feedback-history-search');
+const historyStatusEl = document.getElementById('feedback-history-status');
 const dropzoneEl = document.getElementById('feedback-dropzone');
 const attachmentInputEl = document.getElementById('fb-attachments');
 const attachmentListEl = document.getElementById('fb-attachment-list');
@@ -87,12 +88,14 @@ function renderReplyThread(feedbackId, legacyReply) {
 function renderHistory() {
   if (!historyListEl) return;
   var term = historySearchEl ? normalizeSearchText(historySearchEl.value) : '';
+  var selectedStatus = historyStatusEl ? historyStatusEl.value : '';
   var visibleDocs = feedbackDocs.filter(function (data) {
+    if (selectedStatus && data.status !== selectedStatus) return false;
     var replyText = (repliesByFeedback[data.id] || []).map(function (r) { return r.message || ''; }).join(' ');
     var hay = normalizeSearchText((data.projectName || '') + (data.projectNumber || '') + (data.category || '') + (data.author || '') + (data.comment || '') + (data.reply || '') + replyText);
     return !term || hay.includes(term);
   });
-  if (!visibleDocs.length) { historyListEl.innerHTML = '<p class="history-empty">' + (term ? '검색 결과가 없습니다.' : '아직 등록된 피드백이 없습니다. 첫 의견을 남겨보세요.') + '</p>'; return; }
+  if (!visibleDocs.length) { historyListEl.innerHTML = '<p class="history-empty">' + ((term || selectedStatus) ? '검색 결과가 없습니다.' : '아직 등록된 피드백이 없습니다. 첫 의견을 남겨보세요.') + '</p>'; return; }
   historyListEl.innerHTML = visibleDocs.map(function (data) {
     var statusKey = STATUS_LABEL[data.status] ? data.status : 'pending';
     var downloadHtml = statusKey === 'done' ? '<a class="history-item__download" data-feedback-control data-action="download-project" href="' + projectArchiveUrl(data.projectNumber || '', data.projectName || '') + '" download><span aria-hidden="true">↓</span> 프로젝트 파일 다운로드 <small>ZIP</small></a>' : '';
@@ -204,6 +207,7 @@ async function init() {
     historySearchEl.addEventListener('search', renderHistory);
     historySearchEl.addEventListener('compositionend', renderHistory);
   }
+  if (historyStatusEl) historyStatusEl.addEventListener('change', renderHistory);
   if (!isFirebaseConfigured()) { showNotice(); renderHistory(); if (formEl) formEl.addEventListener('submit', function (e) { e.preventDefault(); if (statusEl) statusEl.textContent = '피드백 기능은 Firebase 설정 후 활성화됩니다.'; }); return; }
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js');
