@@ -1,10 +1,11 @@
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OSMERE — Quiet Materials, Considered Cuts</title>
 <meta name="description" content="OSMERE is a contemporary clothing studio built on quiet materials and considered cuts — new arrivals, best sellers, and the SS26 campaign.">
 <link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,9 +18,9 @@
 <header class="gnb" id="gnb">
   <div class="container gnb__row">
     <a href="#top" class="gnb__logo" data-cursor="Top">OSMERE</a>
-    <button class="gnb__trigger" id="gnbTrigger" type="button" aria-expanded="false" aria-controls="gnbOverlay">
+    <button class="gnb__trigger" id="gnbTrigger" type="button" aria-expanded="false" aria-controls="gnbOverlay" aria-label="메뉴 열기">
       <span class="gnb__trigger-dot"></span>
-      <span class="gnb__trigger-text"><span class="label">Menu</span><span class="copy">Close</span></span>
+      <span class="gnb__trigger-text"><span class="label">메뉴</span><span class="copy">닫기</span></span>
     </button>
   </div>
 
@@ -30,37 +31,37 @@
       <ul class="gnb__overlay-list">
         <li class="gnb__overlay-item">
           <a href="#arrivals" class="gnb__overlay-link" data-nav-link>
-            <span class="word" style="--i:0"><span>Arrivals</span></span>
+            <span class="word" style="--i:0"><span>신상품</span></span>
           </a>
         </li>
         <li class="gnb__overlay-item">
           <a href="#categories" class="gnb__overlay-link" data-nav-link>
-            <span class="word" style="--i:1"><span>Categories</span></span>
+            <span class="word" style="--i:1"><span>컬렉션</span></span>
           </a>
         </li>
         <li class="gnb__overlay-item">
           <a href="#best" class="gnb__overlay-link" data-nav-link>
-            <span class="word" style="--i:2"><span>Best</span></span> <span class="word" style="--i:3"><span>Sellers</span></span>
+            <span class="word" style="--i:2"><span>시그니처</span></span>
           </a>
         </li>
         <li class="gnb__overlay-item">
           <a href="#bold" class="gnb__overlay-link" data-nav-link>
-            <span class="word" style="--i:2"><span>Story</span></span>
+            <span class="word" style="--i:2"><span>브랜드 이야기</span></span>
           </a>
         </li>
         <li class="gnb__overlay-item">
           <a href="#campaign" class="gnb__overlay-link" data-nav-link>
-            <span class="word" style="--i:3"><span>Campaign</span></span>
+            <span class="word" style="--i:3"><span>캠페인</span></span>
           </a>
         </li>
         <li class="gnb__overlay-item">
           <a href="#footer" class="gnb__overlay-link" data-nav-link>
-            <span class="word" style="--i:4"><span>Contact</span></span>
+            <span class="word" style="--i:4"><span>문의</span></span>
           </a>
         </li>
       </ul>
       <div class="gnb__overlay-foot">
-        <span>EST. 2024 — SEOUL</span>
+        <span>2024년 서울에서 시작</span>
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" data-cursor="Visit">Instagram</a>
       </div>
     </div>
@@ -81,10 +82,10 @@
         <h1 class="hero__title" data-lines>
           <span class="line-inner"><span>OSMERE</span></span>
         </h1>
-        <p class="hero__sub">Quiet materials, considered cuts — clothing built for how you actually live.</p>
+        <p class="hero__sub">조용한 소재와 신중한 재단으로, 실제 삶의 움직임을 담는 옷을 만듭니다.</p>
         <div class="hero__links">
-          <a href="#bold" data-cursor="Read">[ dress with intent ]</a>
-          <a href="#arrivals" data-cursor="Shop">[ view arrivals ]</a>
+          <a href="#bold" data-cursor="Read">[ 브랜드 이야기 ]</a>
+          <a href="#arrivals" data-cursor="Shop">[ 신상품 보기 ]</a>
         </div>
       </div>
       <div class="hero__scroll-cue"></div>
@@ -95,7 +96,7 @@
     <div class="container">
       <div class="arrivals__head">
         <h2 class="arrivals__title reveal-up">New Arrivals</h2>
-        <p class="arrivals__count reveal-up">01 — 06<br>Drag to browse</p>
+        <p class="arrivals__count reveal-up">01 — 06<br>드래그해서 살펴보세요</p>
       </div>
     </div>
     <div class="arrivals__track" id="arrivalsTrack">
@@ -106,7 +107,6 @@
         </a>
         <div class="arrivals__card-info">
           <span class="arrivals__card-title">Wrapped Wool Coat</span>
-          <span class="arrivals__card-price">$228</span>
         </div>
         <p class="arrivals__card-meta">Camel · XS–L</p>
       </article>
@@ -116,7 +116,6 @@
         </a>
         <div class="arrivals__card-info">
           <span class="arrivals__card-title">Heavy Rib Turtleneck</span>
-          <span class="arrivals__card-price">$96</span>
         </div>
         <p class="arrivals__card-meta">Oat · XS–M</p>
       </article>
@@ -127,7 +126,6 @@
         </a>
         <div class="arrivals__card-info">
           <span class="arrivals__card-title">Oversized Denim Jacket</span>
-          <span class="arrivals__card-price">$148</span>
         </div>
         <p class="arrivals__card-meta">Washed Indigo · S–L</p>
       </article>
@@ -137,7 +135,6 @@
         </a>
         <div class="arrivals__card-info">
           <span class="arrivals__card-title">Draped Layer Dress</span>
-          <span class="arrivals__card-price">$214</span>
         </div>
         <p class="arrivals__card-meta">Sand · XS–L</p>
       </article>
@@ -147,7 +144,6 @@
         </a>
         <div class="arrivals__card-info">
           <span class="arrivals__card-title">Structured Mini Bag</span>
-          <span class="arrivals__card-price">$132</span>
         </div>
         <p class="arrivals__card-meta">Cognac · One Size</p>
       </article>
@@ -157,7 +153,6 @@
         </a>
         <div class="arrivals__card-info">
           <span class="arrivals__card-title">Ankle Leather Boot</span>
-          <span class="arrivals__card-price">$186</span>
         </div>
         <p class="arrivals__card-meta">Espresso · 36–41</p>
       </article>
@@ -167,7 +162,7 @@
   <section class="categories" id="categories">
     <div class="container">
       <div class="categories__row">
-        <h2 class="categories__title reveal-up">Shop by Category</h2>
+        <h2 class="categories__title reveal-up">Collection</h2>
       </div>
     </div>
     <div class="categories__track" id="categoriesTrack">
@@ -220,7 +215,7 @@
     <div class="container bold__inner">
       <p class="bold__line reveal-up">Made for</p>
       <p class="bold__line is-right reveal-up">The long <strong>wear</strong></p>
-      <p class="bold__caption reveal-up">Our story — quiet materials, honest construction, since 2024.</p>
+      <p class="bold__caption reveal-up">2024년부터 이어온 조용한 소재와 정직한 제작에 관한 이야기.</p>
     </div>
   </section>
 

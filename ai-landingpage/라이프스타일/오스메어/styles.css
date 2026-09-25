@@ -79,7 +79,7 @@
      a monospace face for corner/spec labels. Thunder has no free web
      license, so its closest open substitute is used instead. */
   --font-display:"Big Shoulders Display","Arial Narrow",sans-serif;
-  --font-content:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-content:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --font-mono:"JetBrains Mono","SFMono-Regular",Menlo,monospace;
   --wt-regular:400;
   --wt-medium:500;
@@ -350,11 +350,13 @@ body.has-custom-cursor [data-cursor]{cursor:none}
   display:flex;
   align-items:center;
   gap:10px;
-  z-index:2;
+  position:relative;
+  z-index:220;
   text-transform:uppercase;
   font:var(--font-label-2);
   letter-spacing:.08em;
 }
+.gnb.is-open .gnb__trigger{color:var(--secondary-50)}
 .gnb__trigger-dot{
   width:5px;height:5px;
   border-radius:50%;
@@ -1046,3 +1048,5 @@ body.has-custom-cursor [data-cursor]{cursor:none}
 @media screen and (min-width:1728px){
   .arrivals__card{max-width:380px}
 }
+
+.hero__count,.hero__mark,.arrivals__count,.arrivals__card-meta,.bold__caption,.campaign__title,.campaign__spec,.campaign__season,.motion__scroll{font-size:16px!important}

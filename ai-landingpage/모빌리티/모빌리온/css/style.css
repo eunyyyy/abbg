@@ -40,6 +40,8 @@
   --side-gap: calc(20px + 20px * var(--fluid-scale));
 }
 
+.eyebrow{font-size:16px!important}
+
 *,*::before,*::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
 body{
@@ -519,7 +521,7 @@ section{ position:relative; scroll-margin-top:var(--header-h); }
   transition:background .4s var(--ease);
 }
 .stat-card:hover{
-  background:#101c2c;
+  background:var(--dark);
 }
 .stat-label{
   font-size:15px;

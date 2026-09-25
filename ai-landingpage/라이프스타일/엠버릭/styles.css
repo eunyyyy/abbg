@@ -47,7 +47,7 @@
   --gray-1000:#100A06;
 
   --font-display:"Griun Cherry 1 Spoon", cursive;
-  --font-body:"Archivo", sans-serif;
+  --font-body:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 
   --radius-pill:100px;
   --radius-card:24px;
@@ -580,3 +580,5 @@ html{-ms-overflow-style:none;scrollbar-width:none;}
   .ticker__track,.card-marquee__track,.hero__scroll-cue span{animation:none !important;}
   html{scroll-behavior:auto;}
 }
+
+.footer__bottom p{font-size:16px}

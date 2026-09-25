@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
 /* =========================================================
    COGNOVA — literal clone of insplanet.co.kr interaction/layout DNA
    Fonts: Cormorant Garamond (display ≥28px) + Pretendard (body/UI)
@@ -342,3 +344,6 @@ button{font:inherit;background:none;border:0;cursor:pointer;color:inherit;}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
 }
+
+/* Readability pass */
+.menu-side-label,.menu-side p,.insight-eyebrow,.svc-tags li,.svc-desc,.proj-meta dt,.proj-meta dd,.footer-info p,.footer-copy{font-size:16px!important}

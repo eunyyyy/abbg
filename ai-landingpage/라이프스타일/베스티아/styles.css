@@ -68,7 +68,7 @@
   --ease-out-sine:cubic-bezier(.61,1,.88,1);
 
   --font-display:"Fraunces","Georgia","Times New Roman",serif;
-  --font-content:"Work Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-content:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --wt-regular:400;
   --wt-medium:500;
   --wt-semibold:600;
@@ -78,13 +78,13 @@
   --font-display-3:var(--wt-regular) 1.5625rem/1.3 var(--font-display);
   --font-display-4:var(--wt-medium) 1.25rem/1.15 var(--font-content);
   --font-display-5:var(--wt-regular) 1.125rem/1.5 var(--font-display);
-  --font-body:var(--wt-regular) 1.125rem/1.6 var(--font-display);
+  --font-body:var(--wt-regular) 1.125rem/1.7 var(--font-content);
   --font-label-1:var(--wt-regular) 1.125rem/1.1 var(--font-display);
   --font-label-2:var(--wt-medium) 1.125rem/1.5 var(--font-content);
-  --font-label-form:var(--wt-regular) .9375rem/1 var(--font-content);
-  --font-tiny-1:var(--wt-regular) .8125rem/1.6 var(--font-content);
-  --font-tiny-2:var(--wt-regular) .625rem/1.4 var(--font-content);
-  --font-button:var(--wt-medium) .9375rem/1 var(--font-content);
+  --font-label-form:var(--wt-regular) 1rem/1.4 var(--font-content);
+  --font-tiny-1:var(--wt-regular) 1rem/1.6 var(--font-content);
+  --font-tiny-2:var(--wt-regular) 1rem/1.5 var(--font-content);
+  --font-button:var(--wt-medium) 1rem/1.2 var(--font-content);
   --font-header:var(--wt-regular) clamp(46px,5vw,120px)/1 var(--font-display);
 
   --grid-columns:2;
@@ -128,7 +128,7 @@ img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ul{list-style:none}
-em{font-style:italic}
+em{font-style:normal}
 h1,h2,h3,p{font:inherit}
 ::selection{background:var(--primary-300);color:var(--gray-1000)}
 
@@ -259,11 +259,13 @@ h1,h2,h3,p{font:inherit}
   display:flex;
   align-items:center;
   gap:10px;
-  z-index:2;
+  position:relative;
+  z-index:220;
   text-transform:uppercase;
   font:var(--font-label-2);
   letter-spacing:.08em;
 }
+.gnb.is-open .gnb__trigger{color:var(--secondary-50)}
 .gnb__trigger-dot{
   width:5px;height:5px;
   border-radius:50%;

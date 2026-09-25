@@ -42,7 +42,7 @@
   --white:#fff;
 
   --font-display:'Wild Gag', sans-serif;
-  --font-body:'Public Sans', sans-serif;
+  --font-body:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 
   --radius:0px; /* reference uses hard rectangular corners throughout, no rounding */
   --container-pad:110px;
@@ -539,6 +539,8 @@ body.nav-locked{overflow:hidden;}
   pointer-events:none;
 }
 .promo__tile--about .promo__emblem{right:auto; left:-30px; bottom:-30px;}
+.promo__tile .promo__emblem{opacity:.22;transform:translate(18%,18%) scale(.72);transform-origin:center}
+.promo__copy{position:relative;z-index:2;max-width:36rem}
 
 /* =========================================================
    Footer

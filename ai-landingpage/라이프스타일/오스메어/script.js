@@ -16,11 +16,15 @@
   function setGnbOpen(open) {
     gnb.classList.toggle('is-open', open);
     gnbTrigger.setAttribute('aria-expanded', String(open));
+    gnbTrigger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
     document.body.style.overflow = open ? 'hidden' : '';
   }
   gnbTrigger.addEventListener('click', () => setGnbOpen(!gnb.classList.contains('is-open')));
   gnbOverlay.querySelectorAll('[data-nav-link]').forEach((link) => {
     link.addEventListener('click', () => setGnbOpen(false));
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && gnb.classList.contains('is-open')) setGnbOpen(false);
   });
 
   const darkThemeSections = ['hero', 'best', 'bold', 'campaign', 'motion'];

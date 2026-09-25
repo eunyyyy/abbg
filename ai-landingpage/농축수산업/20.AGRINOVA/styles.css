@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
 /* =========================================================
    AGRINOVA — 아그리노바
    토큰 기반 스타일시트. 기본 Design Kit(styles.css)를 시작점으로
@@ -344,3 +346,5 @@ h4,.h3{font-family:var(--font-kr);font-size:var(--fs-h3);font-weight:var(--fw-st
 
 /* prevent horizontal overflow at narrow widths */
 .container,.hero-headline,.about__grid,.network__grid,.voice-stage{max-width:100%;}
+
+.eyebrow,.stat-tile__label,.network__hint,.network__legend li,.voice-meta__role,.footer p{font-size:16px!important}

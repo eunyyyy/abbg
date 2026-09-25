@@ -102,11 +102,11 @@ body{word-break:keep-all}
   --color-gray-dark:var(--g-300);
   --color-gray-light:var(--g-500);
 
-  --font-family:'Schibsted Grotesk',Arial,sans-serif;
+  --font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --font-family-mono:'Red Hat Mono','Courier New',monospace;
   --font-family-title:'VITRO CORE','Schibsted Grotesk',Arial,sans-serif;
 
-  --lh-90:.9;--lh-100:1;--lh-105:1.05;--lh-108:1.08;--lh-120:1.2;
+  --lh-90:1.05;--lh-100:1.15;--lh-105:1.25;--lh-108:1.3;--lh-120:1.6;
   --ls-tight-04:-.04em;--ls-tight-02:-.02em;--ls-tight-01:-.01em;
   --ls-loose-02:.02em;--ls-loose-05:.05em;--ls-0:0em;
 
@@ -125,8 +125,8 @@ body{word-break:keep-all}
   --fs-body:1em;
   --fs-details:1em;
   --fs-button:1em;
-  --fs-mono-lg:.875em;
-  --fs-mono-sm:.625em;
+  --fs-mono-lg:1em;
+  --fs-mono-sm:1em;
 }
 
 @media screen and (max-width:991px){
@@ -152,7 +152,7 @@ html,body{
   background-color:var(--color-bg);
   color:var(--color);
   font-family:var(--font-family);
-  font-size:14px;
+  font-size:16px;
   line-height:var(--lh-120);
   font-weight:500;
   letter-spacing:var(--ls-tight-02);

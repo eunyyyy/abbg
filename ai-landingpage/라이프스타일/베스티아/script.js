@@ -22,6 +22,7 @@
     gnb.classList.toggle('is-open', open);
     gnbOverlay.classList.toggle('is-open', open);
     gnbTrigger.setAttribute('aria-expanded', String(open));
+    gnbTrigger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
     document.documentElement.style.overflow = open ? 'hidden' : '';
   }
 

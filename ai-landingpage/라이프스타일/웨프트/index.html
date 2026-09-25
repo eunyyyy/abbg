@@ -6,17 +6,10 @@
 <title>WEFT | 그래픽 프린트, 매일의 옷이 되다</title>
 <meta name="description" content="웨프트(WEFT)는 리스본의 작은 스튜디오에서 시작된 그래픽 프린트 브랜드입니다. 원단을 직접 재단하고 한 장씩 스크린 프린트하는 방식으로, 매 시즌 한정된 수량의 티셔츠와 후디를 만듭니다.">
 <link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div class="announce">
-  <div class="announce__track container" style="display:flex; padding-inline:0;">
-    <div class="announce__item">리스본 스튜디오에서 한 장씩 스크린 프린트</div>
-    <div class="announce__item">시즌마다 한정 수량으로 소량 생산</div>
-    <div class="announce__item">2021년, 원단 조각에서 시작된 브랜드</div>
-  </div>
-</div>
 
 <header class="site-header">
   <nav class="nav">
@@ -26,11 +19,7 @@
       </button>
     </div>
     <a href="#home" class="logo">WEFT</a>
-    <div class="nav__right">
-      <a href="#about" class="icon-btn" aria-label="브랜드 소개 보기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.5" r="1.1" fill="currentColor" stroke="none"/></svg>
-      </a>
-    </div>
+    <div class="nav__right" aria-hidden="true"></div>
   </nav>
 </header>
 
@@ -70,7 +59,6 @@
     <div class="hero__content">
       <h1 class="hero__title">그래픽 프린트,<br>매일의 옷이 되다</h1>
       <p class="hero__sub">리스본의 작은 스튜디오에서 시작된 웨프트. 대담하고 컬러풀한 그래픽 티셔츠와 후디로, 무채색이던 일상에 한 컷의 이야기를 더합니다.</p>
-      <a href="#shop" class="btn hero__cta">컬렉션 보기</a>
     </div>
   </section>
 
@@ -92,7 +80,6 @@
   <section id="shop" class="shelf">
     <div class="shelf__head">
       <h2 class="shelf__title">위버가 고른 프린트</h2>
-      <a href="#shop" class="shelf__all">전체 보기</a>
     </div>
 
     <div class="drag-shelf" id="dragShelf">

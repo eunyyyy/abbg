@@ -752,3 +752,5 @@ body.has-cursor, body.has-cursor a, body.has-cursor button{ cursor:none; }
 @media (max-width:767px){
   .back-to-top{ width:44px; height:44px; right:15px; bottom:20px; }
 }
+
+.eyebrow,.strip__tagline,.formula__sub-kr,.formula__desc,.odm__panel-desc,.magazine__desc,.footer p{font-size:16px!important}
