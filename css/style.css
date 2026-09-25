@@ -80,7 +80,7 @@ h1,h2,h3,h4,p{ margin:0; }
 .pill--solid:hover{ transform: translateY(-2px); background: linear-gradient(120deg, var(--teal), var(--teal-deep)); color:#0a0a0d; }
 .pill--outline{ background:transparent; color: var(--text); border-color: var(--line-strong); }
 .pill--outline:hover{ transform: translateY(-2px); border-color: var(--teal); color: var(--teal); }
-.pill--block{ display:flex; width:100%; }
+.pill--block{ display:flex; width:100%; margin-top:32px; }
 .pill svg{ width:15px; height:15px; }
 
 /* =========================================================
@@ -150,10 +150,11 @@ h1,h2,h3,h4,p{ margin:0; }
    INTRO  (hero statement + studio image, merged section)
    ========================================================= */
 .intro{ position:relative; padding: 96px 0 110px; overflow:hidden; background: var(--bg); }
-/* Mouse-REPELLED blended gradient — 6 independent radial-gradients, each
-   with its own base anchor (--gxN/--gyN) that gets pushed away from the
-   cursor (magnet-repulsion, see initRepelGradient in js/main.js) and eases
-   back to its base position on mouseleave. Pure color, no text/shapes. */
+/* CSS fallback gradient (no-WebGL / no-JS): 6 independent radial-gradients.
+   Hidden via JS once js/hero-gl.js confirms its WebGL canvas is live —
+   see .intro__gl below. Kept fully intact (including --gxN/--gyN) so it's
+   a complete, still-interactive experience on its own if WebGL is
+   unavailable. */
 .intro__art{
   position:absolute; inset:0; z-index:0; pointer-events:none;
   --gx1:30%; --gy1:28%; --gx2:72%; --gy2:22%; --gx3:68%; --gy3:60%;
@@ -168,8 +169,19 @@ h1,h2,h3,h4,p{ margin:0; }
   filter: blur(60px) saturate(1.1);
   opacity:.92;
 }
-.intro__art::after{
-  content:''; position:absolute; inset:0;
+/* WebGL canvas (js/hero-gl.js) — the primary hero background: a simplex-
+   noise shader ported from the supplied Velaris component, using the same
+   6 brand colors, with the mouse-repel interaction driving the shader's
+   domain warp instead of CSS custom properties. display:none until the
+   script confirms WebGL compiled/linked successfully. */
+.intro__gl{ position:absolute; inset:0; z-index:0; display:none; width:100%; height:100%; }
+/* Shared bottom mask for both layers above — fades the section's own
+   #08090D down from 0% opacity (top) to 100% (bottom) so neither the CSS
+   fallback nor the shader canvas bleeds into the next section's edge.
+   Sits above both background layers but below the actual text content
+   (.intro__inner is z-index:1). */
+.intro__mask{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
   background: radial-gradient(120% 90% at 50% 100%, var(--bg) 20%, transparent 70%);
 }
 
@@ -291,6 +303,15 @@ h1,h2,h3,h4,p{ margin:0; }
   filter: blur(80px) saturate(1.1);
   opacity:.6;
 }
+/* Bottom mask: fades the section's own default #08090D bg color in from 0%
+   (fully transparent, gradient shows through) at the top to 100% (fully
+   opaque) at the bottom, so the orb never bleeds into the next section's
+   edge. Painted above .feedback__art but still below the actual content
+   (.feedback > .container is z-index:1). */
+.feedback__art::after{
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(to bottom, rgba(8,9,13,0) 0%, var(--bg) 100%);
+}
 .feedback > .container{ position:relative; z-index:1; }
 .feedback__layout{ display:grid; grid-template-columns: 1fr 1fr; gap:64px; margin-top:56px; align-items:start; }
 
@@ -395,6 +416,11 @@ h1,h2,h3,h4,p{ margin:0; }
     radial-gradient(42% 42% at var(--gx3) var(--gy3), rgba(56,214,208,.94), rgba(25,184,186,.44) 48%, transparent 100%);
   background-blend-mode: overlay, screen, screen;
 }
+/* .footer::before is position:absolute (z-index:0), which — per normal CSS
+   stacking rules — paints ABOVE static in-flow siblings regardless of DOM
+   order. Without this, the logo/tagline/info row render invisibly underneath
+   the (now fully opaque, background-color-backed) gradient layer. */
+.footer > .container,.footer__watermark,.footer__copyright-row{ position:relative; z-index:1; }
 .footer__top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; padding-bottom:60px; border-bottom:1px solid var(--line); }
 .footer__logo{ font-family: var(--font-en); font-weight:700; font-size:26px; }
 .footer__logo span{ color: var(--orange); }
