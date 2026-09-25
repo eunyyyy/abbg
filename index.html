@@ -76,6 +76,10 @@
             <svg class="select-wrap__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
+        <div class="filter-field filter-field--search">
+          <label for="plist-search">프로젝트 검색</label>
+          <input type="search" id="plist-search" placeholder="프로젝트명·번호 검색">
+        </div>
       </div>
       <ul class="plist" data-reveal tabindex="0" aria-label="프로젝트 목록">
               <li class="plist__row" data-cover="img/covers/nexforge.jpg" data-category="테크·제조" data-name="NEXFORGE">
@@ -239,6 +243,8 @@
                 </a>
               </li>
       </ul>
+      <p class="plist-empty" id="plist-empty" hidden>검색 결과가 없습니다.</p>
+      <nav class="plist-pagination" id="plist-pagination" aria-label="프로젝트 목록 페이지"></nav>
     </div>
   </section>
 
@@ -280,9 +286,15 @@
             <input type="hidden" id="fb-project-name">
             <input type="hidden" id="fb-project-category">
 
-            <div class="field">
+            <div class="field feedback-dropzone" id="feedback-dropzone">
               <label for="fb-comment">의견</label>
               <textarea id="fb-comment" rows="4" maxlength="500" placeholder="이 프로젝트에 대한 생각을 남겨주세요." required></textarea>
+              <div class="feedback-attachments__tools">
+                <input type="file" id="fb-attachments" class="visually-hidden" multiple>
+                <button type="button" class="feedback-attach-btn" id="fb-attach-btn">파일·이미지 첨부</button>
+                <span>여기로 드래그해도 됩니다 · 최대 3개, 파일당 250KB</span>
+              </div>
+              <div id="fb-attachment-list" class="feedback-attachment-list" aria-live="polite"></div>
             </div>
             <div class="field">
               <label for="fb-author">이름 (선택)</label>
@@ -295,6 +307,7 @@
 
         <div class="feedback__history">
           <h3>실시간 피드백</h3>
+          <input type="search" id="feedback-history-search" class="feedback-history-search" placeholder="프로젝트·작성자·피드백 검색" aria-label="실시간 피드백 검색">
           <div id="history-list" class="history-list">
             <p class="history-empty">피드백을 불러오는 중입니다…</p>
           </div>

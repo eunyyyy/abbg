@@ -55,7 +55,7 @@ async function init() {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js');
     const { getAuth, onAuthStateChanged, signOut } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js');
     const {
-      getFirestore, collection, doc, setDoc, updateDoc, deleteDoc,
+      getFirestore, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc,
       onSnapshot, query, orderBy, serverTimestamp
     } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
 
@@ -71,7 +71,7 @@ async function init() {
       if (gateMsgEl) gateMsgEl.style.display = 'none';
       if (shellEl) shellEl.classList.add('is-ready');
       if (userEmailEl) userEmailEl.textContent = user.email || '';
-      boot({ db, collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp });
+      boot({ db, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp });
     });
 
     if (logoutBtn) {
@@ -111,156 +111,150 @@ function projectArchiveUrl(projectNumber, projectName) {
   return PROJECT_DOWNLOAD_RELEASE + 'project-' + encodeURIComponent(projectNumber) + '-' + slug + '.zip';
 }
 
+function showAdminToast(message) {
+  var toast = document.createElement('div');
+  toast.className = 'admin-toast'; toast.setAttribute('role', 'status'); toast.textContent = message;
+  document.body.appendChild(toast);
+  requestAnimationFrame(function () { toast.classList.add('is-visible'); });
+  setTimeout(function () { toast.classList.remove('is-visible'); setTimeout(function () { toast.remove(); }, 250); }, 2200);
+}
+
 function initFeedbackTab(fs) {
   var listEl = document.getElementById('fb-admin-list');
   var searchEl = document.getElementById('fb-search');
+  var categoryFilterEl = document.getElementById('fb-category-filter');
   var projectFilterEl = document.getElementById('fb-project-filter');
-  var allDocs = []; // [{ id, ...data }]
+  var statusFilterEl = document.getElementById('fb-status-filter');
+  var allDocs = [], repliesByFeedback = {}, projects = [], editingFeedbackId = null, legacyMigrations = {};
 
   function statusSelectHtml(d) {
     var current = STATUS_LABEL[d.status] ? d.status : 'pending';
-    return '<select class="admin-status-select" data-action="set-status" data-id="' + d.id + '">' +
-      Object.keys(STATUS_LABEL).map(function (key) {
-        return '<option value="' + key + '"' + (key === current ? ' selected' : '') + '>' + STATUS_LABEL[key] + '</option>';
-      }).join('') +
-      '</select>';
+    return '<select class="admin-status-select" data-action="set-status" data-id="' + d.id + '">' + Object.keys(STATUS_LABEL).map(function (key) {
+      return '<option value="' + key + '"' + (key === current ? ' selected' : '') + '>' + STATUS_LABEL[key] + '</option>';
+    }).join('') + '</select>';
   }
-
+  function attachmentHtml(items) {
+    if (!Array.isArray(items) || !items.length) return '';
+    return '<div class="admin-attachments">' + items.map(function (a, i) {
+      if (!a || typeof a.data !== 'string' || !/^data:(image\/(jpeg|png|webp|gif)|application\/pdf|text\/plain|application\/zip);/i.test(a.data)) return '';
+      return '<a href="' + escapeHtml(a.data) + '" download="' + escapeHtml(a.name || ('첨부파일 ' + (i + 1))) + '">' + escapeHtml(a.name || ('첨부파일 ' + (i + 1))) + '</a>';
+    }).join('') + '</div>';
+  }
+  function repliesHtml(feedbackId, legacyReply) {
+    var replies = (repliesByFeedback[feedbackId] || []).slice().sort(function (a, b) { return ((a.createdAt && a.createdAt.seconds) || 0) - ((b.createdAt && b.createdAt.seconds) || 0); });
+    var html = legacyReply ? '<div class="admin-thread__item is-admin"><b>이전 관리자 답글</b><p>' + escapeHtml(legacyReply) + '</p></div>' : '';
+    replies.forEach(function (reply) {
+      html += '<div class="admin-thread__item ' + (reply.role === 'admin' ? 'is-admin' : 'is-user') + '">' +
+        '<div><b>' + (reply.role === 'admin' ? '관리자 답글' : '사용자 리플') + '</b><small>' + formatDate(reply.createdAt) + '</small>' +
+        (reply.role === 'admin' ? '<span class="admin-thread__ack ' + (reply.acknowledged ? 'is-checked' : '') + '">' + (reply.acknowledged ? '사용자 확인 완료' : '사용자 미확인') + '</span>' : '') + '</div>' +
+        '<p>' + escapeHtml(reply.message || '') + '</p><button type="button" class="admin-thread__delete" data-action="delete-reply" data-feedback-id="' + feedbackId + '" data-reply-id="' + reply.id + '">삭제</button></div>';
+    });
+    return html ? '<div class="admin-thread">' + html + '</div>' : '';
+  }
   function render() {
-    // Preserve any reply text the admin is mid-typing (not yet saved) across
-    // re-renders — onSnapshot can fire for unrelated reasons (another row's
-    // status changed, a new feedback came in) while a draft is in progress.
     var drafts = {};
-    listEl.querySelectorAll('.admin-reply-box__input').forEach(function (ta) {
-      if (document.activeElement === ta) drafts[ta.dataset.id] = ta.value;
-    });
-
-    var term = (searchEl.value || '').trim().toLowerCase();
-    var projectNo = projectFilterEl.value;
-
+    listEl.querySelectorAll('.admin-reply-box__input').forEach(function (ta) { if (document.activeElement === ta || ta.value) drafts[ta.dataset.id] = ta.value; });
+    var term = searchEl.value.trim().toLowerCase(), category = categoryFilterEl.value, projectNo = projectFilterEl.value, status = statusFilterEl.value;
     var filtered = allDocs.filter(function (d) {
+      if (category && d.category !== category) return false;
       if (projectNo && d.projectNumber !== projectNo) return false;
-      if (term) {
-        var hay = ((d.comment || '') + ' ' + (d.author || '')).toLowerCase();
-        if (hay.indexOf(term) === -1) return false;
-      }
-      return true;
+      if (status && d.status !== status) return false;
+      var replyText = (repliesByFeedback[d.id] || []).map(function (r) { return r.message || ''; }).join(' ');
+      return !term || ((d.comment || '') + ' ' + (d.author || '') + ' ' + (d.projectName || '') + ' ' + replyText).toLowerCase().indexOf(term) !== -1;
     });
-
-    if (!filtered.length) {
-      listEl.innerHTML = '<p class="admin-empty">표시할 피드백이 없습니다.</p>';
-      return;
-    }
-
+    if (!filtered.length) { listEl.innerHTML = '<p class="admin-empty">표시할 피드백이 없습니다.</p>'; return; }
     listEl.innerHTML = filtered.map(function (d) {
-      var author = d.author ? escapeHtml(d.author) : '익명';
-      var replyVal = d.reply ? escapeHtml(d.reply) : '';
-      var downloadHtml = d.status === 'done'
-        ? '<a class="admin-project-download" href="' + projectArchiveUrl(d.projectNumber || '', d.projectName || '') + '" download>' +
-            '<span aria-hidden="true">&#8595;</span> 프로젝트 ZIP 다운로드' +
-          '</a>'
-        : '<p class="admin-project-download-note">반영 완료로 변경하면 프로젝트 ZIP 다운로드가 활성화됩니다.</p>';
-      return (
-        '<div class="admin-fb-row" data-id="' + d.id + '">' +
-          '<div>' +
-            '<div class="admin-fb-row__meta">' +
-              '<span class="admin-fb-row__project">' + escapeHtml(d.projectNumber || '') + ' · ' + escapeHtml(displayProjectName(d.projectNumber, d.projectName || '')) + '</span>' +
-              statusSelectHtml(d) +
-              '<span>' + formatDate(d.createdAt) + '</span>' +
-              '<span class="admin-fb-row__author">' + author + '</span>' +
-            '</div>' +
-            '<div class="admin-fb-row__comment">' + escapeHtml(d.comment || '') + '</div>' +
-            '<div class="admin-reply-box">' +
-              '<textarea class="admin-reply-box__input" data-id="' + d.id + '" placeholder="사용자에게 보여질 답변을 입력하세요...">' + replyVal + '</textarea>' +
-              '<button type="button" class="admin-mini-btn" data-action="save-reply" data-id="' + d.id + '">답글 저장</button>' +
-            '</div>' +
-            downloadHtml +
-          '</div>' +
-          '<button type="button" class="admin-danger-btn" data-action="delete-feedback" data-id="' + d.id + '">삭제</button>' +
-        '</div>'
-      );
+      var commentHtml = editingFeedbackId === d.id
+        ? '<div class="admin-comment-edit"><textarea maxlength="500">' + escapeHtml(d.comment || '') + '</textarea><div><button type="button" class="admin-mini-btn" data-action="save-comment" data-id="' + d.id + '">저장</button><button type="button" class="admin-mini-btn" data-action="cancel-comment">취소</button></div></div>'
+        : '<div class="admin-fb-row__comment">' + escapeHtml(d.comment || '') + ' <button type="button" class="admin-inline-edit" data-action="edit-comment" data-id="' + d.id + '">수정</button></div>';
+      var downloadHtml = d.status === 'done' ? '<a class="admin-project-download" href="' + projectArchiveUrl(d.projectNumber || '', d.projectName || '') + '" download><span aria-hidden="true">↓</span> 프로젝트 ZIP 다운로드</a>' : '<p class="admin-project-download-note">반영 완료로 변경하면 프로젝트 ZIP 다운로드가 활성화됩니다.</p>';
+      return '<div class="admin-fb-row" data-id="' + d.id + '"><div><div class="admin-fb-row__meta"><span class="admin-fb-row__project">' + escapeHtml(d.projectNumber || '') + ' · ' + escapeHtml(displayProjectName(d.projectNumber, d.projectName || '')) + '</span>' + statusSelectHtml(d) + '<span>' + formatDate(d.createdAt) + '</span><span class="admin-fb-row__author">' + escapeHtml(d.author || '익명') + '</span></div>' +
+        commentHtml + attachmentHtml(d.attachments) + repliesHtml(d.id, d.reply) +
+        '<div class="admin-reply-box"><textarea class="admin-reply-box__input" data-id="' + d.id + '" maxlength="500" placeholder="새 관리자 답글을 입력하세요..."></textarea><button type="button" class="admin-mini-btn" data-action="add-reply" data-id="' + d.id + '">답글 추가</button></div>' + downloadHtml +
+        '</div><button type="button" class="admin-danger-btn" data-action="delete-feedback" data-id="' + d.id + '">삭제</button></div>';
     }).join('');
-
-    Object.keys(drafts).forEach(function (id) {
-      var ta = listEl.querySelector('.admin-reply-box__input[data-id="' + id + '"]');
-      if (ta) { ta.value = drafts[id]; ta.focus(); }
-    });
+    Object.keys(drafts).forEach(function (id) { var ta = listEl.querySelector('.admin-reply-box__input[data-id="' + id + '"]'); if (ta) ta.value = drafts[id]; });
+  }
+  function updateProjectOptions() {
+    var current = projectFilterEl.value, category = categoryFilterEl.value;
+    var scoped = projects.filter(function (p) { return !category || p.category === category; });
+    projectFilterEl.innerHTML = '<option value="">전체 2차 카테고리</option>' + scoped.map(function (p) { return '<option value="' + escapeHtml(p.number) + '">' + escapeHtml(p.number) + ' · ' + escapeHtml(p.name) + '</option>'; }).join('');
+    if (scoped.some(function (p) { return p.number === current; })) projectFilterEl.value = current;
   }
 
-  var q = fs.query(fs.collection(fs.db, 'feedback'), fs.orderBy('createdAt', 'desc'));
-  fs.onSnapshot(q, function (snapshot) {
-    allDocs = [];
-    snapshot.forEach(function (d) { allDocs.push(Object.assign({ id: d.id }, d.data())); });
-    render();
-  }, function (err) {
-    console.error('admin feedback onSnapshot error', err);
-    listEl.innerHTML = '<p class="admin-empty">피드백을 불러오는 중 문제가 발생했습니다.</p>';
-  });
+  fs.onSnapshot(fs.query(fs.collection(fs.db, 'feedback'), fs.orderBy('createdAt', 'desc')), function (snapshot) {
+    allDocs = []; snapshot.forEach(function (d) { allDocs.push(Object.assign({ id: d.id }, d.data())); }); render();
+    allDocs.forEach(async function (item) {
+      if (!item.reply || legacyMigrations[item.id]) return;
+      legacyMigrations[item.id] = true;
+      try {
+        await fs.setDoc(fs.doc(fs.db, 'feedback', item.id, 'replies', 'legacy-reply'), {
+          feedbackId: item.id, role: 'admin', author: '관리자', parentReplyId: '', message: item.reply,
+          acknowledged: false, createdAt: fs.serverTimestamp()
+        });
+        await fs.updateDoc(fs.doc(fs.db, 'feedback', item.id), { reply: '', repliedAt: fs.serverTimestamp() });
+      } catch (err) { console.error('legacy reply migration error', err); delete legacyMigrations[item.id]; }
+    });
+  }, function (err) { console.error('admin feedback onSnapshot error', err); listEl.innerHTML = '<p class="admin-empty">피드백을 불러오는 중 문제가 발생했습니다.</p>'; });
+  fs.onSnapshot(fs.collectionGroup(fs.db, 'replies'), function (snapshot) {
+    repliesByFeedback = {};
+    snapshot.forEach(function (d) { var data = Object.assign({ id: d.id }, d.data()); if (!repliesByFeedback[data.feedbackId]) repliesByFeedback[data.feedbackId] = []; repliesByFeedback[data.feedbackId].push(data); }); render();
+  }, function (err) { console.error('admin replies onSnapshot error', err); });
 
   listEl.addEventListener('click', async function (e) {
-    var delBtn = e.target.closest('[data-action="delete-feedback"]');
-    var replyBtn = e.target.closest('[data-action="save-reply"]');
-
-    if (delBtn) {
-      var id = delBtn.dataset.id;
+    var button = e.target.closest('[data-action]'); if (!button) return;
+    var action = button.dataset.action, id = button.dataset.id;
+    if (action === 'edit-comment') { editingFeedbackId = id; render(); return; }
+    if (action === 'cancel-comment') { editingFeedbackId = null; render(); return; }
+    if (action === 'save-comment') {
+      var text = button.closest('.admin-comment-edit').querySelector('textarea').value.trim(); if (!text) return;
+      button.disabled = true;
+      try { await fs.updateDoc(fs.doc(fs.db, 'feedback', id), { comment: text, updatedAt: fs.serverTimestamp() }); editingFeedbackId = null; showAdminToast('수정했습니다.'); }
+      catch (err) { console.error('feedback edit error', err); alert('수정에 실패했습니다.'); button.disabled = false; }
+      return;
+    }
+    if (action === 'delete-feedback') {
       if (!confirm('이 피드백을 삭제할까요? 되돌릴 수 없습니다.')) return;
-      delBtn.disabled = true;
+      button.disabled = true;
       try {
+        await Promise.all((repliesByFeedback[id] || []).map(function (reply) {
+          return fs.deleteDoc(fs.doc(fs.db, 'feedback', id, 'replies', reply.id));
+        }));
         await fs.deleteDoc(fs.doc(fs.db, 'feedback', id));
-      } catch (err) {
-        console.error('feedback delete error', err);
-        alert('삭제에 실패했습니다. 잠시 후 다시 시도해주세요.');
-        delBtn.disabled = false;
+        showAdminToast('삭제했습니다.');
       }
+      catch (err) { console.error('feedback delete error', err); alert('삭제에 실패했습니다.'); button.disabled = false; }
       return;
     }
-
-    if (replyBtn) {
-      var rid = replyBtn.dataset.id;
-      var textarea = listEl.querySelector('.admin-reply-box__input[data-id="' + rid + '"]');
-      var text = (textarea && textarea.value || '').trim();
-      replyBtn.disabled = true;
-      try {
-        await fs.updateDoc(fs.doc(fs.db, 'feedback', rid), {
-          reply: text,
-          repliedAt: fs.serverTimestamp()
-        });
-      } catch (err) {
-        console.error('feedback reply save error', err);
-        alert('답글 저장에 실패했습니다.');
-      } finally {
-        replyBtn.disabled = false;
-      }
+    if (action === 'add-reply') {
+      var textarea = listEl.querySelector('.admin-reply-box__input[data-id="' + id + '"]'), text = textarea.value.trim(); if (!text) return;
+      button.disabled = true;
+      try { await fs.addDoc(fs.collection(fs.db, 'feedback', id, 'replies'), { feedbackId: id, role: 'admin', author: '관리자', parentReplyId: '', message: text, acknowledged: false, createdAt: fs.serverTimestamp() }); textarea.value = ''; showAdminToast('답글이 추가되었습니다.'); }
+      catch (err) { console.error('feedback reply add error', err); alert('답글 등록에 실패했습니다.'); }
+      finally { button.disabled = false; }
       return;
+    }
+    if (action === 'delete-reply') {
+      if (!confirm('이 답글을 삭제할까요?')) return;
+      button.disabled = true;
+      try { await fs.deleteDoc(fs.doc(fs.db, 'feedback', button.dataset.feedbackId, 'replies', button.dataset.replyId)); showAdminToast('삭제했습니다.'); }
+      catch (err) { console.error('reply delete error', err); alert('삭제에 실패했습니다.'); button.disabled = false; }
     }
   });
-
   listEl.addEventListener('change', async function (e) {
-    var sel = e.target.closest('[data-action="set-status"]');
-    if (!sel) return;
-    var id = sel.dataset.id;
-    var newStatus = sel.value;
+    var sel = e.target.closest('[data-action="set-status"]'); if (!sel) return;
     sel.disabled = true;
-    try {
-      await fs.updateDoc(fs.doc(fs.db, 'feedback', id), { status: newStatus });
-    } catch (err) {
-      console.error('feedback status update error', err);
-      alert('상태 변경에 실패했습니다.');
-    } finally {
-      sel.disabled = false;
-    }
+    try { await fs.updateDoc(fs.doc(fs.db, 'feedback', sel.dataset.id), { status: sel.value }); showAdminToast('수정했습니다.'); }
+    catch (err) { console.error('feedback status update error', err); alert('상태 변경에 실패했습니다.'); }
+    finally { sel.disabled = false; }
   });
-
-  searchEl.addEventListener('input', render);
-  projectFilterEl.addEventListener('change', render);
-
-  // Populate the project filter dropdown once project data is available.
-  window.__aiwebPopulateFeedbackProjectFilter = function (projects) {
-    var current = projectFilterEl.value;
-    projectFilterEl.innerHTML = '<option value="">전체 프로젝트</option>' + projects.map(function (p) {
-      return '<option value="' + escapeHtml(p.number) + '">' + escapeHtml(p.number) + ' · ' + escapeHtml(p.name) + '</option>';
-    }).join('');
-    projectFilterEl.value = current;
+  searchEl.addEventListener('input', render); statusFilterEl.addEventListener('change', render); projectFilterEl.addEventListener('change', render);
+  categoryFilterEl.addEventListener('change', function () { updateProjectOptions(); render(); });
+  window.__aiwebPopulateFeedbackProjectFilter = function (items) {
+    projects = items.slice();
+    var categories = Array.from(new Set(projects.map(function (p) { return p.category; }).filter(Boolean)));
+    categoryFilterEl.innerHTML = '<option value="">전체 1차 카테고리</option>' + categories.map(function (name) { return '<option value="' + escapeHtml(name) + '">' + escapeHtml(name) + '</option>'; }).join('');
+    updateProjectOptions();
   };
 }
 

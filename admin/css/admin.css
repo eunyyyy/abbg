@@ -112,6 +112,21 @@ body.admin-body{
 .admin-fb-row__project{ color: var(--teal); font-weight:600; font-family: var(--font-en); }
 .admin-fb-row__author{ color: var(--text-dim); }
 .admin-fb-row__comment{ font-size:14.5px; color: var(--text); line-height:1.6; }
+.admin-inline-edit,.admin-thread__delete{ margin-left:7px; color:var(--teal); background:none; font-size:11px; text-decoration:underline; text-underline-offset:3px; }
+.admin-comment-edit textarea{ width:100%; min-height:84px; padding:10px 12px; resize:vertical; border:1px solid var(--teal); border-radius:10px; background:var(--bg); color:var(--text); font-family:var(--font-kr); }
+.admin-comment-edit > div{ display:flex; gap:7px; margin-top:7px; }
+.admin-attachments{ display:flex; gap:7px; flex-wrap:wrap; margin-top:9px; }
+.admin-attachments a{ padding:5px 9px; border:1px solid var(--line); border-radius:8px; color:var(--teal); font-size:11px; }
+.admin-thread{ display:flex; flex-direction:column; gap:7px; margin-top:12px; max-width:650px; }
+.admin-thread__item{ position:relative; padding:10px 11px; border-radius:9px; background:rgba(255,255,255,.035); border-left:2px solid var(--orange); }
+.admin-thread__item.is-admin{ border-left-color:var(--teal); background:rgba(45,212,191,.05); }
+.admin-thread__item > div{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.admin-thread__item b{ color:var(--text-dim); font-size:11px; }
+.admin-thread__item small{ color:var(--text-faint); font-size:10px; }
+.admin-thread__item p{ margin-top:5px; color:var(--text); font-size:13px; line-height:1.55; }
+.admin-thread__ack{ padding:2px 6px; border-radius:999px; background:rgba(255,255,255,.06); color:var(--text-faint); font-size:9px; }
+.admin-thread__ack.is-checked{ background:rgba(45,212,191,.12); color:var(--teal); }
+.admin-thread__delete{ position:absolute; right:9px; top:8px; color:#ff9a8c; }
 
 .admin-status-select{
   font-family: var(--font-en); font-size:11px; font-weight:700; letter-spacing:.02em;
@@ -177,6 +192,8 @@ body.admin-body{
 .admin-mini-btn:hover{ color: var(--text); border-color: var(--teal); }
 
 .admin-seed-row{ display:flex; justify-content:flex-end; margin-bottom:14px; }
+.admin-toast{ position:fixed; right:24px; bottom:24px; z-index:1200; padding:12px 16px; border:1px solid rgba(45,212,191,.35); border-radius:11px; background:#14181b; color:var(--text); box-shadow:0 16px 45px rgba(0,0,0,.45); font-size:13px; opacity:0; transform:translateY(12px); transition:.22s; pointer-events:none; }
+.admin-toast.is-visible{ opacity:1; transform:translateY(0); }
 
 @media (max-width: 760px){
   .admin-project-form{ grid-template-columns: 1fr 1fr; }

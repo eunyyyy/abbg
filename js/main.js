@@ -165,24 +165,7 @@
     return list.filter(function (p) { return p.category === industry; });
   }
 
-  var PROJECT_LIST_VISIBLE_LIMIT = 15;
-  function syncProjectListScrollLimit(plistEl) {
-    window.requestAnimationFrame(function () {
-      var visibleRows = Array.prototype.filter.call(plistEl.querySelectorAll('.plist__row'), function (row) {
-        return row.style.display !== 'none';
-      });
-      if (visibleRows.length > PROJECT_LIST_VISIBLE_LIMIT) {
-        var visibleHeight = visibleRows.slice(0, PROJECT_LIST_VISIBLE_LIMIT).reduce(function (sum, row) {
-          return sum + row.offsetHeight;
-        }, 0);
-        plistEl.style.setProperty('--plist-visible-height', (visibleHeight + plistEl.clientTop) + 'px');
-        plistEl.classList.add('is-scrollable');
-      } else {
-        plistEl.classList.remove('is-scrollable');
-        plistEl.style.removeProperty('--plist-visible-height');
-      }
-    });
-  }
+  var PROJECTS_PER_PAGE = 10;
 
   /* =========================================================
      Project-List section: industry + project filter dropdowns
@@ -190,8 +173,12 @@
   function initPlistFilters() {
     var industrySel = document.getElementById('plist-industry-filter');
     var projectSel = document.getElementById('plist-project-filter');
+    var searchInput = document.getElementById('plist-search');
     var plistEl = document.querySelector('.plist');
-    if (!industrySel || !projectSel || !plistEl) return;
+    var paginationEl = document.getElementById('plist-pagination');
+    var emptyEl = document.getElementById('plist-empty');
+    var currentPage = 1;
+    if (!industrySel || !projectSel || !searchInput || !plistEl || !paginationEl) return;
 
     function populateIndustryOptions() {
       industrySel.innerHTML = INDUSTRIES.map(function (name) {
@@ -215,14 +202,24 @@
     function applyFilter() {
       var industry = industrySel.value;
       var projectNo = projectSel.value;
-      var rows = plistEl.querySelectorAll('.plist__row');
-      rows.forEach(function (row) {
+      var term = searchInput.value.trim().toLowerCase();
+      var rows = Array.prototype.slice.call(plistEl.querySelectorAll('.plist__row'));
+      var matched = rows.filter(function (row) {
         var matchesIndustry = industry === '전체' || row.dataset.category === industry;
         var matchesProject = !projectNo || row.querySelector('.plist__no').textContent.trim() === projectNo;
-        row.style.display = matchesIndustry && matchesProject ? '' : 'none';
+        var hay = (row.dataset.name + ' ' + row.dataset.category + ' ' + row.querySelector('.plist__no').textContent).toLowerCase();
+        return matchesIndustry && matchesProject && (!term || hay.indexOf(term) !== -1);
       });
-      plistEl.scrollTop = 0;
-      syncProjectListScrollLimit(plistEl);
+      var pageCount = Math.max(1, Math.ceil(matched.length / PROJECTS_PER_PAGE));
+      if (currentPage > pageCount) currentPage = pageCount;
+      rows.forEach(function (row) { row.style.display = 'none'; });
+      matched.slice((currentPage - 1) * PROJECTS_PER_PAGE, currentPage * PROJECTS_PER_PAGE).forEach(function (row) { row.style.display = ''; });
+      if (emptyEl) emptyEl.hidden = matched.length > 0;
+      paginationEl.innerHTML = matched.length > PROJECTS_PER_PAGE
+        ? '<button type="button" data-page="prev"' + (currentPage === 1 ? ' disabled' : '') + '>이전</button>' +
+          Array.from({ length: pageCount }, function (_, i) { var page = i + 1; return '<button type="button" data-page="' + page + '" class="' + (page === currentPage ? 'is-active' : '') + '" aria-label="' + page + '페이지">' + page + '</button>'; }).join('') +
+          '<button type="button" data-page="next"' + (currentPage === pageCount ? ' disabled' : '') + '>다음</button>'
+        : '';
     }
 
     populateIndustryOptions();
@@ -230,16 +227,26 @@
     applyFilter();
 
     industrySel.addEventListener('change', function () {
+      currentPage = 1;
       populateProjectOptions(industrySel.value);
       applyFilter();
     });
-    projectSel.addEventListener('change', applyFilter);
-    window.addEventListener('resize', function () { syncProjectListScrollLimit(plistEl); });
+    projectSel.addEventListener('change', function () { currentPage = 1; applyFilter(); });
+    searchInput.addEventListener('input', function () { currentPage = 1; applyFilter(); });
+    paginationEl.addEventListener('click', function (e) {
+      var button = e.target.closest('[data-page]'); if (!button || button.disabled) return;
+      if (button.dataset.page === 'prev') currentPage--;
+      else if (button.dataset.page === 'next') currentPage++;
+      else currentPage = Number(button.dataset.page);
+      applyFilter();
+      plistEl.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
+    });
 
     window.__aiwebRebindPlistFilters = function () {
       populateIndustryOptions();
       industrySel.value = '전체';
       populateProjectOptions('전체');
+      currentPage = 1;
       applyFilter();
     };
   }

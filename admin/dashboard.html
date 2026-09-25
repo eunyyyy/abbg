@@ -53,10 +53,19 @@
       </div>
 
       <div class="admin-filters">
-        <input type="text" id="fb-search" placeholder="댓글/작성자 검색…">
-        <select id="fb-project-filter">
-          <option value="">전체 프로젝트</option>
+        <select id="fb-category-filter" aria-label="1차 카테고리">
+          <option value="">전체 1차 카테고리</option>
         </select>
+        <select id="fb-project-filter">
+          <option value="">전체 2차 카테고리</option>
+        </select>
+        <select id="fb-status-filter" aria-label="피드백 상태">
+          <option value="">전체 피드백 상태</option>
+          <option value="pending">반영 대기</option>
+          <option value="in_progress">진행중</option>
+          <option value="done">반영 완료</option>
+        </select>
+        <input type="text" id="fb-search" placeholder="피드백·작성자·답글 검색…" aria-label="검색어">
       </div>
 
       <div id="fb-admin-list" class="admin-fb-list">

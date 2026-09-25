@@ -1,10 +1,28 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function validAttachment(a) {
+      return a is map &&
+        a.keys().hasOnly(['name', 'type', 'size', 'data']) &&
+        a.name is string && a.name.size() > 0 && a.name.size() <= 120 &&
+        a.type is string &&
+        a.type.matches('^(image/(jpeg|png|webp|gif)|application/pdf|text/plain|application/zip)$') &&
+        a.size is int && a.size > 0 && a.size <= 256000 &&
+        a.data is string && a.data.size() <= 350000;
+    }
+
+    function validAttachments(data) {
+      return !('attachments' in data) ||
+        (data.attachments is list && data.attachments.size() <= 3 &&
+          (data.attachments.size() < 1 || validAttachment(data.attachments[0])) &&
+          (data.attachments.size() < 2 || validAttachment(data.attachments[1])) &&
+          (data.attachments.size() < 3 || validAttachment(data.attachments[2])));
+    }
+
     match /feedback/{docId} {
       allow read: if true;
       allow create: if
-        request.resource.data.keys().hasOnly(['projectNumber','projectName','category','comment','author','status','createdAt']) &&
+        request.resource.data.keys().hasOnly(['projectNumber','projectName','category','comment','author','status','createdAt','attachments']) &&
         request.resource.data.projectNumber is string &&
         request.resource.data.projectNumber.size() == 2 &&
         request.resource.data.projectName is string &&
@@ -15,16 +33,46 @@ service cloud.firestore {
         request.resource.data.comment.size() > 0 && request.resource.data.comment.size() <= 500 &&
         (!('author' in request.resource.data) ||
           (request.resource.data.author is string && request.resource.data.author.size() <= 40)) &&
+        validAttachments(request.resource.data) &&
         // every new feedback starts out 대기중(pending) — only an admin update can move it on
         request.resource.data.status == 'pending' &&
         request.resource.data.createdAt == request.time;
-      // 상태값(대기중/진행중/반영완료)과 답글은 로그인한 관리자만 수정할 수 있고,
-      // 그 외 필드(작성자가 쓴 내용)는 절대 건드릴 수 없습니다.
       allow update: if request.auth != null &&
-        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','reply','repliedAt']) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','comment','updatedAt','reply','repliedAt']) &&
+        request.resource.data.comment is string &&
+        request.resource.data.comment.size() > 0 && request.resource.data.comment.size() <= 500 &&
         request.resource.data.status in ['pending','in_progress','done'];
-      // 로그인한 관리자(admin/ 대시보드)만 피드백을 삭제할 수 있습니다.
       allow delete: if request.auth != null;
+
+      match /replies/{replyId} {
+        allow read: if true;
+        allow create: if
+          request.resource.data.keys().hasOnly(['feedbackId','role','author','parentReplyId','message','acknowledged','createdAt']) &&
+          request.resource.data.feedbackId == docId &&
+          request.resource.data.message is string &&
+          request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 500 &&
+          request.resource.data.createdAt == request.time &&
+          (
+            (request.auth != null && request.resource.data.role == 'admin' &&
+              request.resource.data.parentReplyId == '' && request.resource.data.acknowledged == false) ||
+            (request.auth == null && request.resource.data.role == 'user' &&
+              request.resource.data.parentReplyId is string && request.resource.data.parentReplyId.size() > 0 &&
+              get(/databases/$(database)/documents/feedback/$(docId)/replies/$(request.resource.data.parentReplyId)).data.role == 'admin' &&
+              !('acknowledged' in request.resource.data))
+          );
+        allow update: if
+          (request.auth != null) ||
+          (request.auth == null && resource.data.role == 'admin' &&
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['acknowledged','acknowledgedAt']) &&
+            request.resource.data.acknowledged == true &&
+            request.resource.data.acknowledgedAt == request.time);
+        allow delete: if request.auth != null;
+      }
+    }
+
+    // collectionGroup('replies') 실시간 조회를 위한 재귀 읽기 규칙입니다.
+    match /{path=**}/replies/{replyId} {
+      allow read: if true;
     }
 
     match /projects/{docId} {
