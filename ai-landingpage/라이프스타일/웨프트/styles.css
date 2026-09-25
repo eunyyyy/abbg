@@ -760,7 +760,7 @@ body.nav-locked{overflow:hidden;}
   width:100%;
   height:clamp(500px,57vw,760px);
   padding-inline:clamp(18px,3.1vw,48px);
-  gap:12px;
+  gap:0;
   overflow:hidden;
   overscroll-behavior:contain;
   touch-action:pan-y;
@@ -834,8 +834,15 @@ body.nav-locked{overflow:hidden;}
 .footer__legal{margin-top:26px;padding-top:0;border-top:0;color:var(--s-300);font-size:14px}
 .footer__emblem,.footer__tagline{display:none}
 
+.promo__tile{
+  align-items:flex-end;
+  justify-content:flex-start;
+  text-align:right;
+}
+.promo__copy{margin-top:32px;}
+
 @media (max-width:1024px){
-  .poster-stack{gap:8px;height:620px}
+  .poster-stack{gap:0;height:620px}
   .poster-panel{min-width:48px}
   .footer__grid{grid-template-columns:1fr 1fr}
 }
@@ -850,7 +857,7 @@ body.nav-locked{overflow:hidden;}
     height:68vh;
     min-height:460px;
     max-height:620px;
-    gap:8px;
+    gap:0;
     padding-inline:18px;
     overflow-x:auto;
     scroll-snap-type:x mandatory;

@@ -182,7 +182,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
   right:calc(var(--gutter) * (1 - var(--p)));
   bottom:calc(12% * (1 - var(--p)));
   left:calc(52% * (1 - var(--p)));
-  border-radius:calc(var(--radius-lg) * (1 - var(--p))) 0 0 calc(var(--radius-lg) * (1 - var(--p)));
+  border-radius:calc(var(--radius-lg) * (1 - var(--p)));
 }
 .hero__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:20% 50%;}
 .hero__media::after{content:"";position:absolute;inset:0;background:var(--brand-primary-900);
@@ -197,7 +197,7 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 .about__stats{grid-column:7/13;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);align-content:start;
   margin-top:var(--space-9);}
 .stat{padding:var(--space-6) var(--space-5);border:var(--border-1);border-radius:var(--radius-md);}
-.stat b{display:flex;align-items:baseline;gap:2px;color:var(--brand-primary-600);}
+.stat b{display:flex;align-items:baseline;gap:2px;color:var(--brand-primary-600);white-space:nowrap;}
 .stat__num{font-size:16px;font-weight:700;color:var(--brand-primary-600);}
 .stat__unit{font-size:14px;}
 .stat > span{display:block;margin-top:var(--space-2);font-size:14px;color:var(--text-subtle);}
@@ -488,4 +488,46 @@ h4,.h3{font-size:var(--fs-h3);font-weight:var(--fw-strong);line-height:var(--lh-
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;}
   .marquee__row--ltr,.marquee__row--rtl{animation:none;}
+}
+
+/* =========================================================
+   2026-09-26 feedback revision
+   ========================================================= */
+.hero__title{font-size:32px;max-width:720px;}
+.hero__desc{max-width:none;}
+.stat__num{font-size:40px;line-height:1;font-weight:700;}
+.stat__unit{font-size:16px;}
+
+/* All menu categories share the burger cutout interaction. */
+.menu-carousel--auto .menu-carousel__circle{background:transparent;}
+.menu-carousel--auto .menu-carousel__item:hover .menu-carousel__circle{
+  background:var(--brand-secondary-200);
+  transform:scale(1.04);
+}
+.menu-carousel--auto .menu-carousel__circle img{
+  width:88%;height:88%;object-fit:contain;
+  filter:drop-shadow(0 10px 16px rgba(0,0,0,.16));
+}
+.menu-carousel--auto .menu-carousel__item:hover .menu-carousel__circle img{transform:scale(1.5);}
+
+/* Extra mask breathing room keeps scaled cards intact; edge fades blend the loop. */
+.event-track-wrap{position:relative;padding:40px 56px;margin:-32px 0;}
+.event-track-wrap::before,.event-track-wrap::after{
+  content:"";position:absolute;z-index:5;top:0;bottom:0;width:96px;pointer-events:none;
+}
+.event-track-wrap::before{left:0;background:linear-gradient(90deg,#fff 8%,rgba(255,255,255,0));}
+.event-track-wrap::after{right:0;background:linear-gradient(270deg,#fff 8%,rgba(255,255,255,0));}
+.event-card{transform-origin:center;}
+
+.signature__copy--left h2{text-align:right;}
+
+@media (max-width:768px){
+  .hero__title{font-size:32px;}
+  .hero__desc{font-size:15px;line-height:1.65;}
+  .stat__num{font-size:32px;}
+  .stat__unit{font-size:14px;}
+  .event-track-wrap{padding:28px 22px;margin:-20px 0;}
+  .event-track-wrap::before,.event-track-wrap::after{width:44px;}
+  .signature__copy--left{width:100%;justify-self:stretch;padding-right:24px;}
+  .signature__copy--left h2{text-align:right;}
 }
