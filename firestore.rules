@@ -21,19 +21,8 @@ service cloud.firestore {
       // 상태값(대기중/진행중/반영완료)과 답글은 로그인한 관리자만 수정할 수 있고,
       // 그 외 필드(작성자가 쓴 내용)는 절대 건드릴 수 없습니다.
       allow update: if request.auth != null &&
-        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
-          'status','reply','repliedAt',
-          'attachmentName','attachmentPath','attachmentSize','attachmentUpdatedAt'
-        ]) &&
-        request.resource.data.status in ['pending','in_progress','done'] &&
-        (!('attachmentPath' in request.resource.data) || request.resource.data.attachmentPath == null || (
-          request.resource.data.keys().hasAll(['attachmentName','attachmentPath','attachmentSize','attachmentUpdatedAt']) &&
-          request.resource.data.attachmentName is string &&
-          request.resource.data.attachmentName.size() > 0 && request.resource.data.attachmentName.size() <= 180 &&
-          request.resource.data.attachmentPath == 'feedback-files/' + docId + '/site-files.zip' &&
-          request.resource.data.attachmentSize is int &&
-          request.resource.data.attachmentSize > 0 && request.resource.data.attachmentSize <= 104857600
-        ));
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','reply','repliedAt']) &&
+        request.resource.data.status in ['pending','in_progress','done'];
       // 로그인한 관리자(admin/ 대시보드)만 피드백을 삭제할 수 있습니다.
       allow delete: if request.auth != null;
     }

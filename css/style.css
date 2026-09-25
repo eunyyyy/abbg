@@ -367,16 +367,6 @@ h1,h2,h3,h4,p{ margin:0; }
   font-size:13.5px; color: var(--text-dim); line-height:1.6;
 }
 .history-item__reply-label{ display:block; font-family: var(--font-en); font-size:11px; font-weight:700; letter-spacing:.06em; color: var(--teal); margin-bottom:5px; text-transform:uppercase; }
-.history-item__attachment{
-  align-self:flex-start; display:inline-flex; align-items:center; gap:8px; margin-top:4px;
-  padding:9px 13px; border:1px solid rgba(45,212,191,.35); border-radius:999px;
-  background:rgba(45,212,191,.08); color:var(--teal); font-family:var(--font-kr); font-size:12.5px; font-weight:600;
-  cursor:pointer; transition:background .2s, border-color .2s, color .2s;
-}
-.history-item__attachment:hover{ background:rgba(45,212,191,.16); border-color:var(--teal); color:var(--text); }
-.history-item__attachment:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
-.history-item__attachment:disabled{ opacity:.55; cursor:wait; }
-.history-item__attachment small{ font-family:var(--font-en); font-size:9px; letter-spacing:.08em; opacity:.72; }
 
 /* Custom circular cursor shown while hovering a feedback history card —
    only for "done" (clickable → project link) and "pending" (informational)

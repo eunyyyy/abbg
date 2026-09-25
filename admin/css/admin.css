@@ -127,20 +127,6 @@ body.admin-body{
 }
 .admin-reply-box__input:focus{ outline:none; border-color: var(--teal); }
 .admin-reply-box .admin-mini-btn{ align-self:flex-start; }
-.admin-attachment{
-  margin-top:12px; max-width:620px; padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--bg);
-}
-.admin-attachment__head,.admin-attachment__actions{ display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
-.admin-attachment__head{ justify-content:space-between; margin-bottom:9px; }
-.admin-attachment__title{ font-size:12px; font-weight:600; color:var(--text-dim); }
-.admin-attachment__title small{ margin-left:5px; color:var(--text-faint); font-weight:400; }
-.admin-attachment__input{ max-width:230px; color:var(--text-faint); font-size:11.5px; }
-.admin-attachment__input::file-selector-button{ display:none; }
-.admin-attachment__visibility{ font-size:10.5px; color:#ffb98f; }
-.admin-attachment__visibility.is-public{ color:var(--teal); }
-.admin-attachment__file,.admin-attachment__status{ margin-top:7px; font-size:11.5px; color:var(--text-faint); word-break:break-all; }
-.admin-attachment__status:empty{ display:none; }
-.admin-mini-btn.is-danger{ color:#ff9a8c; border-color:rgba(232,67,47,.35); }
 .admin-danger-btn{
   font-family: var(--font-en); font-size:12px; font-weight:600; color:#ff9a8c;
   background: rgba(232,67,47,.1); border:1px solid rgba(232,67,47,.35); border-radius:999px; padding:8px 14px;

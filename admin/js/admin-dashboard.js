@@ -58,14 +58,10 @@ async function init() {
       getFirestore, collection, doc, setDoc, updateDoc, deleteDoc,
       onSnapshot, query, orderBy, serverTimestamp
     } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
-    const {
-      getStorage, ref, uploadBytesResumable, getBlob, deleteObject
-    } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js');
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const storage = getStorage(app);
 
     onAuthStateChanged(auth, function (user) {
       if (!user) {
@@ -75,10 +71,7 @@ async function init() {
       if (gateMsgEl) gateMsgEl.style.display = 'none';
       if (shellEl) shellEl.classList.add('is-ready');
       if (userEmailEl) userEmailEl.textContent = user.email || '';
-      boot({
-        db, collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp,
-        storage, storageRef: ref, uploadBytesResumable, getBlob, deleteObject
-      });
+      boot({ db, collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp });
     });
 
     if (logoutBtn) {
@@ -148,29 +141,6 @@ function initFeedbackTab(fs) {
     listEl.innerHTML = filtered.map(function (d) {
       var author = d.author ? escapeHtml(d.author) : '익명';
       var replyVal = d.reply ? escapeHtml(d.reply) : '';
-      var hasAttachment = !!d.attachmentPath;
-      var attachmentHtml =
-        '<div class="admin-attachment" data-attachment-for="' + d.id + '">' +
-          '<div class="admin-attachment__head">' +
-            '<span class="admin-attachment__title">사이트 파일 <small>ZIP · 최대 100MB</small></span>' +
-            (hasAttachment
-              ? '<span class="admin-attachment__visibility ' + (d.status === 'done' ? 'is-public' : '') + '">' +
-                  (d.status === 'done' ? '사용자 다운로드 가능' : '관리자만 접근 가능') + '</span>'
-              : '') +
-          '</div>' +
-          '<div class="admin-attachment__actions">' +
-            '<input class="admin-attachment__input" type="file" accept=".zip,application/zip" data-id="' + d.id + '" aria-label="사이트 ZIP 파일 선택">' +
-            '<button type="button" class="admin-mini-btn" data-action="upload-attachment" data-id="' + d.id + '">' +
-              (hasAttachment ? 'ZIP 교체' : 'ZIP 업로드') + '</button>' +
-            (hasAttachment
-              ? '<button type="button" class="admin-mini-btn" data-action="download-attachment" data-id="' + d.id + '" data-path="' + escapeHtml(d.attachmentPath) + '" data-filename="' + escapeHtml(d.attachmentName || 'site-files.zip') + '">다운로드</button>' +
-                '<button type="button" class="admin-mini-btn is-danger" data-action="remove-attachment" data-id="' + d.id + '" data-path="' + escapeHtml(d.attachmentPath) + '">첨부 삭제</button>'
-              : '') +
-          '</div>' +
-          (hasAttachment ? '<p class="admin-attachment__file">' + escapeHtml(d.attachmentName || 'site-files.zip') +
-            (d.attachmentSize ? ' · ' + formatFileSize(d.attachmentSize) : '') + '</p>' : '') +
-          '<p class="admin-attachment__status" role="status"></p>' +
-        '</div>';
       return (
         '<div class="admin-fb-row" data-id="' + d.id + '">' +
           '<div>' +
@@ -185,7 +155,6 @@ function initFeedbackTab(fs) {
               '<textarea class="admin-reply-box__input" data-id="' + d.id + '" placeholder="사용자에게 보여질 답변을 입력하세요...">' + replyVal + '</textarea>' +
               '<button type="button" class="admin-mini-btn" data-action="save-reply" data-id="' + d.id + '">답글 저장</button>' +
             '</div>' +
-            attachmentHtml +
           '</div>' +
           '<button type="button" class="admin-danger-btn" data-action="delete-feedback" data-id="' + d.id + '">삭제</button>' +
         '</div>'
@@ -211,108 +180,17 @@ function initFeedbackTab(fs) {
   listEl.addEventListener('click', async function (e) {
     var delBtn = e.target.closest('[data-action="delete-feedback"]');
     var replyBtn = e.target.closest('[data-action="save-reply"]');
-    var uploadBtn = e.target.closest('[data-action="upload-attachment"]');
-    var downloadBtn = e.target.closest('[data-action="download-attachment"]');
-    var removeBtn = e.target.closest('[data-action="remove-attachment"]');
 
     if (delBtn) {
       var id = delBtn.dataset.id;
       if (!confirm('이 피드백을 삭제할까요? 되돌릴 수 없습니다.')) return;
       delBtn.disabled = true;
       try {
-        var target = allDocs.find(function (d) { return d.id === id; });
-        if (target && target.attachmentPath) {
-          try {
-            await fs.deleteObject(fs.storageRef(fs.storage, target.attachmentPath));
-          } catch (storageErr) {
-            if (storageErr.code !== 'storage/object-not-found') throw storageErr;
-          }
-        }
         await fs.deleteDoc(fs.doc(fs.db, 'feedback', id));
       } catch (err) {
         console.error('feedback delete error', err);
         alert('삭제에 실패했습니다. 잠시 후 다시 시도해주세요.');
         delBtn.disabled = false;
-      }
-      return;
-    }
-
-    if (uploadBtn) {
-      var uploadId = uploadBtn.dataset.id;
-      var fileInput = listEl.querySelector('.admin-attachment__input[data-id="' + uploadId + '"]');
-      var file = fileInput && fileInput.files && fileInput.files[0];
-      if (!file) {
-        alert('업로드할 ZIP 파일을 선택해주세요.');
-        return;
-      }
-      if (!/\.zip$/i.test(file.name)) {
-        alert('ZIP 형식의 압축파일만 업로드할 수 있습니다.');
-        return;
-      }
-      if (file.size > 100 * 1024 * 1024) {
-        alert('첨부파일은 100MB 이하만 업로드할 수 있습니다.');
-        return;
-      }
-
-      var attachmentPath = 'feedback-files/' + uploadId + '/site-files.zip';
-      var statusNode = uploadBtn.closest('.admin-attachment').querySelector('.admin-attachment__status');
-      uploadBtn.disabled = true;
-      try {
-        var uploadTask = fs.uploadBytesResumable(
-          fs.storageRef(fs.storage, attachmentPath),
-          file,
-          { contentType: 'application/zip', customMetadata: { originalName: file.name } }
-        );
-        await new Promise(function (resolve, reject) {
-          uploadTask.on('state_changed', function (snapshot) {
-            var percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            statusNode.textContent = '업로드 중… ' + percent + '%';
-          }, reject, resolve);
-        });
-        await fs.updateDoc(fs.doc(fs.db, 'feedback', uploadId), {
-          attachmentName: file.name,
-          attachmentPath: attachmentPath,
-          attachmentSize: file.size,
-          attachmentUpdatedAt: fs.serverTimestamp()
-        });
-      } catch (err) {
-        console.error('attachment upload error', err);
-        statusNode.textContent = '업로드에 실패했습니다.';
-        uploadBtn.disabled = false;
-      }
-      return;
-    }
-
-    if (downloadBtn) {
-      downloadBtn.disabled = true;
-      try {
-        var blob = await fs.getBlob(fs.storageRef(fs.storage, downloadBtn.dataset.path));
-        downloadBlob(blob, downloadBtn.dataset.filename || 'site-files.zip');
-      } catch (err) {
-        console.error('admin attachment download error', err);
-        alert('첨부파일 다운로드에 실패했습니다.');
-      } finally {
-        downloadBtn.disabled = false;
-      }
-      return;
-    }
-
-    if (removeBtn) {
-      if (!confirm('첨부된 ZIP 파일을 삭제할까요?')) return;
-      removeBtn.disabled = true;
-      var removeId = removeBtn.dataset.id;
-      try {
-        await fs.deleteObject(fs.storageRef(fs.storage, removeBtn.dataset.path));
-        await fs.updateDoc(fs.doc(fs.db, 'feedback', removeId), {
-          attachmentName: null,
-          attachmentPath: null,
-          attachmentSize: null,
-          attachmentUpdatedAt: fs.serverTimestamp()
-        });
-      } catch (err) {
-        console.error('attachment remove error', err);
-        alert('첨부파일 삭제에 실패했습니다.');
-        removeBtn.disabled = false;
       }
       return;
     }
@@ -364,23 +242,6 @@ function initFeedbackTab(fs) {
     }).join('');
     projectFilterEl.value = current;
   };
-}
-
-function formatFileSize(bytes) {
-  if (!Number(bytes)) return '';
-  if (bytes < 1024 * 1024) return Math.max(1, Math.round(bytes / 1024)) + 'KB';
-  return (bytes / (1024 * 1024)).toFixed(1) + 'MB';
-}
-
-function downloadBlob(blob, filename) {
-  var objectUrl = URL.createObjectURL(blob);
-  var anchor = document.createElement('a');
-  anchor.href = objectUrl;
-  anchor.download = filename;
-  document.body.appendChild(anchor);
-  anchor.click();
-  anchor.remove();
-  setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 1000);
 }
 
 // Fixed 10-category taxonomy (matches the public site's industry filter —
