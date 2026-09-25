@@ -421,11 +421,11 @@ h1,h2,h3,h4,p{ margin:0; }
    stacking rules — paints ABOVE static in-flow siblings regardless of DOM
    order. Without this, the logo/tagline/info row render invisibly underneath
    the (now fully opaque, background-color-backed) gradient layer. */
-.footer > .container,.footer__watermark,.footer__copyright-row{ position:relative; z-index:1; }
+.footer > .container,.footer__watermark{ position:relative; z-index:1; }
 /* Single row, no divider — matches Figma's footer-top exactly: brand block
    and info block are two flex:1 siblings side by side, not stacked with a
    border between them (that was a structural bug, not a Figma treatment). */
-.footer__top{ display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start; padding-bottom:48px; }
+.footer__top{ display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; padding-bottom:48px; }
 .footer__brand{ flex:1 1 280px; display:flex; flex-direction:column; gap:14px; min-width:0; }
 .footer__logo{ font-family: var(--font-en); font-weight:700; font-size:26px; }
 .footer__logo span{ color: var(--orange); }
@@ -440,7 +440,6 @@ h1,h2,h3,h4,p{ margin:0; }
   color:#fff; opacity:.1;
   padding: 10px 0 20px; user-select:none;
 }
-.footer__copyright-row{ display:flex; justify-content:center; padding-bottom:24px; font-size:11.5px; color: var(--text-faint); }
 
 /* =========================================================
    Utility section spacing on small screens
