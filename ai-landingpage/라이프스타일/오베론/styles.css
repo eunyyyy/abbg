@@ -625,8 +625,8 @@ body.header-open{overflow:hidden}
 /* =========================================================
    SOCIAL / INSTAGRAM MARQUEE
    ========================================================= */
-.social{margin:100px 0;position:relative;overflow:hidden;height:54vw}
-@media(max-width:991px){.social{margin:70px 0 90px;height:150vw}}
+.social{margin:56px 0 20px;position:relative;overflow:hidden;height:34vw;max-height:560px}
+@media(max-width:991px){.social{margin:40px 0 12px;height:60vw;max-height:none}}
 .social__center{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   text-align:center;z-index:4;
