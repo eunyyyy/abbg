@@ -75,18 +75,22 @@
 
   /* =========================================================
      Mouse-REPELLED gradient backgrounds
-     Every section with a blended radial-gradient (.intro__art,
-     .feedback__art, .footer's wash) is built from N independent
-     radial-gradient layers, each with its own base anchor point
-     (--gxN/--gyN). Instead of the whole cluster being attracted
-     toward the cursor, each layer is individually pushed AWAY
-     from it — like same-pole magnets repelling — with the push
-     strength falling off with distance, then eases back to its
-     base position on mouseleave. `targetEl` is the element the
-     custom properties are set on — a real layer div (.intro__art,
-     .feedback__art) or the section itself for a ::before-based
-     wash (.footer), since custom properties inherit down into
-     pseudo-elements but can't be set on them directly.
+     Every section with a blended radial-gradient (.feedback__art,
+     .footer's wash) is built from N independent radial-gradient
+     layers, each with its own base anchor point (--gxN/--gyN).
+     Instead of the whole cluster being attracted toward the
+     cursor, each layer is individually pushed AWAY from it —
+     like same-pole magnets repelling — with the push strength
+     falling off with distance, then eases back to its base
+     position on mouseleave. `targetEl` is the element the custom
+     properties are set on — a real layer div (.feedback__art) or
+     the section itself for a ::before-based wash (.footer), since
+     custom properties inherit down into pseudo-elements but can't
+     be set on them directly.
+     (.intro's hero background is exempt — js/hero-gl.js's WebGL
+     shader owns that section's motion with a time-based flow, not
+     cursor tracking, and .intro__art is only its static no-WebGL
+     fallback.)
      ========================================================= */
   function initRepelGradient(sectionEl, targetEl, blobs, radius, maxPush) {
     if (!sectionEl || !targetEl || reduceMotion) return;
@@ -134,8 +138,6 @@
       ensureLoop();
     });
   }
-  initRepelGradient(document.querySelector('.intro'), document.querySelector('.intro__art'),
-    [[30, 28], [72, 22], [68, 60], [28, 58], [52, 36], [50, 42]], 55, 26);
   initRepelGradient(document.querySelector('.footer'), document.querySelector('.footer'),
     [[36, 5], [-4, 98], [67, 67]], 55, 24);
   initRepelGradient(document.querySelector('.feedback'), document.querySelector('.feedback__art'),
