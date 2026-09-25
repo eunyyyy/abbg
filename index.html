@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 
-<link rel="stylesheet" href="css/style.css?v=20260926-3">
+<link rel="stylesheet" href="css/style.css?v=20260926-4">
 </head>
 <body>
 
@@ -73,6 +73,16 @@
           <label for="plist-project-filter">프로젝트</label>
           <div class="select-wrap">
             <select id="plist-project-filter"></select>
+            <svg class="select-wrap__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="filter-field filter-field--sort">
+          <label for="plist-sort">정렬</label>
+          <div class="select-wrap">
+            <select id="plist-sort">
+              <option value="latest">최신순</option>
+              <option value="upload">업로드순</option>
+            </select>
             <svg class="select-wrap__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
@@ -358,7 +368,7 @@
 </footer>
 
 <script src="js/hero-gl.js"></script>
-<script src="js/main.js?v=20260926-2"></script>
+<script src="js/main.js?v=20260926-4"></script>
 <script type="module" src="js/firebase-feedback.js?v=20260926-3"></script>
 </body>
 </html>

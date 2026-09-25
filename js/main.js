@@ -177,12 +177,13 @@
   function initPlistFilters() {
     var industrySel = document.getElementById('plist-industry-filter');
     var projectSel = document.getElementById('plist-project-filter');
+    var sortSel = document.getElementById('plist-sort');
     var searchInput = document.getElementById('plist-search');
     var plistEl = document.querySelector('.plist');
     var paginationEl = document.getElementById('plist-pagination');
     var emptyEl = document.getElementById('plist-empty');
     var currentPage = 1;
-    if (!industrySel || !projectSel || !searchInput || !plistEl || !paginationEl) return;
+    if (!industrySel || !projectSel || !sortSel || !searchInput || !plistEl || !paginationEl) return;
 
     function populateIndustryOptions() {
       industrySel.innerHTML = INDUSTRIES.map(function (name) {
@@ -208,7 +209,13 @@
       var projectNo = projectSel.value;
       var term = normalizeSearchText(searchInput.value);
       var rows = Array.prototype.slice.call(plistEl.querySelectorAll('.plist__row'));
-      var matched = rows.filter(function (row) {
+      var sortedRows = rows.slice().sort(function (a, b) {
+        var aNo = parseInt(a.querySelector('.plist__no').textContent, 10) || 0;
+        var bNo = parseInt(b.querySelector('.plist__no').textContent, 10) || 0;
+        return sortSel.value === 'latest' ? bNo - aNo : aNo - bNo;
+      });
+      sortedRows.forEach(function (row) { plistEl.appendChild(row); });
+      var matched = sortedRows.filter(function (row) {
         var matchesIndustry = industry === '전체' || row.dataset.category === industry;
         var matchesProject = !projectNo || row.querySelector('.plist__no').textContent.trim() === projectNo;
         var hay = normalizeSearchText(row.dataset.name + row.dataset.category + row.querySelector('.plist__no').textContent);
@@ -237,6 +244,7 @@
       applyFilter();
     });
     projectSel.addEventListener('change', function () { currentPage = 1; applyFilter(); });
+    sortSel.addEventListener('change', function () { currentPage = 1; applyFilter(); });
     function applySearch() { currentPage = 1; applyFilter(); }
     searchInput.addEventListener('input', applySearch);
     searchInput.addEventListener('search', applySearch);
@@ -254,6 +262,7 @@
       populateIndustryOptions();
       industrySel.value = '전체';
       populateProjectOptions('전체');
+      sortSel.value = 'latest';
       currentPage = 1;
       applyFilter();
     };

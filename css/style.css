@@ -211,6 +211,7 @@ h1,h2,h3,h4,p{ margin:0; }
 .filter-dropdowns{ display:flex; flex-wrap:wrap; gap:16px; align-items:center; margin-bottom:40px; }
 .filter-field{ display:flex; flex-direction:column; gap:4px; width:220px; }
 .filter-field--wide{ width:300px; }
+.filter-field--sort{ width:160px; }
 .filter-field--search{ width:min(320px,100%); }
 .filter-field label{ font-size:16px; color: var(--text-dim); }
 .filter-field input{ width:100%; background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:12px; color:var(--text); font-family:var(--font-kr); font-size:16px; }
