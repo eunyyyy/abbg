@@ -423,7 +423,7 @@ body.nav-locked{overflow:hidden;}
 /* =========================================================
    Process ("How it's made")
    ========================================================= */
-.process{background:var(--g-150); padding-block:96px;}
+.process{background:#fff;padding-block:96px;}
 .process__grid{
   display:grid;
   grid-template-columns:minmax(280px,5fr) minmax(0,7fr);
@@ -546,16 +546,22 @@ body.nav-locked{overflow:hidden;}
 }
 .promo__emblem{
   position:absolute;
-  right:-30px;
-  bottom:-30px;
+  right:0;
+  bottom:0;
   width:min(30vw, 270px);
   height:auto;
   opacity:.85;
   z-index:1;
   pointer-events:none;
 }
-.promo__tile--about .promo__emblem{right:-30px;left:auto;bottom:-30px;}
-.promo__tile .promo__emblem{opacity:.22;transform:translate(18%,18%) scale(.72);transform-origin:center}
+.promo__tile--about .promo__emblem{right:0;left:auto;bottom:0;}
+.promo__tile .promo__emblem{
+  right:24px;
+  bottom:24px;
+  opacity:.22;
+  transform:scale(.72);
+  transform-origin:right bottom;
+}
 .promo__copy{position:relative;z-index:2;max-width:36rem}
 
 /* =========================================================
@@ -845,7 +851,7 @@ body.nav-locked{overflow:hidden;}
 .footer__emblem,.footer__tagline{display:none}
 
 .promo__tile{
-  align-items:flex-end;
+  align-items:flex-start;
   justify-content:flex-start;
   text-align:left;
 }
