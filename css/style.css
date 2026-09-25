@@ -399,23 +399,29 @@ h1,h2,h3,h4,p{ margin:0; }
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer{ position:relative; background: var(--bg); padding-top: 90px; overflow:hidden; --gx1:36%; --gy1:5%; --gx2:-4%; --gy2:98%; --gx3:67%; --gy3:67%; }
+.footer{ position:relative; background: var(--bg); padding-top: 90px; overflow:hidden; }
 /* Exact Figma footer recipe: dark base + red(overlay) + orange(screen) +
-   teal(screen), each independently time-drifting (initDriftGradient) —
-   matches the same recipe Figma uses for the hero (WeAre-2) background. */
+   teal(screen). Static no-WebGL fallback — same role as .intro__art for
+   the hero — hidden via JS (.footer--gl-active) once js/hero-gl.js
+   confirms .footer__gl's WebGL canvas compiled/linked successfully. */
 .footer::before{
   content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
   background-color: var(--bg);
   background-image:
-    radial-gradient(45% 45% at var(--gx1) var(--gy1), rgba(233,52,79,.82), rgba(233,52,79,.22) 55%, transparent 100%),
-    radial-gradient(50% 50% at var(--gx2) var(--gy2), rgba(255,138,76,.98), rgba(255,90,61,.38) 50%, transparent 100%),
-    radial-gradient(42% 42% at var(--gx3) var(--gy3), rgba(56,214,208,.94), rgba(25,184,186,.44) 48%, transparent 100%);
+    radial-gradient(45% 45% at 36% 5%, rgba(233,52,79,.82), rgba(233,52,79,.22) 55%, transparent 100%),
+    radial-gradient(50% 50% at -4% 98%, rgba(255,138,76,.98), rgba(255,90,61,.38) 50%, transparent 100%),
+    radial-gradient(42% 42% at 67% 67%, rgba(56,214,208,.94), rgba(25,184,186,.44) 48%, transparent 100%);
   background-blend-mode: overlay, screen, screen;
 }
-/* .footer::before is position:absolute (z-index:0), which — per normal CSS
-   stacking rules — paints ABOVE static in-flow siblings regardless of DOM
-   order. Without this, the logo/tagline/info row render invisibly underneath
-   the (now fully opaque, background-color-backed) gradient layer. */
+.footer--gl-active::before{ display:none; }
+/* WebGL canvas (js/hero-gl.js) — same simplex-noise shader/palette as the
+   hero, time-driven only. display:none until the script confirms WebGL
+   compiled/linked successfully. */
+.footer__gl{ position:absolute; inset:0; z-index:0; display:none; width:100%; height:100%; pointer-events:none; }
+/* .footer::before / .footer__gl are position:absolute (z-index:0), which —
+   per normal CSS stacking rules — paints ABOVE static in-flow siblings
+   regardless of DOM order. Without this, the logo/tagline/info row render
+   invisibly underneath the (now fully opaque) background layer. */
 .footer > .container,.footer__watermark{ position:relative; z-index:1; }
 /* Single row, no divider — matches Figma's footer-top exactly: brand block
    and info block are two flex:1 siblings side by side, not stacked with a

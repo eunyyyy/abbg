@@ -1,11 +1,13 @@
-// AI WEB hero background — WebGL simplex-noise shader
+// AI WEB background — WebGL simplex-noise shader
 // Velaris simplex-noise background, adapted to this site's vanilla JS stack
 // (no React/Tailwind/TypeScript — this site has none of those). Time-based
-// flow only — no cursor tracking (this section is exempt from the
+// flow only — no cursor tracking (both sections below are exempt from the
 // mouse-repel treatment used elsewhere; see js/main.js's initRepelGradient
-// comment). Falls back silently to the static CSS gradient (.intro__art)
-// if WebGL is unavailable — see .intro__gl in css/style.css (display:none
-// by default, only shown once this script confirms the shader compiled).
+// comment). Same shader/palette instantiated twice — once for the hero
+// (.intro), once for the footer — each with its own canvas, WebGL context
+// and animation loop. Falls back silently to each section's static CSS
+// gradient if WebGL is unavailable (display:none by default on the canvas,
+// only shown once this script confirms that instance's shader compiled).
 (function () {
   'use strict';
 
@@ -89,16 +91,11 @@ void main() {
 }
 `;
 
-  var section = document.querySelector('.intro');
-  var canvas = document.getElementById('intro-gl');
-  var fallback = document.querySelector('.intro__art');
-  if (!section || !canvas) return;
+  function hexToRgb(hex) {
+    return [1, 3, 5].map(function (i) { return parseInt(hex.slice(i, i + 2), 16) / 255; });
+  }
 
-  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var gl = canvas.getContext('webgl', { alpha: false, antialias: false });
-  if (!gl) return; // no WebGL — leave the CSS fallback (.intro__art) visible
-
-  function compile(type, source) {
+  function compile(gl, type, source) {
     var shader = gl.createShader(type);
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
@@ -110,114 +107,139 @@ void main() {
     return shader;
   }
 
-  var vertex = compile(gl.VERTEX_SHADER, VERTEX_SRC);
-  var fragment = compile(gl.FRAGMENT_SHADER, FRAGMENT_SRC);
-  if (!vertex || !fragment) {
-    if (vertex) gl.deleteShader(vertex);
-    if (fragment) gl.deleteShader(fragment);
-    return;
-  }
-  var program = gl.createProgram();
-  gl.attachShader(program, vertex);
-  gl.attachShader(program, fragment);
-  gl.linkProgram(program);
-  gl.deleteShader(vertex);
-  gl.deleteShader(fragment);
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    gl.deleteProgram(program);
-    return;
-  }
-  gl.useProgram(program);
+  // opts: sectionSelector, canvasId, bg (hex), colors (4 hex strings), and
+  // either fallbackSelector (a real fallback element to toggle display on,
+  // e.g. .intro__art) or activeClass (a class added to the section so its
+  // own CSS can hide a ::before-based fallback that JS can't target
+  // directly, e.g. .footer::before).
+  function initNoiseBackground(opts) {
+    var section = document.querySelector(opts.sectionSelector);
+    var canvas = document.getElementById(opts.canvasId);
+    var fallback = opts.fallbackSelector ? document.querySelector(opts.fallbackSelector) : null;
+    if (!section || !canvas) return;
 
-  var buffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-  var position = gl.getAttribLocation(program, 'position');
-  gl.enableVertexAttribArray(position);
-  gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+    var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var gl = canvas.getContext('webgl', { alpha: false, antialias: false });
+    if (!gl) return; // no WebGL — leave the CSS fallback visible
 
-  function uniform(name) { return gl.getUniformLocation(program, name); }
-  var locs = {
-    resolution: uniform('u_resolution'), time: uniform('u_time'),
-    grain: uniform('u_grain'), colors: uniform('u_colors[0]'),
-    bg: uniform('u_bg')
-  };
-  function hexToRgb(hex) {
-    return [1, 3, 5].map(function (i) { return parseInt(hex.slice(i, i + 2), 16) / 255; });
+    var vertex = compile(gl, gl.VERTEX_SHADER, VERTEX_SRC);
+    var fragment = compile(gl, gl.FRAGMENT_SHADER, FRAGMENT_SRC);
+    if (!vertex || !fragment) {
+      if (vertex) gl.deleteShader(vertex);
+      if (fragment) gl.deleteShader(fragment);
+      return;
+    }
+    var program = gl.createProgram();
+    gl.attachShader(program, vertex);
+    gl.attachShader(program, fragment);
+    gl.linkProgram(program);
+    gl.deleteShader(vertex);
+    gl.deleteShader(fragment);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      gl.deleteProgram(program);
+      return;
+    }
+    gl.useProgram(program);
+
+    var buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    var position = gl.getAttribLocation(program, 'position');
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+    function uniform(name) { return gl.getUniformLocation(program, name); }
+    var locs = {
+      resolution: uniform('u_resolution'), time: uniform('u_time'),
+      grain: uniform('u_grain'), colors: uniform('u_colors[0]'),
+      bg: uniform('u_bg')
+    };
+    gl.uniform3fv(locs.bg, hexToRgb(opts.bg));
+    gl.uniform3fv(locs.colors, new Float32Array(opts.colors.flatMap(hexToRgb)));
+    gl.uniform1f(locs.grain, 0.3);
+
+    var raf = null, previous = null, elapsed = 0;
+    var visible = true, contextLost = false;
+
+    function draw() {
+      gl.uniform2f(locs.resolution, canvas.width, canvas.height);
+      gl.uniform1f(locs.time, elapsed * 2.0);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    }
+    function stop() {
+      if (raf !== null) cancelAnimationFrame(raf);
+      raf = null;
+      previous = null;
+    }
+    function frame(now) {
+      raf = null;
+      if (!visible || document.hidden || motion.matches || contextLost) return;
+      var dt = previous === null ? 1 / 60 : Math.min((now - previous) / 1000, 0.05);
+      previous = now;
+      elapsed += dt;
+      draw();
+      raf = requestAnimationFrame(frame);
+    }
+    function start() {
+      if (raf === null && visible && !document.hidden && !motion.matches && !contextLost) {
+        raf = requestAnimationFrame(frame);
+      }
+    }
+    function resize() {
+      if (contextLost) return;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.round(section.clientWidth * dpr));
+      canvas.height = Math.max(1, Math.round(section.clientHeight * dpr));
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      draw();
+    }
+    function onVisibility() {
+      if (document.hidden) stop();
+      else start();
+    }
+    function onMotion() {
+      stop();
+      if (!contextLost) draw();
+      start();
+    }
+    document.addEventListener('visibilitychange', onVisibility);
+    motion.addEventListener('change', onMotion);
+    var resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(section);
+    var intersectionObserver = new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible) start();
+      else stop();
+    });
+    intersectionObserver.observe(section);
+
+    // Reveal only after a full frame; keep the original CSS art on GPU failure.
+    resize();
+    canvas.style.display = 'block';
+    if (fallback) fallback.style.display = 'none';
+    if (opts.activeClass) section.classList.add(opts.activeClass);
+    canvas.addEventListener('webglcontextlost', function () {
+      contextLost = true;
+      stop();
+      canvas.style.display = 'none';
+      if (fallback) fallback.style.display = '';
+      if (opts.activeClass) section.classList.remove(opts.activeClass);
+    });
+    start();
   }
+
   // Same 6-hex brand palette used across the site's gradient sections; the
   // shader interface takes exactly 4 colors, so the 4 most visually
   // distinct are used (dropping the two closest-neighbor pastels).
-  var bg = hexToRgb('#08090d');
-  var palette = ['#F45F7A', '#55CEC5', '#D7785D', '#006B70'];
-  gl.uniform3fv(locs.bg, bg);
-  gl.uniform3fv(locs.colors, new Float32Array(palette.flatMap(hexToRgb)));
-  gl.uniform1f(locs.grain, 0.3);
+  var BG = '#08090d';
+  var PALETTE = ['#F45F7A', '#55CEC5', '#D7785D', '#006B70'];
 
-  var raf = null, previous = null, elapsed = 0;
-  var visible = true, contextLost = false;
-
-  function draw() {
-    gl.uniform2f(locs.resolution, canvas.width, canvas.height);
-    gl.uniform1f(locs.time, elapsed * 2.0);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-  }
-  function stop() {
-    if (raf !== null) cancelAnimationFrame(raf);
-    raf = null;
-    previous = null;
-  }
-  function frame(now) {
-    raf = null;
-    if (!visible || document.hidden || motion.matches || contextLost) return;
-    var dt = previous === null ? 1 / 60 : Math.min((now - previous) / 1000, 0.05);
-    previous = now;
-    elapsed += dt;
-    draw();
-    raf = requestAnimationFrame(frame);
-  }
-  function start() {
-    if (raf === null && visible && !document.hidden && !motion.matches && !contextLost) {
-      raf = requestAnimationFrame(frame);
-    }
-  }
-  function resize() {
-    if (contextLost) return;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.max(1, Math.round(section.clientWidth * dpr));
-    canvas.height = Math.max(1, Math.round(section.clientHeight * dpr));
-    gl.viewport(0, 0, canvas.width, canvas.height);
-    draw();
-  }
-  function onVisibility() {
-    if (document.hidden) stop();
-    else start();
-  }
-  function onMotion() {
-    stop();
-    if (!contextLost) draw();
-    start();
-  }
-  document.addEventListener('visibilitychange', onVisibility);
-  motion.addEventListener('change', onMotion);
-  var resizeObserver = new ResizeObserver(resize);
-  resizeObserver.observe(section);
-  var intersectionObserver = new IntersectionObserver(function (entries) {
-    visible = entries[0].isIntersecting;
-    if (visible) start();
-    else stop();
+  initNoiseBackground({
+    sectionSelector: '.intro', canvasId: 'intro-gl', fallbackSelector: '.intro__art',
+    bg: BG, colors: PALETTE
   });
-  intersectionObserver.observe(section);
-
-  // Reveal only after a full frame; keep the original CSS art on GPU failure.
-  resize();
-  canvas.style.display = 'block';
-  if (fallback) fallback.style.display = 'none';
-  canvas.addEventListener('webglcontextlost', function () {
-    contextLost = true;
-    stop();
-    canvas.style.display = 'none';
-    if (fallback) fallback.style.display = '';
+  initNoiseBackground({
+    sectionSelector: '.footer', canvasId: 'footer-gl', activeClass: 'footer--gl-active',
+    bg: BG, colors: PALETTE
   });
-  start();
 })();
