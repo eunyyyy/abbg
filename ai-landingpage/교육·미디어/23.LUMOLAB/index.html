@@ -1,0 +1,323 @@
+<!--
+variant:
+typo=loud
+image=high
+color=accent
+
+image-radius=soft
+card-radius=soft
+button-radius=round
+
+border=hairline
+button-style=solid+text
+fw=700/400
+spacing=space-section
+
+Layout Declaration
+Hero          full-bleed  12 (headline) + scroll-scale media
+Banner        4-4-4 (mascot / titles card / about card)
+About         full-bleed  centered wordmark scale + 7-5 image
+Titles        full-bleed  sticky stack x3
+WhatWeDo      5-7 (sticky heading / staggered list)
+News          3-3-3-3
+Contact       8-4
+Footer        6-6
+-->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUMOLAB | XR 에듀테인먼트 스튜디오</title>
+<meta name="description" content="루모랩은 아이들이 보고, 만지고, 움직이며 배우는 XR 학습 콘텐츠를 만드는 에듀테인먼트 스튜디오입니다.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="preload" as="image" href="img/hero_01.jpg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<header class="gnb" id="gnb">
+  <div class="gnb__inner">
+    <a href="#top" class="logo" aria-label="LUMOLAB 홈">
+      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="18" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="5.5"/>
+        <path d="M27 36 L37 6" stroke="var(--violet-500)" stroke-width="6" stroke-linecap="square"/>
+      </svg>
+      <span class="logo__word">LUMOLAB</span>
+    </a>
+    <nav class="gnb__nav" aria-label="주요 메뉴">
+      <a href="#titles">NEW TITLES</a>
+      <a href="#about">ABOUT</a>
+      <a href="#work">WHAT WE DO</a>
+      <a href="#news">NEWS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <button class="gnb__burger" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- 모바일 메뉴는 header의 형제 요소: header가 transform을 가지면 fixed 자식이 header 크기로 갇히는 문제 회피 -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <nav aria-label="모바일 메뉴">
+    <a href="#titles">NEW TITLES</a>
+    <a href="#about">ABOUT</a>
+    <a href="#work">WHAT WE DO</a>
+    <a href="#news">NEWS</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <h1 class="hero__title">
+        <span class="line"><span>LEARNING BEYOND</span></span>
+        <span class="line"><span>THE CLASSROOM <i class="slash" aria-hidden="true"></i></span></span>
+      </h1>
+    </div>
+    <div class="hero__runway" id="heroRunway">
+      <div class="hero__sticky">
+        <div class="hero__frame" id="heroFrame">
+          <figure class="hero__slide is-on"><img src="img/hero_01.jpg" alt="VR 헤드셋을 쓰고 손을 뻗어 가상 교구를 만지는 초등학생들"></figure>
+          <figure class="hero__slide"><img src="img/hero_02.jpg" alt="VR 헤드셋을 쓰고 두 손으로 홀로그램 화면을 조작하는 아이"></figure>
+          <figure class="hero__slide"><img src="img/hero_03.jpg" alt="보랏빛 조명 아래 태블릿으로 XR 학습 앱을 체험하는 학생"></figure>
+          <div class="hero__caption" aria-live="polite">
+            <p class="hero__cap is-on">Lumo's Star Lab<span>MR 과학 실험 타이틀</span></p>
+            <p class="hero__cap">Time Hopper<span>VR 역사 탐험 타이틀</span></p>
+            <p class="hero__cap">Code Garden<span>AR 코딩 퍼즐 타이틀</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASCOT BANNER -->
+  <section class="banner">
+    <div class="wrap banner__grid">
+      <div class="mascot reveal" aria-hidden="true">
+        <p class="mascot__bubble">같이 탐험해 볼까?</p>
+        <svg class="mascot__svg" viewBox="0 0 260 300">
+          <defs>
+            <radialGradient id="helm" cx="38%" cy="30%" r="75%">
+              <stop offset="0" stop-color="#FFA273"/>
+              <stop offset=".55" stop-color="#FF6B2C"/>
+              <stop offset="1" stop-color="#E5531A"/>
+            </radialGradient>
+            <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#301880"/>
+              <stop offset="1" stop-color="#1F1057"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="130" cy="286" rx="62" ry="9" fill="#1F1057" opacity=".12" class="mascot__shadow"/>
+          <g class="mascot__body">
+            <!-- antenna -->
+            <path d="M130 44 C128 30 134 22 142 16" stroke="#4220A8" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path class="mascot__spark" d="M146 2 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4z" fill="#FFC4A3"/>
+            <!-- ear pods -->
+            <rect x="26" y="104" width="30" height="54" rx="14" fill="#6A3DF0"/>
+            <rect x="204" y="104" width="30" height="54" rx="14" fill="#6A3DF0"/>
+            <!-- helmet -->
+            <path d="M130 42 C196 42 222 86 222 134 C222 184 186 208 130 208 C74 208 38 184 38 134 C38 86 64 42 130 42Z" fill="url(#helm)"/>
+            <!-- visor -->
+            <path d="M130 84 C180 84 196 106 196 136 C196 166 172 178 130 178 C88 178 64 166 64 136 C64 106 80 84 130 84Z" fill="url(#visor)"/>
+            <path d="M88 100 C100 92 118 90 132 90" stroke="#8D68FA" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+            <g class="mascot__eyes">
+              <ellipse cx="106" cy="132" rx="11" ry="14" fill="#FFF3EC"/>
+              <ellipse cx="154" cy="132" rx="11" ry="14" fill="#FFF3EC"/>
+            </g>
+            <path d="M118 156 C124 163 136 163 142 156" stroke="#FFF3EC" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <!-- torso -->
+            <path d="M92 206 L168 206 C174 206 178 212 176 218 L166 256 C164 262 160 264 154 264 L106 264 C100 264 96 262 94 256 L84 218 C82 212 86 206 92 206Z" fill="#FF8547"/>
+            <circle cx="130" cy="232" r="14" fill="#6A3DF0"/>
+            <circle cx="130" cy="232" r="6" fill="#CDBDFF"/>
+            <!-- arms -->
+            <g class="mascot__wave"><path d="M176 220 C196 214 206 198 210 184" stroke="#FF6B2C" stroke-width="16" fill="none" stroke-linecap="round"/><circle cx="211" cy="180" r="11" fill="#6A3DF0"/></g>
+            <path d="M84 222 C68 232 62 246 64 256" stroke="#FF6B2C" stroke-width="16" fill="none" stroke-linecap="round"/>
+            <circle cx="64" cy="260" r="11" fill="#6A3DF0"/>
+            <!-- feet -->
+            <rect x="100" y="262" width="24" height="16" rx="8" fill="#4220A8"/>
+            <rect x="136" y="262" width="24" height="16" rx="8" fill="#4220A8"/>
+          </g>
+        </svg>
+        <p class="mascot__name">루모</p>
+      </div>
+      <a href="#titles" class="bcard bcard--dark reveal">
+        <h2 class="bcard__title">NEW TITLES</h2>
+        <p>전 세계 아이들에게 선보이는<br>루모랩의 새로운 XR 학습 타이틀</p>
+      </a>
+      <a href="#about" class="bcard bcard--violet reveal">
+        <h2 class="bcard__title">ABOUT</h2>
+        <p>놀면서 배우는 XR 에듀테인먼트<br>스튜디오, 루모랩을 소개합니다</p>
+        <img class="bcard__img" src="img/icons_3d_a.jpg" alt="지구본, 책, 연필 등 3D 학습 아이콘 모음" loading="lazy">
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT (title scale) -->
+  <section class="about" id="about">
+    <div class="about__runway" id="aboutRunway">
+      <div class="about__sticky">
+        <p class="about__lead" id="aboutLead">PLAY IS HOW<br>WE LEARN</p>
+        <p class="about__word" id="aboutWord" aria-hidden="true">LUMOLAB</p>
+        <div class="about__copy" id="aboutCopy">
+          <h2 class="about__h">루모랩은 XR 에듀테인먼트 스튜디오입니다</h2>
+          <p>루모랩은 2011년 설립 이래 ‘배움이 놀이가 되는 순간’을 목표로 아이들이 직접 보고, 만지고, 움직이며 배우는 실감형 학습 콘텐츠를 만들고 있습니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap about__media">
+      <img class="reveal" src="img/about_graphic.jpg" alt="VR 헤드셋을 쓴 아이들이 도형과 아이콘 사이를 떠다니는 3D 일러스트" loading="lazy">
+    </div>
+  </section>
+
+  <!-- NEW TITLES (sticky stack) -->
+  <section class="titles" id="titles">
+    <div class="wrap titles__head">
+      <p class="eyebrow">NEW TITLES <i class="slash slash--sm" aria-hidden="true"></i></p>
+      <h2 class="sec-h reveal">루모랩이 선보이는 새로운 타이틀을 소개합니다</h2>
+    </div>
+    <div class="stack">
+      <article class="tcard">
+        <img src="img/title_01.jpg" alt="실험실에서 VR 헤드셋을 쓰고 가상 실험을 진행하는 학생들" loading="lazy">
+        <div class="tcard__body wrap">
+          <p class="tcard__genre">MR Science Lab</p>
+          <h3 class="tcard__name">Lumo's Star Lab</h3>
+          <ul class="tags"><li>#Meta Quest</li><li>#Mixed Reality</li><li>#Hand Tracking</li><li>#Science</li></ul>
+        </div>
+      </article>
+      <article class="tcard">
+        <img src="img/title_02.jpg" alt="VR 헤드셋을 쓰고 화려한 빛의 공간을 체험하는 아이" loading="lazy">
+        <div class="tcard__body wrap">
+          <p class="tcard__genre">VR History Adventure</p>
+          <h3 class="tcard__name">Time Hopper</h3>
+          <ul class="tags"><li>#PICO</li><li>#STEAM VR</li><li>#History</li><li>#Co-op</li></ul>
+        </div>
+      </article>
+      <article class="tcard">
+        <img src="img/title_03.jpg" alt="코드가 투사된 벽 앞에서 태블릿으로 코딩을 배우는 아이" loading="lazy">
+        <div class="tcard__body wrap">
+          <p class="tcard__genre">AR Coding Puzzle</p>
+          <h3 class="tcard__name">Code Garden</h3>
+          <ul class="tags"><li>#iPad</li><li>#AR</li><li>#Coding</li><li>#Puzzle</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="work" id="work">
+    <div class="wrap work__grid">
+      <div class="work__head">
+        <p class="eyebrow">WHAT WE DO <i class="slash slash--sm" aria-hidden="true"></i></p>
+        <h2 class="sec-h sec-h--xl">XR 기술로<br>교실과 세상을<br>하나로 잇습니다</h2>
+      </div>
+      <ol class="work__list">
+        <li class="witem reveal">
+          <img src="img/biz_01.jpg" alt="교사와 함께 VR 수업에 참여하는 초등학생들" loading="lazy">
+          <div>
+            <h3>XR 러닝 콘텐츠</h3>
+            <p>과학, 역사, 코딩처럼 초중등 핵심 단원을 손으로 만지고 걸어 들어가는 XR 체험으로 다시 설계합니다.</p>
+          </div>
+        </li>
+        <li class="witem witem--alt reveal">
+          <img src="img/biz_02.jpg" alt="VR 헤드셋을 쓰고 가상 훈련 화면을 조작하는 교육생" loading="lazy">
+          <div>
+            <h3>XR 안전·직업 훈련</h3>
+            <p>화재 대피, 교통 안전, 실습실 안전처럼 현실에서 반복하기 어려운 상황을 가상 공간에서 안전하게 반복합니다.</p>
+          </div>
+        </li>
+        <li class="witem reveal">
+          <img src="img/biz_03.jpg" alt="아바타 학생들이 모여 있는 3D 메타버스 교실" loading="lazy">
+          <div>
+            <h3>메타버스 캠퍼스</h3>
+            <p>학교와 기관 전용 가상 캠퍼스를 구축해 수업, 발표회, 학부모 설명회를 한 공간에서 운영합니다.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news" id="news">
+    <div class="wrap">
+      <p class="eyebrow">NEWS <i class="slash slash--sm" aria-hidden="true"></i></p>
+      <h2 class="sec-h reveal">루모랩의 소식을 전합니다</h2>
+      <ul class="news__grid">
+        <li class="ncard reveal">
+          <h3>루모랩, MR 과학 실험 ‘루모의 별빛 연구소’ 정식 출시</h3>
+          <time datetime="2026-09-08">2026.09.08</time>
+          <img src="img/news_01.jpg" alt="VR 헤드셋을 쓰고 두 팔을 들어 올린 아이" loading="lazy">
+        </li>
+        <li class="ncard reveal">
+          <h3>전국 초등학교 128곳, XR 안전교육 ‘세이프 스텝’ 도입</h3>
+          <time datetime="2026-08-21">2026.08.21</time>
+          <img src="img/news_02.jpg" alt="VR 헤드셋을 쓰고 즐겁게 반응하는 아이" loading="lazy">
+        </li>
+        <li class="ncard reveal">
+          <h3>‘타임 호퍼’, 실감형 교육 콘텐츠 공모전 대상 수상</h3>
+          <time datetime="2026-07-30">2026.07.30</time>
+          <img src="img/news_03.jpg" alt="컨트롤러를 들고 VR을 체험하는 학생" loading="lazy">
+        </li>
+        <li class="ncard reveal">
+          <h3>AR 코딩 퍼즐 ‘코드 가든’, 에듀테크 박람회서 첫 공개</h3>
+          <time datetime="2026-06-12">2026.06.12</time>
+          <img src="img/news_04.jpg" alt="VR 게임을 함께 즐기는 가족 3D 일러스트" loading="lazy">
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact__grid">
+      <h2 class="contact__h">
+        <span class="line"><span>CONTACT US</span></span>
+        <span class="line"><span><img class="contact__pill" src="img/contact_strip.jpg" alt="" loading="lazy">LUMOLAB</span></span>
+      </h2>
+      <a class="contact__link" href="mailto:hello@lumolab.kr">문의하기</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <a href="#top" class="logo logo--inv" aria-label="LUMOLAB 홈">
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="18" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="5.5"/>
+          <path d="M27 36 L37 6" stroke="var(--violet-400)" stroke-width="6" stroke-linecap="square"/>
+        </svg>
+        <span class="logo__word">LUMOLAB</span>
+      </a>
+      <dl class="finfo">
+        <div><dt>대표</dt><dd>윤다온</dd></div>
+        <div><dt>TEL</dt><dd>02 6953 4180</dd></div>
+        <div><dt>FAX</dt><dd>02 6953 4189</dd></div>
+        <div><dt>EMAIL</dt><dd>hello@lumolab.kr</dd></div>
+        <div><dt>ADDRESS</dt><dd>(04781) 서울특별시 성동구 성수이로 118, 7층</dd></div>
+      </dl>
+      <p class="copy">© 2026 LUMOLAB Inc. All rights reserved.</p>
+    </div>
+    <ul class="sns">
+      <li><a href="#" aria-label="유튜브"><i class="ph ph-youtube-logo"></i></a></li>
+      <li><a href="#" aria-label="인스타그램"><i class="ph ph-instagram-logo"></i></a></li>
+      <li><a href="#" aria-label="블로그"><i class="ph ph-article"></i></a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
