@@ -1,247 +1,81 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>디지털 프로덕트 · UX 컨설팅 | COGNOVA(코그노바)</title>
-<meta name="description" content="COGNOVA(코그노바)는 비즈니스의 본질을 읽고 디지털 전환을 실현하는 UX·프로덕트 컨설팅 스튜디오입니다. Beyond UX, The AX Partner.">
-<link rel="icon" href="img/favicon.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1538ff">
+  <title>COGNOVA — Beyond UX, The AX Partner</title>
+  <meta name="description" content="코그노바는 비즈니스의 맥락을 읽고 AI 전환을 실행 가능한 디지털 경험으로 설계하는 AX·UX 파트너입니다.">
+  <link rel="icon" href="img/cognova-mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="styles.css?v=20260926-3">
 </head>
 <body>
-
-<div id="cursor" aria-hidden="true"><span class="cursor-label">프로젝트<br>보기</span></div>
-
-<a class="skip-link" href="#top">본문 바로가기</a>
-
-<header class="gnb" id="gnb">
-  <div class="gnb-inner">
-    <a href="#top" class="gnb-logo" data-cursor-label="위로">COGNOVA</a>
-    <nav class="gnb-nav" aria-label="주요 메뉴">
-      <a href="#beyond" data-cursor-label="보기">Beyond</a>
-      <a href="#insight" data-cursor-label="보기">Insight</a>
-      <a href="#services" data-cursor-label="보기">Services</a>
-      <a href="#partners" data-cursor-label="보기">Partners</a>
-      <a href="#projects" data-cursor-label="보기">Projects</a>
-    </nav>
-    <a href="#contact" class="gnb-cta" data-cursor-label="이동">문의하기</a>
-    <button id="menuBtn" class="gnb-hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<!-- variant: typo=loud · image=medium · color=dominant · radius=round · border=hairline · fw=700/400 · spacing=space-10
+Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Services 8-4 / Method 5-7 / Projects 7-5 / CTA full-bleed -->
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="#top" aria-label="COGNOVA 홈"><img src="img/cognova-logo.svg" alt="COGNOVA"></a>
+  <nav class="desktop-nav" aria-label="주요 메뉴"><a href="#about">Perspective</a><a href="#services">Capabilities</a><a href="#work">Work</a></nav>
+  <a class="header-cta" href="#contact">Start a project <span>↗</span></a>
+  <button class="menu-button" id="menuButton" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
 </header>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true"><nav aria-label="모바일 메뉴"><a href="#about">Perspective</a><a href="#services">Capabilities</a><a href="#work">Work</a><a href="#contact">Contact</a></nav><p>Beyond UX,<br>The AX Partner.</p></div>
 
-<!-- menuOverlay is a DOM sibling of header.gnb (not nested inside it): the header
-     will later gain a scroll-driven transform/blur treatment, and nesting a fixed
-     overlay inside a transformed/filtered ancestor collapses it to that ancestor's
-     box instead of the viewport. Keeping it a sibling avoids that. -->
-<div id="menuOverlay" aria-hidden="true">
-  <div class="menu-inner">
-    <nav class="menu-nav" aria-label="전체 메뉴">
-      <a class="menu-item" href="#beyond">Beyond</a>
-      <a class="menu-item" href="#insight">Insight</a>
-      <a class="menu-item" href="#services">Services</a>
-      <a class="menu-item" href="#partners">Partners</a>
-      <a class="menu-item" href="#projects">Projects</a>
-      <a class="menu-item" href="#contact">Contact</a>
-    </nav>
-    <div class="menu-side">
-      <p class="menu-side-label">AI 솔루션</p>
-      <ul class="menu-family">
-        <li><span class="fam-name">ORBIT</span><span class="fam-desc">맥락을 읽고 상품을 콘텐츠로 완성하는 커머스 AI</span></li>
-        <li><span class="fam-name">PIKA</span><span class="fam-desc">흐름을 파악해 최선의 답을 골라주는 AI 에이전트</span></li>
-        <li><span class="fam-name">FORMSYNC</span><span class="fam-desc">기획과 디자인, 코드를 한 흐름으로 잇는 AI 엔진</span></li>
-      </ul>
-      <a class="menu-say-hello" href="#contact"><span>문의하기</span><span class="say-hello-ico" aria-hidden="true"></span></a>
-      <div class="menu-contact">
-        <p>서울특별시 성동구 아차산로 17길 48</p>
-        <p>E&nbsp; hello@cognova.studio</p>
-        <p><span>T&nbsp; 02.463.7710</span><span>F&nbsp; 02.463.7711</span></p>
+<main id="main">
+  <section class="hero" id="top">
+    <div class="hero-grid container">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">AI TRANSFORMATION STUDIO · SEOUL</p>
+        <h1 class="hero-title reveal"><span>Think clearly.</span><span>Build <em>bravely.</em></span></h1>
+        <div class="hero-bottom reveal"><p>AI로 바꾸는 건 도구가 아니라,<br>일하는 방식입니다.</p><a class="round-link" href="#about"><span>Our perspective</span><i>↓</i></a></div>
+      </div>
+      <div class="hero-visual" id="heroVisual" aria-label="코그노바의 확장하는 인지 네트워크 그래픽">
+        <div class="visual-grid" aria-hidden="true"></div><div class="nova-orbit orbit-a" aria-hidden="true"></div><div class="nova-orbit orbit-b" aria-hidden="true"></div>
+        <div class="nova-core" aria-hidden="true"><img src="img/clipart-network-sphere.jpg" alt="" width="349" height="340"></div>
+        <span class="node node-a">RESEARCH</span><span class="node node-b">DESIGN</span><span class="node node-c">BUILD</span>
+        <div class="visual-caption"><span>COGNITIVE</span><span>+ NOVA</span></div>
       </div>
     </div>
-  </div>
-  <button id="menuClose" aria-label="메뉴 닫기">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M5 5L19 19M19 5L5 19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
-  </button>
-</div>
-
-<main id="top">
-
-  <section id="hero" class="hero">
-    <div class="hero-content">
-      <svg id="heroSymbol" viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="15" fill="none" stroke="currentColor" stroke-width="3.5"/>
-        <circle cx="45" cy="21" r="4" fill="currentColor"/>
-      </svg>
-      <h1 id="headTitle"><span class="line-1">We Are</span><span class="line-2">Cognova</span></h1>
-      <div id="subTitle">
-        <span class="subtitle-head">호기심에서 시작해, 확신으로 완성합니다.</span>
-        <span class="subtitle-body">코그노바는 더 즐겁고 진화된 디지털 경험을 만들기 위해<br class="sb-br">새로움을 고민하는 프로덕트·UX 컨설팅 스튜디오입니다.</span>
-      </div>
-    </div>
-    <div id="scrollHint"><span class="bar"></span><span class="label">스크롤</span></div>
+    <div class="hero-ticker" aria-hidden="true"><div>STRATEGY · EXPERIENCE · ARTIFICIAL INTELLIGENCE · PRODUCT · STRATEGY · EXPERIENCE · ARTIFICIAL INTELLIGENCE · PRODUCT ·</div></div>
   </section>
 
-  <section id="beyond" class="pin-beyond">
-    <div class="pin-beyond-stage">
-      <h2 class="beyond-title"><span class="line-1">Beyond UX</span><span class="line-2">The AX Partner</span></h2>
-      <p class="beyond-statement"><span>기술에 온기를 더해,</span><span>다음 순간의 확신을 만듭니다.</span></p>
+  <section class="proof" aria-label="코그노바 핵심 지표"><div class="container proof-grid">
+    <div class="proof-item reveal"><strong data-count="72">0</strong><span>출시한 디지털 프로덕트</span></div><div class="proof-item reveal"><strong data-count="14">0</strong><span>함께한 산업 분야</span></div><div class="proof-item reveal"><strong data-count="96">0</strong><span>파트너 재협업률 <sup>%</sup></span></div><div class="proof-item reveal"><strong data-count="11">0</strong><span>Years of craft</span></div>
+  </div></section>
+
+  <section class="perspective" id="about"><div class="container perspective-grid">
+    <div class="section-intro reveal"><p class="eyebrow">01 · PERSPECTIVE</p><h2>좋은 AI는<br>사용자보다<br><em>먼저 나서지 않습니다.</em></h2></div>
+    <div class="perspective-body"><p class="lead reveal">우리는 기술의 가능성을 말하기 전에, 사람들이 실제로 겪는 문제를 읽습니다.</p><p class="body-copy reveal">코그노바는 리서치, 서비스 전략, 경험 설계, 프론트엔드 엔지니어링을 한 팀 안에서 연결합니다. 복잡한 AI 기술을 자랑하는 화면보다 사용자가 다음 행동을 쉽게 결정하는 경험을 만듭니다.</p>
+      <div class="principle-list"><article class="principle reveal"><span>01</span><h3>Context before feature</h3><p>기능보다 먼저 맥락을 읽습니다.</p></article><article class="principle reveal"><span>02</span><h3>Clarity before novelty</h3><p>새로움보다 명확함을 설계합니다.</p></article><article class="principle reveal"><span>03</span><h3>System before screen</h3><p>한 화면보다 지속 가능한 체계를 만듭니다.</p></article></div>
     </div>
-  </section>
+  </div></section>
 
-  <section id="insight" class="pin-insight">
-    <div class="pin-insight-stage">
-      <div class="insight-board">
-        <span class="insight-tagline tagline-1">새롭고 독창적인 탐색, 코그노바는 경험을 만들어 갑니다. 새롭고 독창적인 탐색, 코그노바는 경험을 만들어 갑니다. 새롭고 독창적인 탐색, 코그노바는 경험을 만들어 갑니다.</span>
-        <span class="insight-tagline tagline-2">새롭고 독창적인 탐색, 코그노바는 경험을 만들어 갑니다. 새롭고 독창적인 탐색, 코그노바는 경험을 만들어 갑니다. 새롭고 독창적인 탐색, 코그노바는 경험을 만들어 갑니다.</span>
-        <div class="insight-frame">
-          <div class="insight-steps">
-            <div class="insight-step" data-step="0">
-              <svg class="insight-num" viewBox="0 0 88 88" aria-hidden="true"><circle class="draw" cx="44" cy="44" r="38" fill="none" stroke="currentColor" stroke-width="2"/><text x="44" y="53" text-anchor="middle" class="num-label">01</text></svg>
-              <p class="insight-eyebrow">인사이트</p>
-              <h3 class="insight-title">고객의 맥락을 읽고,<br>한 걸음 더 깊은 제안을 그립니다.</h3>
-            </div>
-            <div class="insight-step" data-step="1">
-              <svg class="insight-num" viewBox="0 0 88 88" aria-hidden="true"><circle class="draw" cx="44" cy="44" r="38" fill="none" stroke="currentColor" stroke-width="2"/><text x="44" y="53" text-anchor="middle" class="num-label">02</text></svg>
-              <p class="insight-eyebrow">인사이트</p>
-              <h3 class="insight-title">멈추지 않는 리서치로<br>남다른 사용자 경험을 설계합니다.</h3>
-            </div>
-            <div class="insight-step" data-step="2">
-              <svg class="insight-num" viewBox="0 0 88 88" aria-hidden="true"><circle class="draw" cx="44" cy="44" r="38" fill="none" stroke="currentColor" stroke-width="2"/><text x="44" y="53" text-anchor="middle" class="num-label">03</text></svg>
-              <p class="insight-eyebrow">인사이트</p>
-              <h3 class="insight-title">축적된 프로젝트 경험으로<br>확실한 디지털 전환을 실현합니다.</h3>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section class="services" id="services"><div class="container">
+    <div class="section-head reveal"><p class="eyebrow">02 · CAPABILITIES</p><h2>Strategy to shipped product.</h2><p>발견한 인사이트가 실제 제품과 조직의 변화로 이어질 때까지 함께합니다.</p></div>
+    <div class="service-grid">
+      <article class="service-card service-card--wide reveal" data-tilt><div class="service-media"><img src="img/service-insight.jpg" alt="제품 리서치와 서비스 전략 워크숍" loading="lazy"></div><div class="service-info"><span>01</span><div><h3>Experience Strategy</h3><p>사용자 리서치 · 서비스 전략 · UX 컨설팅</p></div><i>↗</i></div></article>
+      <article class="service-card reveal" data-tilt><div class="service-media"><img src="img/service-ax.jpg" alt="AI 경험 설계와 데이터 구조" loading="lazy"></div><div class="service-info"><span>02</span><div><h3>AI Experience</h3><p>AI 에이전트 · 대화형 UX · 프로토타이핑</p></div><i>↗</i></div></article>
+      <article class="service-card reveal" data-tilt><div class="service-media"><img src="img/service-fintech.jpg" alt="엔터프라이즈 디지털 프로덕트" loading="lazy"></div><div class="service-info"><span>03</span><div><h3>Digital Product</h3><p>제품 디자인 · 디자인 시스템 · 프론트엔드</p></div><i>↗</i></div></article>
+      <article class="service-card service-card--wide reveal" data-tilt><div class="service-media"><img src="img/service-si.jpg" alt="파트너십과 엔터프라이즈 구축" loading="lazy"></div><div class="service-info"><span>04</span><div><h3>Enterprise Delivery</h3><p>SI 협업 · 품질 관리 · 운영 고도화</p></div><i>↗</i></div></article>
     </div>
-  </section>
+  </div></section>
 
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="services-title">Services</h2>
-      <div class="services-cards">
+  <section class="method" id="method"><div class="container method-grid">
+    <div class="method-title reveal"><p class="eyebrow">03 · HOW WE MOVE</p><h2>One team.<br>Three moves.<br><em>No hand-off gap.</em></h2></div>
+    <div class="method-steps"><article class="method-step reveal"><span>DISCOVER / 01</span><h3>문제를 재정의합니다</h3><p>데이터와 현장의 목소리를 함께 읽어, 해결해야 할 진짜 질문을 정합니다.</p></article><article class="method-step reveal"><span>DESIGN / 02</span><h3>빠르게 증명합니다</h3><p>핵심 흐름을 프로토타입으로 만들고 사용자 반응으로 방향을 검증합니다.</p></article><article class="method-step reveal"><span>DELIVER / 03</span><h3>제품으로 완성합니다</h3><p>디자인 시스템과 코드 품질을 함께 관리해 운영 가능한 결과를 남깁니다.</p></article></div>
+  </div></section>
 
-        <article class="svc-card">
-          <div class="svc-media"><img src="img/service-fintech.jpg" alt="FinTech Platform DNA" loading="lazy" width="1200" height="800"></div>
-          <h3 class="svc-title">FinTech Platform DNA</h3>
-          <ul class="svc-tags"><li>UI/UX 디자인</li><li>플랫폼 운영</li><li>서비스 리뉴얼</li><li>QA·퍼블리싱</li></ul>
-          <p class="svc-desc">6년 넘게 대형 금융 플랫폼의 운영을 전담하며 제1금융권 수준의 엄격한 기준 위에서 서비스를 고도화해왔습니다. 그 경험이 어떤 프로젝트에서도 흔들리지 않는 완성도의 근거가 됩니다.</p>
-        </article>
-
-        <article class="svc-card">
-          <div class="svc-media"><img src="img/service-insight.jpg" alt="Cross-Industry Insight" loading="lazy" width="1200" height="800"></div>
-          <h3 class="svc-title">Cross-Industry Insight</h3>
-          <ul class="svc-tags"><li>UX 컨설팅</li><li>서비스 전략</li><li>UX 리서치</li><li>정보 구조 설계</li></ul>
-          <p class="svc-desc">유통, 헬스케어, 모빌리티를 넘나든 리서치로 산업의 경계 없이 통용되는 사용자 경험의 원리를 축적해왔습니다. 낯선 업종일수록 코그노바의 시야가 더 또렷해집니다.</p>
-        </article>
-
-        <article class="svc-card">
-          <div class="svc-media"><img src="img/service-si.jpg" alt="SI Synergy &amp; Partnership" loading="lazy" width="1200" height="800"></div>
-          <h3 class="svc-title">SI Synergy &amp; Partnership</h3>
-          <ul class="svc-tags"><li>SI 협업</li><li>요구사항 정의</li><li>딜리버리 관리</li><li>엔터프라이즈 통합</li></ul>
-          <p class="svc-desc">대형 SI사와의 협업 구조 안에서 요구사항 정의부터 납품까지 전 과정을 함께 설계합니다. 복잡한 이해관계 속에서도 일정과 품질을 동시에 지켜냅니다.</p>
-        </article>
-
-        <article class="svc-card">
-          <div class="svc-media"><img src="img/service-ax.jpg" alt="AX Tech &amp; Design System" loading="lazy" width="1200" height="800"></div>
-          <h3 class="svc-title">AX Tech &amp; Design System</h3>
-          <ul class="svc-tags"><li>디자인 시스템</li><li>프론트엔드 엔지니어링</li><li>AI 툴링</li><li>컴포넌트 라이브러리</li></ul>
-          <p class="svc-desc">디자인 토큰과 컴포넌트 라이브러리를 코드와 함께 관리하며 AI 도구로 반복 작업을 줄입니다. 팀이 커질수록 오히려 더 빠르게 움직이는 구조를 만듭니다.</p>
-        </article>
-
-      </div>
+  <section class="work" id="work"><div class="container">
+    <div class="section-head section-head--work reveal"><p class="eyebrow">04 · SELECTED WORK</p><h2>Built for the real world.</h2></div>
+    <div class="work-grid">
+      <article class="work-card work-card--hero reveal"><div class="work-art art-pay"><span class="art-pill">PAYMENTS, SIMPLIFIED</span><div class="art-window"><i></i><i></i><i></i></div></div><div class="work-meta"><div><span>FINTECH · 2025</span><h3>Allverse Pay</h3></div><p>복잡한 결제 운영을 하나의 흐름으로 통합한 차세대 플랫폼</p></div></article>
+      <article class="work-card reveal"><div class="work-art art-campus"><b>Y</b><span>Campus banking,<br>reframed.</span></div><div class="work-meta"><div><span>BANKING · 2024</span><h3>Y-Campus</h3></div><p>대학생의 금융 생활을 다시 설계한 모바일 경험</p></div></article>
+      <article class="work-card reveal"><div class="work-art art-ai"><span class="mini-orbit"></span><b>AI OPS</b><small>ONE CONTROL TOWER</small></div><div class="work-meta"><div><span>ENTERPRISE AI · 2024</span><h3>GenAI Ops</h3></div><p>생성형 AI 운영을 투명하게 만드는 관리 플랫폼</p></div></article>
     </div>
-  </section>
+  </div></section>
 
-  <section id="partners" class="partners">
-    <div class="container">
-      <h2 class="partners-title">Our Partners</h2>
-      <p class="partners-desc">고객이 지향하는 브랜드 철학의 본질을 심도 있게 분석하여 최선의 결과물을 만들어냅니다.<br>브랜드의 메시지가 사용자에게 가장 친밀하게 전달되도록, 보이지 않는 디테일까지 끊임없이 고민합니다.</p>
-    </div>
-    <div class="marquee-row marquee-row-1" aria-hidden="true">
-      <div class="marquee-track">
-        <span class="wordmark">NORDLY</span><span class="wordmark">HAVENFORM</span><span class="wordmark">GRIDVALE</span><span class="wordmark">ORSANT</span><span class="wordmark">MERIDIC</span><span class="wordmark">PLURA</span><span class="wordmark">KESTREL&amp;CO</span><span class="wordmark">VANTIS</span>
-        <span class="wordmark">NORDLY</span><span class="wordmark">HAVENFORM</span><span class="wordmark">GRIDVALE</span><span class="wordmark">ORSANT</span><span class="wordmark">MERIDIC</span><span class="wordmark">PLURA</span><span class="wordmark">KESTREL&amp;CO</span><span class="wordmark">VANTIS</span>
-      </div>
-    </div>
-    <div class="marquee-row marquee-row-2" aria-hidden="true">
-      <div class="marquee-track marquee-track-rev">
-        <span class="wordmark">OBLONA</span><span class="wordmark">FERNTIDE</span><span class="wordmark">ZENITHRA</span><span class="wordmark">CASTELUME</span><span class="wordmark">BRAEWELL</span><span class="wordmark">SOLIVEN</span><span class="wordmark">NOOKHAUS</span><span class="wordmark">ARGENTIS</span>
-        <span class="wordmark">OBLONA</span><span class="wordmark">FERNTIDE</span><span class="wordmark">ZENITHRA</span><span class="wordmark">CASTELUME</span><span class="wordmark">BRAEWELL</span><span class="wordmark">SOLIVEN</span><span class="wordmark">NOOKHAUS</span><span class="wordmark">ARGENTIS</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="projects">
-    <div class="projects-pin">
-    <div class="container">
-      <h2 class="projects-title">Our Projects</h2>
-      <div class="proj-layout">
-        <div class="proj-visual">
-          <div class="proj-vis is-active" style="--vc:#F0403A"><div class="proj-mock proj-mock-1" aria-hidden="true"><span></span><span></span><span></span></div></div>
-          <div class="proj-vis" style="--vc:#1D3A6E"><div class="proj-mock proj-mock-2" aria-hidden="true"><span></span><span></span><span></span></div></div>
-          <div class="proj-vis" style="--vc:#211C1A"><div class="proj-mock proj-mock-3" aria-hidden="true"><span></span><span></span><span></span></div></div>
-        </div>
-        <div class="proj-info">
-          <article class="proj-slide is-active" data-index="0">
-            <h3 class="proj-name">차세대 통합결제 플랫폼<br>올버스페이</h3>
-            <dl class="proj-meta"><dt>클라이언트</dt><dd>핀텔페이먼츠</dd><dt>출시</dt><dd>2025년 3월</dd></dl>
-          </article>
-          <article class="proj-slide" data-index="1">
-            <h3 class="proj-name">코발트뱅크<br>Y-Campus</h3>
-            <dl class="proj-meta"><dt>클라이언트</dt><dd>코발트뱅크</dd><dt>출시</dt><dd>2022년 10월</dd></dl>
-          </article>
-          <article class="proj-slide" data-index="2">
-            <h3 class="proj-name">제니스시스템즈<br>GenAI 운영 플랫폼</h3>
-            <dl class="proj-meta"><dt>클라이언트</dt><dd>제니스시스템즈</dd><dt>출시</dt><dd>2024년 4월</dd></dl>
-          </article>
-          <a class="proj-more" href="#contact"><span>문의하기</span><span class="proj-more-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact-cta">
-    <canvas id="ctaGlow" aria-hidden="true"></canvas>
-    <div class="cta-inner">
-      <h2 class="cta-title">Say Hello!</h2>
-      <div class="cta-row">
-        <p class="cta-sub">우리와 어떤 프로젝트를 함께 하고 싶으세요?</p>
-        <a class="cta-arrow" href="mailto:hello@cognova.studio" aria-label="이메일 보내기">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
+  <section class="partners" aria-label="파트너 브랜드"><p class="eyebrow container">TRUSTED BY TEAMS AT</p><div class="partner-marquee" aria-hidden="true"><div>FINTECH · COMMERCE · MOBILITY · HEALTHCARE · ENTERPRISE · FINTECH · COMMERCE · MOBILITY · HEALTHCARE · ENTERPRISE ·</div></div></section>
+  <section class="contact" id="contact"><div class="contact-noise" aria-hidden="true"></div><div class="container contact-inner reveal"><p class="eyebrow">LET'S MAKE THE NEXT MOVE</p><h2>다음 변화를<br><em>함께 설계할까요?</em></h2><a href="mailto:hello@cognova.studio">hello@cognova.studio <span>↗</span></a></div></section>
 </main>
-
-<footer class="footer">
-  <div class="footer-top">
-    <svg class="footer-logo" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="15" fill="none" stroke="currentColor" stroke-width="3.5"/><circle cx="45" cy="21" r="4" fill="currentColor"/></svg>
-    <span class="footer-wordmark">COGNOVA</span>
-  </div>
-  <div class="footer-bottom">
-    <address class="footer-info">
-      <p>서울특별시 성동구 아차산로 17길 48, 4층</p>
-      <p>대표 이현수&nbsp; · &nbsp;E&nbsp; hello@cognova.studio</p>
-      <p><span>T&nbsp; 02.463.7710</span><span>F&nbsp; 02.463.7711</span></p>
-    </address>
-    <div class="footer-sns" aria-label="소셜 미디어">
-      <a href="#" aria-label="Instagram" data-cursor-label="이동"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg></a>
-      <a href="#" aria-label="LinkedIn" data-cursor-label="이동"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.4"/><path d="M8 10.5v6M8 7.8v.2M12 16.5v-3.6c0-1.4 1-2.4 2.2-2.4 1.2 0 1.8 1 1.8 2.4v3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
-      <a href="#" aria-label="Behance" data-cursor-label="이동"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h6c1.7 0 3 1.1 3 2.6 0 1.1-.6 1.9-1.6 2.3 1.3.4 2.1 1.4 2.1 2.7 0 1.8-1.5 3-3.4 3H3V7Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M14.5 13.4h6.3M15 11.3c.5-1.6 1.9-2.6 3.6-2.6 2.2 0 3.7 1.6 3.7 4.4v.3H14.9c0 2 1.3 3.3 3.4 3.3 1.3 0 2.2-.5 2.9-1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></a>
-    </div>
-    <p class="footer-copy">&copy; 2026 Cognova. 모든 권리를 보유합니다.</p>
-  </div>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
+<footer class="footer"><a class="brand brand--footer" href="#top"><img src="img/cognova-logo.svg" alt="COGNOVA"></a><p>서울특별시 성동구 아차산로 17길 48, 4층<br>T 02.463.7710 · F 02.463.7711</p><div><span>© 2026 COGNOVA</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+<script src="script.js?v=20260926-3"></script>
+</body></html>

@@ -771,7 +771,9 @@ body.nav-locked{overflow:hidden;}
 .poster-archive__head p{max-width:360px;text-align:right;font-size:14px;color:var(--g-600)}
 .poster-stack{
   display:flex;
-  width:100%;
+  width:calc(100% - (var(--container-pad) * 2));
+  max-width:calc(1920px - (var(--container-pad) * 2));
+  margin-inline:auto;
   height:clamp(500px,57vw,760px);
   padding-inline:0;
   gap:0;
@@ -869,6 +871,7 @@ body.nav-locked{overflow:hidden;}
   .poster-archive__head{display:block;margin-bottom:20px}
   .poster-archive__head p{margin-top:12px;text-align:left;max-width:290px}
   .poster-stack{
+    width:calc(100% - (var(--container-pad) * 2));
     height:68vh;
     min-height:460px;
     max-height:620px;

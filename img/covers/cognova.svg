@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs><pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#fff" stroke-opacity=".13"/></pattern><radialGradient id="n"><stop stop-color="#c8ff3d"/><stop offset=".55" stop-color="#16b42e"/><stop offset="1" stop-color="#071d78"/></radialGradient></defs>
+  <rect width="1200" height="800" rx="44" fill="#1538ff"/><rect width="1200" height="800" rx="44" fill="url(#g)"/>
+  <text x="64" y="82" fill="#c8ff3d" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="3">AI TRANSFORMATION STUDIO</text>
+  <text x="60" y="232" fill="#fff" font-family="Arial,sans-serif" font-size="118" font-weight="700" letter-spacing="-8">Think clearly.</text><text x="60" y="346" fill="#fff" font-family="Arial,sans-serif" font-size="118" font-weight="700" letter-spacing="-8">Build </text><text x="344" y="346" fill="#c8ff3d" font-family="Arial,sans-serif" font-size="118" font-weight="700" letter-spacing="-8">bravely.</text>
+  <circle cx="930" cy="425" r="208" fill="none" stroke="#c8ff3d" stroke-width="2"/><ellipse cx="930" cy="425" rx="228" ry="126" fill="none" stroke="#c8ff3d" stroke-width="2" transform="rotate(-18 930 425)"/><circle cx="930" cy="425" r="136" fill="url(#n)"/>
+  <circle cx="1104" cy="296" r="14" fill="#c8ff3d"/><circle cx="730" cy="490" r="9" fill="#c8ff3d"/>
+  <text x="64" y="728" fill="#fff" font-family="Arial,sans-serif" font-size="30" font-weight="700">COGNOVA</text><text x="1004" y="728" fill="#fff" font-family="Arial,sans-serif" font-size="18">+ NOVA</text>
+</svg>
