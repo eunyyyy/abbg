@@ -307,6 +307,8 @@ h4,.h3{font-family:var(--font-brand);font-size:var(--fs-h3);font-weight:var(--fw
   --color-accent-100:#dbeafe;--color-accent-500:#2563eb;--color-accent-600:#1d4ed8;
 }
 .hero__scrim{background:linear-gradient(90deg,rgba(4,13,31,.84) 0%,rgba(8,23,48,.54) 52%,rgba(15,35,64,.2) 100%)}
+.hero__title{font-size:44px;line-height:1.12}
+.hero__lede{max-width:780px}
 .hero__actions{gap:12px;margin-top:32px}
 .hero__actions .btn{font-size:15px;font-weight:500;padding:11px 18px}
 #overview{padding-top:170px;background:var(--color-primary-050)}
@@ -342,6 +344,8 @@ h4,.h3{font-family:var(--font-brand);font-size:var(--fs-h3);font-weight:var(--fw
 .scroll-top{position:absolute;right:var(--gutter);bottom:calc(100% + 48px);width:48px;height:48px;min-width:48px;min-height:48px;display:grid;place-items:center;background:#fff;color:var(--text-default);border:0;border-radius:0;text-decoration:none;font-size:20px;z-index:5;box-shadow:0 8px 24px rgba(15,35,64,.08)}
 @media(max-width:768px){
   #overview{padding-top:64px}
+  .hero__title{font-size:28px;line-height:1.18}
+  .hero__lede{max-width:100%}
   .process{grid-template-columns:1fr;gap:20px}
   .process::before{display:none}
   .step{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;gap:16px;text-align:left}
