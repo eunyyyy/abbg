@@ -152,6 +152,7 @@
         : 0;
       const radius = (progress * 78).toFixed(2);
       motionReveal.style.clipPath = `circle(${radius}% at 50% 50%)`;
+      motionSection.classList.toggle('is-fullscreen', progress >= 0.94);
       motionTicking = false;
     };
     window.addEventListener('scroll', () => {
@@ -162,6 +163,7 @@
     updateMotion();
   } else if (motionReveal) {
     motionReveal.style.clipPath = 'circle(78% at 50% 50%)';
+    motionSection.classList.add('is-fullscreen');
   }
 
   /* ---------------------------------------------------------------------
