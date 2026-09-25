@@ -443,11 +443,17 @@ h1,h2,h3,h4,p{ margin:0; }
 @media (max-width: 640px){
   .footer__info{ flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:4px; }
 }
+/* Full-size wordmark (width tuned to reach --container's 1240px max at
+   wide viewports, same 380px-ish scale as the original), but cropped to
+   its own top half — height:0.43em (half of the .86 line-height, in em
+   so it scales with the clamp()'d font-size at every viewport) clips the
+   bottom half away via overflow:hidden, instead of shrinking the type. */
 .footer__watermark{
   font-family: var(--font-en); font-weight:700; text-align:center;
-  font-size: clamp(30px, 13vw, 190px); line-height:.86; letter-spacing:-.02em;
+  font-size: clamp(60px, 26vw, 395px); line-height:.86; letter-spacing:-.02em;
   color:#fff; opacity:.1;
-  padding: 6px 0 14px; user-select:none;
+  height:.43em; overflow:hidden;
+  padding: 6px 0 0; user-select:none;
 }
 
 /* =========================================================
