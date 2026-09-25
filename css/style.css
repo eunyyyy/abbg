@@ -171,33 +171,6 @@ h1,h2,h3,h4,p{ margin:0; }
   background: radial-gradient(120% 90% at 50% 100%, var(--bg) 20%, transparent 70%);
 }
 
-/* Card corridor — rails of project covers rushing from centre toward the
-   viewer, ported from a perspective/keyframe recipe (see js/main.js
-   initIntroStream). Height is capped rather than inset:0'd to the whole
-   .intro section so it only occupies the headline band. */
-.intro__stream{
-  position:absolute; top:0; left:0; right:0; height:min(680px, 92%);
-  overflow:hidden; container-type: inline-size;
-}
-.intro__stream-scene{ position:absolute; inset:0; }
-.intro__stream-rail{ position:absolute; inset:0; transform-style:preserve-3d; }
-.intro__stream-card{
-  position:absolute; overflow:hidden; backface-visibility:hidden;
-  border:1px solid rgba(255,255,255,.12); background: var(--bg-raise);
-}
-.intro__stream-card img{ width:100%; height:100%; object-fit:cover; display:block; }
-.intro__stream::after{
-  content:''; position:absolute; inset:0;
-  background:
-    radial-gradient(120% 90% at 50% 100%, var(--bg) 15%, transparent 65%),
-    radial-gradient(58% 62% at 50% 38%, rgba(8,9,13,.5), rgba(8,9,13,.28) 70%),
-    rgba(8,9,13,.16);
-}
-
-@media (max-width: 767px){
-  .intro__stream{ height:min(460px, 92%); }
-}
-
 .intro__inner{ position:relative; z-index:1; text-align:center; }
 .intro .eyebrow{ justify-content:center; margin-bottom:22px; text-shadow: 0 2px 16px rgba(0,0,0,.7); }
 .intro h1{
@@ -218,7 +191,7 @@ h1,h2,h3,h4,p{ margin:0; }
 /* =========================================================
    PROJECT LIST
    ========================================================= */
-.plist-section{ position:relative; padding: 120px 0 100px; background: var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.plist-section{ position:relative; padding: 120px 0 100px; background: var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
 .plist-section .section-head{ margin-bottom:56px; max-width:680px; }
 .section-head h2{
   font-family: var(--font-en); font-weight:700; font-size: clamp(30px,4.4vw,46px);
@@ -261,7 +234,11 @@ h1,h2,h3,h4,p{ margin:0; }
 .plist__preview img{ width:100%; height:100%; object-fit:cover; display:block; }
 
 @media (max-width: 900px){
-  .plist__preview{ display:none; } /* no hover on touch; the row link is the whole affordance */
+  /* Touch has no hover, but a press-and-hold still reveals this preview
+     (see initPlistPreview's touchstart/touchmove handling) — centered and
+     scaled down to fit narrow viewports instead of the desktop's off-column
+     placement. */
+  .plist__preview{ left:50%; width:min(78vw, 300px); height:calc(min(78vw, 300px) * 191 / 340); }
 }
 .plist__row{ border-bottom:1px solid var(--line); }
 .plist__link{
@@ -301,22 +278,35 @@ h1,h2,h3,h4,p{ margin:0; }
   font-size: clamp(40px, 9vw, 120px); line-height:1; letter-spacing:-.02em;
   color: rgba(255,255,255,.05);
   filter: blur(6px);
-  white-space:nowrap; overflow:hidden;
+  overflow:hidden;
   padding-bottom: 20px;
+}
+.ghost-cta__repeat-track{ display:flex; width:max-content; animation: ghost-cta-marquee 34s linear infinite; }
+.ghost-cta__repeat-item{ white-space:nowrap; }
+@keyframes ghost-cta-marquee{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
 }
 .ghost-cta__panel{
   position:relative; padding: 120px 0 140px; text-align:center;
-  overflow:hidden;
+  overflow:hidden; background: var(--bg);
+  --gx: 50%; --gy: 50%;
 }
+/* Single mouse-reactive gradient orb (matches Figma's "Gradient Orb — Multi
+   Fill" ellipse) — warm-to-teal blend sharing one moving centre via
+   --gx/--gy, same lerp-to-cursor pattern as .intro__art and .footer. */
 .ghost-cta__panel::before{
-  content:''; position:absolute; inset:-10%;
+  content:''; position:absolute; z-index:0; pointer-events:none;
+  left:50%; top:50%; width:820px; height:820px; transform: translate(-50%,-50%);
   background:
-    radial-gradient(50% 60% at 20% 30%, rgba(255,122,69,.55), transparent 65%),
-    radial-gradient(45% 55% at 80% 20%, rgba(232,67,47,.42), transparent 65%),
-    radial-gradient(60% 65% at 70% 85%, rgba(35,194,180,.4), transparent 65%),
-    radial-gradient(40% 50% at 10% 90%, rgba(20,107,122,.5), transparent 65%),
-    var(--bg);
-  filter: blur(70px) saturate(1.2);
+    radial-gradient(40% 40% at calc(var(--gx) - 18%) calc(var(--gy) - 10%), rgba(255,122,69,.95), transparent 68%),
+    radial-gradient(36% 36% at calc(var(--gx) - 4%) calc(var(--gy) + 14%), rgba(232,67,47,.8), transparent 68%),
+    radial-gradient(44% 44% at calc(var(--gx) + 16%) calc(var(--gy) + 4%), rgba(35,194,180,.85), transparent 70%),
+    radial-gradient(38% 38% at calc(var(--gx) + 26%) calc(var(--gy) - 12%), rgba(20,107,122,.6), transparent 68%);
+  filter: blur(70px) saturate(1.15);
+}
+@media (max-width: 767px){
+  .ghost-cta__panel::before{ width:520px; height:520px; }
 }
 .ghost-cta__inner{ position:relative; z-index:1; max-width:640px; margin:0 auto; }
 .ghost-cta__panel h2{
@@ -328,7 +318,7 @@ h1,h2,h3,h4,p{ margin:0; }
 /* =========================================================
    FEEDBACK
    ========================================================= */
-.feedback{ padding: 120px 0 130px; background: var(--bg-alt); border-top:1px solid var(--line); }
+.feedback{ padding: 120px 0 130px; background: var(--bg); border-top:1px solid var(--line); }
 .feedback__layout{ display:grid; grid-template-columns: 1fr 1fr; gap:64px; margin-top:56px; align-items:start; }
 
 .picker{ display:flex; flex-direction:column; gap:16px; margin-bottom:22px; }
@@ -363,7 +353,10 @@ h1,h2,h3,h4,p{ margin:0; }
 
 .feedback__history h3{ font-family: var(--font-en); font-size:16px; font-weight:700; margin-bottom:20px; color: var(--text-dim); letter-spacing:.04em; text-transform:uppercase; }
 .history-list{ display:flex; flex-direction:column; gap:14px; max-height:520px; overflow-y:auto; padding-right:6px; }
-.history-item{ padding:18px 20px; border:1px solid var(--line); border-radius:14px; background: var(--bg-raise); }
+.history-item{ padding:18px 20px; border:1px solid var(--line); border-radius:14px; background: var(--bg-raise); transition: border-color .25s, background .25s; }
+.history-item[data-status="done"]{ cursor:none; }
+.history-item[data-status="done"]:hover{ border-color: rgba(255,255,255,.22); background: var(--bg-raise); }
+.history-item[data-status="pending"]{ cursor:none; }
 .history-item__meta{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; font-size:12.5px; color: var(--text-faint); }
 .history-item__project{ color: var(--teal); font-weight:600; }
 .history-item__comment{ font-size:14.5px; color: var(--text); line-height:1.6; }
@@ -384,6 +377,30 @@ h1,h2,h3,h4,p{ margin:0; }
 }
 .history-item__reply-label{ display:block; font-family: var(--font-en); font-size:11px; font-weight:700; letter-spacing:.06em; color: var(--teal); margin-bottom:5px; text-transform:uppercase; }
 
+/* Custom circular cursor shown while hovering a feedback history card —
+   only for "done" (clickable → project link) and "pending" (informational)
+   statuses. Follows the real cursor via fixed positioning updated in JS. */
+.feedback-cursor{
+  position:fixed; top:0; left:0; z-index:999; pointer-events:none;
+  width:104px; height:104px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  font-family: var(--font-en); font-size:12.5px; font-weight:700; letter-spacing:.01em;
+  line-height:1.3; padding:8px; word-break:keep-all;
+  opacity:0; transform: translate(-50%,-50%) scale(.7);
+  transition: opacity .18s var(--ease), transform .18s var(--ease), background .18s;
+  will-change: transform;
+}
+.feedback-cursor.is-visible{ opacity:1; transform: translate(-50%,-50%) scale(1); }
+.feedback-cursor.is-done{ background: var(--text); color:#0a0a0d; }
+.feedback-cursor.is-pending{ background: var(--teal); color:#062220; }
+@media (prefers-reduced-motion: reduce){
+  .feedback-cursor{ transition:none; }
+}
+@media (hover:none), (pointer:coarse){
+  .feedback-cursor{ display:none; }
+  .history-item[data-status="done"],.history-item[data-status="pending"]{ cursor:pointer; }
+}
+
 @media (max-width: 900px){
   .feedback__layout{ grid-template-columns:1fr; gap:44px; }
 }
@@ -391,19 +408,19 @@ h1,h2,h3,h4,p{ margin:0; }
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer{ position:relative; background: var(--bg); padding-top: 90px; overflow:hidden; }
-/* Same 6-color blend as the hero (.intro__art), static here — matches the
-   Figma footer treatment: the watermark sits on a warm-to-teal gradient
-   wash rather than flat background. */
+.footer{ position:relative; background: var(--bg); padding-top: 90px; overflow:hidden; --gx: 50%; --gy: 45%; }
+/* Same 6-color blend as the hero (.intro__art) — matches the Figma footer
+   treatment (watermark on a warm-to-teal gradient wash), and shares the
+   same mouse-reactive --gx/--gy pattern as .intro__art / .ghost-cta__panel. */
 .footer::before{
   content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
   background:
-    radial-gradient(42% 60% at 12% 30%, #F45F7A, transparent 68%),
-    radial-gradient(36% 50% at 30% 65%, #D7785D, transparent 68%),
-    radial-gradient(40% 55% at 55% 15%, #E8B8C2, transparent 66%),
-    radial-gradient(46% 62% at 72% 70%, #55CEC5, transparent 68%),
-    radial-gradient(50% 65% at 90% 45%, #3AADB0, transparent 70%),
-    radial-gradient(55% 70% at 95% 85%, #006B70, transparent 74%);
+    radial-gradient(42% 60% at calc(var(--gx) - 38%) calc(var(--gy) - 15%), #F45F7A, transparent 68%),
+    radial-gradient(36% 50% at calc(var(--gx) - 20%) calc(var(--gy) + 20%), #D7785D, transparent 68%),
+    radial-gradient(40% 55% at calc(var(--gx) + 5%) calc(var(--gy) - 30%), #E8B8C2, transparent 66%),
+    radial-gradient(46% 62% at calc(var(--gx) + 22%) calc(var(--gy) + 25%), #55CEC5, transparent 68%),
+    radial-gradient(50% 65% at calc(var(--gx) + 40%) var(--gy), #3AADB0, transparent 70%),
+    radial-gradient(55% 70% at calc(var(--gx) + 45%) calc(var(--gy) + 40%), #006B70, transparent 74%);
   filter: blur(70px) saturate(1.1);
   opacity:.55;
 }

@@ -74,139 +74,31 @@
   }
 
   /* =========================================================
-     Hero background: card corridor
-     Two mirrored rails of project-cover cards ride from the
-     centre of the hero out toward the viewer's left/right, using
-     a perspective projection so apparent size and lateral offset
-     grow together. Ported (vanilla JS/CSS, no React/Tailwind —
-     this site has neither) from a reference component; the path
-     geometry below is copied as-is since it was numerically fitted
-     against a reference recording, not eyeballed.
+     Mouse-reactive gradient backgrounds
+     Every section with a blended radial-gradient (.intro__art,
+     .ghost-cta__panel's orb, .footer's wash) shares one moving
+     centre point per section via CSS custom properties --gx/--gy,
+     lerped toward the cursor while it's over that section and
+     eased back to a default centre on mouseleave. The rAF loop
+     only runs while actively interpolating, not continuously at
+     rest. `targetEl` is the element the custom properties are set
+     on — for real layers (.intro__art) that's the layer itself;
+     for ::before-based orbs (ghost-cta, footer) it's the section
+     itself, since custom properties inherit down into pseudo-
+     elements but can't be set on them directly.
      ========================================================= */
-  function initIntroStream() {
-    var root = document.getElementById('intro-stream');
-    if (!root) return;
+  function initCursorGradient(sectionEl, targetEl, defaultX, defaultY, clampX, clampY) {
+    if (!sectionEl || !targetEl || reduceMotion) return;
 
-    var PATH = {
-      perspective: 30,
-      cardWidth: 18,
-      cardHeight: 25,
-      cardRadius: 0.6,
-      birthHeight: 2.6,
-      exitHeight: 46,
-      railBirth: -11,
-      railExit: 44,
-      fan: 3.3,
-      turnBirth: 6,
-      turnExit: 28,
-      stops: 24
-    };
-    var CARDS_PER_RAIL = 8;
-    var SPEED_SECONDS = 22;
-    var AXIS_PERCENT = 42; // vertical placement of the vanishing point, % of .intro__stream's own height
-    var COVERS = [
-      'nexforge', 'aerium', 'mobilion', 'velocore', 'obliq', 'osmere', 'auberon', 'vestia',
-      'kadence', 'weft', 'emberic', 'nom-burger-wings', 'halcyon', 'agrinova', 'verahyde', 'cognova'
-    ];
-
-    function keyframes(dir, name) {
-      var steps = [];
-      for (var s = 0; s <= PATH.stops; s++) {
-        var u = s / PATH.stops;
-        // Geometric in apparent size, so consecutive cards keep a constant
-        // size ratio and the ribbon stays solid from birth to exit.
-        var scale = (PATH.birthHeight / PATH.cardHeight) * Math.pow(PATH.exitHeight / PATH.birthHeight, u);
-        var z = PATH.perspective * (1 - 1 / scale);
-        var rail = PATH.railExit - (PATH.railExit - PATH.railBirth) * Math.pow(1 - u, PATH.fan);
-        var turn = PATH.turnBirth + (PATH.turnExit - PATH.turnBirth) * u;
-        steps.push(
-          (u * 100).toFixed(2) + '%{transform:translate3d(' +
-          (dir * rail).toFixed(2) + 'cqw,0,' + z.toFixed(2) + 'cqw) rotateY(' +
-          (-dir * turn).toFixed(2) + 'deg)}'
-        );
-      }
-      return '@keyframes ' + name + '{' + steps.join('') + '}';
-    }
-
-    var uid = 'is' + Math.random().toString(36).slice(2, 8);
-    var rightName = 'introstream-r-' + uid;
-    var leftName = 'introstream-l-' + uid;
-    var cardClass = 'introstream-card-' + uid;
-
-    var styleEl = document.createElement('style');
-    styleEl.textContent =
-      keyframes(1, rightName) + keyframes(-1, leftName) +
-      // !important is required here: each card also carries an inline
-      // `style.animation` shorthand (set below), and inline styles beat a
-      // plain external rule regardless of DOM order or selector specificity.
-      '@media(prefers-reduced-motion:reduce){.' + cardClass + '{animation-play-state:paused !important}}';
-    document.head.appendChild(styleEl);
-
-    root.style.perspective = PATH.perspective + 'cqw';
-    root.style.perspectiveOrigin = '50% ' + AXIS_PERCENT + '%';
-
-    var scene = document.createElement('div');
-    scene.className = 'intro__stream-scene';
-    var rail = document.createElement('div');
-    rail.className = 'intro__stream-rail';
-    scene.appendChild(rail);
-    root.appendChild(scene);
-
-    [rightName, leftName].forEach(function (name) {
-      for (var i = 0; i < CARDS_PER_RAIL; i++) {
-        var slug = COVERS[i % COVERS.length];
-        var el = document.createElement('div');
-        el.className = 'intro__stream-card ' + cardClass;
-        el.style.left = '50%';
-        el.style.top = AXIS_PERCENT + '%';
-        el.style.width = PATH.cardWidth + 'cqw';
-        el.style.height = PATH.cardHeight + 'cqw';
-        el.style.marginLeft = (-PATH.cardWidth / 2) + 'cqw';
-        el.style.marginTop = (-PATH.cardHeight / 2) + 'cqw';
-        el.style.borderRadius = PATH.cardRadius + 'cqw';
-        el.style.animation = name + ' ' + SPEED_SECONDS + 's linear infinite';
-        // Negative delay drops each card mid-flight so the corridor is
-        // already full on the first frame, instead of birthing empty.
-        el.style.animationDelay = (-(i * SPEED_SECONDS) / CARDS_PER_RAIL) + 's';
-
-        var img = document.createElement('img');
-        img.src = 'img/covers/' + slug + '.jpg';
-        img.alt = '';
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.draggable = false;
-        el.appendChild(img);
-
-        rail.appendChild(el);
-      }
-    });
-  }
-  initIntroStream();
-
-  /* =========================================================
-     Hero background: cursor-reactive gradient
-     .intro__art's blended radial-gradient cluster (6 brand colors,
-     defined in css/style.css) shares one moving centre point via
-     --gx/--gy. This smoothly lerps that centre toward the mouse
-     position while it's over the hero, and eases it back to the
-     default centre on mouseleave — the rAF loop only runs while
-     actively interpolating, not continuously at rest.
-     ========================================================= */
-  function initIntroGradient() {
-    var section = document.querySelector('.intro');
-    var art = document.querySelector('.intro__art');
-    if (!section || !art || reduceMotion) return;
-
-    var DEFAULT_X = 50, DEFAULT_Y = 42;
-    var targetX = DEFAULT_X, targetY = DEFAULT_Y;
-    var currentX = DEFAULT_X, currentY = DEFAULT_Y;
+    var targetX = defaultX, targetY = defaultY;
+    var currentX = defaultX, currentY = defaultY;
     var rafId = null;
 
     function tick() {
       currentX += (targetX - currentX) * 0.08;
       currentY += (targetY - currentY) * 0.08;
-      art.style.setProperty('--gx', currentX.toFixed(2) + '%');
-      art.style.setProperty('--gy', currentY.toFixed(2) + '%');
+      targetEl.style.setProperty('--gx', currentX.toFixed(2) + '%');
+      targetEl.style.setProperty('--gy', currentY.toFixed(2) + '%');
       if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
         rafId = requestAnimationFrame(tick);
       } else {
@@ -217,22 +109,24 @@
       if (rafId === null) rafId = requestAnimationFrame(tick);
     }
 
-    section.addEventListener('mousemove', function (e) {
-      var rect = section.getBoundingClientRect();
+    sectionEl.addEventListener('mousemove', function (e) {
+      var rect = sectionEl.getBoundingClientRect();
       var x = ((e.clientX - rect.left) / rect.width) * 100;
       var y = ((e.clientY - rect.top) / rect.height) * 100;
       // clamp so the gradient cluster never slides fully off the section
-      targetX = Math.max(20, Math.min(80, x));
-      targetY = Math.max(15, Math.min(75, y));
+      targetX = Math.max(clampX[0], Math.min(clampX[1], x));
+      targetY = Math.max(clampY[0], Math.min(clampY[1], y));
       ensureLoop();
     });
-    section.addEventListener('mouseleave', function () {
-      targetX = DEFAULT_X;
-      targetY = DEFAULT_Y;
+    sectionEl.addEventListener('mouseleave', function () {
+      targetX = defaultX;
+      targetY = defaultY;
       ensureLoop();
     });
   }
-  initIntroGradient();
+  initCursorGradient(document.querySelector('.intro'), document.querySelector('.intro__art'), 50, 42, [20, 80], [15, 75]);
+  initCursorGradient(document.querySelector('.ghost-cta__panel'), document.querySelector('.ghost-cta__panel'), 50, 50, [35, 65], [35, 65]);
+  initCursorGradient(document.querySelector('.footer'), document.querySelector('.footer'), 50, 45, [35, 65], [30, 60]);
 
   /* =========================================================
      Shared project data — read from the static DOM at boot,
@@ -413,6 +307,11 @@
     sectionEl.appendChild(preview);
 
     var targetY = 0, currentY = 0, rafId = null, visible = false;
+    // Guards the brief window after a touch interaction ends: mobile
+    // browsers replay a synthetic mouseover/mousemove/click ~ tens of ms
+    // after touchend for compatibility, which would otherwise instantly
+    // re-open the preview this same gesture just closed.
+    var suppressMouseUntil = 0;
 
     function tick() {
       currentY += (targetY - currentY) * (reduceMotion ? 1 : 0.25);
@@ -429,6 +328,7 @@
     }
 
     plistEl.addEventListener('mouseover', function (e) {
+      if (Date.now() < suppressMouseUntil) return;
       var link = e.target.closest('.plist__link');
       var row = link && link.closest('.plist__row');
       var cover = row && row.dataset.cover;
@@ -454,6 +354,49 @@
       preview.classList.remove('is-visible');
       visible = false;
     });
+
+    // Touch: press-and-hold a row to reveal the same preview (PC hover
+    // parity), tracking the finger until it lifts. elementFromPoint is used
+    // because touchstart's own target is wherever the finger first landed,
+    // which is reliable, but touchmove keeps reporting that same original
+    // target — so the row lookup on move re-resolves from the live point.
+    function rowFromPoint(x, y) {
+      var el = document.elementFromPoint(x, y);
+      var link = el && el.closest && el.closest('.plist__link');
+      return link && link.closest('.plist__row');
+    }
+
+    plistEl.addEventListener('touchstart', function (e) {
+      var touch = e.touches[0];
+      if (!touch) return;
+      var row = rowFromPoint(touch.clientX, touch.clientY);
+      var cover = row && row.dataset.cover;
+      if (!cover) return;
+      if (img.src.indexOf(cover) === -1) img.src = cover;
+      img.alt = (row.dataset.name || '') + ' 커버';
+      preview.classList.add('is-visible');
+      visible = true;
+      var rect = sectionEl.getBoundingClientRect();
+      targetY = touch.clientY - rect.top;
+      ensureLoop();
+    }, { passive: true });
+
+    plistEl.addEventListener('touchmove', function (e) {
+      if (!visible) return;
+      var touch = e.touches[0];
+      if (!touch) return;
+      var rect = sectionEl.getBoundingClientRect();
+      targetY = touch.clientY - rect.top;
+      ensureLoop();
+    }, { passive: true });
+
+    function endTouch() {
+      preview.classList.remove('is-visible');
+      visible = false;
+      suppressMouseUntil = Date.now() + 700;
+    }
+    plistEl.addEventListener('touchend', endTouch);
+    plistEl.addEventListener('touchcancel', endTouch);
   }
   initPlistPreview();
 

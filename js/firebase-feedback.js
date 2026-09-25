@@ -35,10 +35,29 @@ function escapeHtml(str) {
 
 var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
 var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'is-done' };
+// Custom hover-cursor text for the two statuses that get one (see
+// initHistoryInteractions) — 진행중 keeps the ordinary cursor.
+var STATUS_CURSOR_TEXT = { done: '프로젝트 이동', pending: '피드백 반영중' };
 
 function statusBadgeHtml(status) {
   var key = STATUS_LABEL[status] ? status : 'pending'; // legacy docs with no status render as 대기중
   return '<span class="status-badge ' + STATUS_CLASS[key] + '">' + STATUS_LABEL[key] + '</span>';
+}
+
+// Looks up a project's live URL straight from the rendered .plist rows
+// (rather than duplicating project data here) so it always reflects
+// whatever main.js currently has mounted — static fallback or Firestore sync.
+function resolveProjectUrl(projectNumber) {
+  if (!projectNumber) return '';
+  var rows = document.querySelectorAll('.plist__row');
+  for (var i = 0; i < rows.length; i++) {
+    var noEl = rows[i].querySelector('.plist__no');
+    if (noEl && noEl.textContent.trim() === projectNumber) {
+      var link = rows[i].querySelector('.plist__link');
+      return link ? link.getAttribute('href') : '';
+    }
+  }
+  return '';
 }
 
 function renderHistory(docs) {
@@ -50,11 +69,14 @@ function renderHistory(docs) {
   historyListEl.innerHTML = docs.map(function (data) {
     var dateStr = formatDate(data.createdAt);
     var author = data.author ? escapeHtml(data.author) : '익명';
+    var statusKey = STATUS_LABEL[data.status] ? data.status : 'pending';
+    var isDone = statusKey === 'done';
     var replyHtml = data.reply
       ? '<div class="history-item__reply"><span class="history-item__reply-label">AI WEB 답변</span>' + escapeHtml(data.reply) + '</div>'
       : '';
     return (
-      '<div class="history-item">' +
+      '<div class="history-item" data-status="' + statusKey + '" data-project-no="' + escapeHtml(data.projectNumber || '') + '"' +
+        (isDone ? ' role="link" tabindex="0"' : '') + '>' +
         '<div class="history-item__meta">' +
           '<span class="history-item__project">' + escapeHtml(data.projectNumber) + ' · ' + escapeHtml(data.projectName) + '</span>' +
           statusBadgeHtml(data.status) +
@@ -67,6 +89,66 @@ function renderHistory(docs) {
     );
   }).join('');
 }
+
+// Click-through to the project (반영 완료 only) + a circular custom cursor
+// while hovering a card, reading its text/color from STATUS_CURSOR_TEXT.
+// #history-list itself is never replaced by renderHistory (only its
+// innerHTML), so delegating directly on it survives every re-render.
+function initHistoryInteractions() {
+  if (!historyListEl) return;
+  var pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var cursorEl = null;
+  var activeItem = null;
+
+  if (pointerFine) {
+    cursorEl = document.createElement('div');
+    cursorEl.className = 'feedback-cursor';
+    document.body.appendChild(cursorEl);
+
+    historyListEl.addEventListener('mouseover', function (e) {
+      var item = e.target.closest && e.target.closest('.history-item');
+      if (!item) return;
+      var text = STATUS_CURSOR_TEXT[item.dataset.status];
+      if (!text) {
+        cursorEl.classList.remove('is-visible');
+        activeItem = null;
+        return;
+      }
+      cursorEl.textContent = text;
+      cursorEl.className = 'feedback-cursor is-visible ' + (item.dataset.status === 'done' ? 'is-done' : 'is-pending');
+      activeItem = item;
+    });
+    historyListEl.addEventListener('mousemove', function (e) {
+      if (!activeItem) return;
+      cursorEl.style.left = e.clientX + 'px';
+      cursorEl.style.top = e.clientY + 'px';
+    });
+    historyListEl.addEventListener('mouseout', function (e) {
+      var item = e.target.closest && e.target.closest('.history-item');
+      if (item && item === activeItem && (!e.relatedTarget || !item.contains(e.relatedTarget))) {
+        cursorEl.classList.remove('is-visible');
+        activeItem = null;
+      }
+    });
+  }
+
+  function openProject(item) {
+    if (!item || item.dataset.status !== 'done') return;
+    var url = resolveProjectUrl(item.dataset.projectNo);
+    if (url) window.open(url, '_blank', 'noopener');
+  }
+  historyListEl.addEventListener('click', function (e) {
+    openProject(e.target.closest && e.target.closest('.history-item'));
+  });
+  historyListEl.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var item = e.target.closest && e.target.closest('.history-item');
+    if (!item || item.dataset.status !== 'done') return;
+    e.preventDefault();
+    openProject(item);
+  });
+}
+initHistoryInteractions();
 
 async function init() {
   if (!isFirebaseConfigured()) {
