@@ -418,6 +418,14 @@ h1,h2,h3,h4,p{ margin:0; }
    hero, time-driven only. display:none until the script confirms WebGL
    compiled/linked successfully. */
 .footer__gl{ position:absolute; inset:0; z-index:0; display:none; width:100%; height:100%; pointer-events:none; }
+/* Top-edge dim: fades the background from solid black down to fully
+   transparent, tall enough to reach the padding-top gap and fade out
+   naturally just above .footer__logo — never actually overlapping it. */
+.footer__topfade{
+  position:absolute; top:0; left:0; right:0; z-index:1; pointer-events:none;
+  height:90px;
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
 /* .footer::before / .footer__gl are position:absolute (z-index:0), which —
    per normal CSS stacking rules — paints ABOVE static in-flow siblings
    regardless of DOM order. Without this, the logo/tagline/info row render
@@ -437,9 +445,9 @@ h1,h2,h3,h4,p{ margin:0; }
 }
 .footer__watermark{
   font-family: var(--font-en); font-weight:700; text-align:center;
-  font-size: clamp(60px, 26vw, 380px); line-height:.86; letter-spacing:-.02em;
+  font-size: clamp(30px, 13vw, 190px); line-height:.86; letter-spacing:-.02em;
   color:#fff; opacity:.1;
-  padding: 10px 0 20px; user-select:none;
+  padding: 6px 0 14px; user-select:none;
 }
 
 /* =========================================================
