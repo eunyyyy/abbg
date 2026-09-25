@@ -95,7 +95,7 @@ function boot(fs) {
 }
 
 /* ==================== FEEDBACK TAB ==================== */
-var STATUS_LABEL = { pending: '대기중', in_progress: '진행중', done: '반영 완료' };
+var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
 
 function initFeedbackTab(fs) {
   var listEl = document.getElementById('fb-admin-list');
@@ -244,6 +244,16 @@ function initFeedbackTab(fs) {
   };
 }
 
+// Fixed 10-category taxonomy (matches the public site's industry filter —
+// see js/main.js INDUSTRIES). '전체' is deliberately excluded here since a
+// project must be assigned one real industry, not the "all" filter value.
+var INDUSTRIES = ['IT·마케팅', '라이프스타일', '교육·미디어', '바이오·헬스케어', '테크·제조', '모빌리티', 'F&B', '농축수산업', '물류·유통'];
+function categoryOptionsHtml(selected) {
+  return INDUSTRIES.map(function (name) {
+    return '<option value="' + name + '"' + (name === selected ? ' selected' : '') + '>' + name + '</option>';
+  }).join('');
+}
+
 /* ==================== PROJECTS TAB ==================== */
 function initProjectsTab(fs) {
   var tbody = document.getElementById('projects-admin-tbody');
@@ -255,6 +265,8 @@ function initProjectsTab(fs) {
   var seedBtn = document.getElementById('projects-seed-btn');
   var editingId = null;
   var projectsCache = [];
+
+  categoryInput.innerHTML = categoryOptionsHtml();
 
   function padNumber(n) {
     var s = String(n).trim();
@@ -275,7 +287,7 @@ function initProjectsTab(fs) {
         '<tr data-id="' + p.id + '">' +
           '<td><input type="text" class="admin-mini-btn" style="width:52px;padding:6px 8px;" value="' + escapeHtml(p.number) + '" data-field="number"></td>' +
           '<td><input type="text" style="width:100%;padding:6px 8px;" value="' + escapeHtml(p.name) + '" data-field="name"></td>' +
-          '<td><input type="text" style="width:100%;padding:6px 8px;" value="' + escapeHtml(p.category) + '" data-field="category"></td>' +
+          '<td><select style="width:100%;padding:6px 8px;" data-field="category">' + categoryOptionsHtml(p.category) + '</select></td>' +
           '<td><input type="text" style="width:100%;padding:6px 8px;" value="' + escapeHtml(p.url) + '" data-field="url"></td>' +
           '<td class="admin-project-table__actions">' +
             '<button type="button" class="admin-mini-btn" data-action="save-project" data-id="' + p.id + '">저장</button>' +

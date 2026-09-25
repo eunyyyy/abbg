@@ -33,7 +33,7 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-var STATUS_LABEL = { pending: '대기중', in_progress: '진행중', done: '반영 완료' };
+var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
 var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'is-done' };
 
 function statusBadgeHtml(status) {
