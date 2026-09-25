@@ -18,6 +18,9 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
+function normalizeSearchText(value) {
+  return String(value || '').normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/g, '');
+}
 function formatDate(ts) {
   try {
     var d = ts && typeof ts.toDate === 'function' ? ts.toDate() : new Date();
@@ -154,13 +157,15 @@ function initFeedbackTab(fs) {
   function render() {
     var drafts = {};
     listEl.querySelectorAll('.admin-reply-box__input').forEach(function (ta) { if (document.activeElement === ta || ta.value) drafts[ta.dataset.id] = ta.value; });
-    var term = searchEl.value.trim().toLowerCase(), category = categoryFilterEl.value, projectNo = projectFilterEl.value, status = statusFilterEl.value;
+    var term = normalizeSearchText(searchEl.value), category = categoryFilterEl.value, projectNo = projectFilterEl.value, status = statusFilterEl.value;
     var filtered = allDocs.filter(function (d) {
+      var replyText = (repliesByFeedback[d.id] || []).map(function (r) { return r.message || ''; }).join(' ');
+      var hay = normalizeSearchText((d.comment || '') + (d.author || '') + (d.projectName || '') + (d.projectNumber || '') + (d.category || '') + (STATUS_LABEL[d.status] || '') + replyText);
+      if (term) return hay.includes(term);
       if (category && d.category !== category) return false;
       if (projectNo && d.projectNumber !== projectNo) return false;
       if (status && d.status !== status) return false;
-      var replyText = (repliesByFeedback[d.id] || []).map(function (r) { return r.message || ''; }).join(' ');
-      return !term || ((d.comment || '') + ' ' + (d.author || '') + ' ' + (d.projectName || '') + ' ' + replyText).toLowerCase().indexOf(term) !== -1;
+      return true;
     });
     if (!filtered.length) { listEl.innerHTML = '<p class="admin-empty">표시할 피드백이 없습니다.</p>'; return; }
     listEl.innerHTML = filtered.map(function (d) {
@@ -248,7 +253,8 @@ function initFeedbackTab(fs) {
     catch (err) { console.error('feedback status update error', err); alert('상태 변경에 실패했습니다.'); }
     finally { sel.disabled = false; }
   });
-  searchEl.addEventListener('input', render); statusFilterEl.addEventListener('change', render); projectFilterEl.addEventListener('change', render);
+  searchEl.addEventListener('input', render); searchEl.addEventListener('search', render); searchEl.addEventListener('compositionend', render);
+  statusFilterEl.addEventListener('change', render); projectFilterEl.addEventListener('change', render);
   categoryFilterEl.addEventListener('change', function () { updateProjectOptions(); render(); });
   window.__aiwebPopulateFeedbackProjectFilter = function (items) {
     projects = items.slice();

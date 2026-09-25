@@ -35,6 +35,7 @@ function formatDate(ts) {
   } catch (e) { return ''; }
 }
 function escapeHtml(str) { return String(str == null ? '' : str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function normalizeSearchText(value) { return String(value || '').normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/g, ''); }
 function isClickableStatus(status) { return Object.prototype.hasOwnProperty.call(STATUS_CURSOR_TEXT, status); }
 function displayProjectName(projectNumber, projectName) { return projectNumber === '07' ? 'AUBERON' : projectName; }
 function projectArchiveUrl(projectNumber, projectName) {
@@ -85,11 +86,11 @@ function renderReplyThread(feedbackId, legacyReply) {
 }
 function renderHistory() {
   if (!historyListEl) return;
-  var term = historySearchEl ? historySearchEl.value.trim().toLowerCase() : '';
+  var term = historySearchEl ? normalizeSearchText(historySearchEl.value) : '';
   var visibleDocs = feedbackDocs.filter(function (data) {
     var replyText = (repliesByFeedback[data.id] || []).map(function (r) { return r.message || ''; }).join(' ');
-    var hay = ((data.projectName || '') + ' ' + (data.projectNumber || '') + ' ' + (data.author || '') + ' ' + (data.comment || '') + ' ' + (data.reply || '') + ' ' + replyText).toLowerCase();
-    return !term || hay.indexOf(term) !== -1;
+    var hay = normalizeSearchText((data.projectName || '') + (data.projectNumber || '') + (data.category || '') + (data.author || '') + (data.comment || '') + (data.reply || '') + replyText);
+    return !term || hay.includes(term);
   });
   if (!visibleDocs.length) { historyListEl.innerHTML = '<p class="history-empty">' + (term ? '검색 결과가 없습니다.' : '아직 등록된 피드백이 없습니다. 첫 의견을 남겨보세요.') + '</p>'; return; }
   historyListEl.innerHTML = visibleDocs.map(function (data) {
@@ -198,7 +199,11 @@ function initAttachments() {
 
 async function init() {
   initAttachments();
-  if (historySearchEl) historySearchEl.addEventListener('input', renderHistory);
+  if (historySearchEl) {
+    historySearchEl.addEventListener('input', renderHistory);
+    historySearchEl.addEventListener('search', renderHistory);
+    historySearchEl.addEventListener('compositionend', renderHistory);
+  }
   if (!isFirebaseConfigured()) { showNotice(); renderHistory(); if (formEl) formEl.addEventListener('submit', function (e) { e.preventDefault(); if (statusEl) statusEl.textContent = '피드백 기능은 Firebase 설정 후 활성화됩니다.'; }); return; }
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js');

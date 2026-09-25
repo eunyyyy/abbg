@@ -165,6 +165,10 @@
     return list.filter(function (p) { return p.category === industry; });
   }
 
+  function normalizeSearchText(value) {
+    return String(value || '').normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/g, '');
+  }
+
   var PROJECTS_PER_PAGE = 10;
 
   /* =========================================================
@@ -202,13 +206,14 @@
     function applyFilter() {
       var industry = industrySel.value;
       var projectNo = projectSel.value;
-      var term = searchInput.value.trim().toLowerCase();
+      var term = normalizeSearchText(searchInput.value);
       var rows = Array.prototype.slice.call(plistEl.querySelectorAll('.plist__row'));
       var matched = rows.filter(function (row) {
         var matchesIndustry = industry === '전체' || row.dataset.category === industry;
         var matchesProject = !projectNo || row.querySelector('.plist__no').textContent.trim() === projectNo;
-        var hay = (row.dataset.name + ' ' + row.dataset.category + ' ' + row.querySelector('.plist__no').textContent).toLowerCase();
-        return matchesIndustry && matchesProject && (!term || hay.indexOf(term) !== -1);
+        var hay = normalizeSearchText(row.dataset.name + row.dataset.category + row.querySelector('.plist__no').textContent);
+        // 검색어가 있으면 드롭다운 범위와 무관하게 전체 프로젝트에서 즉시 찾습니다.
+        return term ? hay.includes(term) : (matchesIndustry && matchesProject);
       });
       var pageCount = Math.max(1, Math.ceil(matched.length / PROJECTS_PER_PAGE));
       if (currentPage > pageCount) currentPage = pageCount;
@@ -232,7 +237,10 @@
       applyFilter();
     });
     projectSel.addEventListener('change', function () { currentPage = 1; applyFilter(); });
-    searchInput.addEventListener('input', function () { currentPage = 1; applyFilter(); });
+    function applySearch() { currentPage = 1; applyFilter(); }
+    searchInput.addEventListener('input', applySearch);
+    searchInput.addEventListener('search', applySearch);
+    searchInput.addEventListener('compositionend', applySearch);
     paginationEl.addEventListener('click', function (e) {
       var button = e.target.closest('[data-page]'); if (!button || button.disabled) return;
       if (button.dataset.page === 'prev') currentPage--;
