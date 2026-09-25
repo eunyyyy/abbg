@@ -35,9 +35,11 @@ function escapeHtml(str) {
 
 var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
 var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'is-done' };
-// Custom hover-cursor text for the two statuses that get one (see
-// initHistoryInteractions) — 진행중 keeps the ordinary cursor.
+// Custom hover-cursor text for the two clickable statuses (see
+// initHistoryInteractions) — both link through to the project; 진행중
+// keeps the ordinary cursor and isn't clickable.
 var STATUS_CURSOR_TEXT = { done: '프로젝트 이동', pending: '피드백 반영중' };
+function isClickableStatus(status) { return Object.prototype.hasOwnProperty.call(STATUS_CURSOR_TEXT, status); }
 
 // Looks up a project's live URL straight from the rendered .plist rows
 // (rather than duplicating project data here) so it always reflects
@@ -65,13 +67,13 @@ function renderHistory(docs) {
     var dateStr = formatDate(data.createdAt);
     var author = data.author ? escapeHtml(data.author) : '익명';
     var statusKey = STATUS_LABEL[data.status] ? data.status : 'pending';
-    var isDone = statusKey === 'done';
+    var clickable = isClickableStatus(statusKey);
     var replyHtml = data.reply
       ? '<div class="history-item__reply"><span class="history-item__reply-label">AI WEB 답변</span>' + escapeHtml(data.reply) + '</div>'
       : '';
     return (
       '<div class="history-item" data-status="' + statusKey + '" data-project-no="' + escapeHtml(data.projectNumber || '') + '"' +
-        (isDone ? ' role="link" tabindex="0"' : '') + '>' +
+        (clickable ? ' role="link" tabindex="0"' : '') + '>' +
         '<div class="history-item__meta">' +
           '<span class="history-item__project">' + escapeHtml(data.projectName) + '</span>' +
           '<span class="history-item__author">' + author + '</span>' +
@@ -130,7 +132,7 @@ function initHistoryInteractions() {
   }
 
   function openProject(item) {
-    if (!item || item.dataset.status !== 'done') return;
+    if (!item || !isClickableStatus(item.dataset.status)) return;
     var url = resolveProjectUrl(item.dataset.projectNo);
     if (url) window.open(url, '_blank', 'noopener');
   }
@@ -140,7 +142,7 @@ function initHistoryInteractions() {
   historyListEl.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     var item = e.target.closest && e.target.closest('.history-item');
-    if (!item || item.dataset.status !== 'done') return;
+    if (!item || !isClickableStatus(item.dataset.status)) return;
     e.preventDefault();
     openProject(item);
   });

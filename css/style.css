@@ -265,7 +265,7 @@ h1,h2,h3,h4,p{ margin:0; }
   font-family: var(--font-en); font-weight:700; font-size:22px; color: var(--text-faint);
   transition: color .3s;
 }
-.plist__link:hover .plist__no{ color: var(--orange); }
+.plist__link:hover .plist__no{ color: var(--teal); }
 .plist__name{ font-family: var(--font-en); font-weight:600; font-size: clamp(17px,2.2vw,22px); }
 .plist__cat{
   font-size:12px; letter-spacing:.05em; color: var(--teal);
@@ -355,6 +355,7 @@ h1,h2,h3,h4,p{ margin:0; }
 .history-item[data-status="done"]{ cursor:none; opacity:.6; }
 .history-item[data-status="done"]:hover{ border-color: rgba(255,255,255,.22); opacity:1; }
 .history-item[data-status="pending"]{ cursor:none; }
+.history-item[data-status="pending"]:hover{ border-color: rgba(255,255,255,.22); }
 .history-item__meta{ display:flex; align-items:center; gap:12px; font-size:12px; }
 .history-item__project{ color: var(--teal); font-weight:500; }
 .history-item__author{ color: var(--text-faint); font-weight:400; }
