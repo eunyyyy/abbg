@@ -184,6 +184,57 @@
   initIntroStream();
 
   /* =========================================================
+     Hero background: cursor-reactive gradient
+     .intro__art's blended radial-gradient cluster (6 brand colors,
+     defined in css/style.css) shares one moving centre point via
+     --gx/--gy. This smoothly lerps that centre toward the mouse
+     position while it's over the hero, and eases it back to the
+     default centre on mouseleave — the rAF loop only runs while
+     actively interpolating, not continuously at rest.
+     ========================================================= */
+  function initIntroGradient() {
+    var section = document.querySelector('.intro');
+    var art = document.querySelector('.intro__art');
+    if (!section || !art || reduceMotion) return;
+
+    var DEFAULT_X = 50, DEFAULT_Y = 42;
+    var targetX = DEFAULT_X, targetY = DEFAULT_Y;
+    var currentX = DEFAULT_X, currentY = DEFAULT_Y;
+    var rafId = null;
+
+    function tick() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      art.style.setProperty('--gx', currentX.toFixed(2) + '%');
+      art.style.setProperty('--gy', currentY.toFixed(2) + '%');
+      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
+    }
+    function ensureLoop() {
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    }
+
+    section.addEventListener('mousemove', function (e) {
+      var rect = section.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      // clamp so the gradient cluster never slides fully off the section
+      targetX = Math.max(20, Math.min(80, x));
+      targetY = Math.max(15, Math.min(75, y));
+      ensureLoop();
+    });
+    section.addEventListener('mouseleave', function () {
+      targetX = DEFAULT_X;
+      targetY = DEFAULT_Y;
+      ensureLoop();
+    });
+  }
+  initIntroGradient();
+
+  /* =========================================================
      Shared project data — read from the static DOM at boot,
      replaced wholesale if/when Firestore sync succeeds (see
      bottom of file). Every filter/picker below reads from this
@@ -197,7 +248,8 @@
         number: row.querySelector('.plist__no').textContent.trim(),
         name: row.dataset.name || row.querySelector('.plist__name').textContent.trim(),
         category: row.dataset.category || row.querySelector('.plist__cat').textContent.trim(),
-        url: row.querySelector('.plist__link').getAttribute('href')
+        url: row.querySelector('.plist__link').getAttribute('href'),
+        cover: row.dataset.cover || ''
       };
     });
   }
@@ -338,6 +390,74 @@
   }
 
   /* =========================================================
+     Project list: cursor-following cover preview on row hover
+     Event delegation on the .plist container (not per-row
+     listeners) so this keeps working after Firestore swaps the
+     rows' innerHTML — the container itself never gets replaced.
+     ========================================================= */
+  function initPlistPreview() {
+    var plistEl = document.querySelector('.plist');
+    // Anchored to .plist-section (a stable ancestor), not .plist itself —
+    // .plist's innerHTML gets replaced wholesale whenever the Firestore
+    // live-sync re-renders rows, which would silently delete this element
+    // if it were a child of .plist.
+    var sectionEl = document.querySelector('.plist-section');
+    if (!plistEl || !sectionEl) return;
+
+    var preview = document.createElement('div');
+    preview.className = 'plist__preview';
+    var img = document.createElement('img');
+    img.alt = '';
+    img.loading = 'lazy';
+    preview.appendChild(img);
+    sectionEl.appendChild(preview);
+
+    var targetY = 0, currentY = 0, rafId = null, visible = false;
+
+    function tick() {
+      currentY += (targetY - currentY) * (reduceMotion ? 1 : 0.25);
+      preview.style.top = currentY + 'px';
+      if (!reduceMotion && Math.abs(targetY - currentY) > 0.5) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        preview.style.top = targetY + 'px';
+        rafId = null;
+      }
+    }
+    function ensureLoop() {
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    }
+
+    plistEl.addEventListener('mouseover', function (e) {
+      var link = e.target.closest('.plist__link');
+      var row = link && link.closest('.plist__row');
+      var cover = row && row.dataset.cover;
+      if (!cover) {
+        preview.classList.remove('is-visible');
+        visible = false;
+        return;
+      }
+      if (img.src.indexOf(cover) === -1) img.src = cover;
+      img.alt = (row.dataset.name || '') + ' 커버';
+      preview.classList.add('is-visible');
+      visible = true;
+    });
+
+    plistEl.addEventListener('mousemove', function (e) {
+      if (!visible) return;
+      var rect = sectionEl.getBoundingClientRect();
+      targetY = e.clientY - rect.top;
+      ensureLoop();
+    });
+
+    plistEl.addEventListener('mouseleave', function () {
+      preview.classList.remove('is-visible');
+      visible = false;
+    });
+  }
+  initPlistPreview();
+
+  /* =========================================================
      Boot: read the static markup first (works instantly, zero
      JS-dependency for first paint), wire up both filter UIs,
      then attempt a live Firestore subscription that — if it
@@ -359,7 +479,7 @@
     }
 
     function plistRowHtml(p) {
-      return '<li class="plist__row" data-category="' + escapeHtml(p.category) + '" data-name="' + escapeHtml(p.name) + '">' +
+      return '<li class="plist__row" data-category="' + escapeHtml(p.category) + '" data-name="' + escapeHtml(p.name) + '" data-cover="' + escapeHtml(p.cover || '') + '">' +
         '<a class="plist__link" href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener">' +
         '<span class="plist__no">' + escapeHtml(p.number) + '</span>' +
         '<span class="plist__name">' + escapeHtml(p.name) + '</span>' +
