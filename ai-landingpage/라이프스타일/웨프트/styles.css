@@ -773,7 +773,7 @@ body.nav-locked{overflow:hidden;}
   display:flex;
   width:100%;
   height:clamp(500px,57vw,760px);
-  padding-inline:clamp(18px,3.1vw,48px);
+  padding-inline:0;
   gap:0;
   border-radius:28px;
   background:var(--g-200);
@@ -874,7 +874,7 @@ body.nav-locked{overflow:hidden;}
     max-height:620px;
     gap:0;
     border-radius:20px;
-    padding-inline:18px;
+    padding-inline:0;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
     touch-action:pan-x pan-y;
