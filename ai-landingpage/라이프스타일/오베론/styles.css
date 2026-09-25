@@ -700,7 +700,7 @@ h1,.h1{font-size:clamp(40px,5.4vw,72px);line-height:1.08}
 h2,.h2{font-size:clamp(32px,4.2vw,56px);line-height:1.12}
 h3,.h3{font-size:clamp(25px,3vw,40px)}
 
-.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,17,14,.62),rgba(20,17,14,.08) 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(35,27,21,.4);pointer-events:none}
 .hero__media{z-index:0}.hero__content{z-index:2}
 
 .mission{margin:0;padding:120px 0}
@@ -709,6 +709,7 @@ h3,.h3{font-size:clamp(25px,3vw,40px)}
 
 .product-card__title{font-size:16px;font-weight:600;letter-spacing:-.015em}
 .campaign__top h3{font-size:clamp(28px,3.6vw,48px)}
+.campaign::after{background:rgba(35,27,21,.4)}
 
 .top-bar.is-light .header__bg{height:100%;background:rgba(245,240,232,.94)}
 .top-bar.is-light .header__menu a,.top-bar.is-light .header__logo,.top-bar.is-light .header__logo a,.top-bar.is-light .header__right a{color:var(--ink)}
@@ -723,6 +724,9 @@ h3,.h3{font-size:clamp(25px,3vw,40px)}
 .header__burger.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 .header__burger span{transition:transform .3s ease,opacity .3s ease,background .3s ease}
 .header__burger.is-open span{background:var(--ink)!important}
+.top-bar.is-dark .header__menu a,.top-bar.is-dark .header__logo,.top-bar.is-dark .header__logo a,.top-bar.is-dark .header__right a{color:#fff!important}
+.top-bar.is-light .header__menu a,.top-bar.is-light .header__logo,.top-bar.is-light .header__logo a,.top-bar.is-light .header__right a{color:#17130f!important}
+.journal-card__title{font-weight:700}
 
 .footer{padding:64px 0 0;background:var(--primary-200)}
 .footer__info{margin-bottom:20px}

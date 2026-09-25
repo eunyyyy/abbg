@@ -40,20 +40,20 @@
     var hours = HOURS_BY_DAY[now.getDay()];
     var minutesNow = now.getHours() * 60 + now.getMinutes();
     if (!hours) {
-      return "오늘 휴무 — " + nextOpeningLabel(now);
+      return "오늘 휴무 " + nextOpeningLabel(now);
     }
     var openMin = hours[0] * 60;
     var closeMin = hours[1] * 60;
     if (minutesNow < openMin) {
-      return "오픈 예정 — " + formatTime(hours[0]) + "부터";
+      return "오픈 예정 " + formatTime(hours[0]) + "부터";
     }
     if (minutesNow >= closeMin) {
-      return "영업 종료 — " + nextOpeningLabel(now);
+      return "영업 종료 " + nextOpeningLabel(now);
     }
     if (closeMin - minutesNow <= 30) {
-      return "마감 임박 — " + formatTime(hours[1]) + "까지";
+      return "마감 임박 " + formatTime(hours[1]) + "까지";
     }
-    return "영업중 — " + formatTime(hours[1]) + "까지";
+    return "영업중 " + formatTime(hours[1]) + "까지";
   }
   function renderTicker() {
     var track = document.getElementById("tickerTrack");
@@ -61,7 +61,7 @@
     var text = getStatusText(new Date());
     var html = "";
     for (var i = 0; i < 8; i++) {
-      html += "<span>" + text + "</span><span class=\"ticker__sep\">—</span>";
+      html += "<span>" + text + "</span>";
     }
     track.innerHTML = html;
   }

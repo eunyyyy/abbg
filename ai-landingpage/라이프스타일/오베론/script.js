@@ -3,7 +3,7 @@
 
   /* ---------- Header solid/transparent state ---------- */
   const topBar = document.getElementById('topbar');
-  const darkHeaderSections = Array.from(document.querySelectorAll('.hero,.campaign,.edit,.craft'));
+  const darkHeaderSections = Array.from(document.querySelectorAll('.hero,.campaign,.craft'));
   function updateHeaderState(){
     topBar.classList.toggle('is-solid', window.scrollY > 10);
     const announcement = topBar.querySelector('.announcement');
