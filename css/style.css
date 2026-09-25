@@ -163,16 +163,45 @@ h1,h2,h3,h4,p{ margin:0; }
   content:''; position:absolute; inset:0;
   background: radial-gradient(120% 90% at 50% 100%, var(--bg) 20%, transparent 70%);
 }
+
+/* Card corridor — rails of project covers rushing from centre toward the
+   viewer, ported from a perspective/keyframe recipe (see js/main.js
+   initIntroStream). Height is capped rather than inset:0'd to the whole
+   (very tall) .intro section, so the corridor only occupies the headline
+   band; the opaque .intro__media image further down naturally covers it. */
+.intro__stream{
+  position:absolute; top:0; left:0; right:0; height:min(680px, 92%);
+  overflow:hidden; container-type: inline-size;
+}
+.intro__stream-scene{ position:absolute; inset:0; }
+.intro__stream-rail{ position:absolute; inset:0; transform-style:preserve-3d; }
+.intro__stream-card{
+  position:absolute; overflow:hidden; backface-visibility:hidden;
+  border:1px solid rgba(255,255,255,.12); background: var(--bg-raise);
+}
+.intro__stream-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+.intro__stream::after{
+  content:''; position:absolute; inset:0;
+  background:
+    radial-gradient(120% 90% at 50% 100%, var(--bg) 15%, transparent 65%),
+    radial-gradient(60% 65% at 50% 38%, rgba(8,9,13,.82), rgba(8,9,13,.62) 70%),
+    rgba(8,9,13,.55);
+}
+
+@media (max-width: 767px){
+  .intro__stream{ height:min(460px, 92%); }
+}
+
 .intro__inner{ position:relative; z-index:1; text-align:center; }
-.intro .eyebrow{ justify-content:center; margin-bottom:22px; }
+.intro .eyebrow{ justify-content:center; margin-bottom:22px; text-shadow: 0 2px 16px rgba(0,0,0,.7); }
 .intro h1{
   font-family: var(--font-en); font-weight:700;
   font-size: clamp(30px, 4.6vw, 52px); line-height:1.24; letter-spacing:-.01em;
-  margin-bottom:22px;
+  margin-bottom:22px; text-shadow: 0 4px 24px rgba(0,0,0,.7);
 }
 .intro__sub{
   font-size: clamp(15px,1.7vw,18px); color: var(--text-dim);
-  max-width:640px; margin:0 auto 38px;
+  max-width:640px; margin:0 auto 38px; text-shadow: 0 2px 16px rgba(0,0,0,.7);
 }
 .intro__actions{ display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:64px; }
 .intro__media{
