@@ -98,6 +98,10 @@ function boot(fs) {
 var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
 var PROJECT_DOWNLOAD_RELEASE = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/';
 
+function displayProjectName(projectNumber, projectName) {
+  return projectNumber === '07' ? 'AUBERON' : projectName;
+}
+
 function projectArchiveUrl(projectNumber, projectName) {
   var slug = String(projectName || '')
     .normalize('NFKD')
@@ -160,7 +164,7 @@ function initFeedbackTab(fs) {
         '<div class="admin-fb-row" data-id="' + d.id + '">' +
           '<div>' +
             '<div class="admin-fb-row__meta">' +
-              '<span class="admin-fb-row__project">' + escapeHtml(d.projectNumber || '') + ' · ' + escapeHtml(d.projectName || '') + '</span>' +
+              '<span class="admin-fb-row__project">' + escapeHtml(d.projectNumber || '') + ' · ' + escapeHtml(displayProjectName(d.projectNumber, d.projectName || '')) + '</span>' +
               statusSelectHtml(d) +
               '<span>' + formatDate(d.createdAt) + '</span>' +
               '<span class="admin-fb-row__author">' + author + '</span>' +

@@ -37,6 +37,10 @@ var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '
 var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'is-done' };
 var PROJECT_DOWNLOAD_RELEASE = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/';
 
+function displayProjectName(projectNumber, projectName) {
+  return projectNumber === '07' ? 'AUBERON' : projectName;
+}
+
 function projectArchiveUrl(projectNumber, projectName) {
   var slug = String(projectName || '')
     .normalize('NFKD')
@@ -91,7 +95,7 @@ function renderHistory(docs) {
       '<div class="history-item" data-status="' + statusKey + '" data-project-no="' + escapeHtml(data.projectNumber || '') + '"' +
         (clickable ? ' role="link" tabindex="0"' : '') + '>' +
         '<div class="history-item__meta">' +
-          '<span class="history-item__project">' + escapeHtml(data.projectName) + '</span>' +
+          '<span class="history-item__project">' + escapeHtml(displayProjectName(data.projectNumber, data.projectName)) + '</span>' +
           '<span class="history-item__author">' + author + '</span>' +
         '</div>' +
         '<div class="history-item__comment">' + escapeHtml(data.comment) + '</div>' +
