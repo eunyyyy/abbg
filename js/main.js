@@ -75,22 +75,22 @@
 
   /* =========================================================
      Mouse-REPELLED gradient backgrounds
-     Every section with a blended radial-gradient (.feedback__art,
-     .footer's wash) is built from N independent radial-gradient
-     layers, each with its own base anchor point (--gxN/--gyN).
-     Instead of the whole cluster being attracted toward the
-     cursor, each layer is individually pushed AWAY from it —
-     like same-pole magnets repelling — with the push strength
-     falling off with distance, then eases back to its base
-     position on mouseleave. `targetEl` is the element the custom
-     properties are set on — a real layer div (.feedback__art) or
-     the section itself for a ::before-based wash (.footer), since
-     custom properties inherit down into pseudo-elements but can't
-     be set on them directly.
+     Sections with a blended radial-gradient are built from N
+     independent radial-gradient layers, each with its own base
+     anchor point (--gxN/--gyN). Instead of the whole cluster
+     being attracted toward the cursor, each layer is individually
+     pushed AWAY from it — like same-pole magnets repelling — with
+     the push strength falling off with distance, then eases back
+     to its base position on mouseleave. `targetEl` is the element
+     the custom properties are set on — a real layer div
+     (.feedback__art) or the section itself for a ::before-based
+     wash, since custom properties inherit down into pseudo-
+     elements but can't be set on them directly.
      (.intro's hero background is exempt — js/hero-gl.js's WebGL
      shader owns that section's motion with a time-based flow, not
      cursor tracking, and .intro__art is only its static no-WebGL
-     fallback.)
+     fallback. .footer is exempt for the same reason — see
+     initDriftGradient below.)
      ========================================================= */
   function initRepelGradient(sectionEl, targetEl, blobs, radius, maxPush) {
     if (!sectionEl || !targetEl || reduceMotion) return;
@@ -138,10 +138,63 @@
       ensureLoop();
     });
   }
-  initRepelGradient(document.querySelector('.footer'), document.querySelector('.footer'),
-    [[36, 5], [-4, 98], [67, 67]], 55, 24);
   initRepelGradient(document.querySelector('.feedback'), document.querySelector('.feedback__art'),
     [[90, 88], [96, 94], [80, 96], [86, 76]], 45, 20);
+
+  /* =========================================================
+     Time-DRIFTING gradient background (footer)
+     Same intent as js/hero-gl.js's hero shader: the wash flows on
+     its own over time instead of reacting to the cursor. Each
+     blob orbits its own base anchor point on two summed sine
+     waves per axis, with a different frequency/phase per blob (by
+     index) so the three never fall into visible lockstep — a
+     cheap stand-in for the hero's simplex noise that still reads
+     as organic rather than a mechanical loop over a normal
+     viewing session.
+     ========================================================= */
+  function initDriftGradient(targetEl, blobs, driftAmt, periodMs) {
+    if (!targetEl || reduceMotion) return;
+
+    var raf = null, startTime = null, visible = true;
+
+    function frame(tMs) {
+      raf = null;
+      if (!visible || document.hidden) return;
+      if (startTime === null) startTime = tMs;
+      var t = (tMs - startTime) / periodMs;
+      blobs.forEach(function (b, i) {
+        var px = b[0]
+          + Math.sin(t * (0.6 + i * 0.21) + i * 2.1) * driftAmt
+          + Math.cos(t * (0.37 + i * 0.13) + i * 0.7) * driftAmt * 0.5;
+        var py = b[1]
+          + Math.cos(t * (0.48 + i * 0.17) + i * 1.4) * driftAmt
+          + Math.sin(t * (0.29 + i * 0.11) + i * 3.3) * driftAmt * 0.5;
+        targetEl.style.setProperty('--gx' + (i + 1), px.toFixed(2) + '%');
+        targetEl.style.setProperty('--gy' + (i + 1), py.toFixed(2) + '%');
+      });
+      raf = requestAnimationFrame(frame);
+    }
+    function start() {
+      if (raf === null && visible && !document.hidden) raf = requestAnimationFrame(frame);
+    }
+    function stop() {
+      if (raf !== null) cancelAnimationFrame(raf);
+      raf = null;
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else start();
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) start(); else stop();
+      }).observe(targetEl);
+    }
+    start();
+  }
+  initDriftGradient(document.querySelector('.footer'),
+    [[36, 5], [-4, 98], [67, 67]], 12, 16000);
 
   /* =========================================================
      Shared project data — read from the static DOM at boot,

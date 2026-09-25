@@ -401,7 +401,7 @@ h1,h2,h3,h4,p{ margin:0; }
    ========================================================= */
 .footer{ position:relative; background: var(--bg); padding-top: 90px; overflow:hidden; --gx1:36%; --gy1:5%; --gx2:-4%; --gy2:98%; --gx3:67%; --gy3:67%; }
 /* Exact Figma footer recipe: dark base + red(overlay) + orange(screen) +
-   teal(screen), each independently mouse-repelled (initRepelGradient) —
+   teal(screen), each independently time-drifting (initDriftGradient) —
    matches the same recipe Figma uses for the hero (WeAre-2) background. */
 .footer::before{
   content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
