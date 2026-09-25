@@ -71,6 +71,12 @@ function renderHistory(docs) {
     var replyHtml = data.reply
       ? '<div class="history-item__reply"><span class="history-item__reply-label">AI WEB 답변</span>' + escapeHtml(data.reply) + '</div>'
       : '';
+    var attachmentHtml = statusKey === 'done' && data.attachmentPath
+      ? '<button type="button" class="history-item__attachment" data-action="download-attachment" data-path="' +
+          escapeHtml(data.attachmentPath) + '" data-filename="' + escapeHtml(data.attachmentName || 'site-files.zip') + '">' +
+          '<span aria-hidden="true">&#8595;</span> 사이트 파일 다운로드 <small>ZIP</small>' +
+        '</button>'
+      : '';
     return (
       '<div class="history-item" data-status="' + statusKey + '" data-project-no="' + escapeHtml(data.projectNumber || '') + '"' +
         (clickable ? ' role="link" tabindex="0"' : '') + '>' +
@@ -84,6 +90,7 @@ function renderHistory(docs) {
           '<span class="history-item__date">' + dateStr + '</span>' +
         '</div>' +
         replyHtml +
+        attachmentHtml +
       '</div>'
     );
   }).join('');
@@ -93,7 +100,7 @@ function renderHistory(docs) {
 // while hovering a card, reading its text/color from STATUS_CURSOR_TEXT.
 // #history-list itself is never replaced by renderHistory (only its
 // innerHTML), so delegating directly on it survives every re-render.
-function initHistoryInteractions() {
+function initHistoryInteractions(downloadAttachment) {
   if (!historyListEl) return;
   var pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var cursorEl = null;
@@ -105,6 +112,11 @@ function initHistoryInteractions() {
     document.body.appendChild(cursorEl);
 
     historyListEl.addEventListener('mouseover', function (e) {
+      if (e.target.closest && e.target.closest('[data-action="download-attachment"]')) {
+        cursorEl.classList.remove('is-visible');
+        activeItem = null;
+        return;
+      }
       var item = e.target.closest && e.target.closest('.history-item');
       if (!item) return;
       var text = STATUS_CURSOR_TEXT[item.dataset.status];
@@ -137,17 +149,24 @@ function initHistoryInteractions() {
     if (url) window.open(url, '_blank', 'noopener');
   }
   historyListEl.addEventListener('click', function (e) {
+    var downloadBtn = e.target.closest && e.target.closest('[data-action="download-attachment"]');
+    if (downloadBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      downloadAttachment(downloadBtn);
+      return;
+    }
     openProject(e.target.closest && e.target.closest('.history-item'));
   });
   historyListEl.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
+    if (e.target.closest && e.target.closest('[data-action="download-attachment"]')) return;
     var item = e.target.closest && e.target.closest('.history-item');
     if (!item || !isClickableStatus(item.dataset.status)) return;
     e.preventDefault();
     openProject(item);
   });
 }
-initHistoryInteractions();
 
 async function init() {
   if (!isFirebaseConfigured()) {
@@ -169,10 +188,36 @@ async function init() {
     const {
       getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, limit
     } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
+    const { getStorage, ref, getBlob } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js');
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const storage = getStorage(app);
     const feedbackCol = collection(db, 'feedback');
+
+    initHistoryInteractions(async function (button) {
+      if (button.disabled) return;
+      var originalText = button.innerHTML;
+      button.disabled = true;
+      button.textContent = '다운로드 준비 중…';
+      try {
+        var blob = await getBlob(ref(storage, button.dataset.path));
+        var objectUrl = URL.createObjectURL(blob);
+        var anchor = document.createElement('a');
+        anchor.href = objectUrl;
+        anchor.download = button.dataset.filename || 'site-files.zip';
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 1000);
+      } catch (err) {
+        console.error('attachment download error', err);
+        alert('첨부파일을 다운로드할 수 없습니다. 잠시 후 다시 시도해주세요.');
+      } finally {
+        button.disabled = false;
+        button.innerHTML = originalText;
+      }
+    });
 
     // Realtime history feed, newest first
     const q = query(feedbackCol, orderBy('createdAt', 'desc'), limit(100));

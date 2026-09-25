@@ -1,0 +1,16 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /feedback-files/{feedbackId}/{fileName} {
+      // 관리자는 상태와 관계없이 파일을 관리할 수 있습니다. 공개 사용자는
+      // 연결된 피드백이 "반영 완료"일 때만 SDK를 통해 파일을 읽을 수 있습니다.
+      allow read: if request.auth != null ||
+        firestore.get(/databases/(default)/documents/feedback/$(feedbackId)).data.status == 'done';
+      allow create, update: if request.auth != null &&
+        fileName == 'site-files.zip' &&
+        request.resource.size > 0 && request.resource.size <= 104857600 &&
+        request.resource.contentType == 'application/zip';
+      allow delete: if request.auth != null;
+    }
+  }
+}
