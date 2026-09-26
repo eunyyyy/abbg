@@ -521,10 +521,20 @@
         // not seeded yet), the static/fallback markup already in the page
         // stays put — renderProjectsUI() only touches the DOM when
         // list.length > 0.
+        // Projects shipped via git (js/projects-data.js) but not yet added in
+        // the admin dashboard still show up, so a git deploy alone is enough.
+        var fallback = [];
+        try { fallback = (await import('./projects-data.js')).PROJECTS_FALLBACK || []; } catch (e) {}
+
         fsMod.onSnapshot(q, function (snap) {
           var list = [];
           snap.forEach(function (doc) { list.push(doc.data()); });
-          if (list.length) renderProjectsUI(list);
+          if (!list.length) return;
+          var known = {};
+          list.forEach(function (p) { known[p.number] = true; });
+          fallback.forEach(function (p) { if (!known[p.number]) list.push(p); });
+          list.sort(function (a, b) { return String(a.number).localeCompare(String(b.number), undefined, { numeric: true }); });
+          renderProjectsUI(list);
         }, function (err) {
           console.error('project list onSnapshot error, keeping fallback UI', err);
         });
