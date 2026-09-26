@@ -793,6 +793,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button{ cursor:none; }
 .diff__sticky{ top:0; }
 
 .formula__icons{ display:none; }
+.formula__stage{ margin-bottom:32px; }
 .formula__desc{ max-width:720px; }
 
 .odm__panel-overlay{ background:linear-gradient(to top, #282828 0%, rgba(40,40,40,0) 62%); }
@@ -835,14 +836,16 @@ body.has-cursor, body.has-cursor a, body.has-cursor button{ cursor:none; }
 .footer__cols{ margin-left:auto; justify-content:flex-end; }
 .footer__info{ text-align:right; align-items:flex-end; }
 .footer__wordmark{
-  width:100%;
-  margin-left:0;
-  font-size:clamp(80px,15.2vw,280px);
+  width:calc(100% - var(--pad) - var(--pad));
+  margin-left:var(--pad);
+  margin-right:var(--pad);
+  font-size:clamp(80px,16.5vw,300px);
   line-height:.8;
   height:.4em;
   overflow:hidden;
   transform:translateY(.04em);
 }
+.footer{ padding-bottom:0; }
 
 @media (max-width:767px){
   .hero__title{ font-size:clamp(25px,8.8vw,40px); }
