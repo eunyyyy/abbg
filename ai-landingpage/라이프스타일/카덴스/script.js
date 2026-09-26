@@ -69,6 +69,10 @@
     };
 
     toggle.addEventListener('click', () => setOpen(!burger.classList.contains('is-open')));
+    burger.querySelector('[data-burger-close]')?.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && burger.classList.contains('is-open')) setOpen(false);
+    });
     burger.querySelectorAll('[data-burger-link]').forEach((link) => {
       link.addEventListener('click', () => setOpen(false));
     });
@@ -112,26 +116,6 @@
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-    targets.forEach((el) => io.observe(el));
-  }
-
-  /* ---------------------------------------------------------------------
-     Decorative squiggle stroke-draw — one-shot on scroll into view
-     --------------------------------------------------------------------- */
-  function initSquiggles() {
-    const targets = document.querySelectorAll('.squiggle');
-    if (!targets.length || !('IntersectionObserver' in window)) {
-      targets.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
     targets.forEach((el) => io.observe(el));
   }
 
@@ -319,28 +303,6 @@
   }
 
   /* ---------------------------------------------------------------------
-     Newsletter form — no backend, just a friendly inline confirmation
-     --------------------------------------------------------------------- */
-  function initNewsletterForm() {
-    const form = document.querySelector('[data-newsletter-form]');
-    if (!form) return;
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = form.querySelector('input[type="email"]');
-      const btn = form.querySelector('button');
-      const label = btn?.querySelector('.is-default, .is-hover');
-      if (label) {
-        const original = label.textContent;
-        btn.querySelectorAll('.is-default, .is-hover').forEach((s) => (s.textContent = '감사합니다!'));
-        setTimeout(() => {
-          btn.querySelectorAll('.is-default, .is-hover').forEach((s) => (s.textContent = original));
-        }, 2400);
-      }
-      if (input) input.value = '';
-    });
-  }
-
-  /* ---------------------------------------------------------------------
      boot
      --------------------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', () => {
@@ -349,11 +311,9 @@
     initBurger();
     initAnchorNav();
     initReveal();
-    initSquiggles();
     initParallax();
     initDraggableSliders();
     initScrollFill();
     initCountUp();
-    initNewsletterForm();
   });
 })();
