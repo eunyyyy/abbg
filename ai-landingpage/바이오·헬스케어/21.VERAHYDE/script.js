@@ -86,6 +86,29 @@
     }
   })();
 
+  /* Floating image field follows the pointer with staggered depth. */
+  (function stripParallaxModule() {
+    var strip = document.getElementById('strip');
+    if (!strip || reduceMotion || window.matchMedia('(pointer: coarse)').matches) return;
+    var images = strip.querySelectorAll('.strip__img');
+    strip.addEventListener('mousemove', function (event) {
+      var rect = strip.getBoundingClientRect();
+      var nx = (event.clientX - rect.left) / rect.width - .5;
+      var ny = (event.clientY - rect.top) / rect.height - .5;
+      images.forEach(function (img, index) {
+        var depth = 14 + index * 7;
+        img.style.setProperty('--mouse-x', (nx * depth).toFixed(2) + 'px');
+        img.style.setProperty('--mouse-y', (ny * depth).toFixed(2) + 'px');
+      });
+    }, { passive: true });
+    strip.addEventListener('mouseleave', function () {
+      images.forEach(function (img) {
+        img.style.setProperty('--mouse-x', '0px');
+        img.style.setProperty('--mouse-y', '0px');
+      });
+    });
+  })();
+
   /* Hero image expands from the right-hand composition into a full viewport. */
   (function heroExpandModule() {
     var scene = document.querySelector('.hero-scene');
