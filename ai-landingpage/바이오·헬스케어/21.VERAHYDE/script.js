@@ -50,28 +50,7 @@
     var mobileNav = document.getElementById('gnbMobile');
     if (!gnb) return;
 
-    var lastY = window.scrollY;
-    var ticking = false;
-
-    function onScroll() {
-      var y = window.scrollY;
-      if (y <= 4) {
-        gnb.classList.remove('is-hidden');
-      } else if (y > lastY + 2) {
-        gnb.classList.add('is-hidden');
-      } else if (y < lastY - 2) {
-        gnb.classList.remove('is-hidden');
-      }
-      lastY = y;
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(onScroll);
-        ticking = true;
-      }
-    }, { passive: true });
+    gnb.classList.remove('is-hidden');
 
     // theme invert via IntersectionObserver on a thin band at the nav's height
     var themeEls = document.querySelectorAll('[data-theme]');
@@ -105,6 +84,36 @@
         });
       });
     }
+  })();
+
+  /* Hero image expands from the right-hand composition into a full viewport. */
+  (function heroExpandModule() {
+    var scene = document.querySelector('.hero-scene');
+    var hero = document.querySelector('.hero');
+    if (!scene || !hero) return;
+    function update() {
+      var rect = scene.getBoundingClientRect();
+      var range = Math.max(1, rect.height - window.innerHeight);
+      var progress = Math.max(0, Math.min(1, -rect.top / range));
+      var mobile = window.innerWidth <= 767;
+      var baseWidth = Math.min(window.innerWidth * (mobile ? .56 : .34), mobile ? 9999 : 480);
+      var baseHeight = baseWidth * 670 / 900;
+      var baseRight = window.innerWidth * .08;
+      var baseTop = window.innerHeight * (mobile ? .18 : .22);
+      hero.style.setProperty('--hero-progress', progress.toFixed(4));
+      hero.style.setProperty('--hero-width', (baseWidth + (window.innerWidth - baseWidth) * progress).toFixed(2) + 'px');
+      hero.style.setProperty('--hero-height', (baseHeight + (window.innerHeight - baseHeight) * progress).toFixed(2) + 'px');
+      hero.style.setProperty('--hero-right', (baseRight * (1 - progress)).toFixed(2) + 'px');
+      hero.style.setProperty('--hero-top', (baseTop * (1 - progress)).toFixed(2) + 'px');
+      hero.classList.toggle('is-expanded', progress > .82);
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) requestAnimationFrame(function () { update(); ticking = false; });
+      ticking = true;
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   })();
 
   /* =========================================================
@@ -217,7 +226,6 @@
       { en: 'COLD-PROCESS CREAM', kr: '저온 공정 크림', desc: '저온 유화 공정으로 열에 민감한 활성 성분의 손실을 줄인 크림 처방 기술. 밀도 높은 보습막을 형성합니다.' }
     ];
 
-    var icons = scene.querySelectorAll('.formula__icon');
     var bgs = scene.querySelectorAll('.formula__bg');
     var labelEn = scene.querySelector('.formula__label-en');
     var labelKr = scene.querySelector('.formula__label-kr');
@@ -229,12 +237,11 @@
     function setIndex(i) {
       if (i === currentIndex) return;
       currentIndex = i;
-      icons.forEach(function (icon, idx) { icon.classList.toggle('is-active', idx === i); });
       bgs.forEach(function (bg, idx) { bg.classList.toggle('is-active', idx === i); });
       var cat = categories[i];
       labelEn.textContent = cat.en;
       labelKr.textContent = cat.kr;
-      descEl.textContent = cat.desc;
+      descEl.innerHTML = cat.desc.replace('. ', '.<br>');
       pgActive.textContent = String(i + 1).padStart(2, '0');
     }
 
