@@ -21,6 +21,15 @@ Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Services 8-4 / Method 5-7 / Projects 7-5 
 <symbol id="ic-squiggle" viewBox="0 0 100 100"><path fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" d="M10,70 C30,20 55,90 72,45"/><path fill="currentColor" d="M62,34 L90,40 L74,62 Z"/></symbol>
 <symbol id="ic-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="12"/></symbol>
 <symbol id="ic-wave" viewBox="0 0 100 100"><path fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" d="M6,50 C22,20 38,80 50,50 C62,20 78,80 94,50"/></symbol>
+<symbol id="sym-star" viewBox="0 0 100 100"><polygon fill="currentColor" points="50.0,4.0 60.6,35.4 93.7,35.8 67.1,55.6 77.0,87.2 50.0,68.0 23.0,87.2 32.9,55.6 6.3,35.8 39.4,35.4"/></symbol>
+<symbol id="sym-heart" viewBox="0 0 100 100"><path fill="currentColor" d="M50,88 C20,64 4,46 4,28 C4,12 16,2 30,2 C40,2 47,8 50,16 C53,8 60,2 70,2 C84,2 96,12 96,28 C96,46 80,64 50,88 Z"/></symbol>
+<symbol id="sym-bubble" viewBox="0 0 100 100"><path fill="currentColor" d="M8,10 h84 a8,8 0 0 1 8,8 v46 a8,8 0 0 1 -8,8 H34 L14,88 V72 H8 a8,8 0 0 1 -8,-8 V18 a8,8 0 0 1 8,-8 Z"/></symbol>
+<symbol id="sym-exclaim" viewBox="0 0 100 100"><g fill="currentColor"><rect x="34" y="4" width="32" height="60" rx="14"/><circle cx="50" cy="86" r="14"/></g></symbol>
+<symbol id="sym-badge" viewBox="0 0 100 100"><rect x="4" y="4" width="92" height="92" rx="26" fill="currentColor"/></symbol>
+<symbol id="sym-diamond" viewBox="0 0 100 100"><rect x="22" y="22" width="56" height="56" rx="10" fill="currentColor" transform="rotate(45 50 50)"/></symbol>
+<symbol id="sym-arrow-up" viewBox="0 0 100 100"><path fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" d="M12,80 C34,80 50,68 62,34"/><path fill="currentColor" d="M52,10 L92,26 L60,52 Z"/></symbol>
+<symbol id="sym-smiley" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="currentColor"/><g fill="#0b1020"><circle cx="35" cy="45" r="5"/><circle cx="65" cy="45" r="5"/><path d="M32,60 Q50,74 68,60" fill="none" stroke="#0b1020" stroke-width="6" stroke-linecap="round"/></g></symbol>
+<symbol id="sym-block" viewBox="0 0 100 100"><rect x="4" y="4" width="92" height="92" rx="18" fill="currentColor"/></symbol>
 </defs>
 </svg>
 
@@ -69,28 +78,50 @@ Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Services 8-4 / Method 5-7 / Projects 7-5 
 
       <article class="service-card service-card--wide reveal" data-tilt>
         <div class="service-media" style="background:var(--blue)">
-          <div class="svc-circle"><img src="img/sticker-burst.png" alt=""></div>
+          <div class="scene" aria-hidden="true"><svg viewBox="0 0 200 200">
+            <use href="#sym-bubble" x="12" y="28" width="94" height="94" style="color:var(--lime)"/>
+            <use href="#sym-star" x="98" y="14" width="72" height="72" style="color:#fff"/>
+            <use href="#sym-diamond" x="72" y="98" width="22" height="22" style="color:var(--lime)"/>
+            <use href="#sym-badge" x="108" y="102" width="76" height="76" style="color:#fff"/>
+            <path d="M130,140 L145,155 L172,118" fill="none" stroke="var(--blue)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg></div>
         </div>
         <div class="service-info"><div><h3>Experience Strategy</h3><p>사용자 리서치 · 서비스 전략 · UX 컨설팅</p></div><i>↗</i></div>
       </article>
 
       <article class="service-card service-card--dark reveal" data-tilt>
         <div class="service-media" style="background:var(--ink)">
-          <div class="svc-circle"><img src="img/sticker-wave.png" alt=""></div>
+          <div class="scene" aria-hidden="true"><svg viewBox="0 0 200 200">
+            <use href="#sym-bubble" x="18" y="74" width="102" height="102" style="color:var(--lime)" transform="rotate(-6 70 124)"/>
+            <use href="#sym-bubble" x="88" y="28" width="88" height="88" style="color:#fff" transform="rotate(8 130 72)"/>
+            <use href="#sym-exclaim" x="28" y="14" width="42" height="42" style="color:var(--lime)"/>
+            <use href="#sym-star" x="142" y="130" width="46" height="46" style="color:var(--blue)"/>
+          </svg></div>
         </div>
         <div class="service-info"><div><h3>AI Experience</h3><p>AI 에이전트 · 대화형 UX · 프로토타이핑</p></div><i>↗</i></div>
       </article>
 
       <article class="service-card reveal" data-tilt>
         <div class="service-media" style="background:var(--blue)">
-          <div class="svc-circle"><img src="img/sticker-star.png" alt=""></div>
+          <div class="scene" aria-hidden="true"><svg viewBox="0 0 200 200">
+            <use href="#sym-block" x="14" y="122" width="72" height="64" style="color:#fff"/>
+            <use href="#sym-block" x="92" y="86" width="72" height="100" style="color:var(--lime)"/>
+            <use href="#sym-smiley" x="108" y="54" width="42" height="42" style="color:#fff"/>
+            <use href="#sym-diamond" x="28" y="92" width="22" height="22" style="color:#fff"/>
+          </svg></div>
         </div>
         <div class="service-info"><div><h3>Digital Product</h3><p>제품 디자인 · 디자인 시스템 · 프론트엔드</p></div><i>↗</i></div>
       </article>
 
       <article class="service-card service-card--wide service-card--dark reveal" data-tilt>
         <div class="service-media" style="background:var(--ink)">
-          <div class="svc-circle"><img src="img/sticker-cloud.png" alt=""></div>
+          <div class="scene" aria-hidden="true"><svg viewBox="0 0 200 200">
+            <use href="#sym-arrow-up" x="6" y="56" width="64" height="64" style="color:#fff"/>
+            <use href="#sym-block" x="22" y="144" width="38" height="42" style="color:var(--blue)"/>
+            <use href="#sym-block" x="72" y="114" width="38" height="72" style="color:#fff"/>
+            <use href="#sym-block" x="122" y="82" width="38" height="104" style="color:var(--lime)"/>
+            <use href="#sym-heart" x="128" y="30" width="44" height="44" style="color:var(--lime)"/>
+          </svg></div>
         </div>
         <div class="service-info"><div><h3>Enterprise Delivery</h3><p>SI 협업 · 품질 관리 · 운영 고도화</p></div><i>↗</i></div>
       </article>
@@ -110,15 +141,23 @@ Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Services 8-4 / Method 5-7 / Projects 7-5 
   <section class="work" id="work"><div class="container">
     <div class="section-head section-head--work reveal"><h2>Built for the real world.</h2></div>
     <div class="work-grid">
-      <article class="work-card work-card--hero reveal"><div class="work-art art-pay"><span class="work-icon"><svg viewBox="0 0 100 100"><use href="#ic-burst"/></svg></span>
-        <div class="giftbox">
-          <div class="giftbox-lid"></div>
-          <img class="giftbox-peek" src="img/sticker-star.png" alt="">
-          <div class="giftbox-body"><span class="giftbox-ribbon"></span></div>
+      <article class="work-card work-card--hero reveal"><div class="work-art art-pay">
+        <svg class="pay-accent pay-accent--star" viewBox="0 0 100 100"><use href="#sym-star" width="100" height="100" style="color:var(--lime)"/></svg>
+        <svg class="pay-accent pay-accent--diamond" viewBox="0 0 100 100"><use href="#sym-diamond" width="100" height="100" style="color:#fff"/></svg>
+        <div class="pay-card">
+          <span class="pay-chip"></span>
+          <span class="pay-stripe"></span>
+          <span class="pay-dots"></span>
         </div>
+        <div class="pay-badge"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div><div class="work-meta"><div><span>FINTECH · 2025</span><h3>Allverse Pay</h3></div><p>복잡한 결제 운영을 하나의 흐름으로 통합한 차세대 플랫폼</p></div></article>
       <article class="work-card reveal"><div class="work-art art-campus"><span class="work-icon work-icon--dark"><svg viewBox="0 0 100 100"><use href="#ic-dots3"/></svg></span><b>Y</b><span>Campus banking,<br>reframed.</span></div><div class="work-meta"><div><span>BANKING · 2024</span><h3>Y-Campus</h3></div><p>대학생의 금융 생활을 다시 설계한 모바일 경험</p></div></article>
-      <article class="work-card reveal"><div class="work-art art-ai"><img class="mini-orbit" src="img/sticker-pinwheel-blue.png" alt=""><span class="work-icon work-icon--dark"><svg viewBox="0 0 100 100"><use href="#ic-asterisk"/></svg></span><b>AI OPS</b><small>ONE CONTROL TOWER</small></div><div class="work-meta"><div><span>ENTERPRISE AI · 2024</span><h3>GenAI Ops</h3></div><p>생성형 AI 운영을 투명하게 만드는 관리 플랫폼</p></div></article>
+      <article class="work-card reveal"><div class="work-art art-ai">
+        <div class="ai-dome-spin"><svg viewBox="0 0 100 60"><path d="M2,58 A48,48 0 0 1 98,58 Z" fill="var(--blue)"/></svg></div>
+        <svg class="ai-accent ai-accent--bubble" viewBox="0 0 100 100"><use href="#sym-bubble" width="100" height="100" style="color:#fff"/></svg>
+        <svg class="ai-accent ai-accent--star" viewBox="0 0 100 100"><use href="#sym-star" width="100" height="100" style="color:var(--lime)"/></svg>
+        <svg class="ai-accent ai-accent--exclaim" viewBox="0 0 100 100"><use href="#sym-exclaim" width="100" height="100" style="color:var(--blue)"/></svg>
+        <b>AI OPS</b><small>ONE CONTROL TOWER</small></div><div class="work-meta"><div><span>ENTERPRISE AI · 2024</span><h3>GenAI Ops</h3></div><p>생성형 AI 운영을 투명하게 만드는 관리 플랫폼</p></div></article>
     </div>
   </div></section>
 
