@@ -34,7 +34,8 @@ function formatDate(ts) {
 function initTabs() {
   var tabs = [
     { btn: document.getElementById('tab-btn-feedback'), panel: document.getElementById('tab-panel-feedback') },
-    { btn: document.getElementById('tab-btn-projects'), panel: document.getElementById('tab-panel-projects') }
+    { btn: document.getElementById('tab-btn-projects'), panel: document.getElementById('tab-panel-projects') },
+    { btn: document.getElementById('tab-btn-content'), panel: document.getElementById('tab-panel-content') }
   ];
   tabs.forEach(function (t) {
     t.btn.addEventListener('click', function () {
@@ -58,7 +59,7 @@ async function init() {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js');
     const { getAuth, onAuthStateChanged, signOut } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js');
     const {
-      getFirestore, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc,
+      getFirestore, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc,
       onSnapshot, query, orderBy, serverTimestamp
     } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
 
@@ -74,7 +75,7 @@ async function init() {
       if (gateMsgEl) gateMsgEl.style.display = 'none';
       if (shellEl) shellEl.classList.add('is-ready');
       if (userEmailEl) userEmailEl.textContent = user.email || '';
-      boot({ db, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp });
+      boot({ db, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, onSnapshot, query, orderBy, serverTimestamp });
     });
 
     if (logoutBtn) {
@@ -95,6 +96,7 @@ function boot(fs) {
   initTabs();
   initFeedbackTab(fs);
   initProjectsTab(fs);
+  initSiteContentTab(fs);
 }
 
 /* ==================== FEEDBACK TAB ==================== */
@@ -439,6 +441,93 @@ function initProjectsTab(fs) {
       seedBtn.disabled = false;
       seedBtn.textContent = '시드 데이터 불러오기 (최초 1회)';
     }
+  });
+}
+
+/* ==================== HOMEPAGE CONTENT TAB ====================
+   Backs the 5 forms in admin/dashboard.html's "홈페이지 관리" tab.
+   One Firestore doc per section (siteContent/hero|projects|feedback|
+   logo|footer) — see js/main.js's syncSiteContentFromFirestore for
+   the public-site read side, and firestore.rules for the write-side
+   validation. Defaults below mirror index.html's current static copy
+   exactly, so a form shows real content (not blank fields) even
+   before any admin has saved that section yet. */
+var SITE_CONTENT_DEFAULTS = {
+  hero: {
+    eyebrow: 'WE ARE AI WEB',
+    title: 'AI가 초안을 생성하고\n디자이너가 완성하는 랜딩페이지',
+    subtext: '다양한 산업분야의 브랜딩·색상·타이포그래피·인터랙션을 처음부터 다시 설계합니다.\nAI는 속도를 더하고, 디자이너는 완성도를 더합니다.',
+    button1Label: 'View Projects', button1Link: '#projects',
+    button2Label: '피드백 남기기', button2Link: '#feedback'
+  },
+  projects: {
+    eyebrow: 'PROJECT ARCHIVE',
+    title: '지금까지 배포한 프로젝트',
+    subtext: '라이브로 운영 중인 실제 프로젝트입니다.\n산업분야를 선택 후 프로젝트를 클릭하시면 원하는 프로젝트 리스트가 나타납니다.\n실시간으로 피드백 반영 사항을 확인하실 수 있습니다.'
+  },
+  feedback: {
+    title: '프로젝트에 의견을 남겨주세요',
+    subtext: '프로젝트 중 하나를 선택하고 의견을 남기면,\n실시간으로 반영 후 반영 완료 된 사항은 업데이트하여 확인할 수 있습니다.'
+  },
+  logo: { text: 'AI WEB' },
+  footer: {
+    tagline: 'AI 증강 워크플로우로 브랜드 랜딩페이지를 설계하고 배포하는 ALPHA의 프로젝트 아카이브입니다.',
+    infoLine1: 'Design by Ryeongeun Kim',
+    infoLine2: 'Copyright © 2026 AI WEB. All rights reserved.'
+  }
+};
+// [inputId, firestoreField] pairs per section — drives both the load
+// (prefill) and save (payload build) sides from one place.
+var SITE_CONTENT_FIELD_MAP = {
+  hero: [
+    ['hero-eyebrow', 'eyebrow'], ['hero-title', 'title'], ['hero-subtext', 'subtext'],
+    ['hero-btn1-label', 'button1Label'], ['hero-btn1-link', 'button1Link'],
+    ['hero-btn2-label', 'button2Label'], ['hero-btn2-link', 'button2Link']
+  ],
+  projects: [['projects-eyebrow', 'eyebrow'], ['projects-title', 'title'], ['projects-subtext', 'subtext']],
+  feedback: [['feedback-sec-title', 'title'], ['feedback-sec-subtext', 'subtext']],
+  logo: [['logo-text', 'text']],
+  footer: [['footer-tagline', 'tagline'], ['footer-info1', 'infoLine1'], ['footer-info2', 'infoLine2']]
+};
+
+function initSiteContentTab(fs) {
+  Object.keys(SITE_CONTENT_FIELD_MAP).forEach(function (docId) {
+    var form = document.getElementById('content-form-' + docId);
+    if (!form) return;
+    var fields = SITE_CONTENT_FIELD_MAP[docId];
+
+    fs.getDoc(fs.doc(fs.db, 'siteContent', docId)).then(function (snap) {
+      var data = snap.exists() ? snap.data() : {};
+      var defaults = SITE_CONTENT_DEFAULTS[docId] || {};
+      fields.forEach(function (pair) {
+        var el = document.getElementById(pair[0]);
+        if (!el) return;
+        var value = data[pair[1]];
+        el.value = (value !== undefined && value !== null && value !== '') ? value : (defaults[pair[1]] || '');
+      });
+    }).catch(function (err) {
+      console.error('site content load error (' + docId + ')', err);
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var payload = {};
+      fields.forEach(function (pair) {
+        var el = document.getElementById(pair[0]);
+        if (el) payload[pair[1]] = el.value.trim();
+      });
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+      try {
+        await fs.setDoc(fs.doc(fs.db, 'siteContent', docId), Object.assign({}, payload, { updatedAt: fs.serverTimestamp() }), { merge: true });
+        showAdminToast('저장했습니다.');
+      } catch (err) {
+        console.error('site content save error (' + docId + ')', err);
+        alert('저장에 실패했습니다.');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
   });
 }
 

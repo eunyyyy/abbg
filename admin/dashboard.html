@@ -41,6 +41,7 @@
     <nav class="admin-tabs" role="tablist" aria-label="관리 메뉴">
       <button type="button" class="admin-tab is-active" id="tab-btn-feedback" role="tab" aria-selected="true">피드백 관리</button>
       <button type="button" class="admin-tab" id="tab-btn-projects" role="tab" aria-selected="false">프로젝트 관리</button>
+      <button type="button" class="admin-tab" id="tab-btn-content" role="tab" aria-selected="false">홈페이지 관리</button>
     </nav>
 
     <!-- ================= FEEDBACK TAB ================= -->
@@ -121,6 +122,112 @@
             <tr><td colspan="5" class="admin-empty">불러오는 중…</td></tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- ================= HOMEPAGE CONTENT TAB ================= -->
+    <section class="admin-panel" id="tab-panel-content">
+      <div class="admin-panel__head">
+        <div>
+          <h2>홈페이지 관리</h2>
+          <p>공개 사이트(index.html) 각 섹션의 문구·버튼·로고·푸터를 수정합니다. 섹션별로 저장 버튼이 따로 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="admin-content-grid">
+        <form class="admin-content-card" id="content-form-hero" data-doc="hero">
+          <h3>히어로 섹션</h3>
+          <div class="field">
+            <label for="hero-eyebrow">서브타이틀</label>
+            <input type="text" id="hero-eyebrow" maxlength="80">
+          </div>
+          <div class="field">
+            <label for="hero-title">메인타이틀 <small>(줄바꿈은 Enter로 입력)</small></label>
+            <textarea id="hero-title" rows="2" maxlength="200"></textarea>
+          </div>
+          <div class="field">
+            <label for="hero-subtext">서브텍스트 <small>(줄바꿈은 Enter로 입력)</small></label>
+            <textarea id="hero-subtext" rows="3" maxlength="300"></textarea>
+          </div>
+          <div class="admin-content-card__row">
+            <div class="field">
+              <label for="hero-btn1-label">버튼1 이름</label>
+              <input type="text" id="hero-btn1-label" maxlength="40">
+            </div>
+            <div class="field">
+              <label for="hero-btn1-link">버튼1 링크</label>
+              <input type="text" id="hero-btn1-link" maxlength="300" placeholder="#projects 또는 https://…">
+            </div>
+          </div>
+          <div class="admin-content-card__row">
+            <div class="field">
+              <label for="hero-btn2-label">버튼2 이름</label>
+              <input type="text" id="hero-btn2-label" maxlength="40">
+            </div>
+            <div class="field">
+              <label for="hero-btn2-link">버튼2 링크</label>
+              <input type="text" id="hero-btn2-link" maxlength="300" placeholder="#feedback 또는 https://…">
+            </div>
+          </div>
+          <button type="submit" class="pill pill--solid">저장</button>
+        </form>
+
+        <form class="admin-content-card" id="content-form-projects" data-doc="projects">
+          <h3>프로젝트 목록 섹션</h3>
+          <div class="field">
+            <label for="projects-eyebrow">서브타이틀</label>
+            <input type="text" id="projects-eyebrow" maxlength="80">
+          </div>
+          <div class="field">
+            <label for="projects-title">메인타이틀</label>
+            <input type="text" id="projects-title" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="projects-subtext">서브텍스트 <small>(줄바꿈은 Enter로 입력)</small></label>
+            <textarea id="projects-subtext" rows="3" maxlength="300"></textarea>
+          </div>
+          <button type="submit" class="pill pill--solid">저장</button>
+        </form>
+
+        <form class="admin-content-card" id="content-form-feedback" data-doc="feedback">
+          <h3>피드백 섹션</h3>
+          <div class="field">
+            <label for="feedback-sec-title">메인타이틀</label>
+            <input type="text" id="feedback-sec-title" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="feedback-sec-subtext">서브텍스트 <small>(줄바꿈은 Enter로 입력)</small></label>
+            <textarea id="feedback-sec-subtext" rows="3" maxlength="300"></textarea>
+          </div>
+          <button type="submit" class="pill pill--solid">저장</button>
+        </form>
+
+        <form class="admin-content-card" id="content-form-logo" data-doc="logo">
+          <h3>로고</h3>
+          <div class="field">
+            <label for="logo-text">로고 텍스트</label>
+            <input type="text" id="logo-text" maxlength="40">
+          </div>
+          <p class="admin-content-card__hint">헤더 GNB와 푸터, 두 곳에 동일하게 적용됩니다.</p>
+          <button type="submit" class="pill pill--solid">저장</button>
+        </form>
+
+        <form class="admin-content-card" id="content-form-footer" data-doc="footer">
+          <h3>푸터</h3>
+          <div class="field">
+            <label for="footer-tagline">슬로건</label>
+            <textarea id="footer-tagline" rows="2" maxlength="200"></textarea>
+          </div>
+          <div class="field">
+            <label for="footer-info1">기본정보 1</label>
+            <input type="text" id="footer-info1" maxlength="80">
+          </div>
+          <div class="field">
+            <label for="footer-info2">기본정보 2</label>
+            <input type="text" id="footer-info2" maxlength="80">
+          </div>
+          <button type="submit" class="pill pill--solid">저장</button>
+        </form>
       </div>
     </section>
   </main>

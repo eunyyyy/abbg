@@ -94,6 +94,14 @@ export const firebaseConfig = {
 2. **프로젝트 관리** 탭 → **시드 데이터 불러오기 (최초 1회)** 클릭
 3. 저장소에 내장된 16개 프로젝트(js/projects-data.js)가 Firestore `projects` 컬렉션에 채워집니다. 이후부터는 같은 탭에서 추가/수정/삭제로 관리합니다.
 
+## 7-1. (신규 기능 추가 시) 보안 규칙 재게시
+이 저장소의 `firestore.rules` 파일이 바뀔 때마다(예: `admin/`에 새 관리 탭이 추가되어 새로운 컬렉션이 생겼을 때) **Firebase 콘솔의 규칙도 함께 다시 게시해야** 실제로 반영됩니다 — git에 커밋된 `firestore.rules`는 문서일 뿐, 콘솔에 붙여넣기 전까지는 실제 서비스에 아무 영향이 없습니다.
+1. Firestore Database 화면 상단 **규칙(Rules)** 탭 열기
+2. 이 저장소 루트의 `firestore.rules` 파일 전체 내용을 복사해 콘솔의 편집창 내용을 통째로 교체
+3. **게시(Publish)**
+
+현재 `siteContent` 컬렉션(홈페이지 관리 탭 — 히어로/프로젝트·피드백 섹션 문구/로고/푸터)이 이 단계를 거치지 않으면 공개 사이트와 관리자 탭 모두 "Missing or insufficient permissions" 오류로 조용히 실패하고, 사이트는 정적 기본 문구를 그대로 보여줍니다 (깨지지는 않지만 저장한 내용이 반영되지 않습니다).
+
 ## 8. 커밋 & 푸시
 ```
 git add js/firebase-config.js

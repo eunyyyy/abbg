@@ -544,4 +544,95 @@
       }
     })();
   })();
+
+  /* =========================================================
+     Site content sync (admin/ "홈페이지 관리" tab)
+     Same shape as syncProjectsFromFirestore just above: static
+     HTML renders first (zero JS dependency), then a live
+     `siteContent` subscription overwrites only the fields an
+     admin has actually saved. A doc that doesn't exist yet (no
+     admin edit made) is simply skipped, leaving the static
+     copy already in the page untouched field-by-field.
+     ========================================================= */
+  (function () {
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+    // Title/subtext are authored in a <textarea> (real newlines for a
+    // manual line break, matching the static <h1>'s <br> between its two
+    // lines) — escape first, then turn newlines into <br> so nothing else
+    // in the text can inject markup.
+    function textWithBreaks(str) {
+      return escapeHtml(str).replace(/\n/g, '<br>');
+    }
+    function setText(selector, value) {
+      if (!value) return;
+      var el = document.querySelector(selector);
+      if (el) el.textContent = value;
+    }
+    function setHtmlWithBreaks(selector, value) {
+      if (!value) return;
+      var el = document.querySelector(selector);
+      if (el) el.innerHTML = textWithBreaks(value);
+    }
+    function setHref(selector, value) {
+      if (!value) return;
+      var el = document.querySelector(selector);
+      if (el) el.setAttribute('href', value);
+    }
+
+    function applySiteContent(id, d) {
+      if (id === 'hero') {
+        setText('.intro .eyebrow', d.eyebrow);
+        setHtmlWithBreaks('.intro__inner h1', d.title);
+        setHtmlWithBreaks('.intro__sub', d.subtext);
+        setText('.intro__actions .pill--solid .pill__label', d.button1Label);
+        setHref('.intro__actions .pill--solid', d.button1Link);
+        setText('.intro__actions .pill--outline .pill__label', d.button2Label);
+        setHref('.intro__actions .pill--outline', d.button2Link);
+      } else if (id === 'projects') {
+        setText('.plist-section .section-head .eyebrow', d.eyebrow);
+        setHtmlWithBreaks('.plist-section .section-head h2', d.title);
+        setHtmlWithBreaks('.plist-section .section-head p', d.subtext);
+      } else if (id === 'feedback') {
+        setHtmlWithBreaks('#feedback .section-head h2', d.title);
+        setHtmlWithBreaks('#feedback .section-head p', d.subtext);
+      } else if (id === 'logo') {
+        // Same source text applied to both places the logo is inserted —
+        // header GNB and the footer — so they can never drift apart.
+        setText('.gnb__logo', d.text);
+        setText('.footer__logo', d.text);
+      } else if (id === 'footer') {
+        setHtmlWithBreaks('.footer__tagline', d.tagline);
+        var infoEls = document.querySelectorAll('.footer__info span');
+        if (d.infoLine1 && infoEls[0]) infoEls[0].textContent = d.infoLine1;
+        if (d.infoLine2 && infoEls[1]) infoEls[1].textContent = d.infoLine2;
+      }
+    }
+
+    (async function syncSiteContentFromFirestore() {
+      try {
+        var cfgMod = await import('./firebase-config.js');
+        if (!cfgMod.isFirebaseConfigured()) return;
+
+        var appMod = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js');
+        var fsMod = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
+
+        var app = appMod.initializeApp(cfgMod.firebaseConfig);
+        var db = fsMod.getFirestore(app);
+
+        fsMod.onSnapshot(fsMod.collection(db, 'siteContent'), function (snap) {
+          snap.forEach(function (docSnap) { applySiteContent(docSnap.id, docSnap.data() || {}); });
+        }, function (err) {
+          console.error('site content onSnapshot error, keeping static copy', err);
+        });
+      } catch (err) {
+        console.error('site content sync error, keeping static copy', err);
+      }
+    })();
+  })();
 })();

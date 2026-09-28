@@ -81,5 +81,33 @@ service cloud.firestore {
       // 프로젝트 추가/수정/삭제는 로그인한 관리자만 (admin/ 대시보드의 프로젝트 관리 탭).
       allow create, update, delete: if request.auth != null;
     }
+
+    function validSiteContentString(v) {
+      return v is string && v.size() <= 2000;
+    }
+    // 홈페이지 문구(히어로/프로젝트·피드백 섹션 헤드/로고/푸터) — 공개 사이트가
+    // 읽어 렌더링하므로 누구나 읽기 가능, 저장은 로그인한 관리자만
+    // (admin/ 대시보드의 "홈페이지 관리" 탭). 문서 1개 = 섹션 1개
+    // (hero/projects/feedback/logo/footer).
+    match /siteContent/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null &&
+        request.resource.data.keys().hasOnly([
+          'eyebrow','title','subtext',
+          'button1Label','button1Link','button2Label','button2Link',
+          'text','tagline','infoLine1','infoLine2','updatedAt'
+        ]) &&
+        (!('eyebrow' in request.resource.data) || validSiteContentString(request.resource.data.eyebrow)) &&
+        (!('title' in request.resource.data) || validSiteContentString(request.resource.data.title)) &&
+        (!('subtext' in request.resource.data) || validSiteContentString(request.resource.data.subtext)) &&
+        (!('button1Label' in request.resource.data) || validSiteContentString(request.resource.data.button1Label)) &&
+        (!('button1Link' in request.resource.data) || validSiteContentString(request.resource.data.button1Link)) &&
+        (!('button2Label' in request.resource.data) || validSiteContentString(request.resource.data.button2Label)) &&
+        (!('button2Link' in request.resource.data) || validSiteContentString(request.resource.data.button2Link)) &&
+        (!('text' in request.resource.data) || validSiteContentString(request.resource.data.text)) &&
+        (!('tagline' in request.resource.data) || validSiteContentString(request.resource.data.tagline)) &&
+        (!('infoLine1' in request.resource.data) || validSiteContentString(request.resource.data.infoLine1)) &&
+        (!('infoLine2' in request.resource.data) || validSiteContentString(request.resource.data.infoLine2));
+    }
   }
 }
