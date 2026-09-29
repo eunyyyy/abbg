@@ -372,7 +372,7 @@ body.menu-open{ overflow:hidden; }
   transition:opacity .4s var(--ease), transform .4s var(--ease);
 }
 .company__visual-caption.is-shown{ opacity:1; transform:translateY(0); }
-.company__visual-num{ display:block; font-size:38px; font-weight:800; }
+.company__visual-num{ display:block; font-size:45.6px; font-weight:800; }
 .company__visual-label{ display:block; font-size:18px; letter-spacing:0; line-height:1.4; margin-top:6px; }
 
 /* =========================================================
