@@ -495,18 +495,30 @@ function initSiteContentTab(fs) {
     var form = document.getElementById('content-form-' + docId);
     if (!form) return;
     var fields = SITE_CONTENT_FIELD_MAP[docId];
+    var defaults = SITE_CONTENT_DEFAULTS[docId] || {};
+
+    // Defaults go in FIRST, synchronously — the form must never show blank
+    // fields, Firestore reachable or not (same static-first principle as
+    // the public site itself). If the getDoc below succeeds and the saved
+    // doc actually has a value for a field, that overwrites the default;
+    // any read failure (offline, rules not yet published, etc.) just
+    // leaves these defaults in place instead of leaving the field blank.
+    fields.forEach(function (pair) {
+      var el = document.getElementById(pair[0]);
+      if (el) el.value = defaults[pair[1]] || '';
+    });
 
     fs.getDoc(fs.doc(fs.db, 'siteContent', docId)).then(function (snap) {
-      var data = snap.exists() ? snap.data() : {};
-      var defaults = SITE_CONTENT_DEFAULTS[docId] || {};
+      if (!snap.exists()) return;
+      var data = snap.data() || {};
       fields.forEach(function (pair) {
         var el = document.getElementById(pair[0]);
         if (!el) return;
         var value = data[pair[1]];
-        el.value = (value !== undefined && value !== null && value !== '') ? value : (defaults[pair[1]] || '');
+        if (value !== undefined && value !== null && value !== '') el.value = value;
       });
     }).catch(function (err) {
-      console.error('site content load error (' + docId + ')', err);
+      console.error('site content load error (' + docId + '), showing defaults instead', err);
     });
 
     form.addEventListener('submit', async function (e) {
