@@ -373,8 +373,8 @@ body.menu-open{ overflow:hidden; }
 }
 .company__visual:hover .company__visual-caption,
 .company__visual:focus-within .company__visual-caption{ opacity:1; transform:translateY(0); }
-.company__visual-num{ display:block; font-size:var(--fs-h2); font-weight:800; }
-.company__visual-label{ display:block; font-size:11px; letter-spacing:.1em; opacity:.8; margin-top:4px; }
+.company__visual-num{ display:block; font-size:38px; font-weight:800; }
+.company__visual-label{ display:block; font-size:18px; letter-spacing:.1em; opacity:.8; margin-top:4px; }
 
 /* =========================================================
    Technology
@@ -553,6 +553,9 @@ body.menu-open{ overflow:hidden; }
 
   .header__inner{ flex-direction:row; align-items:center; justify-content:space-between; }
   .gnb{ display:none; }
+
+  .company__visual-num{ font-size:24px; }
+  .company__visual-label{ font-size:16px; }
 
   .hero__title{ font-size:clamp(1.5rem, 8vw, 3rem); }
   .hero__sub{ font-size:var(--fs-small); }
