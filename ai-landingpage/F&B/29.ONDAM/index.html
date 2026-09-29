@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ONDAM 온담양조</title>
+<meta name="description" content="충북 영동의 포도밭에서 와인과 과실주, 증류주를 빚는 온담양조입니다.">
+<link rel="preload" as="image" href="img/hero_01.jpg">
+<link rel="preload" as="font" type="font/woff2" href="fonts/nanummyeongjo-sub.woff2" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body class="is-gated">
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="gate__inner">
+    <p class="gate__label">연령 확인</p>
+    <h2 class="gate__title" id="gateTitle"><span class="gate__q">만 19세 이상<br>성인이신가요?</span><span class="gate__no">만 19세 이상만<br>입장할 수 있습니다</span></h2>
+    <div class="gate__btns">
+      <button type="button" class="pill" data-gate="no">아니요</button>
+      <button type="button" class="pill pill--solid" data-gate="yes">예</button>
+    </div>
+  </div>
+  <p class="gate__note">청소년 보호법에 따라 만 19세 미만은 주류 정보를 열람할 수 없습니다.</p>
+</div>
+
+<header class="gnb" id="gnb">
+  <a href="#top" class="logo" aria-label="ONDAM 처음으로"><b>ONDAM</b><small>winery &amp; distillery</small></a>
+  <nav class="gnb__nav" aria-label="주요 메뉴">
+    <a href="#top">컬렉션</a>
+    <a href="#products">제품</a>
+    <a href="#categories">주종</a>
+    <a href="#brewery">양조장</a>
+    <a href="#stores">매장</a>
+    <a href="#contact">문의</a>
+  </nav>
+  <button class="gnb__menu" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer"><i class="ph-light ph-list"></i></button>
+</header>
+<nav class="drawer" id="drawer" aria-label="모바일 메뉴">
+  <a href="#top">컬렉션</a>
+  <a href="#products">제품</a>
+  <a href="#categories">주종</a>
+  <a href="#brewery">양조장</a>
+  <a href="#stores">매장</a>
+  <a href="#contact">문의</a>
+</nav>
+
+<main id="top">
+
+  <!-- 01 HERO : 컬렉션 슬라이드 -->
+  <section class="hero" id="collection" aria-label="새 컬렉션">
+    <div class="hero__stage">
+      <h1 class="hero__title">
+        <span class="hero__line" data-lines><span>온담 새 컬렉션</span></span>
+        <span class="hero__names">
+        <span class="hero__name is-active"><span>영동 캠벨 레드 2024</span></span>
+        <span class="hero__name"><span>오미자 로제 2025</span></span>
+        <span class="hero__name"><span>매실 증류주 25</span></span>
+        <span class="hero__name"><span>흑보리 소주 32</span></span>
+        <span class="hero__name"><span>사과 브랜디 40</span></span>
+        </span>
+      </h1>
+      <div class="hero__media">
+        <figure class="hero__img is-active"><img src="img/hero_01.jpg" alt="초가을 영동 포도밭의 포도나무 사이 길" fetchpriority="high"></figure>
+        <figure class="hero__img"><img src="img/hero_02.jpg" alt="역광을 받아 금빛으로 빛나는 포도송이" loading="lazy"></figure>
+        <figure class="hero__img"><img src="img/hero_03.jpg" alt="햇살이 비치는 초여름 매실나무 가지" loading="lazy"></figure>
+        <figure class="hero__img"><img src="img/hero_04.jpg" alt="해 질 무렵 바람에 흔들리는 보리밭" loading="lazy"></figure>
+        <figure class="hero__img"><img src="img/hero_05.jpg" alt="햇빛 아래 붉게 익어가는 사과나무" loading="lazy"></figure>
+      </div>
+      <div class="hcard card">
+        <div class="hcard__slide is-active">
+          <div class="card__top"><span class="card__tag">판매 1위</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="hcard__img"><img src="img/set_01.jpg" alt="캠벨 레드 두 병 세트 병"></figure>
+          <h3 class="card__name">캠벨 레드 두 병 세트</h3>
+          <p class="card__spec">750ml 두 병<br><strong>72,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </div>
+        <div class="hcard__slide">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="hcard__img"><img src="img/bottle_05.jpg" alt="오미자 로제 2025 병"></figure>
+          <h3 class="card__name">오미자 로제 2025</h3>
+          <p class="card__spec">로제 와인 750ml<br><strong>34,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </div>
+        <div class="hcard__slide">
+          <div class="card__top"><span class="card__tag">신제품</span></div>
+          <figure class="hcard__img"><img src="img/bottle_11.jpg" alt="매실 증류주 25 병"></figure>
+          <h3 class="card__name">매실 증류주 25</h3>
+          <p class="card__spec">증류주 500ml<br><strong>29,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </div>
+        <div class="hcard__slide">
+          <div class="card__top"><span class="card__tag">신제품</span></div>
+          <figure class="hcard__img"><img src="img/bottle_12.jpg" alt="흑보리 소주 32 병"></figure>
+          <h3 class="card__name">흑보리 소주 32</h3>
+          <p class="card__spec">증류식 소주 500ml<br><strong>27,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </div>
+        <div class="hcard__slide">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="hcard__img"><img src="img/bottle_08.jpg" alt="사과 브랜디 40 병"></figure>
+          <h3 class="card__name">사과 브랜디 40</h3>
+          <p class="card__spec">증류주 500ml<br><strong>58,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </div>
+      </div>
+      <a href="#products" class="hero__catalog"><span class="ring"><i class="ph-light ph-dots-three-vertical"></i></span>전체 제품</a>
+      <div class="dots hero__dots" role="group" aria-label="컬렉션 선택">
+        <button class="dots__btn is-active" type="button" aria-label="1번째 컬렉션 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="2번째 컬렉션 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="3번째 컬렉션 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="4번째 컬렉션 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="5번째 컬렉션 보기"><i></i></button>
+      </div>
+    </div>
+    <div class="warn" aria-label="음주 경고">
+      <div class="warn__track"><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span></div>
+    </div>
+  </section>
+
+  <!-- 02 인기 제품 -->
+  <section class="rail" id="products" aria-label="가장 사랑받는 술">
+    <h2 class="title" data-lines><span>가장 사랑받는 술</span></h2>
+    <div class="rail__view" data-rail data-cursor="drag">
+      <div class="rail__track">
+        <article class="card">
+          <div class="card__top"><span class="card__tag">판매 1위</span></div>
+          <figure class="card__img"><img src="img/bottle_01.jpg" alt="영동 캠벨 레드 2024 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">영동 캠벨 레드 2024</h3>
+          <p class="card__spec">레드 와인 750ml<br><strong>38,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">인기</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_01.jpg" alt="캠벨 레드 두 병 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">캠벨 레드 두 병 세트</h3>
+          <p class="card__spec">750ml 두 병<br><strong>72,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="card__img"><img src="img/bottle_05.jpg" alt="오미자 로제 2025 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">오미자 로제 2025</h3>
+          <p class="card__spec">로제 와인 750ml<br><strong>34,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">신제품</span></div>
+          <figure class="card__img"><img src="img/bottle_11.jpg" alt="매실 증류주 25 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">매실 증류주 25</h3>
+          <p class="card__spec">증류주 500ml<br><strong>29,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="card__img"><img src="img/bottle_03.jpg" alt="청포도 샤도네 2024 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">청포도 샤도네 2024</h3>
+          <p class="card__spec">화이트 와인 750ml<br><strong>36,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">선물 추천</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_03.jpg" alt="테이스팅 트리오 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">테이스팅 트리오 세트</h3>
+          <p class="card__spec">750ml 세 병<br><strong>99,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="card__img"><img src="img/bottle_08.jpg" alt="사과 브랜디 40 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">사과 브랜디 40</h3>
+          <p class="card__spec">증류주 500ml<br><strong>58,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">신제품</span></div>
+          <figure class="card__img"><img src="img/bottle_12.jpg" alt="흑보리 소주 32 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">흑보리 소주 32</h3>
+          <p class="card__spec">증류식 소주 500ml<br><strong>27,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+      </div>
+    </div>
+    <div class="rail__bar" aria-hidden="true"><i></i></div>
+  </section>
+
+  <!-- 03 주종 -->
+  <section class="slash" id="categories" aria-label="주종 안내">
+    <p class="label">주종 안내</p>
+    <div class="slash__list" data-hover-list>
+      <p class="slash__row"><a href="#products">레드 와인</a><i aria-hidden="true">/</i><a href="#products">화이트 와인</a><i aria-hidden="true">/</i><a href="#products">로제 와인</a></p>
+      <p class="slash__row"><a href="#products">스파클링</a><i aria-hidden="true">/</i><a href="#products">머루주</a><i aria-hidden="true">/</i><a href="#products">복분자주</a></p>
+      <p class="slash__row"><a href="#products">오미자주</a><i aria-hidden="true">/</i><a href="#products">매실 증류주</a><i aria-hidden="true">/</i><a href="#products">사과 브랜디</a></p>
+      <p class="slash__row"><a href="#products">보리 소주</a><i aria-hidden="true">/</i><a href="#products">약주</a><i aria-hidden="true">/</i><a href="#products">선물 세트</a></p>
+    </div>
+  </section>
+
+  <!-- 04 양조장 : 다크 패럴랙스 -->
+  <section class="brew" id="brewery" data-dark aria-label="양조장">
+    <div class="brew__bg"><img src="img/cellar_bg.jpg" alt="은은한 조명이 켜진 온담 숙성 저장고" loading="lazy"></div>
+    <figure class="brew__inset"><img src="img/cellar_inset.jpg" alt="병이 가지런히 누운 와인 저장 선반" loading="lazy"></figure>
+    <h2 class="title brew__title" data-lines><span>온담의 술이</span><span>다른 이유</span></h2>
+  </section>
+
+  <!-- 05 소개 + 이야기 -->
+  <section class="story" aria-label="온담 이야기">
+    <p class="story__text" data-reveal>온담양조는 1994년 충북 영동의 작은 포도밭에서 시작했습니다. 캠벨 얼리 한 품종으로 담그던 술은 이제 와인과 과실주, 증류주까지 스무 가지가 넘습니다. 해마다 거둔 과실만 쓰고, 옹기에서 익히고, 병에 담기 전 가족이 먼저 맛봅니다.</p>
+    <div class="feat" data-feat data-cursor="drag">
+      <ul class="feat__list">
+        <li class="feat__item is-active">
+          <p class="feat__no">№ 01</p>
+          <h3 class="feat__title"><span>영동 포도만 씁니다</span></h3>
+          <p class="feat__desc">양조장 반경 12km 안의 스물세 농가와 계약해 수확한 날 바로 착즙합니다.</p>
+        </li>
+        <li class="feat__item">
+          <p class="feat__no">№ 02</p>
+          <h3 class="feat__title"><span>옹기에서 천천히 익힙니다</span></h3>
+          <p class="feat__desc">숨 쉬는 옹기가 과실 향을 지키고 떫은맛을 부드럽게 다듬습니다.</p>
+        </li>
+        <li class="feat__item">
+          <p class="feat__no">№ 03</p>
+          <h3 class="feat__title"><span>첨가물을 넣지 않습니다</span></h3>
+          <p class="feat__desc">설탕, 향료, 색소 없이 과실과 효모만으로 발효합니다.</p>
+        </li>
+        <li class="feat__item">
+          <p class="feat__no">№ 04</p>
+          <h3 class="feat__title"><span>소량으로 두 번 증류합니다</span></h3>
+          <p class="feat__desc">상압 동증류기로 한 번에 400리터만 내려 향을 온전히 남깁니다.</p>
+        </li>
+        <li class="feat__item">
+          <p class="feat__no">№ 05</p>
+          <h3 class="feat__title"><span>병마다 수확 연도를 적습니다</span></h3>
+          <p class="feat__desc">해마다 다른 날씨가 맛에 남기에 빈티지를 숨기지 않습니다.</p>
+        </li>
+        <li class="feat__item">
+          <p class="feat__no">№ 06</p>
+          <h3 class="feat__title"><span>정식 면허로 직접 보냅니다</span></h3>
+          <p class="feat__desc">전통주 통신판매 면허를 갖추고 양조장에서 바로 배송합니다.</p>
+        </li>
+        <li class="feat__item">
+          <p class="feat__no">№ 07</p>
+          <h3 class="feat__title"><span>양조장은 늘 열려 있습니다</span></h3>
+          <p class="feat__desc">주말마다 옹기 저장고 견학과 시음 프로그램을 운영합니다.</p>
+        </li>
+      </ul>
+      <div class="dots feat__dots" role="group" aria-label="이야기 선택">
+        <button class="dots__btn is-active" type="button" aria-label="1번째 이야기 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="2번째 이야기 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="3번째 이야기 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="4번째 이야기 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="5번째 이야기 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="6번째 이야기 보기"><i></i></button>
+        <button class="dots__btn" type="button" aria-label="7번째 이야기 보기"><i></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 고기 요리와 어울리는 술 -->
+  <section class="rail" id="pairing" aria-label="고기 요리와 어울리는 술">
+    <h2 class="title" data-lines><span>고기 요리와 어울리는 술</span></h2>
+    <div class="rail__view" data-rail data-cursor="drag">
+      <div class="rail__track">
+        <article class="card">
+          <div class="card__top"><span class="card__tag">소고기와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_07.jpg" alt="머루 리저브 2022 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">머루 리저브 2022</h3>
+          <p class="card__spec">레드 와인 750ml<br><strong>45,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">양고기와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_02.jpg" alt="달빛 머루 드라이 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">달빛 머루 드라이</h3>
+          <p class="card__spec">레드 와인 750ml<br><strong>32,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">바비큐와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_10.jpg" alt="복분자 레드 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">복분자 레드</h3>
+          <p class="card__spec">과실주 750ml<br><strong>26,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">선물 추천</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_04.jpg" alt="과실주 네 병 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">과실주 네 병 세트</h3>
+          <p class="card__spec">750ml 네 병<br><strong>118,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">수육과 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_09.jpg" alt="복분자 로제 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">복분자 로제</h3>
+          <p class="card__spec">과실주 750ml<br><strong>24,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">닭요리와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_06.jpg" alt="복숭아 화이트 2025 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">복숭아 화이트 2025</h3>
+          <p class="card__spec">화이트 와인 750ml<br><strong>30,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">인기</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_02.jpg" alt="청포도 두 병 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">청포도 두 병 세트</h3>
+          <p class="card__spec">750ml 두 병<br><strong>68,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card">
+          <div class="card__top"><span class="card__tag">갈비와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_04.jpg" alt="샤인머스캣 스파클링 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">샤인머스캣 스파클링</h3>
+          <p class="card__spec">스파클링 와인 750ml<br><strong>42,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+      </div>
+    </div>
+    <div class="rail__bar" aria-hidden="true"><i></i></div>
+  </section>
+
+  <!-- 07 매장 -->
+  <section class="slash slash--stores" id="stores" aria-label="매장 안내">
+    <p class="label">온담을 만날 수 있는 곳</p>
+    <div class="slash__list slash__list--sm" data-hover-list>
+      <p class="slash__row"><a href="#contact">영동 본 양조장</a><i aria-hidden="true">/</i><a href="#contact">한남 테이스팅룸</a></p>
+      <p class="slash__row"><a href="#contact">성수 보틀숍</a><i aria-hidden="true">/</i><a href="#contact">해운대 셀러</a><i aria-hidden="true">/</i><a href="#contact">애월 쇼룸</a></p>
+      <p class="slash__row"><a href="#contact">수성 라운지</a><i aria-hidden="true">/</i><a href="#contact">양림 다이닝</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <div class="footer__top">
+    <a href="#top" class="logo" aria-label="ONDAM 처음으로"><b>ONDAM</b><small>winery &amp; distillery</small></a>
+    <div class="footer__sns">
+      <a href="#" aria-label="인스타그램"><i class="ph-light ph-instagram-logo"></i></a>
+      <a href="#" aria-label="유튜브"><i class="ph-light ph-youtube-logo"></i></a>
+      <a href="#" aria-label="페이스북"><i class="ph-light ph-facebook-logo"></i></a>
+    </div>
+  </div>
+  <dl class="footer__info">
+    <div><dt>상호</dt><dd>(주)온담양조</dd></div>
+    <div><dt>대표</dt><dd>윤채령</dd></div>
+    <div><dt>사업자등록번호</dt><dd>312-86-40715</dd></div>
+    <div><dt>주소</dt><dd>충청북도 영동군 황간면 포도향길 41</dd></div>
+    <div><dt>대표전화</dt><dd><a href="tel:0437426180">043-742-6180</a></dd></div>
+    <div><dt>팩스</dt><dd>043-742-6181</dd></div>
+    <div><dt>이메일</dt><dd><a href="mailto:hello@ondam.kr">hello@ondam.kr</a></dd></div>
+  </dl>
+  <p class="footer__copy">© 2026 ONDAM. 모든 권리 보유.</p>
+</footer>
+
+<div class="cursor" aria-hidden="true"><i></i></div>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js?v=1"></script>
+</body>
+</html>

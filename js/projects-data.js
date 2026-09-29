@@ -37,5 +37,6 @@ export const PROJECTS_FALLBACK = [
   { number: '19', name: 'KOLLAJ', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/25.KOLLAJ/', cover: 'img/covers/kollaj.jpg' },
   { number: '20', name: 'Rubyloop', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/26.RUBYLOOP/', cover: 'img/covers/rubyloop.jpg' },
   { number: '21', name: 'RIWOL', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/27.RIWOL/', cover: 'img/covers/riwol.jpg' },
-  { number: '22', name: 'OAKMERE', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/28.OAKMERE/', cover: 'img/covers/oakmere.jpg' }
+  { number: '22', name: 'OAKMERE', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/28.OAKMERE/', cover: 'img/covers/oakmere.jpg' },
+  { number: '23', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/29.ONDAM/', cover: 'img/covers/ondam.jpg' }
 ];
