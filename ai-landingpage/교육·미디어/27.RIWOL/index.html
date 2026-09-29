@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>리월문화유산원</title>
+<meta name="description" content="왕실의 정원 월정원과 옛 선비의 집 송하원, 두 곳의 터를 함께 돌보는 리월문화유산원입니다.">
+<!--
+variant:
+typo=loud
+image=high
+color=dominant
+
+image-radius=round (oval / arch masks)
+card-radius=sharp
+button-radius=round (pill)
+
+border=borderless
+button-style=outline+text
+fw=300/600
+spacing=space-8 ~ space-11
+-->
+<!--
+Hero        full-bleed, scroll-pinned oval mask expands to full viewport
+News        4-4-4 card grid (with one 4-8 wide row) + full-bleed marquee
+Places      centered title over rising arc, staggered 4-4-4 ovals
+About       full-bleed pinned photo, arch radius flattens, staggered type
+Visit       6-6 full-bleed colour panels
+Links       centered pill-thumbnail link cloud
+Footer      4-8
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@200..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="preload" as="image" href="img/hero.jpg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gnb" id="top">
+  <button class="gnb__btn" type="button" data-open="menu" aria-label="메뉴 열기"><i class="ph ph-list"></i></button>
+  <a class="gnb__tag" href="#top" aria-label="리월문화유산원 처음으로"><span>박물관</span><i aria-hidden="true"></i><span>정원</span></a>
+  <div class="gnb__right">
+    <a class="gnb__btn" href="#visit" aria-label="두 정원 위치 보기"><i class="ph ph-map-pin"></i></a>
+    <button class="gnb__btn" type="button" data-open="search" aria-label="전시와 행사 검색"><i class="ph ph-magnifying-glass"></i></button>
+  </div>
+</header>
+
+<!-- 전체 메뉴 -->
+<div class="overlay" id="menu" aria-hidden="true">
+  <button class="gnb__btn overlay__close" type="button" data-close aria-label="메뉴 닫기"><i class="ph ph-x"></i></button>
+  <nav class="overlay__nav" aria-label="주요 메뉴">
+    <a href="#news" data-close>소식과 행사</a>
+    <a href="#places" data-close>볼거리</a>
+    <a href="#about" data-close>문화유산원 소개</a>
+    <a href="#visit" data-close>두 정원 방문</a>
+  </nav>
+</div>
+
+<!-- 검색 -->
+<div class="overlay overlay--search" id="search" aria-hidden="true">
+  <button class="gnb__btn overlay__close" type="button" data-close aria-label="검색 닫기"><i class="ph ph-x"></i></button>
+  <form class="search" role="search">
+    <label class="search__label" for="q">전시와 행사 검색</label>
+    <div class="search__row">
+      <input class="search__input" id="q" name="q" type="search" autocomplete="off" placeholder="예: 백자, 야간관람">
+      <button class="search__go" type="submit" aria-label="검색하기"><i class="ph ph-magnifying-glass"></i></button>
+    </div>
+    <p class="search__help">검색어가 들어간 소식만 목록에 남깁니다.</p>
+  </form>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" data-hero>
+  <div class="hero__sticky">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__media" aria-hidden="true"><img src="img/hero.jpg" alt=""></div>
+    <div class="hero__mark" aria-hidden="true"></div>
+    <h1 class="hero__word"><span>리월</span><span>문화유산원</span></h1>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news" id="news">
+  <div class="news__head wrap">
+    <h2 class="news__title">소식과 행사</h2>
+    <div class="news__filter" role="group" aria-label="장소별 보기">
+      <button type="button" class="is-on" data-filter="all" aria-pressed="true">전체</button>
+      <button type="button" data-filter="wol" aria-pressed="false">월정원</button>
+      <button type="button" data-filter="song" aria-pressed="false">송하원</button>
+    </div>
+  </div>
+
+  <div class="grid wrap" data-grid>
+    <article class="card card--green" data-site="wol" data-reveal>
+      <div class="card__meta"><span>전시</span><span>전체관람</span></div>
+      <h3 class="card__title">월정원 대전각,<br>왕의 하루</h3>
+      <figure class="card__img card__img--oval"><img src="img/news-01.jpg" alt="여름 숲에 둘러싸인 월정원 대전각" loading="lazy"></figure>
+      <span class="card__site">월정원</span>
+    </article>
+
+    <article class="card card--paper" data-site="wol" data-reveal>
+      <div class="card__meta"><span>체험</span><span>전체관람</span></div>
+      <h3 class="card__title">소나무 정원에서<br>한복 입고 걷기</h3>
+      <figure class="card__img card__img--arch"><img src="img/news-02.jpg" alt="소나무 아래 한복을 입은 여성" loading="lazy"></figure>
+      <span class="card__site">월정원</span>
+    </article>
+
+    <article class="card card--photo" data-site="wol" data-reveal>
+      <img class="card__bg" src="img/news-03.jpg" alt="처마 아래로 보이는 밤의 전각" loading="lazy">
+      <div class="card__meta card__meta--center"><span>야간관람</span></div>
+      <h3 class="card__big">등불 아래<br>전각과<br>비밀의 내전</h3>
+    </article>
+
+    <article class="card card--paper" data-site="song" data-reveal>
+      <div class="card__meta"><span>전시</span><span>전체관람</span></div>
+      <h3 class="card__title">누각을 짓는 손,<br>조선 목수의 기술</h3>
+      <figure class="card__img card__img--arch card__img--sm"><img src="img/news-04.jpg" alt="고목 옆에 선 목조 누각" loading="lazy"></figure>
+      <span class="card__site">송하원</span>
+    </article>
+
+    <article class="card card--photo card--wide" data-site="song" data-reveal>
+      <img class="card__bg" src="img/news-05.jpg" alt="어두운 배경 앞 한복 차림의 배우" loading="lazy">
+      <div class="card__meta card__meta--center"><span>공연</span></div>
+      <h3 class="card__big card__big--right">송하원<br>창작 가무극<br><em>새 시즌</em></h3>
+    </article>
+
+    <div class="marquee" aria-label="겨울 관람 시간으로 변경되었습니다">
+      <div class="marquee__track" aria-hidden="true">
+        <span>겨울 관람 시간으로 변경되었습니다</span><i class="ph ph-arrow-right"></i>
+        <span>겨울 관람 시간으로 변경되었습니다</span><i class="ph ph-arrow-right"></i>
+        <span>겨울 관람 시간으로 변경되었습니다</span><i class="ph ph-arrow-right"></i>
+        <span>겨울 관람 시간으로 변경되었습니다</span><i class="ph ph-arrow-right"></i>
+        <span>겨울 관람 시간으로 변경되었습니다</span><i class="ph ph-arrow-right"></i>
+        <span>겨울 관람 시간으로 변경되었습니다</span><i class="ph ph-arrow-right"></i>
+      </div>
+    </div>
+
+    <article class="card card--paper card--text" data-site="wol" data-reveal>
+      <div class="card__meta"><span>소식</span></div>
+      <h3 class="card__title">청소년 교육 과정<br>〈궁의 건축가〉</h3>
+      <p class="card__body">초등 고학년과 중학생을 위한 12주 과정입니다. 전각의 짜임을 직접 조립하며 조선 건축의 원리를 배웁니다.</p>
+      <time class="card__date">10월 24일</time>
+    </article>
+
+    <article class="card card--olive" data-site="song" data-reveal>
+      <div class="card__meta"><span>특별전</span><span>전체관람</span></div>
+      <h3 class="card__title">달을 닮은 그릇,<br>조선 백자</h3>
+      <figure class="card__img card__img--arch card__img--object"><img src="img/news-06.png" alt="조선 백자 달항아리" loading="lazy"></figure>
+      <span class="card__site">송하원</span>
+    </article>
+
+    <article class="card card--paper card--journal" data-site="song" data-reveal>
+      <div class="card__meta card__meta--center"><span>매거진</span></div>
+      <p class="card__num"><span>24</span><img src="img/news-07.jpg" alt="놋쇠 장식이 달린 반닫이" loading="lazy"></p>
+      <h3 class="card__title card__title--center">점의 목가구가<br>송하원에 돌아왔습니다</h3>
+      <time class="card__date card__date--center">10월 24일</time>
+    </article>
+
+    <article class="card card--photo" data-site="wol" data-reveal>
+      <img class="card__bg" src="img/news-08.jpg" alt="연못에 비친 밤의 누각" loading="lazy">
+      <div class="card__meta card__meta--center"><span>공연</span></div>
+      <h3 class="card__big">연못 누각의<br>여름밤<br>음악회</h3>
+    </article>
+
+    <article class="card card--cobalt" data-site="wol" data-reveal>
+      <div class="card__meta"><span>교육</span><span>전체관람</span></div>
+      <h3 class="card__title">모란도로 읽는<br>왕실의 뜰</h3>
+      <figure class="card__img card__img--oval"><img src="img/news-09.jpg" alt="백자 화병에 꽂힌 모란 민화" loading="lazy"></figure>
+      <span class="card__site">월정원</span>
+    </article>
+
+    <article class="card card--paper" data-site="song" data-reveal>
+      <div class="card__meta"><span>전시</span><span>전체관람</span></div>
+      <h3 class="card__title">송하원을 지키는<br>수호석, 해태</h3>
+      <figure class="card__img card__img--arch"><img src="img/news-10.jpg" alt="푸른 하늘 아래 해태 석상" loading="lazy"></figure>
+      <span class="card__site">송하원</span>
+    </article>
+
+    <p class="grid__empty" hidden>찾는 소식이 없습니다. 다른 검색어를 넣거나 전체 보기를 눌러 주세요.</p>
+  </div>
+
+  <div class="news__more"><a class="pill" href="#visit">관람 일정 보기</a></div>
+</section>
+
+<!-- PLACES -->
+<section class="places" id="places" data-progress>
+  <div class="places__arc" aria-hidden="true"></div>
+  <div class="places__head wrap" data-reveal>
+    <div class="mark" aria-hidden="true"></div>
+    <p class="places__label">볼거리</p>
+    <h2 class="places__title">역사가 머무는<br>건축과 정원</h2>
+  </div>
+
+  <div class="places__list wrap" data-places>
+    <figure class="place" data-reveal>
+      <div class="place__img"><img src="img/place-01.jpg" alt="붉은 기둥의 팔작지붕 정자" loading="lazy" data-set="0"><img src="img/place-04.jpg" alt="잔디 위에 선 이층 누각" loading="lazy" data-set="1"></div>
+      <figcaption>
+        <strong data-set="0">청휘정</strong><strong data-set="1">관수루</strong>
+        <span data-set="0">월정원</span><span data-set="1">송하원</span>
+        <small data-set="0">17세기</small><small data-set="1">19세기</small>
+      </figcaption>
+    </figure>
+    <figure class="place place--up" data-reveal>
+      <div class="place__img"><img src="img/place-02.jpg" alt="단청을 올린 궁궐 정문" loading="lazy" data-set="0"><img src="img/place-06.jpg" alt="연못 위에 선 큰 누각" loading="lazy" data-set="1"></div>
+      <figcaption>
+        <strong data-set="0">홍화문</strong><strong data-set="1">연지루</strong>
+        <span data-set="0">월정원</span><span data-set="1">월정원</span>
+        <small data-set="0">18세기</small><small data-set="1">17세기</small>
+      </figcaption>
+    </figure>
+    <figure class="place" data-reveal>
+      <div class="place__img"><img src="img/place-03.jpg" alt="숲에 둘러싸인 성곽과 문루" loading="lazy" data-set="0"><img src="img/place-05.jpg" alt="나무 사이의 석탑" loading="lazy" data-set="1"></div>
+      <figcaption>
+        <strong data-set="0">서북 성곽</strong><strong data-set="1">오층석탑</strong>
+        <span data-set="0">송하원</span><span data-set="1">송하원</span>
+        <small data-set="0">18세기</small><small data-set="1">12세기</small>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="places__more">
+    <button class="ring" type="button" data-swap aria-label="다른 볼거리 보기">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46"/></svg>
+      <span>더 보기</span>
+    </button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about" data-progress>
+  <div class="about__pin">
+    <div class="about__media"><img src="img/territory.jpg" alt="소나무 숲 사이를 거니는 흰 말" loading="lazy"></div>
+  </div>
+  <div class="about__text">
+    <p class="about__label" data-reveal>문화유산원</p>
+    <p class="about__lines">
+      <span class="l l--c" data-reveal>리월문화유산원은</span>
+      <span class="l l--l" data-reveal>왕실의 정원 월정원과</span>
+      <span class="l l--r" data-reveal>옛 선비의 집 송하원</span>
+      <span class="l l--c" data-reveal>두 곳의 터를</span>
+      <span class="l l--l" data-reveal>함께 돌보는</span>
+      <span class="l l--r" data-reveal>문화유산 기관입니다</span>
+    </p>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <article class="panel panel--cobalt" data-reveal>
+    <figure class="panel__img"><img src="img/garden-01.jpg" alt="창살 문 앞에 선 한복 차림의 여성" loading="lazy"></figure>
+    <h2 class="panel__name">월정원</h2>
+    <p class="panel__text">매주 월요일 쉽니다. 설과 추석 당일에도 전각 내부 관람과 기념품 가게는 평소처럼 문을 엽니다.</p>
+    <a class="pill pill--light" href="#footer">월정원 오시는 길</a>
+  </article>
+  <article class="panel panel--olive" data-reveal>
+    <figure class="panel__img"><img src="img/garden-02.jpg" alt="푸른 하늘을 향해 뻗은 기와 처마" loading="lazy"></figure>
+    <h2 class="panel__name">송하원</h2>
+    <p class="panel__text">한옥 스테이는 금요일과 토요일에만 예약을 받습니다. 소나무 산책로는 일년 내내 열려 있습니다.</p>
+    <a class="pill pill--light" href="#footer">송하원 오시는 길</a>
+  </article>
+</section>
+
+<!-- LINKS -->
+<section class="links wrap" aria-labelledby="links-label">
+  <p class="links__label" id="links-label">리월문화유산원</p>
+  <ul class="links__list">
+    <li data-reveal><a href="#visit"><span class="thumb"><img src="img/garden-01.jpg" alt="" loading="lazy"></span>관람 안내</a></li>
+    <li data-reveal><a href="#news"><span class="thumb"><img src="img/news-02.jpg" alt="" loading="lazy"></span>전시와 예매</a></li>
+    <li data-reveal><a href="#places"><span class="thumb"><img src="img/place-06.jpg" alt="" loading="lazy"></span>박물관</a></li>
+    <li data-reveal><a href="#news"><span class="thumb"><img src="img/news-05.jpg" alt="" loading="lazy"></span>전통 공연</a></li>
+    <li data-reveal><a href="#visit"><span class="thumb"><img src="img/garden-02.jpg" alt="" loading="lazy"></span>송하원</a></li>
+    <li data-reveal><a href="#visit"><span class="thumb"><img src="img/news-08.jpg" alt="" loading="lazy"></span>한옥 스테이</a></li>
+    <li data-reveal><a href="https://www.instagram.com/" target="_blank" rel="noopener">인스타그램<span class="thumbs"><img src="img/news-06.png" alt="" loading="lazy"><img src="img/news-10.jpg" alt="" loading="lazy"><img src="img/news-09.jpg" alt="" loading="lazy"></span></a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer class="footer wrap" id="footer">
+  <div class="footer__brand">
+    <div class="footer__logo"><span class="mark" aria-hidden="true"></span><strong>리월문화유산원</strong></div>
+    <p>재단법인 리월문화유산원<br>이사장 윤서하</p>
+    <p>대표전화 02.745.3160<br>팩스 02.745.3169</p>
+  </div>
+  <div class="footer__col">
+    <h3>월정원</h3>
+    <p>서울특별시 종로구 월정길 27</p>
+    <p>화요일부터 일요일까지<br>오전 9시 ~ 오후 6시</p>
+  </div>
+  <div class="footer__col">
+    <h3>송하원</h3>
+    <p>경기도 양평군 송하로 114</p>
+    <p>매일<br>오전 10시 ~ 오후 5시</p>
+  </div>
+  <div class="footer__col footer__col--sns">
+    <h3>소셜</h3>
+    <div class="sns">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="인스타그램"><i class="ph ph-instagram-logo"></i></a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="유튜브"><i class="ph ph-youtube-logo"></i></a>
+      <a href="https://blog.naver.com/" target="_blank" rel="noopener" aria-label="블로그"><i class="ph ph-article"></i></a>
+    </div>
+  </div>
+  <p class="footer__copy">© 2026 리월문화유산원</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
