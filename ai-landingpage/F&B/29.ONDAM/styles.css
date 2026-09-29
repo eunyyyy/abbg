@@ -19,12 +19,12 @@
 }
 @font-face{
   font-family:'Nanum Gothic Sub';
-  src:url('fonts/nanumgothic-400-sub.woff2') format('woff2');
+  src:url('fonts/nanumgothic-400-sub.woff2?v=2') format('woff2');
   font-weight:400; font-style:normal; font-display:swap;
 }
 @font-face{
   font-family:'Nanum Gothic Sub';
-  src:url('fonts/nanumgothic-800-sub.woff2') format('woff2');
+  src:url('fonts/nanumgothic-800-sub.woff2?v=2') format('woff2');
   font-weight:700 800; font-style:normal; font-display:swap;
 }
 
@@ -236,9 +236,32 @@ figure{margin:0;}
 .slash__row{opacity:0; transform:translateY(24px); transition:opacity 1s var(--ease), transform 1s var(--ease); transition-delay:calc(var(--i, 0) * 90ms);}
 .slash.is-in .slash__row{opacity:1; transform:none;}
 .slash__row i{font-style:normal; color:var(--g-5); margin:0 .35em;}
-.slash__row a{white-space:nowrap; transition:color .4s var(--ease), opacity .4s var(--ease);}
-.slash__list.is-hovering a{opacity:.32;}
-.slash__list.is-hovering a:hover{opacity:1; color:var(--accent);}
+.slash__row a, .store__tab{white-space:nowrap; transition:color .4s var(--ease), opacity .4s var(--ease);}
+.slash__list.is-hovering a, .slash__list.is-hovering .store__tab{opacity:.32;}
+.slash__list.is-hovering a:hover, .slash__list.is-hovering .store__tab:hover{opacity:1; color:var(--accent);}
+.store__tab{font:inherit; letter-spacing:inherit; line-height:inherit; padding:0; opacity:.4; position:relative;}
+.store__tab.is-active{opacity:1; color:var(--accent);}
+.slash__list.is-hovering .store__tab.is-active{opacity:1;}
+
+/* 매장 지도 */
+.store{margin-top:calc(var(--u) * 64); opacity:0; transform:translateY(24px); transition:opacity 1s var(--ease) .3s, transform 1s var(--ease) .3s;}
+.slash.is-in .store{opacity:1; transform:none;}
+.store__map{height:calc(var(--u) * 560); background:var(--g-2); z-index:0;}
+.store__map .leaflet-tile-pane{filter:grayscale(1) contrast(.92) brightness(1.03);}
+.store__info{display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:22px 0; border-bottom:1px solid var(--line);}
+.store__addr{display:flex; flex-wrap:wrap; gap:4px 18px; align-items:baseline;}
+.store__addr strong{font-weight:700;}
+.store__addr span{color:var(--ink-soft);}
+.store__tel{white-space:nowrap; font-weight:700; transition:color .3s;}
+.store__tel:hover{color:var(--accent);}
+.store__info.is-swap > *{animation:storeSwap .6s var(--ease);}
+@keyframes storeSwap{from{opacity:0; transform:translateY(8px);}}
+.pin{position:relative; width:22px; height:22px; border-radius:50%; background:var(--accent); border:5px solid var(--g-0); outline:1px solid var(--accent);}
+.pin::after{content:""; position:absolute; inset:-6px; border-radius:50%; border:1px solid var(--accent); animation:pin 2.4s var(--ease) infinite;}
+@keyframes pin{from{transform:scale(.6); opacity:.9;} to{transform:scale(2.2); opacity:0;}}
+.leaflet-container{font-family:var(--sans);}
+.leaflet-control-attribution{font-size:11px;}
+.leaflet-bar a{color:var(--ink);}
 
 /* ---------- 양조장 (다크 패럴랙스) ---------- */
 .brew{position:relative; height:128svh; background:var(--g-11); color:var(--g-0);}
@@ -250,7 +273,7 @@ figure{margin:0;}
 
 /* ---------- 이야기 ---------- */
 .story{padding:calc(var(--u) * 360) var(--gutter) 0;}
-.story__text{max-width:calc(var(--u) * 700 + 80px); margin:0 auto; text-align:center; color:var(--ink-soft); line-height:1.75;}
+.story__text{max-width:960px; margin:0 auto; text-align:center; color:var(--ink-soft); line-height:1.75;}
 .feat{position:relative; margin-top:calc(var(--u) * 90); border-top:1px solid var(--line); padding:calc(var(--u) * 100) 0 calc(var(--u) * 40); text-align:center; touch-action:pan-y; user-select:none;}
 .feat__list{display:grid; min-height:calc(var(--u) * 190);}
 .feat__item{grid-area:1/1; pointer-events:none;}
@@ -333,6 +356,11 @@ figure{margin:0;}
   .slash .label{margin-bottom:16px;}
   .slash__row{line-height:1.75;}
   .slash__row i{margin:0 .25em;}
+  .br-pc{display:none;}
+  .store{margin-top:28px;}
+  .store__map{height:calc(var(--u) * 320);}
+  .store__info{flex-direction:column; gap:8px; padding:16px 0;}
+  .store__addr{flex-direction:column; gap:2px;}
 
   .brew{height:115svh;}
   .brew__inset{width:calc(var(--u) * 230); height:calc(var(--u) * 290); left:calc(50% - var(--u) * 115); top:calc(50% - var(--u) * 40);}

@@ -148,12 +148,46 @@
 
   /* ---------- 호버 리스트 ---------- */
   $$('[data-hover-list]').forEach(list => {
-    $$('a', list).forEach(a => {
+    $$('a, .store__tab', list).forEach(a => {
       a.addEventListener('mouseenter', () => list.classList.add('is-hovering'));
       a.addEventListener('mouseleave', () => list.classList.remove('is-hovering'));
     });
   });
   $$('.slash').forEach(s => $$('.slash__row', s).forEach((r, i) => r.style.setProperty('--i', i)));
+
+  /* ---------- 매장 지도 ---------- */
+  const tabs = $$('.store__tab'), mapEl = $('#storeMap'), info = $('.store__info');
+  let map = null, pin = null;
+  const initMap = () => {
+    if (map || !window.L) return;
+    const t = tabs.find(b => b.classList.contains('is-active')) || tabs[0];
+    const ll = [+t.dataset.lat, +t.dataset.lng];
+    map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true, attributionControl: true }).setView(ll, 15);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    pin = L.marker(ll, { icon: L.divIcon({ className: '', html: '<div class="pin"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }), keyboard: false }).addTo(map);
+  };
+  const mio = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { initMap(); mio.disconnect(); } }, { rootMargin: '400px 0px' });
+  mio.observe(mapEl);
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    if (btn.classList.contains('is-active')) return;
+    tabs.forEach(b => { const on = b === btn; b.classList.toggle('is-active', on); b.setAttribute('aria-selected', on); });
+    $('#storeName').textContent = btn.dataset.name;
+    $('#storeAddr').textContent = btn.dataset.addr;
+    const tel = $('#storeTel'); tel.textContent = btn.dataset.tel; tel.href = 'tel:' + btn.dataset.tel.replace(/-/g, '');
+    info.classList.remove('is-swap'); void info.offsetWidth; info.classList.add('is-swap');
+    initMap();
+    const ll = [+btn.dataset.lat, +btn.dataset.lng];
+    pin.setLatLng(ll);
+    if (reduce) map.setView(ll, 15); else map.flyTo(ll, 15, { duration: 1.6 });
+  }));
+  tabs.forEach((b, i) => b.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+    n.focus(); n.click();
+  }));
 
   /* ---------- 등장 ---------- */
   const revealTargets = [...$$('.rail'), ...$$('.slash'), ...$$('[data-reveal]'), ...$$('[data-lines]').filter(el => !el.closest('.hero'))];

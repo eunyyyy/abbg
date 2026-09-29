@@ -7,7 +7,8 @@
 <meta name="description" content="충북 영동의 포도밭에서 와인과 과실주, 증류주를 빚는 온담양조입니다.">
 <link rel="preload" as="image" href="img/hero_01.jpg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/light/style.css">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body class="is-gated">
 
@@ -31,7 +32,6 @@
     <a href="#categories">주종</a>
     <a href="#brewery">양조장</a>
     <a href="#stores">매장</a>
-    <a href="#contact">문의</a>
   </nav>
   <button class="gnb__menu" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer"><i class="ph-light ph-list"></i></button>
 </header>
@@ -41,7 +41,6 @@
   <a href="#categories">주종</a>
   <a href="#brewery">양조장</a>
   <a href="#stores">매장</a>
-  <a href="#contact">문의</a>
 </nav>
 
 <main id="top">
@@ -112,8 +111,8 @@
         <button class="dots__btn" type="button" aria-label="5번째 컬렉션 보기"><i></i></button>
       </div>
     </div>
-    <div class="warn" aria-label="음주 경고">
-      <div class="warn__track"><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span><span>지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.</span></div>
+    <div class="warn" aria-label="온담 슬로건">
+      <div class="warn__track"><span>포도로 빚은 와인, 과실로 담근 술, 두 번 내린 증류주. 영동의 한 해를 한 병에 담습니다.</span><span>포도로 빚은 와인, 과실로 담근 술, 두 번 내린 증류주. 영동의 한 해를 한 병에 담습니다.</span><span>포도로 빚은 와인, 과실로 담근 술, 두 번 내린 증류주. 영동의 한 해를 한 병에 담습니다.</span><span>포도로 빚은 와인, 과실로 담근 술, 두 번 내린 증류주. 영동의 한 해를 한 병에 담습니다.</span></div>
     </div>
   </section>
 
@@ -203,7 +202,7 @@
 
   <!-- 05 소개 + 이야기 -->
   <section class="story" aria-label="온담 이야기">
-    <p class="story__text" data-reveal>온담양조는 1994년 충북 영동의 작은 포도밭에서 시작했습니다. 캠벨 얼리 한 품종으로 담그던 술은 이제 와인과 과실주, 증류주까지 스무 가지가 넘습니다. 해마다 거둔 과실만 쓰고, 옹기에서 익히고, 병에 담기 전 가족이 먼저 맛봅니다.</p>
+    <p class="story__text" data-reveal>온담양조는 1994년 충북 영동의 작은 포도밭에서 시작했습니다.<br class="br-pc"> 캠벨 얼리 한 품종으로 담그던 술은 이제 와인과 과실주, 증류주까지 스무 가지가 넘습니다.<br class="br-pc"> 해마다 거둔 과실만 쓰고, 옹기에서 익히고, 병에 담기 전 가족이 먼저 맛봅니다.</p>
     <div class="feat" data-feat data-cursor="drag">
       <ul class="feat__list">
         <li class="feat__item is-active">
@@ -323,10 +322,17 @@
   <!-- 07 매장 -->
   <section class="slash slash--stores" id="stores" aria-label="매장 안내">
     <p class="label">온담을 만날 수 있는 곳</p>
-    <div class="slash__list slash__list--sm" data-hover-list>
-      <p class="slash__row"><a href="#contact">영동 본 양조장</a><i aria-hidden="true">/</i><a href="#contact">한남 테이스팅룸</a></p>
-      <p class="slash__row"><a href="#contact">성수 보틀숍</a><i aria-hidden="true">/</i><a href="#contact">해운대 셀러</a><i aria-hidden="true">/</i><a href="#contact">애월 쇼룸</a></p>
-      <p class="slash__row"><a href="#contact">수성 라운지</a><i aria-hidden="true">/</i><a href="#contact">양림 다이닝</a></p>
+    <div class="slash__list slash__list--sm" data-hover-list role="tablist" aria-label="매장 선택">
+      <p class="slash__row"><button type="button" role="tab" class="store__tab is-active" aria-selected="true" aria-controls="storePanel" data-name="영동 본 양조장" data-addr="충청북도 영동군 황간면 포도향길 41" data-tel="043-742-6180" data-lat="36.2296" data-lng="127.912">영동 본 양조장</button><i aria-hidden="true">/</i><button type="button" role="tab" class="store__tab" aria-selected="false" aria-controls="storePanel" data-name="한남 테이스팅룸" data-addr="서울특별시 용산구 독서당로 38, 1층" data-tel="02-797-6180" data-lat="37.5347" data-lng="127.002">한남 테이스팅룸</button></p>
+      <p class="slash__row"><button type="button" role="tab" class="store__tab" aria-selected="false" aria-controls="storePanel" data-name="성수 보틀숍" data-addr="서울특별시 성동구 연무장길 27" data-tel="02-464-6180" data-lat="37.5446" data-lng="127.0557">성수 보틀숍</button><i aria-hidden="true">/</i><button type="button" role="tab" class="store__tab" aria-selected="false" aria-controls="storePanel" data-name="해운대 셀러" data-addr="부산광역시 해운대구 달맞이길 117" data-tel="051-746-6180" data-lat="35.1631" data-lng="129.1636">해운대 셀러</button><i aria-hidden="true">/</i><button type="button" role="tab" class="store__tab" aria-selected="false" aria-controls="storePanel" data-name="애월 쇼룸" data-addr="제주특별자치도 제주시 애월읍 애월해안로 272" data-tel="064-799-6180" data-lat="33.4623" data-lng="126.3096">애월 쇼룸</button></p>
+      <p class="slash__row"><button type="button" role="tab" class="store__tab" aria-selected="false" aria-controls="storePanel" data-name="수성 라운지" data-addr="대구광역시 수성구 들안로 55" data-tel="053-763-6180" data-lat="35.8583" data-lng="128.631">수성 라운지</button><i aria-hidden="true">/</i><button type="button" role="tab" class="store__tab" aria-selected="false" aria-controls="storePanel" data-name="양림 다이닝" data-addr="광주광역시 남구 양림로 64" data-tel="062-675-6180" data-lat="35.1397" data-lng="126.9117">양림 다이닝</button></p>
+    </div>
+    <div class="store" id="storePanel" role="tabpanel">
+      <div class="store__map" id="storeMap" data-lenis-prevent aria-label="매장 위치 지도"></div>
+      <div class="store__info" aria-live="polite">
+        <p class="store__addr"><strong id="storeName">영동 본 양조장</strong><span id="storeAddr">충청북도 영동군 황간면 포도향길 41</span></p>
+        <a class="store__tel" id="storeTel" href="tel:0437426180">043-742-6180</a>
+      </div>
     </div>
   </section>
 
@@ -355,6 +361,7 @@
 
 <div class="cursor" aria-hidden="true"><i></i></div>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="script.js?v=2"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
