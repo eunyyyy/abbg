@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OAKMERE 오크미어 휴양 레지던스</title>
+<meta name="description" content="오크미어는 세계에서 가장 머물고 싶은 휴양지에 가족을 위한 레지던스를 짓습니다.">
+<link rel="preload" as="image" href="img/01_hero.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+
+<header class="gnb" id="gnb">
+  <a href="#top" class="gnb__logo" aria-label="OAKMERE 처음으로">
+    <svg class="gnb__mark" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path d="M20 5 L22.6 17.4 L35 20 L22.6 22.6 L20 35 L17.4 22.6 L5 20 L17.4 17.4 Z" fill="currentColor"/>
+    </svg>
+    <span class="gnb__word">OAKMERE</span>
+  </a>
+  <nav class="gnb__nav" aria-label="주요 메뉴">
+    <a href="#about">회사소개</a>
+    <a href="#projects">프로젝트</a>
+    <a href="#contact">문의</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- 01 HERO -->
+  <section class="hero" data-theme="light" aria-label="메인">
+    <div class="hero__media" data-parallax="0.45">
+      <img src="img/01_hero.jpg" alt="안개가 내려앉은 새벽 호수와 단풍 숲" fetchpriority="high">
+    </div>
+    <div class="hero__copy" data-parallax="0.28">
+      <h1 class="hero__title" data-split>쉼의 <em>격을</em> 높이다</h1>
+      <p class="hero__sub">오크미어의 여정은 집에서 시작됩니다.</p>
+    </div>
+  </section>
+
+  <!-- 02 INTRO (dark, word light-up) -->
+  <section class="intro" id="about" data-theme="dark">
+    <p class="label intro__label">오크미어 빌더스</p>
+    <p class="intro__text" data-lightup>오크미어는 세계에서 가장 머물고 싶은 휴양지마다 들어서는 오크미어 레지던스를 짓는 이름입니다. 기대를 넘어서는 집을 함께 완성하고, 가족 모두가 오래 기억할 순간을 만들어 갑니다.</p>
+  </section>
+
+  <!-- 03 COMMUNITY (parallax pair + text) -->
+  <section class="community" data-theme="light">
+    <div class="community__pics">
+      <figure class="community__a reveal" data-parallax="-0.06">
+        <img src="img/02_exterior.jpg" alt="해 질 무렵 불이 켜진 2층 레지던스 외관" loading="lazy">
+      </figure>
+      <figure class="community__b reveal" data-parallax="0.12">
+        <img src="img/03_stairs.jpg" alt="곡선으로 이어지는 하얀 계단 홀" loading="lazy">
+      </figure>
+    </div>
+    <div class="community__copy">
+      <p class="label">커뮤니티</p>
+      <h2 class="lead fade-up">오크미어 커뮤니티의 일원이 된다는 것은 가족을 위한 특별한 경험의 세계가 열린다는 뜻입니다.</h2>
+      <p class="body community__body fade-up">모든 경험은 우리 집 현관에서 시작하고 끝납니다. 오크미어의 집은 당신과 소중한 사람들을 위한 온전한 소속감을 가꿉니다. 가족마다 삶의 방식이 다르기에, 당신만의 안식처는 일상의 습관과 취향을 그대로 담아냅니다.</p>
+    </div>
+  </section>
+
+  <!-- 04 COLLAGE (pinned zoom) -->
+  <section class="collage" id="projects" data-theme="light" aria-label="레지던스 갤러리">
+    <div class="collage__stage">
+      <div class="collage__grid" id="collageGrid">
+        <figure class="tile t-villa"><img src="img/04_c_poolvilla.jpg" alt="곡선 수영장을 품은 하얀 풀빌라" loading="lazy"></figure>
+        <figure class="tile t-vanity"><img src="img/05_c_vanity.jpg" alt="검은 대리석 세면대와 벽부형 수전" loading="lazy"></figure>
+        <figure class="tile t-center" id="collageCenter"><img src="img/06_c_center.jpg" alt="바다를 마주한 데크 위 파라솔과 선베드" loading="lazy"></figure>
+        <figure class="tile t-dining"><img src="img/07_c_dining.jpg" alt="루버 파고라 아래 야외 다이닝" loading="lazy"></figure>
+        <figure class="tile t-tile"><img src="img/08_c_tile.jpg" alt="푸른 모자이크 타일 욕조" loading="lazy"></figure>
+        <figure class="tile t-stair"><img src="img/09_c_stairlight.jpg" alt="빛이 스미는 석재 계단" loading="lazy"></figure>
+        <figure class="tile t-terrace"><img src="img/10_c_terrace.jpg" alt="노을 진 바다를 향한 테라스 라운지" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 CUSTOM (centered text + staggered interiors) -->
+  <section class="custom" data-theme="light">
+    <p class="label custom__label">맞춤 설계</p>
+    <div class="custom__copy">
+      <h2 class="lead lead--center fade-up">당신의 집, 당신의 방식.</h2>
+      <p class="body fade-up">세계적인 건축가, 인테리어 디자이너와 협업해 당신이 그려 온 공간을 그대로 짓습니다. 대지의 결을 읽는 설계부터 마지막 손잡이까지, 모든 결정은 가족의 생활에서 출발합니다.</p>
+      <p class="body fade-up">당신의 가족은 고유하며, 당신의 안식처는 그 고유함을 비추고 더 깊게 합니다.</p>
+    </div>
+    <div class="custom__pics">
+      <figure class="custom__p p1 reveal" data-parallax="0"><img src="img/11_int_living.jpg" alt="통창 너머 바다가 보이는 거실" loading="lazy"></figure>
+      <figure class="custom__p p2 reveal" data-parallax="0.08"><img src="img/12_int_mirror.jpg" alt="원형 조명 거울과 대리석 욕실" loading="lazy"></figure>
+      <figure class="custom__p p3 reveal" data-parallax="0.16"><img src="img/13_int_dining.jpg" alt="원목 천장 아래 바다 전망 다이닝" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- 06 LANDS (globe rise) -->
+  <section class="lands" data-theme="dark" aria-label="오크미어의 땅">
+    <div class="lands__stage">
+      <div class="lands__head" id="landsHead">
+        <h2 class="lands__title" id="landsTitle"><em>오크미어의</em> 땅</h2>
+        <div class="lands__info">
+          <p class="body">오크미어 레지던스에서 누리는 품질 그대로, 당신이 원하는 곳에 집을 짓습니다. 우리가 일하는 지역을 둘러보세요.</p>
+          <ul class="legend">
+            <li><i class="dot dot--rose" aria-hidden="true"></i>시공 관리</li>
+            <li><i class="dot dot--sage" aria-hidden="true"></i>종합 건설</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="globe" id="globe">
+        <div class="globe__spin" id="globeSpin">
+          <img src="img/14_globe.jpg" alt="아메리카 대륙이 보이는 지구" loading="lazy">
+          <button class="pin pin--sage" style="--x:17.3%;--y:24.6%" data-i="0"><span>캐나다 휘슬러</span></button>
+          <button class="pin pin--rose" style="--x:24.8%;--y:26.3%" data-i="1"><span>미국 몬태나 빅스카이</span></button>
+          <button class="pin pin--rose" style="--x:16.4%;--y:35.5%" data-i="2"><span>미국 캘리포니아 빅서</span></button>
+          <button class="pin pin--sage" style="--x:19.8%;--y:45.5%" data-i="3"><span>멕시코 로스카보스</span></button>
+          <button class="pin pin--rose" style="--x:40.6%;--y:48%" data-i="4"><span>바하마 엑주마</span></button>
+          <button class="pin pin--sage" style="--x:24.8%;--y:33%" data-i="5"><span>미국 콜로라도 아스펜</span></button>
+          <button class="pin pin--rose" style="--x:50.7%;--y:29.6%" data-i="6"><span>캐나다 몽트랑블랑</span></button>
+        </div>
+      </div>
+
+      <div class="dest" id="dest">
+        <ul class="dest__list" id="destList" role="listbox" aria-label="목적지 목록"></ul>
+        <button class="dest__btn" id="destBtn" aria-expanded="false" aria-controls="destList">
+          <span id="destLabel">목적지 선택</span><i class="ph-light ph-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact" data-theme="dark">
+  <div class="footer__top">
+    <a href="#top" class="footer__logo" aria-label="OAKMERE 처음으로">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M20 5 L22.6 17.4 L35 20 L22.6 22.6 L20 35 L17.4 22.6 L5 20 L17.4 17.4 Z" fill="currentColor"/>
+      </svg>
+      <span>OAKMERE</span>
+    </a>
+    <div class="footer__sns">
+      <a href="#" aria-label="인스타그램"><i class="ph-light ph-instagram-logo"></i></a>
+      <a href="#" aria-label="유튜브"><i class="ph-light ph-youtube-logo"></i></a>
+      <a href="#" aria-label="링크드인"><i class="ph-light ph-linkedin-logo"></i></a>
+    </div>
+  </div>
+  <dl class="footer__info">
+    <div><dt>상호</dt><dd>(주)오크미어빌더스</dd></div>
+    <div><dt>대표</dt><dd>한도윤</dd></div>
+    <div><dt>사업자등록번호</dt><dd>214-87-53196</dd></div>
+    <div><dt>주소</dt><dd>서울특별시 성동구 왕십리로 83길 21, 8층</dd></div>
+    <div><dt>대표전화</dt><dd><a href="tel:0269534180">02-6953-4180</a></dd></div>
+    <div><dt>팩스</dt><dd>02-6953-4181</dd></div>
+    <div><dt>이메일</dt><dd><a href="mailto:hello@oakmere.kr">hello@oakmere.kr</a></dd></div>
+  </dl>
+  <p class="footer__copy">© 2026 OAKMERE. 모든 권리 보유.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js?v=3"></script>
+</body>
+</html>
