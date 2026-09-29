@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOUGHWALK 도우워크 | 걸어서 들르는 동네 베이커리 카페</title>
+<meta name="description" content="새벽에 구운 크루아상과 커피 한 잔. 도우워크는 망원동에서 시작한 동네 베이커리 카페입니다.">
+<meta name="theme-color" content="#4b5520">
+<link rel="preload" href="fonts/BagelFatOne.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/croissant-oven.jpg" as="image">
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<header class="gnb" id="top">
+  <div class="gnb__in container">
+    <a class="gnb__logo" href="#top" aria-label="DOUGHWALK 처음으로">DOUGHWALK</a>
+    <nav class="gnb__nav" aria-label="주요 메뉴">
+      <a href="#story">브랜드</a><a href="#menu">메뉴</a><a href="#bake">하루</a><a href="#space">공간</a><a href="#pack">스티커</a><a href="#visit">매장</a>
+    </nav>
+    <button class="gnb__burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="메뉴 열기"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="모바일 메뉴" hidden>
+  <a href="#story">브랜드</a><a href="#menu">메뉴</a><a href="#bake">하루</a><a href="#space">공간</a><a href="#pack">스티커</a><a href="#visit">매장</a>
+</nav>
+
+<main>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__bg"><img class="" src="img/croissant-oven.jpg" width="2000" height="1333" alt="오븐 트레이에 가득 놓인 갓 구운 크루아상" decoding="async"></div>
+  <div class="hero__stickers" aria-hidden="true">
+<img class="stk hero__stk hero__stk--h1" src="img/stickers/walk-baguette.webp" width="669" height="720" alt="" decoding="async" draggable="false">
+<img class="stk hero__stk hero__stk--h2" src="img/stickers/croissant-big.webp" width="685" height="720" alt="" decoding="async" draggable="false">
+<img class="stk hero__stk hero__stk--h3" src="img/stickers/girl-bag.webp" width="484" height="720" alt="" decoding="async" draggable="false">
+<img class="stk hero__stk hero__stk--h4" src="img/stickers/pretzel.webp" width="720" height="618" alt="" decoding="async" draggable="false">
+<img class="stk hero__stk hero__stk--h5" src="img/stickers/run-donut.webp" width="601" height="720" alt="" decoding="async" draggable="false">
+<img class="stk hero__stk hero__stk--h6" src="img/stickers/coffee-cup.webp" width="720" height="499" alt="" decoding="async" draggable="false">
+<img class="stk hero__stk hero__stk--h7" src="img/stickers/cat-box.webp" width="705" height="720" alt="" decoding="async" draggable="false">
+  </div>
+  <div class="hero__copy container">
+    <p class="hero__mark" aria-hidden="true">DOUGHWALK</p>
+    <h1 class="hero__title" id="hero-title">갓 구운 빵 들고, <br>동네 한 바퀴</h1>
+    <p class="hero__sub">새벽에 구운 크루아상과 커피 한 잔. <br>걸어서 들르는 동네 베이커리 카페, 도우워크입니다.</p>
+    <div class="hero__cta">
+      <a class="btn btn--cream mag" href="#menu">메뉴 보기</a>
+      <a class="btn btn--ghost mag" href="#visit">매장 찾기</a>
+    </div>
+  </div>
+  <span class="hero__sentinel" aria-hidden="true"></span>
+</section>
+
+<section class="story" id="story" aria-labelledby="story-title">
+  <div class="story__in container">
+    <div class="play" aria-label="끌어서 옮길 수 있는 스티커 보드">
+<img class="stk play__stk" src="img/stickers/toast-face.webp" width="443" height="720" alt="식빵 사이로 얼굴을 내민 사람" loading="lazy" decoding="async" draggable="false">
+<img class="stk play__stk" src="img/stickers/croissant-peek.webp" width="720" height="561" alt="크루아상 뒤에서 손을 흔드는 두 사람" loading="lazy" decoding="async" draggable="false">
+<img class="stk play__stk" src="img/stickers/hug-bread.webp" width="532" height="720" alt="큰 빵을 끌어안은 사람" loading="lazy" decoding="async" draggable="false">
+<img class="stk play__stk" src="img/stickers/lean-bagel.webp" width="720" height="566" alt="커다란 베이글에 기댄 사람" loading="lazy" decoding="async" draggable="false">
+<img class="stk play__stk" src="img/stickers/donut.webp" width="720" height="524" alt="도넛" loading="lazy" decoding="async" draggable="false">
+<img class="stk play__stk" src="img/stickers/cafe-latte.webp" width="720" height="585" alt="라테 한 잔" loading="lazy" decoding="async" draggable="false">
+<img class="stk play__stk" src="img/stickers/cat-stripe.webp" width="564" height="720" alt="줄무늬 옷을 입은 고양이" loading="lazy" decoding="async" draggable="false">
+      <p class="play__hint">스티커를 끌어서 옮겨 보세요</p>
+    </div>
+    <div class="story__txt">
+      <h2 class="story__title reveal" id="story-title">산책길에 들르는 <br>작은 빵집</h2>
+      <p class="story__body reveal" style="--d:1">망원동 골목에서 시작한 도우워크는 매일 새벽 네 시에 반죽을 시작합니다. <br>손에 들고 걷기 좋은 빵, 식어도 맛있는 빵을 굽습니다.</p>
+      <figure class="story__photo reveal" style="--d:2"><img class="" src="img/sandwich-wrap.jpg" width="2000" height="1333" alt="종이로 감싼 바게트 샌드위치를 집어 드는 손" loading="lazy" decoding="async"><img class="stk story__stk" src="img/stickers/girl-baguette.webp" width="629" height="720" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu" aria-labelledby="menu-title">
+  <div class="container">
+    <h2 class="sec-title reveal" id="menu-title">오늘 가장 먼저 <br>팔리는 빵</h2>
+    <div class="bento">
+<article class="bento__cell bento__cell--xl reveal" style="--d:0">
+  <div class="bento__media"><img class="" src="img/croissant-dark.jpg" width="2000" height="1333" alt="버터 크루아상" loading="lazy" decoding="async"></div><img class="stk bento__badge" src="img/stickers/croissant.webp" width="665" height="720" alt="" loading="lazy" decoding="async" draggable="false">
+  <div class="bento__txt">
+    <span class="bento__en">Butter Croissant</span>
+    <h3 class="bento__name">버터 크루아상</h3>
+    <p class="bento__desc">버터를 켜켜이 접어 결마다 바삭하게 구웠습니다.</p>
+    <span class="bento__price">4,300원</span>
+  </div>
+</article>
+<article class="bento__cell bento__cell--tall reveal" style="--d:1">
+  <div class="bento__media"><img class="" src="img/baguette.jpg" width="1589" height="2000" alt="소금 바게트" loading="lazy" decoding="async"></div><img class="stk bento__badge" src="img/stickers/baguette.webp" width="720" height="416" alt="" loading="lazy" decoding="async" draggable="false">
+  <div class="bento__txt">
+    <span class="bento__en">Salt Baguette</span>
+    <h3 class="bento__name">소금 바게트</h3>
+    <p class="bento__desc">겉은 단단하고 속은 쫄깃한 긴 바게트.</p>
+    <span class="bento__price">5,200원</span>
+  </div>
+</article>
+<article class="bento__cell bento__cell--sticker is-olive reveal" style="--d:2">
+  <img class="stk bento__hero" src="img/stickers/cinnamon-roll.webp" width="720" height="533" alt="시나몬 롤" loading="lazy" decoding="async" draggable="false">
+  <div class="bento__txt">
+    <span class="bento__en">Cinnamon Roll</span>
+    <h3 class="bento__name">시나몬 롤</h3>
+    <p class="bento__desc">흑설탕 시럽을 듬뿍 말아 넣었어요.</p>
+    <span class="bento__price">4,800원</span>
+  </div>
+</article>
+<article class="bento__cell bento__cell--sticker is-cream reveal" style="--d:3">
+  <img class="stk bento__hero" src="img/stickers/pretzel.webp" width="720" height="618" alt="하트 프레첼" loading="lazy" decoding="async" draggable="false">
+  <div class="bento__txt">
+    <span class="bento__en">Heart Pretzel</span>
+    <h3 class="bento__name">하트 프레첼</h3>
+    <p class="bento__desc">굵은 소금을 뿌린 짭짤한 간식 빵.</p>
+    <span class="bento__price">3,900원</span>
+  </div>
+</article>
+<article class="bento__cell bento__cell--wide reveal" style="--d:4">
+  <div class="bento__media"><img class="" src="img/sandwich-hand.jpg" width="2000" height="1330" alt="햄 에그 샌드위치" loading="lazy" decoding="async"></div><img class="stk bento__badge" src="img/stickers/girl-sandwich.webp" width="434" height="720" alt="" loading="lazy" decoding="async" draggable="false">
+  <div class="bento__txt">
+    <span class="bento__en">Ham & Egg</span>
+    <h3 class="bento__name">햄 에그 샌드위치</h3>
+    <p class="bento__desc">브리오슈 번에 햄과 스크램블 에그를 두툼하게.</p>
+    <span class="bento__price">7,900원</span>
+  </div>
+</article>
+<article class="bento__cell bento__cell--photo reveal" style="--d:5">
+  <div class="bento__media"><img class="" src="img/iced-coffee.jpg" width="2000" height="1333" alt="아이스 아메리카노" loading="lazy" decoding="async"></div><img class="stk bento__badge" src="img/stickers/cups-takeout.webp" width="720" height="615" alt="" loading="lazy" decoding="async" draggable="false">
+  <div class="bento__txt">
+    <span class="bento__en">Iced Americano</span>
+    <h3 class="bento__name">아이스 아메리카노</h3>
+    <p class="bento__desc">고소한 블렌드를 진하게 내렸습니다.</p>
+    <span class="bento__price">4,500원</span>
+  </div>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="bake" id="bake" aria-labelledby="bake-title">
+  <div class="bake__in container">
+    <div class="bake__stage" aria-hidden="true">
+<figure class="bake__shot is-on" data-shot="0"><img class="" src="img/dough-hands.jpg" width="2000" height="1333" alt="반죽을 깨웁니다" loading="lazy" decoding="async"><img class="stk bake__stk" src="img/stickers/girl-bag.webp" width="484" height="720" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+<figure class="bake__shot" data-shot="1"><img class="" src="img/croissant-oven.jpg" width="2000" height="1333" alt="첫 판이 나옵니다" loading="lazy" decoding="async"><img class="stk bake__stk" src="img/stickers/croissant-big.webp" width="685" height="720" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+<figure class="bake__shot" data-shot="2"><img class="" src="img/showcase.jpg" width="2000" height="1333" alt="진열대를 채웁니다" loading="lazy" decoding="async"><img class="stk bake__stk" src="img/stickers/loaf.webp" width="720" height="618" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+<figure class="bake__shot" data-shot="3"><img class="" src="img/cafe-corner.jpg" width="1333" height="2000" alt="문을 엽니다" loading="lazy" decoding="async"><img class="stk bake__stk" src="img/stickers/moka-pour.webp" width="649" height="720" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+    </div>
+    <div class="bake__flow">
+      <h2 class="sec-title sec-title--cream" id="bake-title">빵이 동네에 <br>닿기까지</h2>
+      <ol class="bake__steps">
+<li class="bake__step" data-step="0">
+  <span class="bake__time">새벽 4시</span>
+  <h3 class="bake__title">반죽을 깨웁니다</h3>
+  <p class="bake__body">전날 저녁 재워 둔 반죽을 꺼내 하나씩 손으로 모양을 잡습니다.</p>
+  <figure class="bake__mshot"><img class="" src="img/dough-hands.jpg" width="2000" height="1333" alt="반죽을 깨웁니다" loading="lazy" decoding="async"></figure>
+</li>
+<li class="bake__step" data-step="1">
+  <span class="bake__time">아침 6시</span>
+  <h3 class="bake__title">첫 판이 나옵니다</h3>
+  <p class="bake__body">크루아상이 가장 먼저 오븐에서 나옵니다. 골목에 버터 냄새가 퍼지는 시간이에요.</p>
+  <figure class="bake__mshot"><img class="" src="img/croissant-oven.jpg" width="2000" height="1333" alt="첫 판이 나옵니다" loading="lazy" decoding="async"></figure>
+</li>
+<li class="bake__step" data-step="2">
+  <span class="bake__time">아침 7시 30분</span>
+  <h3 class="bake__title">진열대를 채웁니다</h3>
+  <p class="bake__body">바게트와 식빵, 샌드위치까지 서른여덟 가지 빵이 제자리를 찾습니다.</p>
+  <figure class="bake__mshot"><img class="" src="img/showcase.jpg" width="2000" height="1333" alt="진열대를 채웁니다" loading="lazy" decoding="async"></figure>
+</li>
+<li class="bake__step" data-step="3">
+  <span class="bake__time">아침 8시</span>
+  <h3 class="bake__title">문을 엽니다</h3>
+  <p class="bake__body">첫 손님은 대개 산책 나온 이웃입니다. 커피 한 잔과 함께 하루를 엽니다.</p>
+  <figure class="bake__mshot"><img class="" src="img/cafe-corner.jpg" width="1333" height="2000" alt="문을 엽니다" loading="lazy" decoding="async"></figure>
+</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="mq" aria-label="첫 입에 반하는 빵">
+  <div class="mq__track"><div class="mq__set"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/walk-baguette.webp" width="669" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/croissant.webp" width="665" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/run-donut.webp" width="601" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/cinnamon-roll.webp" width="720" height="533" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/girl-baguette.webp" width="629" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/pretzel.webp" width="720" height="618" alt="" loading="lazy" decoding="async" draggable="false"></div><div class="mq__set" aria-hidden="true"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/walk-baguette.webp" width="669" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/croissant.webp" width="665" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/run-donut.webp" width="601" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/cinnamon-roll.webp" width="720" height="533" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/girl-baguette.webp" width="629" height="720" alt="" loading="lazy" decoding="async" draggable="false"><span class="mq__word">첫 입에 반하는 빵</span><img class="stk mq__stk" src="img/stickers/pretzel.webp" width="720" height="618" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+</section>
+
+<section class="space" id="space" aria-labelledby="space-title">
+  <div class="container">
+    <h2 class="sec-title reveal" id="space-title">오래 머물고 싶은 자리</h2>
+    <p class="space__lead reveal" style="--d:1">큰 창과 나무 테이블, 갓 구운 빵 냄새. <br>빵만 사 가도 좋고, 커피 한 잔 앉아 있다 가도 좋습니다.</p>
+    <div class="space__grid">
+      <figure class="space__a reveal"><img class="" src="img/interior-hall.jpg" width="2000" height="1333" alt="나무 테이블과 흰 의자가 놓인 도우워크 망원 본점 내부" loading="lazy" decoding="async"><img class="stk space__stk space__stk--a" src="img/stickers/walk-baguette.webp" width="669" height="720" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+      <figure class="space__b reveal" style="--d:1"><img class="" src="img/interior-counter.jpg" width="1333" height="2000" alt="바게트가 진열된 계산대" loading="lazy" decoding="async"></figure>
+      <figure class="space__c reveal" style="--d:2"><img class="" src="img/cafe-corner.jpg" width="1333" height="2000" alt="햇살이 드는 창가 자리" loading="lazy" decoding="async"><img class="stk space__stk space__stk--c" src="img/stickers/coffee-cup.webp" width="720" height="499" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+      <figure class="space__d reveal" style="--d:3"><img class="" src="img/tray-hands.jpg" width="2000" height="1335" alt="크루아상 트레이를 든 제빵사" loading="lazy" decoding="async"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pack" id="pack" aria-labelledby="pack-title">
+  <div class="container pack__in">
+    <div class="pack__head">
+      <h2 class="sec-title reveal" id="pack-title">빵 봉투마다 <br>스티커 한 장</h2>
+      <p class="pack__body reveal" style="--d:1">빵을 사면 봉투에 스티커를 한 장씩 붙여 드려요. <br>모두 스물다섯 종, 어떤 스티커가 나올지는 그날의 운입니다.</p>
+      <div class="pack__draw reveal" style="--d:2">
+        <div class="pack__slot" aria-live="polite">
+          <img class="pack__pick" src="img/stickers/croissant.webp" width="665" height="720" alt="크루아상">
+          <p class="pack__label">오늘의 스티커 <strong>크루아상</strong></p>
+        </div>
+        <button type="button" class="btn btn--brick mag" id="drawBtn">스티커 뽑기</button>
+      </div>
+    </div>
+    <ul class="pack__grid">
+<li class="pack__item" style="--r:-8deg"><button type="button" class="pack__btn" data-name="긴 바게트를 함께 들고 걷는 두 사람"><img class="stk pack__stk" src="img/stickers/walk-baguette.webp" width="669" height="720" alt="긴 바게트를 함께 들고 걷는 두 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-5deg"><button type="button" class="pack__btn" data-name="크루아상"><img class="stk pack__stk" src="img/stickers/croissant.webp" width="665" height="720" alt="크루아상" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-2deg"><button type="button" class="pack__btn" data-name="빵 봉투를 안은 사람"><img class="stk pack__stk" src="img/stickers/girl-bag.webp" width="484" height="720" alt="빵 봉투를 안은 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:1deg"><button type="button" class="pack__btn" data-name="하트 프레첼"><img class="stk pack__stk" src="img/stickers/pretzel.webp" width="720" height="618" alt="하트 프레첼" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:4deg"><button type="button" class="pack__btn" data-name="상자 속 고양이"><img class="stk pack__stk" src="img/stickers/cat-box.webp" width="705" height="720" alt="상자 속 고양이" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:7deg"><button type="button" class="pack__btn" data-name="커다란 도넛을 들고 뛰는 사람"><img class="stk pack__stk" src="img/stickers/run-donut.webp" width="601" height="720" alt="커다란 도넛을 들고 뛰는 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-7deg"><button type="button" class="pack__btn" data-name="시나몬 롤"><img class="stk pack__stk" src="img/stickers/cinnamon-roll.webp" width="720" height="533" alt="시나몬 롤" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-4deg"><button type="button" class="pack__btn" data-name="드립 커피"><img class="stk pack__stk" src="img/stickers/dripper.webp" width="720" height="491" alt="드립 커피" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-1deg"><button type="button" class="pack__btn" data-name="식빵 사이로 얼굴을 내민 사람"><img class="stk pack__stk" src="img/stickers/toast-face.webp" width="443" height="720" alt="식빵 사이로 얼굴을 내민 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:2deg"><button type="button" class="pack__btn" data-name="둥근 캄파뉴"><img class="stk pack__stk" src="img/stickers/bread-cross.webp" width="720" height="680" alt="둥근 캄파뉴" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:5deg"><button type="button" class="pack__btn" data-name="샌드위치를 먹는 사람"><img class="stk pack__stk" src="img/stickers/girl-sandwich.webp" width="434" height="720" alt="샌드위치를 먹는 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:8deg"><button type="button" class="pack__btn" data-name="도넛"><img class="stk pack__stk" src="img/stickers/donut.webp" width="720" height="524" alt="도넛" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-6deg"><button type="button" class="pack__btn" data-name="모카포트로 내리는 커피"><img class="stk pack__stk" src="img/stickers/moka-pour.webp" width="649" height="720" alt="모카포트로 내리는 커피" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-3deg"><button type="button" class="pack__btn" data-name="크루아상 뒤에서 손을 흔드는 두 사람"><img class="stk pack__stk" src="img/stickers/croissant-peek.webp" width="720" height="561" alt="크루아상 뒤에서 손을 흔드는 두 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:0deg"><button type="button" class="pack__btn" data-name="바게트"><img class="stk pack__stk" src="img/stickers/baguette.webp" width="720" height="416" alt="바게트" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:3deg"><button type="button" class="pack__btn" data-name="줄무늬 옷을 입은 고양이"><img class="stk pack__stk" src="img/stickers/cat-stripe.webp" width="564" height="720" alt="줄무늬 옷을 입은 고양이" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:6deg"><button type="button" class="pack__btn" data-name="컵케이크"><img class="stk pack__stk" src="img/stickers/cupcake.webp" width="465" height="720" alt="컵케이크" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-8deg"><button type="button" class="pack__btn" data-name="큰 빵을 끌어안은 사람"><img class="stk pack__stk" src="img/stickers/hug-bread.webp" width="532" height="720" alt="큰 빵을 끌어안은 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-5deg"><button type="button" class="pack__btn" data-name="라테 한 잔"><img class="stk pack__stk" src="img/stickers/cafe-latte.webp" width="720" height="585" alt="라테 한 잔" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-2deg"><button type="button" class="pack__btn" data-name="식빵"><img class="stk pack__stk" src="img/stickers/loaf.webp" width="720" height="618" alt="식빵" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:1deg"><button type="button" class="pack__btn" data-name="바게트를 한 입 무는 사람"><img class="stk pack__stk" src="img/stickers/girl-baguette.webp" width="629" height="720" alt="바게트를 한 입 무는 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:4deg"><button type="button" class="pack__btn" data-name="커피잔"><img class="stk pack__stk" src="img/stickers/coffee-cup.webp" width="720" height="499" alt="커피잔" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:7deg"><button type="button" class="pack__btn" data-name="커다란 베이글에 기댄 사람"><img class="stk pack__stk" src="img/stickers/lean-bagel.webp" width="720" height="566" alt="커다란 베이글에 기댄 사람" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-7deg"><button type="button" class="pack__btn" data-name="큰 크루아상"><img class="stk pack__stk" src="img/stickers/croissant-big.webp" width="685" height="720" alt="큰 크루아상" loading="lazy" decoding="async" draggable="false"></button></li>
+<li class="pack__item" style="--r:-4deg"><button type="button" class="pack__btn" data-name="테이크아웃 컵 두 잔"><img class="stk pack__stk" src="img/stickers/cups-takeout.webp" width="720" height="615" alt="테이크아웃 컵 두 잔" loading="lazy" decoding="async" draggable="false"></button></li>
+    </ul>
+  </div>
+</section>
+
+<section class="visit" id="visit" aria-labelledby="visit-title">
+  <div class="container">
+    <h2 class="sec-title reveal" id="visit-title">가까운 도우워크로 <br>걸어오세요</h2>
+    <ul class="visit__list">
+<li class="visit__row reveal" data-img="img/interior-hall.jpg" style="--d:0">
+  <h3 class="visit__name">망원 본점</h3>
+  <p class="visit__addr">서울 마포구 망원로7길 23</p>
+  <p class="visit__hours">매일 08:00 ~ 21:00</p>
+  <figure class="visit__mimg"><img class="" src="img/interior-hall.jpg" width="2000" height="1333" alt="망원 본점" loading="lazy" decoding="async"></figure>
+</li>
+<li class="visit__row reveal" data-img="img/interior-counter.jpg" style="--d:1">
+  <h3 class="visit__name">연희 스탠드</h3>
+  <p class="visit__addr">서울 서대문구 연희로11길 8</p>
+  <p class="visit__hours">평일 07:30 ~ 19:00</p>
+  <figure class="visit__mimg"><img class="" src="img/interior-counter.jpg" width="1333" height="2000" alt="연희 스탠드" loading="lazy" decoding="async"></figure>
+</li>
+<li class="visit__row reveal" data-img="img/cafe-corner.jpg" style="--d:2">
+  <h3 class="visit__name">서촌 베이크하우스</h3>
+  <p class="visit__addr">서울 종로구 자하문로5길 14</p>
+  <p class="visit__hours">화요일 휴무 09:00 ~ 20:00</p>
+  <figure class="visit__mimg"><img class="" src="img/cafe-corner.jpg" width="1333" height="2000" alt="서촌 베이크하우스" loading="lazy" decoding="async"></figure>
+</li>
+    </ul>
+  </div>
+  <div class="visit__float" aria-hidden="true"><img alt="" src="img/interior-hall.jpg" width="2000" height="1333"></div>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="ft__in container">
+    <a class="ft__logo" href="#top">DOUGHWALK</a>
+    <dl class="ft__info">
+      <div><dt>상호</dt><dd>(주)도우워크</dd></div>
+      <div><dt>대표</dt><dd>윤다온</dd></div>
+      <div><dt>주소</dt><dd>서울 마포구 망원로7길 23, 1층</dd></div>
+      <div><dt>전화</dt><dd>02.332.4718</dd></div>
+      <div><dt>팩스</dt><dd>02.332.4719</dd></div>
+      <div><dt>사업자등록번호</dt><dd>214.87.30592</dd></div>
+    </dl>
+    <div class="ft__sns">
+      <a href="#top" aria-label="인스타그램"><i class="ph ph-instagram-logo"></i></a>
+      <a href="#top" aria-label="유튜브"><i class="ph ph-youtube-logo"></i></a>
+      <a href="#top" aria-label="네이버 블로그"><i class="ph ph-article"></i></a>
+    </div>
+    <p class="ft__copy">© 2026 DOUGHWALK</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1"></script>
+<script src="script.js?v=1"></script>
+</body>
+</html>
