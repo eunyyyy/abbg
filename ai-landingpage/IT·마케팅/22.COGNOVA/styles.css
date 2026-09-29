@@ -44,4 +44,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 body.menu-open .back-to-top{opacity:0;pointer-events:none}
 
-/* 국문 타이틀 */.hero-title{font-family:Pretendard,sans-serif;letter-spacing:-.045em;line-height:1.04}.section-head h2,.principle h3,.node{font-family:Pretendard,sans-serif}.node{letter-spacing:-.01em}.principle h3{letter-spacing:-.03em}
+/* 국문 타이틀 */.hero-title{font-family:Pretendard,sans-serif;font-size:64px;letter-spacing:-.04em;line-height:1.12}.section-head h2,.principle h3,.node{font-family:Pretendard,sans-serif}.node{letter-spacing:-.01em}.principle h3{letter-spacing:-.03em}
+/* 섹션 타이틀 통일 */.section-intro h2,.method-title h2,.section-head h2,.contact h2{font-family:Pretendard,sans-serif;font-size:48px;font-weight:700;line-height:1.14;letter-spacing:-.03em}@media(max-width:720px){.section-intro h2,.method-title h2,.section-head h2,.contact h2{font-size:38px}}
