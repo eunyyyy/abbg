@@ -1,0 +1,453 @@
+<!--
+variant:
+typo=grotesk-tight
+image=high
+color=accent (vermilion) + secondary (lime)
+
+image-radius=soft
+card-radius=soft
+button-radius=round
+
+border=hairline
+button-style=solid+text
+fw=600/400
+spacing=space-section
+
+Layout Declaration
+Hero          centered headline + load-in card fan (scroll collapses)
+Showcase      5-7 (copy / cascading art cards)
+Gateway       12 (headline) + full-width rounded media, scroll unclip
+Partners      12 logo row
+Statement     full-bleed sticky pin: word-fill scrub + stack shuffle + diagonal cascade
+Vision        5-7 (copy + icon cluster / folder grid 3x2)
+Community     full-bleed avatar cloud, rows drift opposite on scroll
+Story         4-8 masonry bento (2 offset columns)
+Market        5 heading + full-bleed drag strip
+Artists       full-bleed sticky pin: focus card shrinks into 5x3 grid
+Membership    5-7 (copy / fanned price cards)
+Marquee       12 lime band, one marquee
+Invite        6-6 image cards
+Footer        12 rounded panel
+-->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOLLAJ | 아트 커머스 유통 플랫폼</title>
+<meta name="description" content="콜라주는 작가의 원화, 판화, 굿즈를 입점부터 검수, 보관, 배송까지 대신 맡는 아트 커머스 유통 플랫폼입니다.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="preload" as="image" href="img/hero_01.jpg">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<header class="gnb" id="gnb">
+  <div class="gnb__inner">
+    <a href="#top" class="logo" aria-label="KOLLAJ 홈">
+      <svg class="logo__mark" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3.5" fill="var(--primary-500)"/>
+        <rect x="10" y="10" width="12" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      </svg>
+      <span class="logo__word">KOLLAJ</span>
+    </a>
+    <nav class="gnb__nav" aria-label="주요 메뉴">
+      <a href="#showcase">마켓</a>
+      <a href="#vision">서비스</a>
+      <a href="#artists">아티스트</a>
+      <a href="#story">스토리</a>
+      <a href="#membership">멤버십</a>
+      <a href="#contact">문의</a>
+    </nav>
+    <div class="gnb__util">
+      <a href="#membership" class="icon-btn" aria-label="마이페이지"><i class="ph ph-user"></i></a>
+      <a href="#market" class="icon-btn" aria-label="장바구니"><i class="ph ph-handbag"></i></a>
+      <button class="icon-btn gnb__burger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+</header>
+<nav class="drawer" id="drawer" aria-label="모바일 메뉴" hidden>
+  <a href="#showcase">마켓</a>
+  <a href="#vision">서비스</a>
+  <a href="#artists">아티스트</a>
+  <a href="#story">스토리</a>
+  <a href="#membership">멤버십</a>
+  <a href="#contact">문의</a>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container hero__copy">
+      <h1 class="hero__title" data-words>A place to sell <span class="soft">every</span><br>masterpiece.</h1>
+      <p class="hero__sub reveal">작가는 작품을 올리고, 콜렉터는 발견합니다.<br>제작부터 배송까지는 콜라주가 맡습니다.</p>
+      <div class="hero__cta reveal">
+        <a href="#membership" class="btn btn--dark">입점 신청하기</a>
+        <a href="#market" class="btn btn--text">마켓 둘러보기 <i class="ph ph-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="fan" id="fan" aria-hidden="true">
+      <span class="tag tag--blue fan__tag fan__tag--l">@minseo.draws</span>
+      <span class="tag tag--lime fan__tag fan__tag--r">@yoon.print</span>
+      <div class="fan__card"><img src="img/hero_01.jpg" alt=""></div>
+      <div class="fan__card"><img src="img/hero_02.jpg" alt=""></div>
+      <div class="fan__card"><img src="img/hero_03.jpg" alt=""></div>
+      <div class="fan__card"><img src="img/hero_04.jpg" alt=""></div>
+      <div class="fan__card"><img src="img/hero_05.jpg" alt=""></div>
+      <div class="fan__card"><img src="img/hero_06.jpg" alt=""></div>
+      <div class="fan__card"><img src="img/hero_07.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <section class="showcase section" id="showcase">
+    <div class="container showcase__grid">
+      <div class="showcase__copy">
+        <p class="eyebrow">ART COMMERCE</p>
+        <h2 class="h-xl" data-words>Showcase, sell, <span class="accent">&amp; collect art</span> in one <span class="soft">marketplace.</span></h2>
+        <p class="body reveal">작가 1,284명의 원화, 판화, 굿즈가 한곳에 모였습니다. 주문이 들어오면 콜라주 물류센터가 검수하고 포장해 보냅니다.</p>
+        <div class="reveal"><a href="#market" class="btn btn--dark">마켓 둘러보기</a></div>
+      </div>
+      <div class="showcase__art" aria-hidden="true">
+        <span class="tag tag--red showcase__tag1">@ha.eun</span>
+        <span class="tag tag--dark showcase__tag2">@joon.lab</span>
+        <div class="cascade">
+          <div class="cascade__card"><img src="img/show_01.jpg" alt="" loading="lazy"></div>
+          <div class="cascade__card"><img src="img/show_02.jpg" alt="" loading="lazy"></div>
+          <div class="cascade__card"><img src="img/show_03.jpg" alt="" loading="lazy"></div>
+          <div class="cascade__card"><img src="img/show_04.jpg" alt="" loading="lazy"></div>
+          <div class="cascade__card"><img src="img/show_05.jpg" alt="" loading="lazy"></div>
+          <div class="cascade__card"><img src="img/show_06.jpg" alt="" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GATEWAY -->
+  <section class="gateway" id="gateway">
+    <div class="container gateway__head">
+      <h2 class="h-xl" data-words>Gateway to <span class="soft">artist people.</span></h2>
+      <span class="tag tag--dark gateway__tag reveal" aria-hidden="true">@haeun.studio</span>
+    </div>
+    <div class="container">
+      <figure class="gateway__media" data-scrub="gateway">
+        <img src="img/gateway.jpg" alt="오렌지 선글라스를 쓴 핑크 단발 인물의 컬러 포트레이트" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners" aria-labelledby="partners-title">
+    <div class="container">
+      <h2 class="h-sm" id="partners-title" data-words>Trusted by <span class="soft">the best.</span></h2>
+      <p class="body subtle reveal">작품을 만들고, 액자를 짜고, 배송하는 파트너가 콜라주와 함께 일합니다.</p>
+      <ul class="partners__row reveal-stagger">
+        <li><i class="ph-fill ph-truck"></i><span>HANBIT LOGIS</span></li>
+        <li><i class="ph-fill ph-frame-corners"></i><span>Mori Frame</span></li>
+        <li><i class="ph-fill ph-scroll"></i><span>PAPERHAUS</span></li>
+        <li><i class="ph-fill ph-circles-three"></i><span>orbit print</span></li>
+        <li><i class="ph-fill ph-cube"></i><span>Nook Studio</span></li>
+        <li><i class="ph-fill ph-asterisk"></i><span>GALLERY NINE</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STATEMENT (pinned) -->
+  <section class="statement" id="statement" data-scrub="statement">
+    <div class="statement__pin">
+      <div class="statement__stack" aria-hidden="true">
+        <span class="tag tag--dark statement__tag1">@sian</span>
+        <span class="tag tag--blue statement__tag2">@andrew.k</span>
+        <div class="sstack">
+          <div class="sstack__card"><img src="img/stack_01.jpg" alt="" loading="lazy"></div>
+          <div class="sstack__card"><img src="img/stack_02.jpg" alt="" loading="lazy"></div>
+          <div class="sstack__card"><img src="img/stack_03.jpg" alt="" loading="lazy"></div>
+        </div>
+      </div>
+      <p class="statement__text container" id="statementText">
+        Whether you're an artist selling your work, or a collector seeking <span class="hl-lime">unique</span> pieces, <i class="ph-fill ph-paint-brush-broad"></i> KOLLAJ connects you to the world of creativity <i class="ph-fill ph-package"></i> &amp; commerce.
+      </p>
+      <div class="diag" aria-hidden="true">
+        <div class="diag__note">
+          <strong>작품이 상품이 되는 길</strong>
+          <span>촬영, 등록, 검수, 포장, 배송까지 다섯 단계를 한 팀이 맡습니다.</span>
+        </div>
+        <div class="diag__card"><img src="img/look_01.jpg" alt="" loading="lazy"></div>
+        <div class="diag__card"><img src="img/look_02.jpg" alt="" loading="lazy"></div>
+        <div class="diag__card"><img src="img/look_03.jpg" alt="" loading="lazy"></div>
+        <div class="diag__card"><img src="img/look_04.jpg" alt="" loading="lazy"></div>
+        <div class="diag__card"><img src="img/look_05.jpg" alt="" loading="lazy"></div>
+        <div class="diag__card"><img src="img/stack_01.jpg" alt="" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="vision section" id="vision">
+    <div class="container vision__grid">
+      <div class="vision__copy">
+        <i class="ph ph-eye vision__icon reveal"></i>
+        <h2 class="h-md" data-words>Our vision <span class="soft">for art that ships.</span></h2>
+        <p class="body reveal">모든 작품에는 작가의 이야기가 있습니다. 콜라주는 그 이야기가 흠집 없이 콜렉터의 벽까지 도착하도록 보관과 배송을 설계합니다.</p>
+        <ul class="toolcloud reveal-stagger" aria-label="콜라주가 맡는 일">
+          <li title="드로잉"><i class="ph ph-pen-nib"></i></li>
+          <li title="컬러 교정"><i class="ph ph-palette"></i></li>
+          <li title="액자 제작"><i class="ph ph-frame-corners"></i></li>
+          <li title="검수"><i class="ph ph-seal-check"></i></li>
+          <li title="포장"><i class="ph ph-package"></i></li>
+          <li title="배송"><i class="ph ph-truck"></i></li>
+          <li title="보관"><i class="ph ph-warehouse"></i></li>
+          <li title="정산"><i class="ph ph-coins"></i></li>
+        </ul>
+      </div>
+      <div class="folder reveal">
+        <div class="folder__tabs">
+          <span class="folder__tab folder__tab--back">작가 스튜디오</span>
+          <span class="folder__tab folder__tab--front">콜렉터</span>
+        </div>
+        <div class="folder__body">
+          <ul class="folder__grid reveal-stagger">
+            <li><img src="img/look_01.jpg" alt="초록 배경 앞 오렌지 코트를 입은 인물" loading="lazy"></li>
+            <li><img src="img/look_02.jpg" alt="붉은 벽 앞 지브라 패턴 의상을 입은 인물" loading="lazy"></li>
+            <li><img src="img/look_03.jpg" alt="노란 배경 앞 지브라 재킷과 오렌지 선글라스를 쓴 인물" loading="lazy"></li>
+            <li><img src="img/look_04.jpg" alt="오렌지 배경과 흰 선글라스의 인물" loading="lazy"></li>
+            <li><img src="img/look_05.jpg" alt="보라 배경 앞 오렌지 재킷을 입은 인물" loading="lazy"></li>
+            <li><img src="img/look_06.jpg" alt="하늘색 배경 앞 노란 상의를 입은 인물" loading="lazy"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY CLOUD -->
+  <section class="cloud" id="artists" data-scrub="cloud">
+    <ul class="cloud__row cloud__row--top" aria-hidden="true"></ul>
+    <div class="container cloud__copy">
+      <i class="ph ph-sparkle cloud__icon reveal"></i>
+      <h2 class="h-lg" data-words>You will find yourself <span class="soft">among us.</span></h2>
+      <p class="body subtle reveal">작가 1,284명과 콜렉터 4만 2천 명이 매일 신작을 올리고, 저장하고, 주문합니다.</p>
+    </div>
+    <ul class="cloud__row cloud__row--bottom" aria-hidden="true"></ul>
+  </section>
+
+  <!-- STORY BENTO -->
+  <section class="story section" id="story">
+    <div class="container">
+      <div class="story__head">
+        <p class="eyebrow">YOUR STORY TELLING</p>
+        <h2 class="h-lg" data-words>Every piece of art <span class="soft">tells a story.</span></h2>
+      </div>
+      <div class="bento">
+        <div class="bento__col">
+          <article class="bcard bcard--white reveal">
+            <div class="bcard__media bcard__media--contain"><img src="img/story_01.jpg" alt="블루와 크림 톤이 소용돌이치는 3D 그래픽" loading="lazy"></div>
+            <h3 class="bcard__title">잇고, 만들고, 판매합니다</h3>
+            <p class="bcard__text">작가와 콜렉터를 연결하고, 작품을 상품으로 만들고, 결제와 정산까지 한 화면에서 끝냅니다.</p>
+            <a href="#membership" class="link">이용 방법 <i class="ph ph-arrow-right"></i></a>
+          </article>
+          <article class="bcard bcard--image reveal">
+            <div class="bcard__media"><img src="img/story_03.jpg" alt="무지개 색으로 염색한 머리칼이 흩날리는 인물" loading="lazy"></div>
+            <h3 class="bcard__title">원화 한 점, 굿즈 백 개</h3>
+            <p class="bcard__text">한정판 판화와 아트 굿즈 제작으로 원화 한 점의 가치를 넓힙니다.</p>
+            <a href="#market" class="link">굿즈 제작 안내 <i class="ph ph-arrow-right"></i></a>
+          </article>
+        </div>
+        <div class="bento__col bento__col--offset" data-scrub="bento">
+          <article class="bcard bcard--blue reveal">
+            <div class="bcard__media"><img src="img/story_02.jpg" alt="파란 배경 위에 떠 있는 3D 도형들" loading="lazy"></div>
+            <h3 class="bcard__title">작품이 숨 쉬는 커머스</h3>
+            <p class="bcard__text">작품 촬영, 상세 페이지, 가격 책정까지 콜라주 스튜디오 팀이 함께 준비합니다.</p>
+            <a href="#vision" class="link">스튜디오 소개 <i class="ph ph-arrow-right"></i></a>
+          </article>
+          <article class="bcard bcard--dark reveal">
+            <i class="ph ph-fingerprint bcard__icon"></i>
+            <h3 class="bcard__title">나만의 작가 페이지</h3>
+            <p class="bcard__text">주소, 컬러, 소개 글까지 작가의 톤으로 꾸미는 개인 스토어.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET STRIP -->
+  <section class="market section" id="market">
+    <div class="container market__head">
+      <div>
+        <h2 class="h-lg" data-words>Marketplace <span class="soft">for creativity.</span></h2>
+        <p class="body subtle reveal">이번 주 새로 입고된 작품입니다. 모든 작품은 검수 후 48시간 안에 출고됩니다.</p>
+      </div>
+      <a href="#market" class="btn btn--primary reveal">마켓 둘러보기</a>
+    </div>
+    <div class="strip" id="strip" tabindex="0" aria-label="신작 목록, 좌우로 드래그해서 보기">
+      <ul class="strip__track">
+        <li class="art"><div class="art__img"><img src="img/market_01.jpg" alt="무지갯빛으로 피어오르는 연기 기둥" loading="lazy" draggable="false"></div><p class="art__name">컬러 스모크</p><p class="art__meta">이도윤 · 디지털 프린트 ₩180,000</p></li>
+        <li class="art"><div class="art__img"><img src="img/market_02.jpg" alt="검은 배경에 겹겹이 선 유리 패널" loading="lazy" draggable="false"></div><p class="art__name">글래스 레이어</p><p class="art__meta">박서진 · 아카이벌 프린트 ₩240,000</p></li>
+        <li class="art"><div class="art__img"><img src="img/market_03.jpg" alt="검은 배경의 유리 프리즘 곡면" loading="lazy" draggable="false"></div><p class="art__name">프리즘 No.4</p><p class="art__meta">최하린 · 한정판 20부 ₩320,000</p></li>
+        <li class="art"><div class="art__img"><img src="img/market_04.jpg" alt="검은 바탕 위 원색 곡선 드로잉 패턴" loading="lazy" draggable="false"></div><p class="art__name">두들 패턴</p><p class="art__meta">정우경 · 캔버스 원화 ₩1,450,000</p></li>
+        <li class="art"><div class="art__img"><img src="img/market_05.jpg" alt="진한 파란 물감 붓자국" loading="lazy" draggable="false"></div><p class="art__name">코발트 스터디</p><p class="art__meta">한지오 · 아크릴 원화 ₩960,000</p></li>
+        <li class="art"><div class="art__img"><img src="img/market_06.jpg" alt="핑크 그라데이션 위로 흐르는 투명한 액체" loading="lazy" draggable="false"></div><p class="art__name">리퀴드 핑크</p><p class="art__meta">오세라 · 디지털 프린트 ₩150,000</p></li>
+        <li class="art"><div class="art__img"><img src="img/market_07.jpg" alt="파란 물결이 튀어 오르는 액체 조형" loading="lazy" draggable="false"></div><p class="art__name">블루 스플래시</p><p class="art__meta">윤태민 · 한정판 30부 ₩210,000</p></li>
+        <li class="art"><div class="art__img"><img src="img/market_08.jpg" alt="파란 꽃잎이 터지듯 퍼지는 추상 이미지" loading="lazy" draggable="false"></div><p class="art__name">블룸 버스트</p><p class="art__meta">김나은 · 아카이벌 프린트 ₩270,000</p></li>
+      </ul>
+    </div>
+    <div class="container"><div class="strip__progress" aria-hidden="true"><span id="stripBar"></span></div></div>
+  </section>
+
+  <!-- ARTISTS FOCUS (pinned) -->
+  <section class="focus" data-scrub="focus" aria-labelledby="focus-title">
+    <div class="focus__pin">
+      <div class="focus__apps" aria-hidden="true">
+        <span style="--c:var(--gray-900)"><i class="ph-fill ph-vinyl-record"></i></span>
+        <span style="--c:#f0508a"><i class="ph-fill ph-music-notes"></i></span>
+        <span style="--c:var(--primary-500)" class="is-main"><i class="ph-fill ph-package"></i></span>
+        <span style="--c:var(--gray-700)"><i class="ph-fill ph-paint-brush"></i></span>
+        <span style="--c:#e0364f"><i class="ph-fill ph-heart"></i></span>
+      </div>
+      <h2 class="focus__title" id="focus-title">이번 주 가장 많이 팔로우된 작가</h2>
+      <ul class="focus__grid">
+        <li><img src="img/ava_01.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_02.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_03.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_04.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_05.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_06.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_07.jpg" alt="" loading="lazy"></li>
+        <li class="focus__main">
+          <div class="focus__card">
+            <img src="img/focus.jpg" alt="오렌지 배경에서 웃고 있는 작가 윤아" loading="lazy">
+            <div class="focus__cap"><strong>윤아 킴</strong><span>일러스트레이터 · 팔로워 1.8만</span></div>
+          </div>
+        </li>
+        <li><img src="img/ava_08.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_09.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_10.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_11.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_12.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_13.jpg" alt="" loading="lazy"></li>
+        <li><img src="img/ava_14.jpg" alt="" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section class="membership section" id="membership">
+    <div class="container membership__grid">
+      <div class="membership__copy">
+        <i class="ph ph-crown-simple membership__icon reveal"></i>
+        <h2 class="h-md" data-words>Membership</h2>
+        <p class="body reveal">콜렉터 멤버십으로 신작을 먼저 보고, 배송비 없이 받아 보세요. 언제든 해지할 수 있습니다.</p>
+      </div>
+      <div class="plans">
+        <article class="plan reveal">
+          <p class="plan__term">월간</p>
+          <p class="plan__price"><small>₩</small>9,900</p>
+          <p class="plan__desc">신작 선공개 알림</p>
+        </article>
+        <article class="plan plan--pop reveal">
+          <p class="plan__term">분기 <span class="plan__badge">인기</span></p>
+          <p class="plan__price"><small>₩</small>24,900</p>
+          <p class="plan__desc">무료 배송 월 2회</p>
+          <a href="#contact" class="btn btn--light">멤버십 시작하기</a>
+        </article>
+        <article class="plan reveal">
+          <p class="plan__term">연간</p>
+          <p class="plan__price"><small>₩</small>89,000</p>
+          <p class="plan__desc">전 작품 5% 적립</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="band" data-scrub="band" aria-label="콜라주 슬로건">
+    <div class="container">
+      <div class="band__box">
+        <div class="band__marquee">
+          <div class="band__track">
+            <span>Artists can ride</span><img src="img/ava_15.jpg" alt=""><img src="img/ava_16.jpg" alt=""><span>Inspired by people</span><img src="img/ava_17.jpg" alt=""><span>New art platform</span><img src="img/ava_18.jpg" alt="">
+            <span>Artists can ride</span><img src="img/ava_15.jpg" alt=""><img src="img/ava_16.jpg" alt=""><span>Inspired by people</span><img src="img/ava_17.jpg" alt=""><span>New art platform</span><img src="img/ava_18.jpg" alt="">
+          </div>
+        </div>
+        <ul class="band__icons" aria-hidden="true">
+          <li><i class="ph ph-palette"></i></li><li><i class="ph ph-diamond"></i></li><li><i class="ph ph-shapes"></i></li>
+          <li><i class="ph ph-paper-plane-tilt"></i></li><li><i class="ph ph-flower-lotus"></i></li><li><i class="ph ph-cube"></i></li>
+          <li><i class="ph ph-star-four"></i></li><li><i class="ph ph-pen-nib"></i></li><li><i class="ph ph-butterfly"></i></li>
+          <li><i class="ph ph-shooting-star"></i></li><li><i class="ph ph-heart-straight"></i></li><li><i class="ph ph-globe-simple"></i></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVITE -->
+  <section class="invite section" aria-label="작가와 아카이브">
+    <div class="container invite__grid">
+      <article class="icard icard--people reveal">
+        <img src="img/cta_people.jpg" alt="핑크 배경 앞에 앉은 인물" loading="lazy">
+        <div class="icard__body">
+          <i class="ph ph-compass"></i>
+          <h3 class="icard__title">Meet new artists.</h3>
+          <p>매주 새로 입점한 작가를 콜라주 큐레이터가 소개합니다.</p>
+          <a href="#artists" class="btn btn--light">작가 만나기</a>
+        </div>
+      </article>
+      <article class="icard icard--archive reveal">
+        <img src="img/cta_archive.jpg" alt="투명한 유리 질감의 파란 꽃" loading="lazy">
+        <div class="icard__body">
+          <i class="ph ph-archive"></i>
+          <h3 class="icard__title">Archive of new arts.</h3>
+          <p>지난 컬렉션과 완판된 작품을 모두 모아 두었습니다.</p>
+          <a href="#market" class="btn btn--dark">아카이브 보기</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer__box">
+      <div class="footer__brand">
+        <a href="#top" class="logo" aria-label="KOLLAJ 홈">
+          <svg class="logo__mark" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="2" width="12" height="12" rx="3.5" fill="var(--primary-500)"/>
+            <rect x="10" y="10" width="12" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+          </svg>
+          <span class="logo__word">KOLLAJ</span>
+        </a>
+        <p class="footer__tagline">Our platform, your art.</p>
+        <p class="footer__text">작가의 작업이 콜렉터의 일상에 닿을 때까지.</p>
+        <ul class="footer__sns">
+          <li><a href="#top" aria-label="인스타그램"><i class="ph ph-instagram-logo"></i></a></li>
+          <li><a href="#top" aria-label="유튜브"><i class="ph ph-youtube-logo"></i></a></li>
+          <li><a href="#top" aria-label="핀터레스트"><i class="ph ph-pinterest-logo"></i></a></li>
+          <li><a href="#top" aria-label="비핸스"><i class="ph ph-behance-logo"></i></a></li>
+        </ul>
+      </div>
+      <dl class="footer__info">
+        <div><dt>상호</dt><dd>(주)콜라주</dd></div>
+        <div><dt>대표자</dt><dd>윤서하</dd></div>
+        <div><dt>사업자등록번호</dt><dd>214 87 60391</dd></div>
+        <div><dt>주소</dt><dd>서울특별시 마포구 양화로7길 22, 3층</dd></div>
+        <div><dt>물류센터</dt><dd>경기도 김포시 고촌읍 아라육로 58</dd></div>
+        <div><dt>대표전화</dt><dd>02 3143 7720</dd></div>
+        <div><dt>팩스</dt><dd>02 3143 7721</dd></div>
+        <div><dt>이메일</dt><dd>hello@kollaj.kr</dd></div>
+      </dl>
+      <p class="footer__copy">© 2026 KOLLAJ Inc. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>
