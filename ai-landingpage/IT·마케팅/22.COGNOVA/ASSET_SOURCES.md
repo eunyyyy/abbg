@@ -12,3 +12,4 @@
   - `img/cap-product-blocks.jpg` — `td02480002059` (stacked 3D cubes, white background)
   - `img/cap-analytics-person.jpg` — `td05020086710` (woman with tablet & analytics overlay)
   - The swirl line graphics on the solid-color cards are original inline SVG.
+- Hero visual (2026-09-29): `img/hero-vr-1~5.webp` — user-provided `vr1.png`–`vr5.png` (X31 `22.COGNOVA/img`), transparent cutouts trimmed and centered on a common 1000×760 canvas; played as a frame sequence on hover to read as a rotating headset. Replaces the earlier `clipart-network-sphere.jpg` hero texture (file kept but no longer referenced).
