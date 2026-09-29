@@ -141,6 +141,55 @@
     el.addEventListener('dragstart', (e) => e.preventDefault());
   });
 
+  /* seamless marquee: clone the list so -50% lands exactly on the start */
+  document.querySelectorAll('.roll__track').forEach((track) => {
+    const list = track.querySelector('.roll__list');
+    const clone = list.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.querySelectorAll('img').forEach((img) => { img.alt = ''; });
+    track.appendChild(clone);
+  });
+
+  /* prev / next buttons for drag strips */
+  document.querySelectorAll('[data-nav]').forEach((nav) => {
+    const strip = document.getElementById(nav.dataset.nav);
+    if (!strip) return;
+    const [prev, next] = nav.querySelectorAll('button');
+    const step = () => {
+      const card = strip.children[0];
+      const gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+      return card.getBoundingClientRect().width + gap;
+    };
+    const update = () => {
+      const max = strip.scrollWidth - strip.clientWidth - 2;
+      prev.disabled = strip.scrollLeft <= 2;
+      next.disabled = strip.scrollLeft >= max;
+    };
+    nav.addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      strip.scrollBy({ left: step() * +b.dataset.dir, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    strip.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    addEventListener('resize', update);
+    update();
+  });
+
+  /* FAQ accordion: all closed by default, one open at a time */
+  const faqItems = [...document.querySelectorAll('.faq__item')];
+  faqItems.forEach((item) => {
+    const btn = item.querySelector('.faq__q button');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      faqItems.forEach((other) => {
+        other.classList.remove('is-open');
+        other.querySelector('.faq__q button').setAttribute('aria-expanded', 'false');
+      });
+      item.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+
   /* subscribe form */
   const form = document.querySelector('.form');
   if (form) {
