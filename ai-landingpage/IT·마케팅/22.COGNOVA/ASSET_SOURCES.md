@@ -6,3 +6,9 @@
 - Card/section badge icons (asterisk, burst, blob, dots-cluster, squiggle-arrow) in Services/How-We-Move/Work are original inline SVG symbols authored to match the sticker-badge mood board the user attached (Pinterest refs), not sourced from Clipart Korea — flagged as a substitution since that would have required a live, user-driven Clipart Korea login this session didn't have.
 - `img/sticker-*.png` (burst, wave, star, cloud, pinwheel-lime, pinwheel-blue, octagon, spark) — cropped from the shared design-source library at `0. 공통 자료/0. 디자인 소스/ai/tiw036a70203.ai` (a licensed Clipart Korea sticker sheet, `alphabrother` membership), then recolored programmatically (PIL/numpy) to the brand's blue/lime/ink palette. Used for the Capabilities section's masked circle graphics, the How-We-Move end-of-row icons, the Work section's card accents, and the AI Ops spinning graphic.
 - The Work section's "Allverse Pay" card gift-box illustration is an original composition (CSS box/lid/ribbon + one of the sticker cutouts peeking out), built after a Clipart Korea search (logged in as `alphabrother`, both keyword search and the built-in image-similarity upload search) did not turn up a licensed asset matching the attached "character peeking out of a gift box" reference closely enough to use directly.
+- Capabilities section cards (2026-09-29, redesigned to a 4×2 tagged-card grid) — ClipartKorea membership assets downloaded from the logged-in `alphabrother` account, cropped/resized with PIL:
+  - `img/cap-ai-handshake.jpg` — `cm080974626` (robot & human hand clasp)
+  - `img/cap-xr-headset.jpg` — `cb0970001993` (VR headset + controllers, white background)
+  - `img/cap-product-blocks.jpg` — `td02480002059` (stacked 3D cubes, white background)
+  - `img/cap-analytics-person.jpg` — `td05020086710` (woman with tablet & analytics overlay)
+  - The swirl line graphics on the solid-color cards are original inline SVG.
