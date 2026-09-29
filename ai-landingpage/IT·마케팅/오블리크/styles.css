@@ -561,11 +561,14 @@ button{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;cu
   flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
   width:32px; height:32px;
-  transition:transform .5s var(--ease-out-expo);
+  border-radius:50%;
+  border:1px solid var(--paper-fg);
+  transition:transform .5s var(--ease-out-expo), border-color .3s var(--ease-out-expo);
 }
-.journal__post-arrow svg{width:16px; height:9px; fill:none; stroke:var(--paper-fg); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; transition:stroke .3s var(--ease-out-expo)}
+.journal__post-arrow svg{width:12px; height:7px; fill:none; stroke:var(--paper-fg); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; transition:stroke .3s var(--ease-out-expo)}
 .journal__post-toggle[aria-expanded="true"] .journal__post-arrow{transform:rotate(180deg)}
 @media (hover:hover){
+  .journal__post-toggle:hover .journal__post-arrow{border-color:var(--accent)}
   .journal__post-toggle:hover .journal__post-arrow svg{stroke:var(--accent)}
 }
 .journal__post-panel{height:0; overflow:hidden; transition:height .5s var(--ease-out-expo)}
