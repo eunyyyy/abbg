@@ -64,13 +64,6 @@
   fillRow($('.cloud__row--top'), 1);
   fillRow($('.cloud__row--bottom'), 2);
 
-  /* ---------- band icons ---------- */
-  $$('.band__icons li').forEach((li, i) => {
-    const seed = Math.sin((i + 2) * 12.9898) * 43758.5453; const r = seed - Math.floor(seed);
-    li.style.setProperty('--x', (4 + i * 8 + r * 3) + '%');
-    li.style.setProperty('--y', (18 + r * 70) + 'px');
-    li.dataset.r = r.toFixed(3);
-  });
 
   /* ---------- reveal observer ---------- */
   const revealSel = '[data-words],.reveal,.reveal-stagger,.cascade,.cloud';
@@ -242,7 +235,7 @@
   }
 
   /* focus grid */
-  const focus = $('.focus'), fCard = $('.focus__card'), fApps = $('.focus__apps');
+  const focus = $('.focus'), fCard = $('.focus__card');
   const fItems = $$('.focus__grid > li');
   function focusFrame() {
     const r = focus.getBoundingClientRect(), vh = innerHeight;
@@ -253,7 +246,6 @@
     const ci = visible.findIndex(li => li.classList.contains('focus__main'));
     const cr = Math.floor(ci / cols), cc = ci % cols;
     fCard.style.setProperty('--fs', lerp(mob ? 2.1 : 2.6, 1.22, ease(clamp(p / .55))).toFixed(3));
-    fApps.style.setProperty('--am', (1 + .25 * Math.sin(clamp(p / .3) * Math.PI)).toFixed(3));
     visible.forEach((li, i) => {
       if (i === ci) return;
       const d = Math.hypot(Math.floor(i / cols) - cr, (i % cols) - cc);
@@ -261,17 +253,6 @@
     });
   }
 
-  /* band icons */
-  const band = $('.band'), bandIcons = $$('.band__icons li');
-  function bandFrame() {
-    const r = band.getBoundingClientRect(), vh = innerHeight;
-    const p = clamp((vh - r.top) / (vh + r.height));
-    bandIcons.forEach(li => {
-      const k = +li.dataset.r;
-      li.style.setProperty('--iy', (-(p - .3) * (40 + k * 90)).toFixed(1) + 'px');
-      li.style.setProperty('--ir', ((p - .5) * (k - .5) * 160).toFixed(1) + 'deg');
-    });
-  }
 
   function stripFrame() {
     if (!strip || !bar) return;
@@ -282,7 +263,7 @@
 
   const map = new Map([
     [statement, statementFrame], [gwMedia, gatewayFrame], [cloud, cloudFrame],
-    [bentoCol, bentoFrame], [focus, focusFrame], [band, bandFrame]
+    [bentoCol, bentoFrame], [focus, focusFrame]
   ]);
 
   function loop(now) {
