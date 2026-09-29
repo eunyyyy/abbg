@@ -8,7 +8,7 @@
 <link rel="preload" as="image" href="img/01_hero.jpg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/light/style.css">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -32,7 +32,9 @@
   <!-- 01 HERO -->
   <section class="hero" data-theme="light" aria-label="메인">
     <div class="hero__media" data-parallax="0.45">
-      <img src="img/01_hero.jpg" alt="안개가 내려앉은 새벽 호수와 단풍 숲" fetchpriority="high">
+      <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="img/01_hero.jpg" aria-hidden="true">
+        <source src="img/01_hero.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero__copy" data-parallax="0.28">
       <h1 class="hero__title" data-split>쉼의 <em>격을</em> 높이다</h1>
@@ -159,6 +161,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

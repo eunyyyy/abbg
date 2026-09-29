@@ -30,6 +30,10 @@
   }
   requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('is-ready')));
 
+  /* hero 영상: 모션 줄이기 설정 시 정지 */
+  const heroVideo = $('.hero__video');
+  if (heroVideo && reduce) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
+
   /* ---------- intro: 스크롤에 따라 밝아지는 문장 ---------- */
   const lit = $('[data-lightup]');
   let litChars = [];
