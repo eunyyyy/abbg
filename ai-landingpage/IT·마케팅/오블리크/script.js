@@ -269,4 +269,31 @@
     });
   }
 
+  /* ---------------------------------------------------- news dropdown --- */
+  document.querySelectorAll('.journal__post-toggle').forEach(function(btn){
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) return;
+
+    btn.addEventListener('click', function(){
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen){
+        panel.style.height = panel.scrollHeight + 'px';
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){ panel.style.height = '0px'; });
+        });
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        panel.style.height = panel.scrollHeight + 'px';
+      }
+    });
+
+    panel.addEventListener('transitionend', function(e){
+      if (e.propertyName !== 'height') return;
+      if (btn.getAttribute('aria-expanded') === 'true'){
+        panel.style.height = 'auto';
+      }
+    });
+  });
+
 })();

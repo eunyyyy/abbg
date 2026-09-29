@@ -531,8 +531,15 @@ button{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;cu
   font-size:clamp(2.25rem, 4.4vw, 3.4rem);
   line-height:1;
 }
-.journal__posts{display:flex; flex-direction:column; gap:64px}
+.journal__posts{display:flex; flex-direction:column}
 @media (max-width:719px){ .journal__posts{margin-top:40px} }
+.journal__post{border-top:1px solid rgba(20,18,15,.14)}
+.journal__post:last-child{border-bottom:1px solid rgba(20,18,15,.14)}
+.journal__post-toggle{
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  width:100%; padding:28px 0;
+  text-align:left; cursor:pointer;
+}
 .journal__post-title{
   font-family:var(--font-latin);
   font-weight:600;
@@ -550,18 +557,20 @@ button{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;cu
 @media (hover:hover){
   .underline-hover:hover::after{transform:scaleX(0); transform-origin:0 0}
 }
-.journal__post-content{margin-top:16px; font-size:16px; color:var(--paper-fg-muted)}
-.journal__post-link{
+.journal__post-arrow{
+  flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
-  margin-top:28px; width:32px; height:32px;
+  width:32px; height:32px;
+  transition:transform .5s var(--ease-out-expo);
 }
-.journal__post-link svg{width:32px; height:32px; fill:none; stroke:var(--paper-fg); stroke-width:1.1}
-.journal__svg-circle{stroke-dasharray:98; stroke-dashoffset:98; transition:stroke-dashoffset .9s var(--ease-out-expo)}
-.journal__svg-next{stroke-dasharray:16; stroke-dashoffset:16; transition:stroke-dashoffset .9s var(--ease-out-expo) .05s}
+.journal__post-arrow svg{width:16px; height:9px; fill:none; stroke:var(--paper-fg); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; transition:stroke .3s var(--ease-out-expo)}
+.journal__post-toggle[aria-expanded="true"] .journal__post-arrow{transform:rotate(180deg)}
 @media (hover:hover){
-  .journal__post:hover .journal__svg-circle,
-  .journal__post:hover .journal__svg-next{stroke-dashoffset:0}
+  .journal__post-toggle:hover .journal__post-arrow svg{stroke:var(--accent)}
 }
+.journal__post-panel{height:0; overflow:hidden; transition:height .5s var(--ease-out-expo)}
+.journal__post-panel-inner{padding-bottom:28px}
+.journal__post-content{font-size:16px; line-height:1.7; color:var(--paper-fg-muted); max-width:56ch}
 .journal__reel{
   position:sticky;
   top:0;
