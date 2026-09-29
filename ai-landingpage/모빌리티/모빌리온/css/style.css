@@ -1048,6 +1048,7 @@ section{ position:relative; scroll-margin-top:var(--header-h); }
   pointer-events:none;
 }
 .partners .container{ position:relative; z-index:1; }
+.partners .section-head{ max-width:none; }
 
 .partner-marquee{
   position:relative;
