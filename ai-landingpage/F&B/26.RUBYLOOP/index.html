@@ -1,0 +1,359 @@
+<!--
+variant:
+typo=geometric-heavy (Paperlogy 800) + humanist body (Spoqa Han Sans Neo)
+image=high (cutout donuts over red, photo cards on cream)
+color=primary (ruby red) + secondary (cream)
+
+image-radius=soft
+card-radius=soft
+button-radius=round
+
+border=hairline
+button-style=solid+outline
+fw=800/400
+spacing=space-section
+
+Layout Declaration
+Hero          full-bleed red, centered headline, cutout donuts scattered at edges, floating strawberries
+Stats         12 four-up numbers on cream
+Category      12 four image cards, label bottom-left
+Story         5-7 (copy / rounded photo)
+Roll          full-bleed thumbnail marquee (circle + square alternating), one marquee
+Menu          full-bleed red, 4 heading + 8 drag strip of product cards (no arrows)
+Made          full-bleed centered statement, cutout donuts bleeding off both edges
+Reviews       4 heading + 8 drag strip of quote cards (no arrows)
+FAQ           centered narrow list, answers always open (no accordion)
+Subscribe     full-bleed red band, 6 oversized cutout / 6 form
+Footer        12 cream, info + SNS, giant wordmark
+-->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rubyloop | 성수동 딸기 도넛</title>
+<meta name="description" content="루비룹은 매일 새벽 반죽하고 주문 당일 튀겨 보내는 성수동 수제 도넛 브랜드입니다. 논산 딸기로 만든 필링 도넛과 선물 박스를 만나보세요.">
+<meta name="theme-color" content="#b3141c">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="preload" as="image" href="img/hero-01.webp">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<header class="gnb" id="gnb">
+  <div class="container gnb__inner">
+    <nav class="gnb__nav gnb__nav--left" aria-label="주요 메뉴">
+      <a href="#menu">메뉴</a>
+      <a href="#story">브랜드</a>
+      <a href="#made">만드는 방식</a>
+    </nav>
+    <a href="#top" class="logo" aria-label="Rubyloop 홈">Rubyloop</a>
+    <nav class="gnb__nav gnb__nav--right" aria-label="보조 메뉴">
+      <a href="#reviews">후기</a>
+      <a href="#faq">자주 묻는 질문</a>
+      <a href="#subscribe">소식 받기</a>
+    </nav>
+    <button class="gnb__toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <nav class="drawer__nav" aria-label="모바일 메뉴">
+    <a href="#menu">메뉴</a>
+    <a href="#story">브랜드</a>
+    <a href="#made">만드는 방식</a>
+    <a href="#reviews">후기</a>
+    <a href="#faq">자주 묻는 질문</a>
+    <a href="#subscribe">소식 받기</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__berries" aria-hidden="true">
+    <img class="berry berry--a" src="img/berry-01.webp" alt="" data-depth="0.9">
+    <img class="berry berry--b" src="img/berry-02.webp" alt="" data-depth="1.4">
+    <img class="berry berry--c" src="img/berry-04.webp" alt="" data-depth="0.6">
+  </div>
+  <div class="container hero__copy">
+    <p class="hero__sub">매일 새벽 반죽하고, 주문 당일 튀겨 보냅니다</p>
+    <h1 class="hero__title"><span class="line"><span>성수동이 사랑한 딸기 도넛,</span></span><span class="line"><span>오늘 튀겨 바로 보내요</span></span></h1>
+    <div class="hero__cta">
+      <a href="#menu" class="btn btn--light">오늘의 메뉴</a>
+      <a href="#story" class="btn btn--ghost">브랜드 이야기</a>
+    </div>
+  </div>
+  <div class="hero__donuts" aria-hidden="true">
+    <img class="donut donut--1" src="img/hero-01.webp" alt="" data-depth="0.5">
+    <img class="donut donut--2" src="img/hero-02.webp" alt="" data-depth="0.8">
+    <img class="donut donut--3" src="img/hero-03.webp" alt="" data-depth="0.4">
+    <img class="donut donut--4" src="img/hero-04.webp" alt="" data-depth="1">
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" aria-label="루비룹 숫자">
+  <div class="container stats__grid">
+    <div class="stat" data-reveal><strong><span data-count="41800">0</span>+</strong><span>누적 배송 도넛</span></div>
+    <div class="stat" data-reveal><strong><span data-count="4.9" data-dec="1">0</span></strong><span>평균 별점</span></div>
+    <div class="stat" data-reveal><strong><span data-count="1260">0</span>kg</strong><span>올해 사용한 논산 딸기</span></div>
+    <div class="stat" data-reveal><strong><span data-count="100">0</span>%</strong><span>매장 수제 반죽</span></div>
+  </div>
+</section>
+
+<!-- CATEGORY -->
+<section class="category" aria-label="도넛 카테고리">
+  <div class="container category__grid">
+    <a href="#menu" class="cat" data-reveal>
+      <img src="img/cat-01.webp" alt="초콜릿과 스프링클을 올린 시그니처 도넛" loading="lazy">
+      <span class="cat__label">시그니처 도넛</span>
+    </a>
+    <a href="#menu" class="cat" data-reveal>
+      <img src="img/cat-02.webp" alt="딸기를 올린 필링 도넛" loading="lazy">
+      <span class="cat__label">딸기 필링 도넛</span>
+    </a>
+    <a href="#menu" class="cat" data-reveal>
+      <img src="img/cat-03.webp" alt="슈가 파우더를 뿌린 미니 도넛" loading="lazy">
+      <span class="cat__label">미니 슈가 도넛</span>
+    </a>
+    <a href="#menu" class="cat" data-reveal>
+      <img src="img/cat-04.webp" alt="여섯 개가 담긴 도넛 선물 박스" loading="lazy">
+      <span class="cat__label">선물 박스</span>
+    </a>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="container story__grid">
+    <div class="story__copy" data-reveal>
+      <h2 class="title"><em>루비룹</em>과 반죽 팀</h2>
+      <p>루비룹은 2019년 성수동의 작은 주방에서 시작했습니다. 정하람 대표와 반죽 책임 오지민 파티시에가 매일 새벽 네 시에 반죽을 치고, 그날 만든 만큼만 판매합니다.</p>
+      <p>보존료 없이 우유와 버터, 논산 딸기로 만든 잼을 씁니다. 루비룹 도넛을 고르는 일은 동네 주방 하나를 응원하는 일이기도 합니다.</p>
+      <a href="#made" class="btn btn--line">만드는 방식 보기</a>
+    </div>
+    <figure class="story__media" data-reveal>
+      <img src="img/story-01.webp" alt="진열대 앞에서 웃고 있는 루비룹의 두 제빵사" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<!-- ROLL (marquee) -->
+<section class="roll" aria-label="루비룹 도넛 사진">
+  <div class="roll__track">
+    <ul class="roll__list">
+      <li class="is-square"><img src="img/roll-01.webp" alt="" loading="lazy"></li>
+      <li class="is-circle"><img src="img/roll-02.webp" alt="" loading="lazy"></li>
+      <li class="is-square"><img src="img/roll-03.webp" alt="" loading="lazy"></li>
+      <li class="is-circle"><img src="img/roll-04.webp" alt="" loading="lazy"></li>
+      <li class="is-square"><img src="img/roll-05.webp" alt="" loading="lazy"></li>
+      <li class="is-circle"><img src="img/roll-06.webp" alt="" loading="lazy"></li>
+      <li class="is-square"><img src="img/roll-07.webp" alt="" loading="lazy"></li>
+      <li class="is-circle"><img src="img/roll-08.webp" alt="" loading="lazy"></li>
+    </ul>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="menu__inner">
+    <div class="menu__head" data-reveal>
+      <p class="menu__sub">매일 아침 여섯 가지만 만듭니다</p>
+      <h2 class="title">오늘의 도넛</h2>
+      <p class="menu__hint"><i class="ph ph-hand-swipe-right" aria-hidden="true"></i>옆으로 끌어서 더 보기</p>
+    </div>
+    <div class="menu__strip drag" data-drag>
+      <article class="card">
+        <div class="card__img"><img src="img/menu-01.webp" alt="클래식 글레이즈드 도넛 세 개" loading="lazy"></div>
+        <div class="card__body">
+          <div class="card__row"><h3>클래식 글레이즈드</h3><span class="card__price">3,200원</span></div>
+          <p>우유 반죽에 얇은 설탕 글레이즈를 입혔어요.</p>
+          <a href="#contact" class="card__btn">주문하기</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="img/menu-02.webp" alt="슈가 파우더를 뿌린 링 도넛" loading="lazy"></div>
+        <div class="card__body">
+          <div class="card__row"><h3>슈가 파우더 링</h3><span class="card__price">3,000원</span></div>
+          <p>겉은 바삭하고 속은 폭신한 기본 링 도넛.</p>
+          <a href="#contact" class="card__btn">주문하기</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="img/menu-03.webp" alt="초콜릿 스프링클 도넛" loading="lazy"></div>
+        <div class="card__body">
+          <div class="card__row"><h3>초코 스프링클</h3><span class="card__price">3,800원</span></div>
+          <p>다크 초콜릿 코팅 위에 무지개 스프링클.</p>
+          <a href="#contact" class="card__btn">주문하기</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="img/menu-04.webp" alt="시나몬 설탕 꽈배기" loading="lazy"></div>
+        <div class="card__body">
+          <div class="card__row"><h3>시나몬 꽈배기</h3><span class="card__price">2,800원</span></div>
+          <p>시나몬 설탕을 듬뿍 굴린 쫀득한 꽈배기.</p>
+          <a href="#contact" class="card__btn">주문하기</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="img/menu-05.webp" alt="라즈베리 잼이 흐르는 베를리너 도넛" loading="lazy"></div>
+        <div class="card__body">
+          <div class="card__row"><h3>라즈베리 베를리너</h3><span class="card__price">4,200원</span></div>
+          <p>반으로 가르면 새콤한 잼이 흘러나와요.</p>
+          <a href="#contact" class="card__btn">주문하기</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="img/menu-06.webp" alt="한 입 베어 문 초코 크림 도넛" loading="lazy"></div>
+        <div class="card__body">
+          <div class="card__row"><h3>초코 크림 필드</h3><span class="card__price">4,000원</span></div>
+          <p>폭신한 반죽 속을 초코 크림으로 채웠어요.</p>
+          <a href="#contact" class="card__btn">주문하기</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MADE -->
+<section class="made" id="made">
+  <img class="made__side made__side--l" src="img/made-01.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="made__side made__side--r" src="img/made-02.webp" alt="" aria-hidden="true" loading="lazy">
+  <div class="container made__copy" data-reveal>
+    <h2 class="title">반죽부터 포장까지<br><em>루비룹의 방식</em></h2>
+    <p>공장이 아닌 매장 주방에서 하나씩 손으로 만듭니다. 전날 밤 저온에서 숙성한 반죽을 새벽에 모양 잡고, 주문이 들어온 날 아침에 튀깁니다. 잼은 매주 논산에서 받아 온 딸기로 직접 끓이고, 식힌 도넛은 종이 트레이에 한 칸씩 담아 당일 출발합니다.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews__inner">
+    <div class="reviews__head" data-reveal>
+      <h2 class="title">먹어본 분들의<br>이야기</h2>
+      <p>성수동 단골부터 첫 주문 고객까지 남겨 주신 후기입니다.</p>
+    </div>
+    <div class="reviews__strip drag" data-drag>
+      <blockquote class="quote">
+        <p>택배로 받았는데도 반죽이 전혀 질기지 않았어요. 딸기 필링은 시판 잼이랑 확실히 달라요.</p>
+        <footer><strong>김나래</strong><span>서울 성동구</span></footer>
+        <i class="ph-bold ph-quotes quote__mark" aria-hidden="true"></i>
+      </blockquote>
+      <blockquote class="quote">
+        <p>회사 간식으로 선물 박스를 주문했는데 상자 열자마자 다들 사진부터 찍었어요.</p>
+        <footer><strong>박도윤</strong><span>경기 성남시</span></footer>
+        <i class="ph-bold ph-quotes quote__mark" aria-hidden="true"></i>
+      </blockquote>
+      <blockquote class="quote">
+        <p>시나몬 꽈배기는 매장에서 먹던 맛 그대로예요. 에어프라이어에 2분 데우니 더 좋았어요.</p>
+        <footer><strong>이서진</strong><span>서울 마포구</span></footer>
+        <i class="ph-bold ph-quotes quote__mark" aria-hidden="true"></i>
+      </blockquote>
+      <blockquote class="quote">
+        <p>아이 생일에 미니 도넛을 맞췄어요. 달기가 적당해서 어른들이 더 많이 먹었어요.</p>
+        <footer><strong>최유나</strong><span>인천 연수구</span></footer>
+        <i class="ph-bold ph-quotes quote__mark" aria-hidden="true"></i>
+      </blockquote>
+      <blockquote class="quote">
+        <p>라즈베리 베를리너는 잼이 넘칠 만큼 들어 있어요. 한 달째 매주 시키고 있습니다.</p>
+        <footer><strong>한지후</strong><span>서울 송파구</span></footer>
+        <i class="ph-bold ph-quotes quote__mark" aria-hidden="true"></i>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container faq__inner">
+    <div class="faq__head" data-reveal>
+      <h2 class="title">자주 묻는 질문</h2>
+      <p>배송부터 보관까지 가장 많이 받은 질문을 모았어요.</p>
+    </div>
+    <dl class="faq__list">
+      <div class="faq__item" data-reveal>
+        <dt><span>도넛은 얼마나 신선하게 도착하나요?</span><i class="ph-bold ph-minus" aria-hidden="true"></i></dt>
+        <dd>주문 당일 아침에 튀겨 오후 두 시에 출고합니다. 서울과 경기 지역은 대부분 다음 날 오전에 받아보실 수 있어요.</dd>
+      </div>
+      <div class="faq__item" data-reveal>
+        <dt><span>받은 뒤 어떻게 보관하면 좋을까요?</span><i class="ph-bold ph-minus" aria-hidden="true"></i></dt>
+        <dd>상온에서는 하루, 냉동실에서는 2주까지 보관할 수 있어요. 드시기 전 에어프라이어 160도에서 2분 데우면 가장 맛있습니다.</dd>
+      </div>
+      <div class="faq__item" data-reveal>
+        <dt><span>딸기 필링은 1년 내내 판매하나요?</span><i class="ph-bold ph-minus" aria-hidden="true"></i></dt>
+        <dd>논산 딸기가 나오는 12월부터 5월까지는 생딸기 잼을, 그 외 기간에는 제철에 끓여 둔 저온 보관 잼을 사용합니다.</dd>
+      </div>
+      <div class="faq__item" data-reveal>
+        <dt><span>단체 주문이나 선물 문구 인쇄가 가능한가요?</span><i class="ph-bold ph-minus" aria-hidden="true"></i></dt>
+        <dd>박스 30개 이상은 원하는 날짜에 맞춰 준비하고, 상자 띠지에 짧은 문구를 넣어 드립니다. 최소 사흘 전에 연락해 주세요.</dd>
+      </div>
+      <div class="faq__item" data-reveal>
+        <dt><span>매장에서 직접 구매할 수도 있나요?</span><i class="ph-bold ph-minus" aria-hidden="true"></i></dt>
+        <dd>성수동 매장은 화요일부터 일요일까지 오전 8시에 문을 열고, 그날 준비한 도넛이 모두 팔리면 마감합니다.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe" id="subscribe">
+  <div class="container subscribe__grid">
+    <div class="subscribe__media" aria-hidden="true">
+      <img src="img/news-01.webp" alt="" loading="lazy">
+    </div>
+    <div class="subscribe__copy" data-reveal>
+      <p class="subscribe__badge">첫 주문 10% 할인</p>
+      <h2 class="title">새 메뉴 소식과<br>할인 쿠폰을 받아보세요</h2>
+      <p>계절 한정 도넛과 선물 박스 오픈 소식을 가장 먼저 보내 드려요. 구독하면 첫 주문 쿠폰을 바로 드립니다.</p>
+      <form class="form" novalidate>
+        <label for="email">이메일 주소</label>
+        <div class="form__row">
+          <input id="email" name="email" type="email" placeholder="name@email.com" autocomplete="email" required aria-describedby="email-msg">
+          <button type="submit" class="btn btn--light">구독하기</button>
+        </div>
+        <p class="form__msg" id="email-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="#top" class="logo logo--dark" aria-label="Rubyloop 홈">Rubyloop</a>
+        <p>성수동 주방에서 매일 튀기는 딸기 도넛.</p>
+        <ul class="footer__sns">
+          <li><a href="#top" aria-label="인스타그램"><i class="ph ph-instagram-logo"></i></a></li>
+          <li><a href="#top" aria-label="유튜브"><i class="ph ph-youtube-logo"></i></a></li>
+          <li><a href="#top" aria-label="틱톡"><i class="ph ph-tiktok-logo"></i></a></li>
+        </ul>
+      </div>
+      <dl class="footer__info">
+        <div><dt>상호</dt><dd>(주)루비룹</dd></div>
+        <div><dt>대표자</dt><dd>정하람</dd></div>
+        <div><dt>사업자등록번호</dt><dd>206 88 41527</dd></div>
+        <div><dt>주소</dt><dd>서울특별시 성동구 연무장5길 19, 1층</dd></div>
+        <div><dt>주문 전화</dt><dd>02 468 3170</dd></div>
+        <div><dt>팩스</dt><dd>02 468 3171</dd></div>
+        <div><dt>이메일</dt><dd>hello@rubyloop.kr</dd></div>
+      </dl>
+    </div>
+    <p class="footer__word" aria-hidden="true"><span>R</span><span>u</span><span>b</span><span>y</span><span>l</span><span>o</span><span>o</span><span>p</span></p>
+    <img class="footer__berry" src="img/berry-03.webp" alt="" aria-hidden="true" loading="lazy">
+    <p class="footer__copy">© 2026 Rubyloop Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
