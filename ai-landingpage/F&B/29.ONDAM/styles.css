@@ -1,11 +1,21 @@
 /* =========================================================
    ONDAM 온담양조 · 와인, 과실주, 증류주
-   Display: Nanum Myeongjo (subset, 28px 이상 타이틀 전용) / Body: Nanum Gothic (subset)
+   Display: 전주완판본 JeonjuWanpanbon (28px 이상 타이틀 전용) / Body: Nanum Gothic (subset)
    ========================================================= */
 @font-face{
-  font-family:'Nanum Myeongjo Sub';
-  src:url('fonts/nanummyeongjo-sub.woff2') format('woff2');
-  font-weight:400; font-style:normal; font-display:swap;
+  font-family:'JeonjuWanpanbon';
+  src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Jeonju_gakL.woff') format('woff');
+  font-weight:300; font-display:swap;
+}
+@font-face{
+  font-family:'JeonjuWanpanbon';
+  src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Jeonju_gakR.woff') format('woff');
+  font-weight:normal; font-display:swap;
+}
+@font-face{
+  font-family:'JeonjuWanpanbon';
+  src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Jeonju_gakB.woff') format('woff');
+  font-weight:700; font-display:swap;
 }
 @font-face{
   font-family:'Nanum Gothic Sub';
@@ -48,7 +58,7 @@
   --fs-small:16px;
   --fs-foot:14px;
 
-  --serif:'Nanum Myeongjo Sub', 'Nanum Myeongjo', serif;
+  --serif:'JeonjuWanpanbon', serif;
   --sans:'Nanum Gothic Sub', 'Nanum Gothic', system-ui, sans-serif;
   --ease:cubic-bezier(.16, 1, .3, 1);
   --ease-io:cubic-bezier(.76, 0, .24, 1);
