@@ -21,35 +21,25 @@
 
   var spin=document.getElementById('vrSpin');
   if(visual&&spin){
-    var layers=[].slice.call(spin.querySelectorAll('img'));
-    var keys=layers.map(function(el){return {el:el,a:Number(el.dataset.angle),m:el.hasAttribute('data-mirror')};});
-    keys.push({el:layers[0],a:360,m:false});
-    var target=0,cur=0,raf=null,dragX=null;
+    var keys=[].slice.call(spin.querySelectorAll('img')).map(function(el){return {el:el,a:Number(el.dataset.angle)};});
+    var MIN=-30,MAX=30,BLEND=5,target=0,cur=0,raf=null,dragX=null;
     var smooth=function(t){return t*t*(3-2*t);};
     var render=function(){
-      var a=((cur%360)+360)%360,k=0;
-      while(k<keys.length-2&&a>=keys[k+1].a)k++;
-      var A=keys[k],B=keys[k+1],t=(a-A.a)/(B.a-A.a);
-      var fade=smooth(Math.min(Math.max((t-.4)/.2,0),1));
-      var turn=(t-.5)*-24;
-      layers.forEach(function(el){el.style.opacity=0;});
-      var paint=function(K,op,rot){K.el.style.opacity=op;K.el.style.transform='rotateY('+rot+'deg)'+(K.m?' scaleX(-1)':'');};
-      if(A.el===B.el){paint(A,1,turn);}else{paint(A,1-fade,turn);paint(B,fade,turn+24);if(fade<.02)paint(A,1,turn);}
+      var mid=(keys[0].a+keys[1].a)/2,f=smooth(Math.min(Math.max((cur-(mid-BLEND))/(BLEND*2),0),1));
+      keys.forEach(function(k,i){var op=i===0?1-f:f;k.el.style.opacity=op;k.el.style.transform='rotateY('+(-(cur-k.a)*.55)+'deg)';});
     };
-    var seg=function(a){a=((a%360)+360)%360;var k=0;while(k<keys.length-2&&a>=keys[k+1].a)k++;return [keys[k].a,keys[k+1].a];};
-    var settle=function(){var off=cur-(((cur%360)+360)%360),g=seg(cur),t=(cur-off-g[0])/(g[1]-g[0]);if(t>.4&&t<.6)target=off+g[0]+(g[1]-g[0])*(t<.5?.4:.6);};
-    var tick=function(){var diff=target-cur,step=Math.min(Math.max(Math.abs(diff)*.045,.35),3);cur+=Math.abs(diff)<=step?diff:(diff>0?step:-step);if(Math.abs(target-cur)<1.5)settle();if(Math.abs(target-cur)<.05)cur=target;render();raf=Math.abs(target-cur)>0?requestAnimationFrame(tick):null;};
-    var go=function(v,wrap){if(wrap){if(cur-v>180)cur-=360;else if(v-cur>180)cur+=360;}target=v;if(!raf&&!reduce)raf=requestAnimationFrame(tick);if(reduce){cur=target;render();}};
-    layers.forEach(function(el){el.classList.remove('is-active');});
-    render();
+    var settle=function(){var mid=(keys[0].a+keys[1].a)/2;if(Math.abs(target-mid)<BLEND)target=target<mid?mid-BLEND:mid+BLEND;};
+    var tick=function(){var diff=target-cur,step=Math.min(Math.max(Math.abs(diff)*.05,.08),.9);cur+=Math.abs(diff)<=step?diff:(diff>0?step:-step);if(Math.abs(target-cur)<.6)settle();render();raf=target!==cur?requestAnimationFrame(tick):null;};
+    var go=function(v){target=Math.min(Math.max(v,MIN),MAX);if(reduce){cur=target;settle();cur=target;render();return;}if(!raf)raf=requestAnimationFrame(tick);};
+    cur=target=MIN*.6;render();
     visual.addEventListener('pointermove',function(e){
       var r=visual.getBoundingClientRect();
-      if(e.pointerType==='mouse'){go(Math.min(Math.max((e.clientX-r.left)/r.width,0),1)*360,true);}
-      else if(dragX!==null){go(target+(e.clientX-dragX)*1.2);dragX=e.clientX;}
+      if(e.pointerType==='mouse'){go(MIN+Math.min(Math.max((e.clientX-r.left)/r.width,0),1)*(MAX-MIN));}
+      else if(dragX!==null){go(target+(e.clientX-dragX)*.25);dragX=e.clientX;}
     });
     visual.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')dragX=e.clientX;});
     ['pointerup','pointercancel'].forEach(function(n){visual.addEventListener(n,function(){dragX=null;});});
-    visual.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){var a=((cur%360)+360)%360;cur=a;go(a>180?360:0);}});
+    visual.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')go(MIN*.6);});
   }
 
   var mascot=document.getElementById('mascot');

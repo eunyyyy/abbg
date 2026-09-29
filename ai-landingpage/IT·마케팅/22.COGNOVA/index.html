@@ -6,7 +6,7 @@
   <meta name="description" content="코그노바는 비즈니스의 맥락을 읽고 교육·커머스·산업 현장을 몰입형 가상 경험으로 설계하는 VR·XR 파트너입니다.">
   <link rel="icon" href="img/cognova-mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="styles.css?v=20260929-6">
+  <link rel="stylesheet" href="styles.css?v=20260929-8">
 </head>
 <body>
 <!-- variant: typo=loud · image=medium · color=dominant · radius=round · border=hairline · fw=700/400 · spacing=space-10
@@ -49,9 +49,9 @@ Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Capabilities 3-3-3-3 x2 / Marquee / Metho
         <h1 class="hero-title reveal"><span>Step inside.</span><span>Build <em>worlds.</em></span></h1>
         <div class="hero-bottom reveal"><p>VR로 바꾸는 건 화면이 아니라,<br>경험하는 방식입니다.</p></div>
       </div>
-      <div class="hero-visual" id="heroVisual" aria-label="커서 위치에 따라 360도 회전하는 코그노바 VR 헤드셋 그래픽">
+      <div class="hero-visual" id="heroVisual" aria-label="커서 위치에 따라 좌우로 회전하는 코그노바 VR 헤드셋 그래픽">
         <div class="visual-grid" aria-hidden="true"></div><div class="nova-orbit orbit-a" aria-hidden="true"></div><div class="nova-orbit orbit-b" aria-hidden="true"></div>
-        <div class="vr-spin" id="vrSpin" aria-hidden="true"><img src="img/hero-vr-4.webp" alt="" data-angle="0" class="is-active" width="1000" height="760"><img src="img/hero-vr-3.webp" alt="" data-angle="30" width="1000" height="760"><img src="img/hero-vr-1.webp" alt="" data-angle="75" width="1000" height="760"><img src="img/hero-vr-5.webp" alt="" data-angle="180" width="1000" height="760"><img src="img/hero-vr-1.webp" alt="" data-angle="285" data-mirror width="1000" height="760"><img src="img/hero-vr-2.webp" alt="" data-angle="330" width="1000" height="760"></div>
+        <div class="vr-spin" id="vrSpin" aria-hidden="true"><img src="img/hero-vr-2.webp" alt="" data-angle="-25" width="1000" height="760"><img src="img/hero-vr-3.webp" alt="" data-angle="25" width="1000" height="760"></div>
         <span class="node node-a">IMMERSE</span><span class="node node-b">INTERACT</span><span class="node node-c">SIMULATE</span>
       </div>
     </div>
@@ -66,8 +66,8 @@ Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Capabilities 3-3-3-3 x2 / Marquee / Metho
   </div></section>
 
   <section class="perspective" id="about"><div class="container perspective-grid">
-    <div class="section-intro reveal"><h2>좋은 VR은<br>사용자를<br><em>어지럽히지 않습니다.</em></h2></div>
-    <div class="perspective-body"><p class="lead reveal">우리는 기술의 몰입감을 말하기 전에, 사람이 가상 공간에서 실제로 느끼는 감각을 읽습니다.</p><p class="body-copy reveal">코그노바는 리서치, 공간 경험 설계, 3D·인터랙션 디자인, 실시간 엔진 개발을 한 팀 안에서 연결합니다. 화려한 가상 세계보다 헤드셋을 쓰는 순간 누구나 자연스럽게 움직이고 배우는 경험을 만듭니다.</p>
+    <div class="section-intro reveal"><h2>좋은 VR은<br class="br-d"> 사용자를<br><em>어지럽히지 않습니다.</em></h2></div>
+    <div class="perspective-body"><p class="lead reveal">우리는 기술의 몰입감을 말하기 전에,<br> 사람이 가상 공간에서 실제로<br class="br-m"> 느끼는 감각을 읽습니다.</p><p class="body-copy reveal">코그노바는 리서치, 공간 경험 설계, 3D·인터랙션 디자인,<br class="br-m"> 실시간 엔진 개발을 한 팀 안에서 연결합니다.<br> 화려한 가상 세계보다 헤드셋을 쓰는 순간<br class="br-m"> 누구나 자연스럽게 움직이고 배우는 경험을 만듭니다.</p>
       <div class="principle-list"><article class="principle reveal"><span>01</span><h3>Comfort before spectacle</h3><p>화려함보다 편안한 몰입을 먼저 설계합니다.</p></article><article class="principle reveal"><span>02</span><h3>Presence before polygons</h3><p>그래픽 품질보다 현존감을 설계합니다.</p></article><article class="principle reveal"><span>03</span><h3>Platform before project</h3><p>일회성 콘텐츠보다 확장 가능한 VR 플랫폼을 만듭니다.</p></article></div>
     </div>
   </div></section>
@@ -82,7 +82,7 @@ Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Capabilities 3-3-3-3 x2 / Marquee / Metho
   </div></section>
 
   <section class="services" id="services"><div class="container">
-    <div class="section-head reveal"><h2>Concept to<br>immersive world.</h2><p>기획한 가상 경험이 실제 현장과 비즈니스의 변화로 이어질 때까지 함께합니다.</p></div>
+    <div class="section-head reveal"><h2>Concept to<br>immersive world.</h2><p>기획한 가상 경험이 실제 현장과 비즈니스의<br class="br-m"> 변화로 이어질 때까지 함께합니다.</p></div>
     <div class="cap-grid">
       <article class="cap-card cap-card--blue reveal" data-tilt>
         <svg class="cap-swirl" viewBox="0 0 300 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" d="M262,-24 C300,70 250,168 168,166 C92,164 86,86 142,80 C204,74 214,176 150,244 C104,292 58,322 34,392"/></svg>
@@ -152,5 +152,5 @@ Hero 8-4 / Proof 3-3-3-3 / About 5-7 / Capabilities 3-3-3-3 x2 / Marquee / Metho
   </div>
 </footer>
 <a class="back-to-top" href="#top" aria-label="맨 위로">TOP</a>
-<script src="script.js?v=20260929-6"></script>
+<script src="script.js?v=20260929-8"></script>
 </body></html>
