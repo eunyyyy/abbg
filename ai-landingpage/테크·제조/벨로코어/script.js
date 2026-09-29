@@ -116,7 +116,8 @@
     }
     requestAnimationFrame(step);
   }
-  var countEls = document.querySelectorAll("[data-count]");
+  /* Company caption number counts when the caption appears (see updateExpand) */
+  var countEls = document.querySelectorAll("[data-count]:not(.company__visual-num)");
   if ("IntersectionObserver" in window){
     var countObserver = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
@@ -205,6 +206,19 @@
         var scrollable = rect.height - window.innerHeight;
         var progress = scrollable > 0 ? Math.min(Math.max(-rect.top / scrollable, 0), 1) : 0;
         wrap.style.setProperty("--p", progress);
+        /* caption shows once the image is (nearly) fully expanded — driven by
+           scroll only, with hysteresis so it never flickers at the threshold */
+        var caption = wrap.querySelector(".company__visual-caption");
+        if (caption){
+          var shown = caption.classList.contains("is-shown");
+          if (!shown && progress >= 0.9){
+            caption.classList.add("is-shown");
+            var num = caption.querySelector("[data-count]");
+            if (num && !num.dataset.counted){ num.dataset.counted = "1"; runCountUp(num); }
+          } else if (shown && progress < 0.8){
+            caption.classList.remove("is-shown");
+          }
+        }
       });
     }
     /* keep Company's resting (mobile) image 32px below the CTA button so it

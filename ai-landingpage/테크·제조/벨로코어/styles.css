@@ -371,10 +371,9 @@ body.menu-open{ overflow:hidden; }
   opacity:0; transform:translateY(10px); pointer-events:none;
   transition:opacity .4s var(--ease), transform .4s var(--ease);
 }
-.company__visual:hover .company__visual-caption,
-.company__visual:focus-within .company__visual-caption{ opacity:1; transform:translateY(0); }
+.company__visual-caption.is-shown{ opacity:1; transform:translateY(0); }
 .company__visual-num{ display:block; font-size:38px; font-weight:800; }
-.company__visual-label{ display:block; font-size:18px; letter-spacing:.1em; opacity:.8; margin-top:4px; }
+.company__visual-label{ display:block; font-size:18px; letter-spacing:0; line-height:1.4; margin-top:6px; }
 
 /* =========================================================
    Technology
