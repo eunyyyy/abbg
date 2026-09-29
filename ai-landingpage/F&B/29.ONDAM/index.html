@@ -8,7 +8,7 @@
 <link rel="preload" as="image" href="img/hero_01.jpg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/light/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body class="is-gated">
 
@@ -29,7 +29,6 @@
   <nav class="gnb__nav" aria-label="주요 메뉴">
     <a href="#top">컬렉션</a>
     <a href="#products">제품</a>
-    <a href="#categories">주종</a>
     <a href="#brewery">양조장</a>
     <a href="#stores">매장</a>
   </nav>
@@ -38,7 +37,6 @@
 <nav class="drawer" id="drawer" aria-label="모바일 메뉴">
   <a href="#top">컬렉션</a>
   <a href="#products">제품</a>
-  <a href="#categories">주종</a>
   <a href="#brewery">양조장</a>
   <a href="#stores">매장</a>
 </nav>
@@ -119,58 +117,62 @@
   <!-- 02 인기 제품 -->
   <section class="rail" id="products" aria-label="가장 사랑받는 술">
     <h2 class="title" data-lines><span>가장 사랑받는 술</span></h2>
+    <div class="slash__list slash__list--sm cats" data-hover-list role="tablist" aria-label="주종 선택">
+      <p class="slash__row"><button type="button" role="tab" class="cat__tab is-active" aria-selected="true" data-cat="best">베스트</button><i aria-hidden="true">/</i><button type="button" role="tab" class="cat__tab" aria-selected="false" data-cat="red">레드 와인</button><i aria-hidden="true">/</i><button type="button" role="tab" class="cat__tab" aria-selected="false" data-cat="white">화이트·스파클링</button></p>
+      <p class="slash__row"><button type="button" role="tab" class="cat__tab" aria-selected="false" data-cat="rose">로제 와인</button><i aria-hidden="true">/</i><button type="button" role="tab" class="cat__tab" aria-selected="false" data-cat="spirit">증류주</button><i aria-hidden="true">/</i><button type="button" role="tab" class="cat__tab" aria-selected="false" data-cat="set">선물 세트</button></p>
+    </div>
     <div class="rail__view" data-rail data-cursor="drag">
       <div class="rail__track">
-        <article class="card">
+        <article class="card" data-cat="red">
           <div class="card__top"><span class="card__tag">판매 1위</span></div>
           <figure class="card__img"><img src="img/bottle_01.jpg" alt="영동 캠벨 레드 2024 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">영동 캠벨 레드 2024</h3>
           <p class="card__spec">레드 와인 750ml<br><strong>38,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="set">
           <div class="card__top"><span class="card__tag">인기</span><span class="card__tag card__tag--right">세트</span></div>
           <figure class="card__img"><img src="img/set_01.jpg" alt="캠벨 레드 두 병 세트 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">캠벨 레드 두 병 세트</h3>
           <p class="card__spec">750ml 두 병<br><strong>72,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="rose">
           <div class="card__top"><span class="card__tag">인기</span></div>
           <figure class="card__img"><img src="img/bottle_05.jpg" alt="오미자 로제 2025 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">오미자 로제 2025</h3>
           <p class="card__spec">로제 와인 750ml<br><strong>34,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="spirit">
           <div class="card__top"><span class="card__tag">신제품</span></div>
           <figure class="card__img"><img src="img/bottle_11.jpg" alt="매실 증류주 25 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">매실 증류주 25</h3>
           <p class="card__spec">증류주 500ml<br><strong>29,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="white">
           <div class="card__top"><span class="card__tag">인기</span></div>
           <figure class="card__img"><img src="img/bottle_03.jpg" alt="청포도 샤도네 2024 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">청포도 샤도네 2024</h3>
           <p class="card__spec">화이트 와인 750ml<br><strong>36,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="set">
           <div class="card__top"><span class="card__tag">선물 추천</span><span class="card__tag card__tag--right">세트</span></div>
           <figure class="card__img"><img src="img/set_03.jpg" alt="테이스팅 트리오 세트 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">테이스팅 트리오 세트</h3>
           <p class="card__spec">750ml 세 병<br><strong>99,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="spirit">
           <div class="card__top"><span class="card__tag">인기</span></div>
           <figure class="card__img"><img src="img/bottle_08.jpg" alt="사과 브랜디 40 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">사과 브랜디 40</h3>
           <p class="card__spec">증류주 500ml<br><strong>58,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="spirit">
           <div class="card__top"><span class="card__tag">신제품</span></div>
           <figure class="card__img"><img src="img/bottle_12.jpg" alt="흑보리 소주 32 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">흑보리 소주 32</h3>
@@ -181,17 +183,120 @@
     </div>
     <div class="rail__bar" aria-hidden="true"><i></i></div>
   </section>
-
-  <!-- 03 주종 -->
-  <section class="slash" id="categories" aria-label="주종 안내">
-    <p class="label">주종 안내</p>
-    <div class="slash__list" data-hover-list>
-      <p class="slash__row"><a href="#products">레드 와인</a><i aria-hidden="true">/</i><a href="#products">화이트 와인</a><i aria-hidden="true">/</i><a href="#products">로제 와인</a></p>
-      <p class="slash__row"><a href="#products">스파클링</a><i aria-hidden="true">/</i><a href="#products">머루주</a><i aria-hidden="true">/</i><a href="#products">복분자주</a></p>
-      <p class="slash__row"><a href="#products">오미자주</a><i aria-hidden="true">/</i><a href="#products">매실 증류주</a><i aria-hidden="true">/</i><a href="#products">사과 브랜디</a></p>
-      <p class="slash__row"><a href="#products">보리 소주</a><i aria-hidden="true">/</i><a href="#products">약주</a><i aria-hidden="true">/</i><a href="#products">선물 세트</a></p>
-    </div>
-  </section>
+  <template id="catalog">
+        <article class="card" data-cat="red">
+          <div class="card__top"><span class="card__tag">판매 1위</span></div>
+          <figure class="card__img"><img src="img/bottle_01.jpg" alt="영동 캠벨 레드 2024 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">영동 캠벨 레드 2024</h3>
+          <p class="card__spec">레드 와인 750ml<br><strong>38,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="set">
+          <div class="card__top"><span class="card__tag">인기</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_01.jpg" alt="캠벨 레드 두 병 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">캠벨 레드 두 병 세트</h3>
+          <p class="card__spec">750ml 두 병<br><strong>72,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="rose">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="card__img"><img src="img/bottle_05.jpg" alt="오미자 로제 2025 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">오미자 로제 2025</h3>
+          <p class="card__spec">로제 와인 750ml<br><strong>34,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="spirit">
+          <div class="card__top"><span class="card__tag">신제품</span></div>
+          <figure class="card__img"><img src="img/bottle_11.jpg" alt="매실 증류주 25 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">매실 증류주 25</h3>
+          <p class="card__spec">증류주 500ml<br><strong>29,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="white">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="card__img"><img src="img/bottle_03.jpg" alt="청포도 샤도네 2024 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">청포도 샤도네 2024</h3>
+          <p class="card__spec">화이트 와인 750ml<br><strong>36,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="set">
+          <div class="card__top"><span class="card__tag">선물 추천</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_03.jpg" alt="테이스팅 트리오 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">테이스팅 트리오 세트</h3>
+          <p class="card__spec">750ml 세 병<br><strong>99,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="spirit">
+          <div class="card__top"><span class="card__tag">인기</span></div>
+          <figure class="card__img"><img src="img/bottle_08.jpg" alt="사과 브랜디 40 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">사과 브랜디 40</h3>
+          <p class="card__spec">증류주 500ml<br><strong>58,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="spirit">
+          <div class="card__top"><span class="card__tag">신제품</span></div>
+          <figure class="card__img"><img src="img/bottle_12.jpg" alt="흑보리 소주 32 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">흑보리 소주 32</h3>
+          <p class="card__spec">증류식 소주 500ml<br><strong>27,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="red">
+          <div class="card__top"><span class="card__tag">소고기와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_07.jpg" alt="머루 리저브 2022 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">머루 리저브 2022</h3>
+          <p class="card__spec">레드 와인 750ml<br><strong>45,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="red">
+          <div class="card__top"><span class="card__tag">양고기와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_02.jpg" alt="달빛 머루 드라이 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">달빛 머루 드라이</h3>
+          <p class="card__spec">레드 와인 750ml<br><strong>32,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="red">
+          <div class="card__top"><span class="card__tag">바비큐와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_10.jpg" alt="복분자 레드 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">복분자 레드</h3>
+          <p class="card__spec">과실주 750ml<br><strong>26,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="set">
+          <div class="card__top"><span class="card__tag">선물 추천</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_04.jpg" alt="과실주 네 병 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">과실주 네 병 세트</h3>
+          <p class="card__spec">750ml 네 병<br><strong>118,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="rose">
+          <div class="card__top"><span class="card__tag">수육과 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_09.jpg" alt="복분자 로제 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">복분자 로제</h3>
+          <p class="card__spec">과실주 750ml<br><strong>24,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="white">
+          <div class="card__top"><span class="card__tag">닭요리와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_06.jpg" alt="복숭아 화이트 2025 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">복숭아 화이트 2025</h3>
+          <p class="card__spec">화이트 와인 750ml<br><strong>30,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="set">
+          <div class="card__top"><span class="card__tag">인기</span><span class="card__tag card__tag--right">세트</span></div>
+          <figure class="card__img"><img src="img/set_02.jpg" alt="청포도 두 병 세트 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">청포도 두 병 세트</h3>
+          <p class="card__spec">750ml 두 병<br><strong>68,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+        <article class="card" data-cat="white">
+          <div class="card__top"><span class="card__tag">갈비와 함께</span></div>
+          <figure class="card__img"><img src="img/bottle_04.jpg" alt="샤인머스캣 스파클링 병" loading="lazy" draggable="false"></figure>
+          <h3 class="card__name">샤인머스캣 스파클링</h3>
+          <p class="card__spec">스파클링 와인 750ml<br><strong>42,000원</strong></p>
+          <a href="#contact" class="pill card__btn">구매 문의</a>
+        </article>
+  </template>
 
   <!-- 04 양조장 : 다크 패럴랙스 -->
   <section class="brew" id="brewery" data-dark aria-label="양조장">
@@ -258,56 +363,56 @@
     <h2 class="title" data-lines><span>고기 요리와 어울리는 술</span></h2>
     <div class="rail__view" data-rail data-cursor="drag">
       <div class="rail__track">
-        <article class="card">
+        <article class="card" data-cat="red">
           <div class="card__top"><span class="card__tag">소고기와 함께</span></div>
           <figure class="card__img"><img src="img/bottle_07.jpg" alt="머루 리저브 2022 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">머루 리저브 2022</h3>
           <p class="card__spec">레드 와인 750ml<br><strong>45,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="red">
           <div class="card__top"><span class="card__tag">양고기와 함께</span></div>
           <figure class="card__img"><img src="img/bottle_02.jpg" alt="달빛 머루 드라이 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">달빛 머루 드라이</h3>
           <p class="card__spec">레드 와인 750ml<br><strong>32,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="red">
           <div class="card__top"><span class="card__tag">바비큐와 함께</span></div>
           <figure class="card__img"><img src="img/bottle_10.jpg" alt="복분자 레드 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">복분자 레드</h3>
           <p class="card__spec">과실주 750ml<br><strong>26,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="set">
           <div class="card__top"><span class="card__tag">선물 추천</span><span class="card__tag card__tag--right">세트</span></div>
           <figure class="card__img"><img src="img/set_04.jpg" alt="과실주 네 병 세트 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">과실주 네 병 세트</h3>
           <p class="card__spec">750ml 네 병<br><strong>118,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="rose">
           <div class="card__top"><span class="card__tag">수육과 함께</span></div>
           <figure class="card__img"><img src="img/bottle_09.jpg" alt="복분자 로제 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">복분자 로제</h3>
           <p class="card__spec">과실주 750ml<br><strong>24,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="white">
           <div class="card__top"><span class="card__tag">닭요리와 함께</span></div>
           <figure class="card__img"><img src="img/bottle_06.jpg" alt="복숭아 화이트 2025 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">복숭아 화이트 2025</h3>
           <p class="card__spec">화이트 와인 750ml<br><strong>30,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="set">
           <div class="card__top"><span class="card__tag">인기</span><span class="card__tag card__tag--right">세트</span></div>
           <figure class="card__img"><img src="img/set_02.jpg" alt="청포도 두 병 세트 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">청포도 두 병 세트</h3>
           <p class="card__spec">750ml 두 병<br><strong>68,000원</strong></p>
           <a href="#contact" class="pill card__btn">구매 문의</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="white">
           <div class="card__top"><span class="card__tag">갈비와 함께</span></div>
           <figure class="card__img"><img src="img/bottle_04.jpg" alt="샤인머스캣 스파클링 병" loading="lazy" draggable="false"></figure>
           <h3 class="card__name">샤인머스캣 스파클링</h3>
@@ -362,6 +467,6 @@
 <div class="cursor" aria-hidden="true"><i></i></div>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

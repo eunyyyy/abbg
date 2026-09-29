@@ -236,12 +236,21 @@ figure{margin:0;}
 .slash__row{opacity:0; transform:translateY(24px); transition:opacity 1s var(--ease), transform 1s var(--ease); transition-delay:calc(var(--i, 0) * 90ms);}
 .slash.is-in .slash__row{opacity:1; transform:none;}
 .slash__row i{font-style:normal; color:var(--g-5); margin:0 .35em;}
-.slash__row a, .store__tab{white-space:nowrap; transition:color .4s var(--ease), opacity .4s var(--ease);}
-.slash__list.is-hovering a, .slash__list.is-hovering .store__tab{opacity:.32;}
-.slash__list.is-hovering a:hover, .slash__list.is-hovering .store__tab:hover{opacity:1; color:var(--accent);}
-.store__tab{font:inherit; letter-spacing:inherit; line-height:inherit; padding:0; opacity:.4; position:relative;}
-.store__tab.is-active{opacity:1; color:var(--accent);}
-.slash__list.is-hovering .store__tab.is-active{opacity:1;}
+.slash__row a, .store__tab, .cat__tab{white-space:nowrap; transition:color .4s var(--ease), opacity .4s var(--ease);}
+.slash__list.is-hovering a, .slash__list.is-hovering .store__tab, .slash__list.is-hovering .cat__tab{opacity:.32;}
+.slash__list.is-hovering a:hover, .slash__list.is-hovering .store__tab:hover, .slash__list.is-hovering .cat__tab:hover{opacity:1; color:var(--accent);}
+.store__tab, .cat__tab{font:inherit; letter-spacing:inherit; line-height:inherit; padding:0; opacity:.4; position:relative;}
+.store__tab.is-active, .cat__tab.is-active{opacity:1; color:var(--accent);}
+.slash__list.is-hovering .store__tab.is-active, .slash__list.is-hovering .cat__tab.is-active{opacity:1;}
+
+/* 주종 탭 (베스트 레일) */
+.cats{margin:calc(var(--u) * -24) auto calc(var(--u) * 52); padding:0 var(--gutter);}
+.cats .slash__row{opacity:1; transform:none;}
+.rail__track{transition:opacity .32s var(--ease);}
+.rail__track.is-swap{opacity:0;}
+.rail__view.is-still{cursor:default;}
+.rail__view.is-still .rail__track{margin:0 auto;}
+.rail:has(.is-still) .rail__bar i{opacity:0;}
 
 /* 매장 지도 */
 .store{margin-top:calc(var(--u) * 64); opacity:0; transform:translateY(24px); transition:opacity 1s var(--ease) .3s, transform 1s var(--ease) .3s;}
@@ -347,6 +356,7 @@ figure{margin:0;}
 
   .rail{padding:90px 0 50px;}
   .rail .title{margin-bottom:28px;}
+  .cats{margin:-12px auto 24px;}
   .rail .card{width:calc(var(--u) * 240);}
   .card__img{height:calc(var(--u) * 230);}
   .rail__bar{margin-top:28px;}

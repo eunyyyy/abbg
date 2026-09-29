@@ -29,13 +29,15 @@
     if (lenis) lenis.scrollTo(t, { offset: 0, duration: 1.4 });
     else window.scrollTo({ top: t === 0 ? 0 : t.getBoundingClientRect().top + scrollY, behavior: reduce ? 'auto' : 'smooth' });
   };
-  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
     const id = a.getAttribute('href');
-    if (id.length < 2) { e.preventDefault(); return; }
     e.preventDefault();
+    if (id.length < 2) return;
     closeDrawer();
     scrollToId(id);
-  }));
+  });
 
   /* ---------- 모바일 메뉴 ---------- */
   const gnb = $('#gnb'), menuBtn = $('.gnb__menu'), drawer = $('#drawer');
@@ -94,15 +96,30 @@
   /* ---------- 드래그 레일 (무한 루프) ---------- */
   const rails = $$('[data-rail]').map(view => {
     const track = $('.rail__track', view);
-    const originals = [...track.children];
-    originals.forEach((c, i) => c.style.setProperty('--i', i));
-    [0, 1].forEach(() => originals.forEach(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); k.querySelectorAll('a').forEach(a => a.tabIndex = -1); track.appendChild(k); }));
     const bar = $('.rail__bar i', view.parentElement);
-    const st = { view, track, bar, x: 0, target: 0, v: 0, drag: false, setW: 0, moved: 0 };
-    const measure = () => { st.setW = originals.reduce((w, c) => w + c.getBoundingClientRect().width, 0) + 12 * originals.length; };
-    measure(); addEventListener('resize', measure);
+    const st = { view, track, bar, x: 0, target: 0, v: 0, drag: false, setW: 0, moved: 0, originals: [] };
+    /* 원본 세트를 화면 폭의 2배 이상이 될 때까지 복제해 무한 루프 */
+    const build = () => {
+      const orig = st.originals;
+      track.replaceChildren(...orig);
+      orig.forEach((c, i) => c.style.setProperty('--i', i));
+      st.setW = orig.reduce((w, c) => w + c.getBoundingClientRect().width, 0) + 12 * orig.length;
+      /* 화면 안에 다 들어오면 루프 없이 가운데 정렬 */
+      st.still = st.setW - 12 <= view.clientWidth;
+      view.classList.toggle('is-still', st.still);
+      if (st.still) { st.x = st.target = 0; return; }
+      const copies = Math.max(2, Math.ceil((view.clientWidth * 2) / Math.max(1, st.setW)));
+      for (let n = 0; n < copies; n++) orig.forEach(c => {
+        const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true');
+        k.querySelectorAll('a').forEach(a => a.tabIndex = -1); track.appendChild(k);
+      });
+    };
+    st.setItems = cards => { st.originals = cards; st.x = st.target = 0; build(); };
+    st.setItems([...track.children]);
+    addEventListener('resize', build);
     let sx = 0, lx = 0, lt = 0;
     view.addEventListener('pointerdown', e => {
+      if (st.still) return;
       st.drag = true; st.moved = 0; sx = lx = e.clientX; lt = performance.now(); st.v = 0;
       view.classList.add('is-drag');
     });
@@ -121,6 +138,30 @@
     }, { passive: false });
     return st;
   });
+
+  /* ---------- 주종 탭 (베스트 레일 필터) ---------- */
+  const catTabs = $$('.cat__tab');
+  const catalogTpl = $('#catalog');
+  const bestRail = rails.find(st => st.view.closest('#products'));
+  const bestCards = bestRail ? [...bestRail.originals] : [];
+  const catalogCards = catalogTpl ? [...catalogTpl.content.querySelectorAll('.card')] : [];
+  catTabs.forEach(btn => btn.addEventListener('click', () => {
+    if (btn.classList.contains('is-active') || !bestRail) return;
+    catTabs.forEach(b => { const on = b === btn; b.classList.toggle('is-active', on); b.setAttribute('aria-selected', on); });
+    const cat = btn.dataset.cat;
+    const next = cat === 'best' ? bestCards : catalogCards.filter(c => c.dataset.cat === cat).map(c => c.cloneNode(true));
+    const tr = bestRail.track;
+    tr.classList.add('is-swap');
+    setTimeout(() => {
+      bestRail.setItems(next);
+      requestAnimationFrame(() => tr.classList.remove('is-swap'));
+    }, reduce ? 0 : 320);
+  }));
+  catTabs.forEach((b, i) => b.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const n = catTabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + catTabs.length) % catTabs.length];
+    n.focus(); n.click();
+  }));
 
   /* ---------- 이야기 슬라이드 ---------- */
   const feat = $('[data-feat]');
@@ -148,7 +189,7 @@
 
   /* ---------- 호버 리스트 ---------- */
   $$('[data-hover-list]').forEach(list => {
-    $$('a, .store__tab', list).forEach(a => {
+    $$('a, .store__tab, .cat__tab', list).forEach(a => {
       a.addEventListener('mouseenter', () => list.classList.add('is-hovering'));
       a.addEventListener('mouseleave', () => list.classList.remove('is-hovering'));
     });
@@ -259,7 +300,8 @@
     rails.forEach(st => {
       if (!st.drag) st.target += 0; // 관성은 target 보간으로 처리
       st.x += (st.target - st.x) * (reduce ? 1 : 0.12);
-      if (st.setW) {
+      if (st.still) { st.track.style.transform = ''; }
+      else if (st.setW) {
         let w = st.x % st.setW; if (w > 0) w -= st.setW;
         st.track.style.transform = `translate3d(${w}px,0,0)`;
         if (st.bar) st.bar.style.transform = `translateX(${(-w / st.setW) * (100 / 14) * 86}%)`;
