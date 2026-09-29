@@ -180,8 +180,14 @@ body.admin-body{
 }
 .admin-project-table td{ padding:12px; border-bottom:1px solid var(--line); font-size:13.5px; vertical-align:middle; }
 .admin-project-table tr:hover td{ background: rgba(255,255,255,.02); }
-.admin-project-table__no{ font-family: var(--font-en); font-weight:700; color: var(--orange); width:48px; }
+.admin-project-table__no{ font-family: var(--font-en); font-weight:700; color: var(--teal); width:48px; }
 .admin-project-table__name{ font-weight:600; }
+.admin-project-table tr.is-hidden-row{ opacity:.5; }
+.admin-hidden-badge{
+  display:inline-block; margin-left:6px; padding:2px 8px; border-radius:999px;
+  font-family: var(--font-en); font-size:10.5px; font-weight:700; letter-spacing:.04em;
+  color: var(--text-faint); border:1px solid var(--line-strong);
+}
 .admin-project-table__url{ color: var(--text-dim); font-size:12px; max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:block; }
 .admin-project-table__actions{ display:flex; gap:8px; justify-content:flex-end; white-space:nowrap; }
 .admin-mini-btn{

@@ -14,7 +14,7 @@ const attachBtnEl = document.getElementById('fb-attach-btn');
 
 var STATUS_LABEL = { pending: '반영 대기', in_progress: '진행중', done: '반영 완료' };
 var STATUS_CLASS = { pending: 'is-pending', in_progress: 'is-progress', done: 'is-done' };
-var STATUS_CURSOR_TEXT = { done: '프로젝트 이동', pending: '피드백 반영중' };
+var STATUS_CURSOR_TEXT = { done: '프로젝트 이동', pending: '피드백 반영중', in_progress: '피드백 반영중' };
 var PROJECT_DOWNLOAD_RELEASE = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/';
 var MAX_ATTACHMENTS = 3, MAX_FILE_BYTES = 250 * 1024, MAX_TOTAL_BYTES = 550 * 1024;
 var selectedAttachments = [], feedbackDocs = [], repliesByFeedback = {};

@@ -150,8 +150,11 @@
   var currentProjects = [];
   function readProjectsFromDom() {
     return Array.prototype.map.call(document.querySelectorAll('.plist__row'), function (row) {
+      // data-real-no is only present on Firestore-rendered rows (see
+      // plistRowHtml); the static/fallback markup has no hidden-project
+      // concept at all, so its .plist__no text already IS the real number.
       return {
-        number: row.querySelector('.plist__no').textContent.trim(),
+        number: row.dataset.realNo || row.querySelector('.plist__no').textContent.trim(),
         name: row.dataset.name || row.querySelector('.plist__name').textContent.trim(),
         category: row.dataset.category || row.querySelector('.plist__cat').textContent.trim(),
         url: row.querySelector('.plist__link').getAttribute('href'),
@@ -209,15 +212,16 @@
       var projectNo = projectSel.value;
       var term = normalizeSearchText(searchInput.value);
       var rows = Array.prototype.slice.call(plistEl.querySelectorAll('.plist__row'));
+      function realNo(row) { return row.dataset.realNo || row.querySelector('.plist__no').textContent.trim(); }
       var sortedRows = rows.slice().sort(function (a, b) {
-        var aNo = parseInt(a.querySelector('.plist__no').textContent, 10) || 0;
-        var bNo = parseInt(b.querySelector('.plist__no').textContent, 10) || 0;
+        var aNo = parseInt(realNo(a), 10) || 0;
+        var bNo = parseInt(realNo(b), 10) || 0;
         return sortSel.value === 'latest' ? bNo - aNo : aNo - bNo;
       });
       sortedRows.forEach(function (row) { plistEl.appendChild(row); });
       var matched = sortedRows.filter(function (row) {
         var matchesIndustry = industry === '전체' || row.dataset.category === industry;
-        var matchesProject = !projectNo || row.querySelector('.plist__no').textContent.trim() === projectNo;
+        var matchesProject = !projectNo || realNo(row) === projectNo;
         var hay = normalizeSearchText(row.dataset.name + row.dataset.category + row.querySelector('.plist__no').textContent);
         // 검색어가 있으면 드롭다운 범위와 무관하게 전체 프로젝트에서 즉시 찾습니다.
         return term ? hay.includes(term) : (matchesIndustry && matchesProject);
@@ -479,23 +483,37 @@
         .replace(/"/g, '&quot;');
     }
 
-    function plistRowHtml(p) {
-      return '<li class="plist__row" data-category="' + escapeHtml(p.category) + '" data-name="' + escapeHtml(p.name) + '" data-cover="' + escapeHtml(p.cover || '') + '">' +
+    // The rendered "01/02/03…" badge is a cosmetic, gap-free sequence over
+    // only the VISIBLE (non-hidden) projects — it is NOT the same value as
+    // p.number, which stays the real, stable identifier every feedback doc,
+    // URL and admin lookup keys off. data-real-no carries that real number
+    // for anything (sort, project-filter matching) that needs it; the
+    // <span class="plist__no"> text is display-only.
+    function plistRowHtml(p, displayNo) {
+      return '<li class="plist__row" data-category="' + escapeHtml(p.category) + '" data-name="' + escapeHtml(p.name) + '" data-cover="' + escapeHtml(p.cover || '') + '" data-real-no="' + escapeHtml(p.number) + '">' +
         '<a class="plist__link" href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener">' +
-        '<span class="plist__no">' + escapeHtml(p.number) + '</span>' +
+        '<span class="plist__no">' + escapeHtml(displayNo) + '</span>' +
         '<span class="plist__name">' + escapeHtml(p.name) + '</span>' +
         '<span class="plist__cat">' + escapeHtml(p.category) + '</span>' +
         '<span class="plist__arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H8M19 5V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
         '</a></li>';
     }
+    function pad2(n) { return n < 10 ? '0' + n : String(n); }
 
     function renderProjectsUI(list) {
       if (!list || !list.length) return;
       var plistEl = document.querySelector('.plist');
       if (!plistEl) return;
 
-      currentProjects = list;
-      plistEl.innerHTML = list.map(plistRowHtml).join('');
+      // Admin-hidden projects (siteContent/projects tab -> "숨김") never
+      // reach the public list, the sort/industry filters, or the feedback
+      // picker (all three read from currentProjects) - they only remain
+      // visible in the admin dashboard's own project table.
+      var visible = list.filter(function (p) { return !p.hidden; });
+      if (!visible.length) return;
+
+      currentProjects = visible;
+      plistEl.innerHTML = visible.map(function (p, i) { return plistRowHtml(p, pad2(i + 1)); }).join('');
 
       if (typeof window.__aiwebRebindPlistFilters === 'function') window.__aiwebRebindPlistFilters();
       if (typeof window.__aiwebRebindFeedbackPicker === 'function') window.__aiwebRebindFeedbackPicker();

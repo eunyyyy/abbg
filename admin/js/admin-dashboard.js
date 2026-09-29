@@ -319,12 +319,13 @@ function initProjectsTab(fs) {
       );
     }
     return (
-      '<tr data-id="' + p.id + '">' +
+      '<tr data-id="' + p.id + '" class="' + (p.hidden ? 'is-hidden-row' : '') + '">' +
         '<td class="admin-project-table__no">' + escapeHtml(p.number) + '</td>' +
-        '<td class="admin-project-table__name">' + escapeHtml(p.name) + '</td>' +
+        '<td class="admin-project-table__name">' + escapeHtml(p.name) + (p.hidden ? ' <span class="admin-hidden-badge">숨김</span>' : '') + '</td>' +
         '<td>' + escapeHtml(p.category) + '</td>' +
         '<td><a class="admin-project-table__url" href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener">' + escapeHtml(p.url) + '</a></td>' +
         '<td class="admin-project-table__actions">' +
+          '<button type="button" class="admin-mini-btn" data-action="toggle-hidden" data-id="' + p.id + '">' + (p.hidden ? '보이기' : '숨기기') + '</button>' +
           '<button type="button" class="admin-mini-btn" data-action="edit-project" data-id="' + p.id + '">수정</button>' +
           '<button type="button" class="admin-mini-btn" data-action="delete-project" data-id="' + p.id + '">삭제</button>' +
         '</td>' +
@@ -383,9 +384,32 @@ function initProjectsTab(fs) {
     var cancelBtn = e.target.closest('[data-action="cancel-edit"]');
     var saveBtn = e.target.closest('[data-action="save-project"]');
     var delBtn = e.target.closest('[data-action="delete-project"]');
+    var toggleHiddenBtn = e.target.closest('[data-action="toggle-hidden"]');
 
     if (editBtn) { editingId = editBtn.dataset.id; render(); return; }
     if (cancelBtn) { editingId = null; render(); return; }
+
+    if (toggleHiddenBtn) {
+      var toggleId = toggleHiddenBtn.dataset.id;
+      var proj = projectsCache.find(function (p) { return p.id === toggleId; });
+      var nextHidden = !(proj && proj.hidden);
+      toggleHiddenBtn.disabled = true;
+      try {
+        // Hiding a project only sets this flag — its stored `number` never
+        // changes. The public site (js/main.js) filters hidden projects out
+        // and recomputes a gap-free display number from whatever's left, so
+        // hiding #15 among 14/15/16 makes 16 show as "15" there without
+        // this project's own real number ever being touched.
+        await fs.updateDoc(fs.doc(fs.db, 'projects', toggleId), { hidden: nextHidden, updatedAt: fs.serverTimestamp() });
+        showAdminToast(nextHidden ? '숨김 처리했습니다.' : '다시 노출했습니다.');
+      } catch (err) {
+        console.error('project toggle-hidden error', err);
+        alert('처리에 실패했습니다.');
+      } finally {
+        toggleHiddenBtn.disabled = false;
+      }
+      return;
+    }
 
     if (saveBtn) {
       var id = saveBtn.dataset.id;
