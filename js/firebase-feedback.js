@@ -47,7 +47,8 @@ function resolveProjectUrl(projectNumber) {
   var rows = document.querySelectorAll('.plist__row');
   for (var i = 0; i < rows.length; i++) {
     var noEl = rows[i].querySelector('.plist__no');
-    if (noEl && noEl.textContent.trim() === projectNumber) {
+    var realNo = rows[i].dataset.realNo || (noEl && noEl.textContent.trim());
+    if (realNo === projectNumber) {
       var link = rows[i].querySelector('.plist__link'); return link ? link.getAttribute('href') : '';
     }
   }
