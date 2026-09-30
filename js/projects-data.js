@@ -39,5 +39,6 @@ export const PROJECTS_FALLBACK = [
   { number: '21', name: 'RIWOL', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/27.RIWOL/', cover: 'img/covers/riwol.jpg' },
   { number: '22', name: 'OAKMERE', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/28.OAKMERE/', cover: 'img/covers/oakmere.jpg' },
   { number: '23', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/29.ONDAM/', cover: 'img/covers/ondam.jpg' },
-  { number: '24', name: 'DOUGHWALK', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/30.DOUGHWALK/', cover: 'img/covers/doughwalk.jpg' }
+  { number: '24', name: 'DOUGHWALK', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/30.DOUGHWALK/', cover: 'img/covers/doughwalk.jpg' },
+  { number: '25', name: 'HOMIL', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/31.HOMIL/', cover: 'img/covers/homil.jpg' }
 ];
