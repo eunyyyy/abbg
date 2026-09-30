@@ -11,7 +11,6 @@
     initReveal();
     initCounters();
     initTestimonials();
-    initAmbientCanvas();
     initGlobe();
   });
 
@@ -368,78 +367,6 @@
 
     show(0);
     restart();
-  }
-
-  /* ---------------------------------------------------------
-     AMBIENT MOUSE CANVAS — cursor-reactive dot grid layered
-     behind the Brand Intro section. Gated with opacity:0 until
-     the first real mousemove (avoids a (0,0) flash on load),
-     and fully skipped under prefers-reduced-motion.
-  --------------------------------------------------------- */
-  function initAmbientCanvas() {
-    var canvas = document.getElementById("ambientCanvas");
-    if (!canvas) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    var ctx = canvas.getContext("2d");
-    var w = 0, h = 0, dpr = 1;
-    var mouse = { x: -9999, y: -9999 };
-    var hasMouse = false;
-    var section = canvas.parentElement;
-
-    function resize() {
-      var rect = section.getBoundingClientRect();
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      w = rect.width; h = rect.height;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    function onMove(e) {
-      var rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      if (!hasMouse) {
-        hasMouse = true;
-        canvas.classList.add("is-active");
-      }
-    }
-    window.addEventListener("mousemove", onMove, { passive: true });
-
-    var GAP = 36;
-    function visible() {
-      var r = section.getBoundingClientRect();
-      return r.bottom > 0 && r.top < window.innerHeight;
-    }
-
-    function draw() {
-      if (visible() && w && h) {
-        ctx.clearRect(0, 0, w, h);
-        for (var y = GAP / 2; y < h; y += GAP) {
-          for (var x = GAP / 2; x < w; x += GAP) {
-            var dx = x - mouse.x, dy = y - mouse.y;
-            var dist = Math.sqrt(dx * dx + dy * dy);
-            var influence = Math.max(0, 1 - dist / 240);
-            var rad = 1.1 + influence * 2.4;
-            ctx.beginPath();
-            ctx.arc(x, y, rad, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(30,74,52," + (0.06 + influence * 0.4) + ")";
-            ctx.fill();
-            if (influence > 0.02) {
-              ctx.beginPath();
-              ctx.arc(x, y, rad * 1.9, 0, Math.PI * 2);
-              ctx.fillStyle = "rgba(217,164,65," + (influence * 0.18) + ")";
-              ctx.fill();
-            }
-          }
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
   }
 
   /* ---------------------------------------------------------
