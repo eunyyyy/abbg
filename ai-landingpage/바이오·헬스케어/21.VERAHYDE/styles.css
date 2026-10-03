@@ -866,3 +866,4 @@ body.has-cursor, body.has-cursor a, body.has-cursor button{ cursor:none; }
 @media (min-width:768px){
   .hero__sub{ font-size:18px; }
 }
+video.hero__img{ display:block; }
