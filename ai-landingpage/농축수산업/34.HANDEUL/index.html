@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HANDEUL 한들정육</title>
+<meta name="description" content="장수 들녘에서 키우고 손질한 한우와 한돈, 닭고기를 냉장 그대로 보내드리는 한들정육입니다.">
+<meta property="og:title" content="HANDEUL 한들정육">
+<meta property="og:description" content="장수 들녘에서 키우고 손질한 고기를 냉장 그대로 문 앞까지.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%23368533%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-size=%2234%22 font-family=%22sans-serif%22 font-weight=%22900%22 text-anchor=%22middle%22 fill=%22white%22%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/JalnanGothic-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/illust/hero-farm.webp" as="image">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+
+<header class="gnb" id="gnb">
+  <div class="gnb__in wrap">
+    <a href="#top" class="gnb__logo" aria-label="HANDEUL 처음으로">HANDEUL</a>
+    <nav class="gnb__nav" aria-label="주요 메뉴">
+      <a href="#lineup">패키지 라인업</a>
+      <a href="#guide">부위 가이드</a>
+      <a href="#today">오늘의 정육</a>
+      <a href="#coupon">쿠폰 혜택</a>
+      <a href="#story">한들 이야기</a>
+    </nav>
+    <button class="gnb__burger" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+  </div>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <nav aria-label="모바일 메뉴">
+    <a href="#lineup">패키지 라인업</a>
+    <a href="#guide">부위 가이드</a>
+    <a href="#today">오늘의 정육</a>
+    <a href="#coupon">쿠폰 혜택</a>
+    <a href="#story">한들 이야기</a>
+  </nav>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__art" aria-hidden="true"><img src="img/illust/hero-farm.webp" alt="" width="2600" height="1977"></div>
+  <div class="hero__copy wrap">
+    <p class="hero__lead pop" style="--d:0">장수 들녘에서 바로 보내는</p>
+    <h1 class="hero__ttl">
+      <span class="hero__row"><span class="sticker pop" style="--d:1">산지직송</span><span class="pop" style="--d:2">정직한</span></span>
+      <span class="hero__row pop" style="--d:3">한우·한돈</span>
+    </h1>
+    <p class="hero__sub pop" style="--d:4">장수 한들농장에서 키우고 손질한 고기를 <br class="m-br">냉장 그대로 문 앞까지 보내드려요.</p>
+    <div class="hero__cta pop" style="--d:5">
+      <a href="#lineup" class="btn btn--solid">패키지 보기 <i class="ph-bold ph-arrow-down"></i></a>
+      <a href="#guide" class="btn btn--ghost">부위 가이드</a>
+    </div>
+  </div>
+</section>
+
+<!-- COUPON -->
+<section class="coupon" id="coupon">
+  <div class="coupon__hill" aria-hidden="true"></div>
+  <div class="wrap coupon__in">
+    <header class="sec-head sec-head--onGreen rv">
+      <p class="sec-head__lead"><span class="sticker sticker--white">COUPON</span>한들 회원과 함께하는</p>
+      <h2 class="ttl ttl--white">스페셜 쿠폰!</h2>
+    </header>
+    <div class="coupon__stage rv">
+      <img class="coupon__pig" src="img/illust/pig.webp" alt="" width="631" height="383" aria-hidden="true">
+      <div class="ticket" id="ticket">
+        <div class="ticket__main">
+          <p class="ticket__label">한들 첫 구매 쿠폰</p>
+          <p class="ticket__big">최대 <strong>15%</strong></p>
+          <p class="ticket__note">3만원 이상 구매 시 최대 1만원 할인<br>부위별 10%, 15% 쿠폰 상이</p>
+        </div>
+        <button class="ticket__stub" id="ticketBtn" type="button" aria-live="polite">
+          <i class="ph-bold ph-download-simple" aria-hidden="true"></i>
+          <span class="ticket__stubTxt">쿠폰 받기</span>
+        </button>
+      </div>
+      <img class="coupon__tray" src="img/illust/tray.webp" alt="" width="700" height="521" aria-hidden="true">
+    </div>
+  </div>
+  <div class="notice">
+    <div class="wrap">
+      <details class="notice__box">
+        <summary><span>쿠폰 유의사항</span><i class="notice__ico" aria-hidden="true"></i></summary>
+        <ul>
+          <li>쿠폰은 한들 회원 가입 후 1회 발급되며, 발급일로부터 14일간 사용할 수 있어요.</li>
+          <li>3만원 이상 구매 시 최대 1만원까지 할인돼요.</li>
+          <li>부위별로 10% 또는 15% 쿠폰이 적용돼요.</li>
+          <li>할인 상품과 선물세트 일부는 쿠폰 적용에서 제외될 수 있어요.</li>
+          <li>주문을 취소하면 유효기간 안에서 쿠폰을 다시 돌려드려요.</li>
+          <li>재판매 목적의 구매로 확인되면 주문이 취소될 수 있어요.</li>
+          <li>법인 및 사업자 회원은 혜택에서 제외될 수 있어요.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- LINEUP -->
+<section class="lineup" id="lineup">
+  <div class="wrap">
+    <header class="lineup__head rv">
+      <h2 class="ttl">한 점의 차이, <br class="m-br">패키지에 담았어요</h2>
+      <div class="arrows">
+        <button class="arrow" id="prev" type="button" aria-label="이전 패키지" disabled><i class="ph-bold ph-arrow-left"></i></button>
+        <button class="arrow" id="next" type="button" aria-label="다음 패키지"><i class="ph-bold ph-arrow-right"></i></button>
+      </div>
+    </header>
+  </div>
+  <div class="rail" id="rail" tabindex="0" aria-label="패키지 라인업 목록">
+    <ul class="rail__track">
+      <li class="pk" id="pk-ribeye">
+        <div class="pack" style="--h:132cqw;--y:-16cqw;--x:-8%">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">꽃등심</p>
+          <img class="pack__img" src="img/meat/ribeye.webp" alt="마블링이 촘촘한 한우 꽃등심 덩어리" width="1400" height="958" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">1++ 한우 꽃등심 300g</p><p class="pk__price">58,900원</p>
+      </li>
+      <li class="pk" id="pk-striploin">
+        <div class="pack" style="--h:124cqw;--y:-12cqw;--x:6%">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">채끝</p>
+          <img class="pack__img" src="img/meat/striploin.webp" alt="로즈마리를 올린 한우 채끝 스테이크 두 장" width="1400" height="756" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">한우 채끝 스테이크 300g</p><p class="pk__price">49,800원</p>
+      </li>
+      <li class="pk" id="pk-galbi">
+        <div class="pack" style="--h:130cqw;--y:-14cqw;--x:0%">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">찜갈비</p>
+          <img class="pack__img" src="img/meat/jjimgalbi.webp" alt="쪽파를 올린 한우 찜갈비" width="1351" height="998" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">한우 찜갈비 1kg</p><p class="pk__price">69,000원</p>
+      </li>
+      <li class="pk" id="pk-udun">
+        <div class="pack" style="--h:120cqw;--y:-12cqw;--x:-6%;--r:-4deg">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">우둔</p>
+          <img class="pack__img" src="img/meat/udun.webp" alt="살결이 고운 한우 우둔 덩어리" width="1400" height="705" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">한우 우둔 육회용 300g</p><p class="pk__price">24,900원</p>
+      </li>
+      <li class="pk" id="pk-samgyeop">
+        <div class="pack" style="--h:128cqw;--y:-12cqw;--x:2%">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">삼겹살</p>
+          <img class="pack__img" src="img/meat/samgyeop.webp" alt="세 겹으로 층이 진 한돈 삼겹살" width="1400" height="998" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">한돈 삼겹살 구이용 600g</p><p class="pk__price">21,900원</p>
+      </li>
+      <li class="pk" id="pk-moksal">
+        <div class="pack" style="--h:130cqw;--y:-12cqw;--x:0%">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">목살</p>
+          <img class="pack__img" src="img/meat/moksal.webp" alt="두툼하게 썬 한돈 목살" width="1400" height="1167" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">한돈 목살 구이용 600g</p><p class="pk__price">19,800원</p>
+      </li>
+      <li class="pk" id="pk-breast">
+        <div class="pack" style="--h:134cqw;--y:-18cqw;--x:6%;--r:-14deg;--fs:19cqw">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">닭가슴살</p>
+          <img class="pack__img" src="img/meat/breast.webp" alt="껍질을 벗긴 생 닭가슴살" width="1400" height="678" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">무항생제 닭가슴살 1kg</p><p class="pk__price">12,900원</p>
+      </li>
+      <li class="pk" id="pk-drum">
+        <div class="pack" style="--h:128cqw;--y:-12cqw;--x:0%">
+          <p class="pack__tag">한 점의 차이가<br>한 끼를 바꿔요.</p>
+          <p class="pack__word">닭다리</p>
+          <img class="pack__img" src="img/meat/drum.webp" alt="생 닭다리 북채 세 개" width="1400" height="1097" loading="lazy">
+          <span class="pack__badge"><b>HANDEUL</b><i>한들정육</i></span>
+        </div>
+        <p class="pk__name">무항생제 닭다리 북채 1kg</p><p class="pk__price">10,900원</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CUT GUIDE -->
+<section class="guide" id="guide">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <h2 class="ttl">어느 부위를 고를까요?</h2>
+      <p class="sec-head__sub">부위를 누르면 맛과 어울리는 요리를 알려드려요.</p>
+    </header>
+    <div class="tabs rv" role="tablist" aria-label="고기 종류">
+      <button role="tab" class="tab is-on" aria-selected="true" data-kind="beef">한우</button>
+      <button role="tab" class="tab" aria-selected="false" data-kind="pork">한돈</button>
+      <button role="tab" class="tab" aria-selected="false" data-kind="chicken">닭</button>
+    </div>
+    <div class="guide__body rv">
+      <div class="chart" id="chart" data-kind="beef">
+        <img class="chart__img" id="chartImg" src="img/illust/chart-beef.webp" alt="한우 부위 지도" width="1400" height="825">
+        <div class="chart__spots" id="spots"></div>
+      </div>
+      <aside class="cutcard" id="cutcard" aria-live="polite">
+        <div class="cutcard__pic"><img id="cutImg" src="img/cut/beef-deungsim.webp" alt=""></div>
+        <p class="cutcard__kind" id="cutKind">한우</p>
+        <h3 class="cutcard__name" id="cutName">등심</h3>
+        <p class="cutcard__desc" id="cutDesc"></p>
+        <ul class="cutcard__dish" id="cutDish"></ul>
+        <a class="btn btn--solid btn--sm" id="cutLink" href="#lineup">패키지에서 보기 <i class="ph-bold ph-arrow-right"></i></a>
+      </aside>
+    </div>
+    <ul class="pieces" id="pieces" aria-label="부위 목록"></ul>
+  </div>
+</section>
+
+<!-- TODAY -->
+<section class="today" id="today">
+  <div class="wrap">
+    <header class="sec-head sec-head--center rv">
+      <p class="sec-head__lead"><span class="sticker">PICK</span>믿고 먹는 한들!</p>
+      <h2 class="ttl">오늘의 추천 정육</h2>
+    </header>
+    <div class="filters rv" role="group" aria-label="상품 분류">
+      <button class="filter is-on" data-f="all" aria-pressed="true">전체</button>
+      <button class="filter" data-f="beef" aria-pressed="false">한우</button>
+      <button class="filter" data-f="pork" aria-pressed="false">한돈</button>
+      <button class="filter" data-f="chicken" aria-pressed="false">닭</button>
+    </div>
+    <ul class="goods" id="goods">
+      <li class="good rv" data-c="beef">
+        <div class="good__pic"><img src="img/meat/ribeye.webp" alt="한우 꽃등심" loading="lazy" width="1400" height="958"></div>
+        <p class="good__name">1++ 한우 꽃등심 구이용 300g</p>
+        <p class="good__price"><em>10%</em><b>53,010원</b><s>58,900원</s></p>
+      </li>
+      <li class="good rv" data-c="beef">
+        <div class="good__pic"><img src="img/meat/chadol.webp" alt="접시에 담은 한우 차돌박이" loading="lazy" width="1375" height="957"></div>
+        <p class="good__name">한우 차돌박이 샤브용 300g</p>
+        <p class="good__price"><em>15%</em><b>27,200원</b><s>32,000원</s></p>
+      </li>
+      <li class="good rv" data-c="beef">
+        <div class="good__pic"><img src="img/meat/lagalbi.webp" alt="도마에 올린 한우 LA갈비" loading="lazy" width="1400" height="878"></div>
+        <p class="good__name">한우 LA갈비 선물용 1.2kg</p>
+        <p class="good__price"><em>10%</em><b>80,820원</b><s>89,800원</s></p>
+      </li>
+      <li class="good rv" data-c="beef">
+        <div class="good__pic"><img src="img/meat/udun.webp" alt="한우 우둔" loading="lazy" width="1400" height="705"></div>
+        <p class="good__name">한우 우둔 장조림용 500g</p>
+        <p class="good__price"><em>15%</em><b>29,580원</b><s>34,800원</s></p>
+      </li>
+      <li class="good rv" data-c="pork">
+        <div class="good__pic"><img src="img/meat/tongsamgyeop.webp" alt="한돈 통삼겹" loading="lazy" width="1400" height="456"></div>
+        <p class="good__name">한돈 통삼겹 수육용 1kg</p>
+        <p class="good__price"><em>10%</em><b>26,820원</b><s>29,800원</s></p>
+      </li>
+      <li class="good rv" data-c="pork">
+        <div class="good__pic"><img src="img/meat/moksal.webp" alt="한돈 목살" loading="lazy" width="1400" height="1167"></div>
+        <p class="good__name">한돈 목살 두툼구이 600g</p>
+        <p class="good__price"><em>10%</em><b>17,820원</b><s>19,800원</s></p>
+      </li>
+      <li class="good rv" data-c="chicken">
+        <div class="good__pic"><img src="img/meat/drum.webp" alt="닭다리 북채" loading="lazy" width="1400" height="1097"></div>
+        <p class="good__name">무항생제 닭다리 북채 1kg</p>
+        <p class="good__price"><em>15%</em><b>9,260원</b><s>10,900원</s></p>
+      </li>
+      <li class="good rv" data-c="chicken">
+        <div class="good__pic"><img src="img/meat/breast.webp" alt="닭가슴살" loading="lazy" width="1400" height="678"></div>
+        <p class="good__name">무항생제 닭가슴살 1kg</p>
+        <p class="good__price"><em>10%</em><b>11,610원</b><s>12,900원</s></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story__art rv"><img src="img/illust/farm-dairy.webp" alt="한들농장에서 소에게 건초를 주고 우유를 짜는 농부들" width="1800" height="1260" loading="lazy"></div>
+  <div class="wrap">
+    <div class="story__card rv">
+      <h2 class="ttl">들녘에서 식탁까지 <br>한들이 직접 챙겨요</h2>
+      <ol class="steps">
+        <li class="step"><img src="img/illust/cow.webp" alt="" width="900" height="577" loading="lazy"><b>키워요</b><span>장수 고원 목초지에서 넉넉한 공간을 두고 키워요.</span></li>
+        <li class="step"><img src="img/illust/butcher.webp" alt="" width="900" height="764" loading="lazy"><b>손질해요</b><span>도축 다음 날, 숙련된 정육사가 부위별로 손질해요.</span></li>
+        <li class="step"><img src="img/illust/tray.webp" alt="" width="700" height="521" loading="lazy"><b>담아요</b><span>진공 포장 후 0~2℃ 냉장 상태로 담아요.</span></li>
+        <li class="step"><img src="img/illust/farmer-boy.webp" alt="" width="498" height="900" loading="lazy"><b>받아요</b><span>주문 다음 날, 아이스박스에 담아 보내드려요.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <a href="#top" class="foot__logo">HANDEUL</a>
+    <dl class="foot__info">
+      <div><dt>상호</dt><dd>(주)한들축산</dd></div>
+      <div><dt>대표</dt><dd>윤재석</dd></div>
+      <div><dt>주소</dt><dd>전북특별자치도 장수군 장수읍 한들길 27</dd></div>
+      <div><dt>고객센터</dt><dd>063-351-4728</dd></div>
+      <div><dt>팩스</dt><dd>063-351-4729</dd></div>
+      <div><dt>사업자등록번호</dt><dd>412-87-03651</dd></div>
+    </dl>
+    <div class="foot__sns">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="인스타그램"><i class="ph-bold ph-instagram-logo"></i></a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="유튜브"><i class="ph-bold ph-youtube-logo"></i></a>
+      <a href="https://blog.naver.com/" target="_blank" rel="noopener" aria-label="블로그"><i class="ph-bold ph-article"></i></a>
+    </div>
+    <p class="foot__copy">© 2026 HANDEUL. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="floating">
+  <a class="fab fab--kakao" href="https://business.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 문의">
+    <img src="img/kakao-logo.svg" alt="" width="56" height="56">
+    <span class="fab__tip">카카오톡 문의</span>
+  </a>
+  <button class="fab fab--top" id="toTop" type="button" aria-label="맨 위로"><i class="ph-bold ph-arrow-up"></i></button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js?v=3"></script>
+</body>
+</html>
