@@ -41,5 +41,6 @@ export const PROJECTS_FALLBACK = [
   { number: '23', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/29.ONDAM/', cover: 'img/covers/ondam.jpg' },
   { number: '24', name: 'DOUGHWALK', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/30.DOUGHWALK/', cover: 'img/covers/doughwalk.jpg' },
   { number: '25', name: 'HOMIL', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/31.HOMIL/', cover: 'img/covers/homil.jpg' },
-  { number: '26', name: 'GREEN CRUMB', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/32.GREENCRUMB/', cover: 'img/covers/greencrumb.jpg' }
+  { number: '26', name: 'GREEN CRUMB', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/32.GREENCRUMB/', cover: 'img/covers/greencrumb.jpg' },
+  { number: '27', name: 'NORDLANE', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/33.NORDLANE/', cover: 'img/covers/nordlane.jpg' }
 ];
