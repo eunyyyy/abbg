@@ -43,5 +43,6 @@ export const PROJECTS_FALLBACK = [
   { number: '25', name: 'HOMIL', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/31.HOMIL/', cover: 'img/covers/homil.jpg' },
   { number: '26', name: 'GREEN CRUMB', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/32.GREENCRUMB/', cover: 'img/covers/greencrumb.jpg' },
   { number: '27', name: 'NORDLANE', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/33.NORDLANE/', cover: 'img/covers/nordlane.jpg' },
-  { number: '28', name: 'HANDEUL', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/34.HANDEUL/', cover: 'img/covers/handeul.jpg' }
+  { number: '28', name: 'HANDEUL', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/34.HANDEUL/', cover: 'img/covers/handeul.jpg', hidden: true },
+  { number: '29', name: 'HANDEUL', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/35.HANDEUL/', cover: 'img/covers/handeul-v2.jpg' }
 ];
