@@ -1,9 +1,9 @@
 /* HANDEUL 한들정육 / 33.HANDEUL
-   Display: Jalnan Gothic (28px 이상 제목, 로고, 패키지 이름)
+   Display: Cafe24 Ssurround (눈누) (28px 이상 제목, 로고, 패키지 이름)
    Body: LINE Seed KR
    Radius rule: 버튼과 탭은 pill, 카드 20px, 패키지는 6px */
 
-@font-face{font-family:"Jalnan Gothic";src:url(fonts/JalnanGothic-sub.woff2) format("woff2");font-weight:normal;font-display:swap}
+@font-face{font-family:"Cafe24 Ssurround";src:url(fonts/Cafe24Ssurround-sub.woff2) format("woff2");font-weight:normal;font-display:swap}
 @font-face{font-family:"LINE Seed KR";src:url(fonts/LINESeedKR-Rg-sub.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"LINE Seed KR";src:url(fonts/LINESeedKR-Bd-sub.woff2) format("woff2");font-weight:700;font-display:swap}
 
@@ -16,7 +16,7 @@
   --n-0:#fdfcfa;--n-1:#f6f5f1;--n-2:#eeece6;--n-3:#e3e0d8;--n-4:#cdc9bf;--n-5:#b0aba0;--n-6:#8f8a80;--n-7:#706b62;--n-8:#56524a;--n-9:#3e3b35;--n-10:#2c2a25;--n-11:#1f1d1a;
 
   --sky:#bce3ef;
-  --font-d:"Jalnan Gothic","LINE Seed KR",sans-serif;
+  --font-d:"Cafe24 Ssurround","LINE Seed KR",sans-serif;
   --font-b:"LINE Seed KR",-apple-system,"Apple SD Gothic Neo",sans-serif;
   --pad:40px;--max:1240px;--gnb:72px;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -55,7 +55,7 @@ h1,h2,h3,p,dl,dd{margin:0}
 .drawer a:last-child{border-bottom:0}
 
 /* ---------- Shared type ---------- */
-.ttl{font-family:var(--font-d);font-weight:normal;font-size:clamp(34px,4.2vw,56px);line-height:1.18;letter-spacing:-.01em;color:var(--g-500);paint-order:stroke fill;-webkit-text-stroke:.14em var(--g-800);text-shadow:0 .1em 0 var(--g-800)}
+.ttl{font-family:var(--font-d);font-weight:normal;font-size:clamp(34px,4.2vw,56px);line-height:1.18;letter-spacing:-.01em;color:var(--g-500);paint-order:stroke fill;-webkit-text-stroke:.065em var(--g-800);text-shadow:0 .06em 0 var(--g-800)}
 .ttl--white{color:#fff}
 .sec-head{display:grid;gap:10px;margin-bottom:44px}
 .sec-head--center{justify-items:center;text-align:center}
@@ -79,7 +79,7 @@ h1,h2,h3,p,dl,dd{margin:0}
 .hero__art img{width:max(100%,calc(100dvh * 1.42));max-width:none;flex:none;transform:translateY(calc(var(--hp,0) * 60px)) scale(calc(1 + var(--hp,0) * .04));transform-origin:50% 100%;will-change:transform}
 .hero__copy{position:relative;z-index:2;text-align:center;padding-top:calc(var(--gnb) + clamp(20px,4vh,56px));display:grid;justify-items:center}
 .hero__lead{display:inline-block;font-weight:700;font-size:19px;color:var(--g-900);background:rgb(255 255 255 / .75);padding:6px 16px;border-radius:999px;margin-bottom:14px}
-.hero__ttl{font-family:var(--font-d);font-weight:normal;font-size:clamp(46px,6.4vw,92px);line-height:1.08;letter-spacing:-.015em;color:#fff;paint-order:stroke fill;-webkit-text-stroke:.15em var(--g-700);text-shadow:0 .09em 0 var(--g-800)}
+.hero__ttl{font-family:var(--font-d);font-weight:normal;font-size:clamp(46px,6.4vw,92px);line-height:1.08;letter-spacing:-.015em;color:#fff;paint-order:stroke fill;-webkit-text-stroke:.11em var(--g-700);text-shadow:0 .08em 0 var(--g-800)}
 .hero__row{display:flex;align-items:center;justify-content:center;gap:.18em}
 .hero__ttl .sticker{font-size:clamp(17px,1.7vw,24px);-webkit-text-stroke:0;text-shadow:none;transform:rotate(-12deg) translateY(-.4em)}
 .hero__sub{margin-top:18px;font-size:18px;font-weight:700;color:var(--g-900);background:rgb(255 255 255 / .86);padding:8px 20px;border-radius:999px}
