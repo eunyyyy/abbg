@@ -4,11 +4,22 @@
 
 `main` 브랜치의 `ai-landingpage/**` 또는 `js/projects-data.js`가 변경되면
 `.github/workflows/project-downloads.yml`이 각 프로젝트 폴더를 ZIP으로 묶어
-`project-downloads` GitHub Release의 자산을 자동으로 갱신합니다.
+`project-downloads` GitHub Release의 자산을 자동으로 갱신합니다. (체크아웃을
+`fetch-depth: 0`으로 전체 히스토리를 가져오는 이유: 프로젝트별 최종 수정일을
+`git log`로 계산하기 때문.)
 
 공개 사이트와 관리자 페이지는 피드백 상태가 `done`(반영 완료)일 때만 프로젝트 번호와
 이름으로 계산한 Release 다운로드 링크를 표시합니다. 새 프로젝트를 추가할 때는 실제
 프로젝트 폴더와 `js/projects-data.js` 항목을 함께 커밋해야 ZIP도 자동 생성됩니다.
+
+공개 사이트의 "전체 다운받기" 버튼은 같은 Release의 `all-projects.zip` 하나를
+내려받습니다. 내부 구조는 `{yyyy-mm-dd}/{산업분야}/{프로젝트명}_{yy-mm-dd}.zip`이며,
+여기서 날짜는 "오늘"이 아니라 **그 프로젝트 폴더가 git에서 마지막으로 변경된 날짜**입니다
+(`package-projects.mjs`가 `git log -1 -- <폴더>`로 계산). 정적 사이트라 클릭 시점의
+실시간 날짜를 서버 없이 반영할 방법이 없고, 매 클릭마다 전체 프로젝트 파일(수백 MB)을
+브라우저에서 재압축하는 것도 비현실적이라 이 방식을 씁니다 — 한 번도 안 건드린
+프로젝트는 처음 만든 날짜 그대로, 수정·재배포한 프로젝트는 마지막 수정일로 자동
+갱신됩니다. 숨김 처리된 프로젝트는 `all-projects.zip`에서 제외됩니다.
 
 ## 프로젝트 복제(리디자인) 시 버전 관리 규칙
 

@@ -463,29 +463,21 @@
   initPlistPreview();
 
   /* =========================================================
-     "전체 다운받기" — downloads every currently-public project's
-     latest ZIP from the project-downloads GitHub Release that
-     .github/workflows/project-downloads.yml keeps rebuilt on every
-     push touching ai-landingpage/**, so each file is always the
-     live version. One browser download per project (same
-     cross-origin <a download> pattern already shipped in the admin
-     dashboard's per-feedback ZIP link), staggered so the browser's
-     own "allow multiple downloads" prompt has a chance to appear
-     before the next one fires. Also logs the batch to Firestore
-     (downloadLogs) for the admin dashboard's "다운로드 이력" tab —
-     best-effort only, a logging failure never blocks the downloads.
+     "전체 다운받기" — downloads one pre-built ZIP (project-downloads
+     GitHub Release's all-projects.zip) containing every public
+     project nested as {yyyy-mm-dd}/{산업분야}/{프로젝트명}_{yy-mm-dd}.zip.
+     The date per project is THAT project's own last-changed commit
+     date (.github/scripts/package-projects.mjs computes it via git
+     log), not "today" — a static GitHub Pages site has no server to
+     know the real click-time date, and re-zipping ~400MB of project
+     files in the visitor's browser on every click would be far too
+     slow. Building it once per relevant push and linking straight to
+     the asset keeps the download itself instant, like any other
+     direct file link. Also logs the click to Firestore (downloadLogs)
+     for the admin dashboard's "다운로드 이력" tab — best-effort only,
+     a logging failure never blocks the download.
      ========================================================= */
-  var PROJECT_DOWNLOAD_RELEASE = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/';
-  function slugifyProjectName(value) {
-    return String(value || '')
-      .normalize('NFKD')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') || 'project';
-  }
-  function projectArchiveUrl(number, name) {
-    return PROJECT_DOWNLOAD_RELEASE + 'project-' + encodeURIComponent(number) + '-' + slugifyProjectName(name) + '.zip';
-  }
+  var ALL_PROJECTS_ZIP_URL = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/all-projects.zip';
   function logDownloadAllEvent(list) {
     (async function () {
       try {
@@ -501,7 +493,7 @@
           createdAt: fsMod.serverTimestamp()
         });
       } catch (err) {
-        console.error('download-all log error (downloads themselves are unaffected)', err);
+        console.error('download-all log error (download itself is unaffected)', err);
       }
     })();
   }
@@ -511,31 +503,14 @@
     btn.addEventListener('click', function () {
       var list = currentProjects.slice();
       if (!list.length) return;
-      if (!confirm('공개된 프로젝트 ' + list.length + '개를 각각 ZIP 파일로 다운로드합니다.\n브라우저가 "여러 파일 다운로드 허용"을 물으면 허용해주세요. 계속할까요?')) return;
-
-      btn.disabled = true;
-      var originalLabel = btn.textContent;
       logDownloadAllEvent(list);
-
-      var i = 0;
-      function next() {
-        if (i >= list.length) {
-          btn.disabled = false;
-          btn.textContent = originalLabel;
-          return;
-        }
-        var p = list[i++];
-        btn.textContent = '다운로드 중… (' + i + '/' + list.length + ')';
-        var a = document.createElement('a');
-        a.href = projectArchiveUrl(p.number, p.name);
-        a.download = 'project-' + p.number + '-' + slugifyProjectName(p.name) + '.zip';
-        a.rel = 'noopener';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(next, 600);
-      }
-      next();
+      var a = document.createElement('a');
+      a.href = ALL_PROJECTS_ZIP_URL;
+      a.download = 'all-projects.zip';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
     });
   }
 
