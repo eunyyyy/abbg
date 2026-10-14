@@ -213,9 +213,19 @@ h1,h2,h3,h4,p{ margin:0; }
 .filter-field--wide{ width:300px; }
 .filter-field--sort{ width:160px; }
 .filter-field--search{ width:min(320px,100%); }
+.filter-field--downloadall{ width:auto; }
+.filter-field--downloadall label{ visibility:hidden; }
 .filter-field label{ font-size:16px; color: var(--text-dim); }
 .filter-field input{ width:100%; background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:12px; color:var(--text); font-family:var(--font-kr); font-size:16px; }
 .filter-field input:focus{ outline:none; border-color:var(--teal); }
+.plist-download-all{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap;
+  background:transparent; border:1px solid var(--line-strong); border-radius:10px; padding:12px 20px;
+  color:var(--text); font-family:var(--font-kr); font-size:16px; font-weight:600; cursor:pointer;
+  transition: border-color .25s, color .25s;
+}
+.plist-download-all:hover{ border-color:var(--teal); color:var(--teal); }
+.plist-download-all:disabled{ opacity:.6; cursor:not-allowed; }
 .select-wrap{ position:relative; }
 .select-wrap select{
   width:100%; appearance:none; background: var(--bg); border:1px solid var(--line); border-radius:10px;
@@ -230,6 +240,9 @@ h1,h2,h3,h4,p{ margin:0; }
 @media (max-width: 640px){
   .filter-dropdowns{ gap:10px; }
   .filter-field,.filter-field--wide{ width: calc(50% - 5px); }
+  .filter-field--downloadall{ width:100%; }
+  .filter-field--downloadall label{ display:none; }
+  .plist-download-all{ width:100%; }
 }
 
 .plist{ position:relative; border-top:1px solid var(--line); }

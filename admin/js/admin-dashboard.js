@@ -35,7 +35,8 @@ function initTabs() {
   var tabs = [
     { btn: document.getElementById('tab-btn-feedback'), panel: document.getElementById('tab-panel-feedback') },
     { btn: document.getElementById('tab-btn-projects'), panel: document.getElementById('tab-panel-projects') },
-    { btn: document.getElementById('tab-btn-content'), panel: document.getElementById('tab-panel-content') }
+    { btn: document.getElementById('tab-btn-content'), panel: document.getElementById('tab-panel-content') },
+    { btn: document.getElementById('tab-btn-downloads'), panel: document.getElementById('tab-panel-downloads') }
   ];
   tabs.forEach(function (t) {
     t.btn.addEventListener('click', function () {
@@ -60,7 +61,7 @@ async function init() {
     const { getAuth, onAuthStateChanged, signOut } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js');
     const {
       getFirestore, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc,
-      onSnapshot, query, orderBy, serverTimestamp
+      onSnapshot, query, orderBy, limit, serverTimestamp
     } = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
 
     const app = initializeApp(firebaseConfig);
@@ -75,7 +76,7 @@ async function init() {
       if (gateMsgEl) gateMsgEl.style.display = 'none';
       if (shellEl) shellEl.classList.add('is-ready');
       if (userEmailEl) userEmailEl.textContent = user.email || '';
-      boot({ db, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, onSnapshot, query, orderBy, serverTimestamp });
+      boot({ db, collection, collectionGroup, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, onSnapshot, query, orderBy, limit, serverTimestamp });
     });
 
     if (logoutBtn) {
@@ -97,6 +98,7 @@ function boot(fs) {
   initFeedbackTab(fs);
   initProjectsTab(fs);
   initSiteContentTab(fs);
+  initDownloadLogsTab(fs);
 }
 
 /* ==================== FEEDBACK TAB ==================== */
@@ -564,6 +566,33 @@ function initSiteContentTab(fs) {
         if (submitBtn) submitBtn.disabled = false;
       }
     });
+  });
+}
+
+/* ==================== DOWNLOAD HISTORY TAB ====================
+   Read-only log of the public site's "전체 다운받기" button clicks
+   (one Firestore doc per click, written client-side from js/main.js's
+   initDownloadAllButton — see firestore.rules' downloadLogs match for
+   the write-side validation). Admin-only read. */
+function initDownloadLogsTab(fs) {
+  var tbody = document.getElementById('downloadlog-admin-tbody');
+  if (!tbody) return;
+
+  var q = fs.query(fs.collection(fs.db, 'downloadLogs'), fs.orderBy('createdAt', 'desc'), fs.limit(200));
+  fs.onSnapshot(q, function (snapshot) {
+    if (snapshot.empty) {
+      tbody.innerHTML = '<tr><td colspan="3" class="admin-empty">아직 다운로드 이력이 없습니다.</td></tr>';
+      return;
+    }
+    var rows = [];
+    snapshot.forEach(function (d) { rows.push(d.data()); });
+    tbody.innerHTML = rows.map(function (d) {
+      var numbers = Array.isArray(d.projectNumbers) ? d.projectNumbers.join(', ') : '';
+      return '<tr><td>' + formatDate(d.createdAt) + '</td><td>' + escapeHtml(String(d.projectCount || 0)) + '개</td><td>' + escapeHtml(numbers) + '</td></tr>';
+    }).join('');
+  }, function (err) {
+    console.error('download logs onSnapshot error', err);
+    tbody.innerHTML = '<tr><td colspan="3" class="admin-empty">다운로드 이력을 불러오는 중 문제가 발생했습니다.</td></tr>';
   });
 }
 
