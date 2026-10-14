@@ -310,7 +310,8 @@ function initProjectsTab(fs) {
       return (
         '<tr data-id="' + p.id + '">' +
           '<td><input type="text" class="admin-mini-btn" style="width:52px;padding:6px 8px;" value="' + escapeHtml(p.number) + '" data-field="number"></td>' +
-          '<td><input type="text" style="width:100%;padding:6px 8px;" value="' + escapeHtml(p.name) + '" data-field="name"></td>' +
+          '<td><input type="text" style="width:100%;padding:6px 8px;margin-bottom:4px;" value="' + escapeHtml(p.name) + '" data-field="name">' +
+            '<input type="number" min="1" placeholder="버전(선택, 예: 1)" style="width:100%;padding:6px 8px;" value="' + escapeHtml(p.version || '') + '" data-field="version"></td>' +
           '<td><select style="width:100%;padding:6px 8px;" data-field="category">' + categoryOptionsHtml(p.category) + '</select></td>' +
           '<td><input type="text" style="width:100%;padding:6px 8px;" value="' + escapeHtml(p.url) + '" data-field="url"></td>' +
           '<td class="admin-project-table__actions">' +
@@ -323,7 +324,9 @@ function initProjectsTab(fs) {
     return (
       '<tr data-id="' + p.id + '" class="' + (p.hidden ? 'is-hidden-row' : '') + '">' +
         '<td class="admin-project-table__no">' + escapeHtml(p.number) + '</td>' +
-        '<td class="admin-project-table__name">' + escapeHtml(p.name) + (p.hidden ? ' <span class="admin-hidden-badge">숨김</span>' : '') + '</td>' +
+        '<td class="admin-project-table__name">' + escapeHtml(p.name) +
+          (p.version ? ' <span class="admin-version-badge">v' + escapeHtml(String(p.version)) + '</span>' : '') +
+          (p.hidden ? ' <span class="admin-hidden-badge">숨김</span>' : '') + '</td>' +
         '<td>' + escapeHtml(p.category) + '</td>' +
         '<td><a class="admin-project-table__url" href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener">' + escapeHtml(p.url) + '</a></td>' +
         '<td class="admin-project-table__actions">' +
@@ -337,7 +340,7 @@ function initProjectsTab(fs) {
 
   function render() {
     if (!projectsCache.length) {
-      tbody.innerHTML = '<tr><td colspan="5" class="admin-empty">등록된 프로젝트가 없습니다. 아래 "시드 데이터 불러오기"로 초기 16개를 불러오거나 새로 추가하세요.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="5" class="admin-empty">등록된 프로젝트가 없습니다. 아래 "시드 데이터 불러오기"로 초기 데이터를 불러오거나 새로 추가하세요.</td></tr>';
     } else {
       tbody.innerHTML = projectsCache.map(renderRow).join('');
     }
@@ -347,10 +350,29 @@ function initProjectsTab(fs) {
     }
   }
 
+  // Firestore's `projects` collection may be missing projects that were only
+  // ever added via a git commit to js/projects-data.js (never seeded/edited
+  // through this admin UI) — without this merge, those projects (and any
+  // hidden-backup entries among them) would be invisible here even though
+  // the public site already shows/respects them via the same merge in
+  // js/main.js's syncProjectsFromFirestore. A live Firestore doc always wins
+  // over the fallback entry for the same number.
+  function mergeWithFallback(liveList) {
+    var known = {};
+    liveList.forEach(function (p) { known[p.number] = true; });
+    var merged = liveList.slice();
+    PROJECTS_FALLBACK.forEach(function (p) {
+      if (!known[p.number]) merged.push(Object.assign({ id: p.number }, p));
+    });
+    merged.sort(function (a, b) { return String(a.number).localeCompare(String(b.number), undefined, { numeric: true }); });
+    return merged;
+  }
+
   var q = fs.query(fs.collection(fs.db, 'projects'), fs.orderBy('number', 'asc'));
   fs.onSnapshot(q, function (snapshot) {
-    projectsCache = [];
-    snapshot.forEach(function (d) { projectsCache.push(Object.assign({ id: d.id }, d.data())); });
+    var live = [];
+    snapshot.forEach(function (d) { live.push(Object.assign({ id: d.id }, d.data())); });
+    projectsCache = mergeWithFallback(live);
     render();
   }, function (err) {
     console.error('admin projects onSnapshot error', err);
@@ -394,7 +416,8 @@ function initProjectsTab(fs) {
     if (toggleHiddenBtn) {
       var toggleId = toggleHiddenBtn.dataset.id;
       var proj = projectsCache.find(function (p) { return p.id === toggleId; });
-      var nextHidden = !(proj && proj.hidden);
+      if (!proj) return;
+      var nextHidden = !proj.hidden;
       toggleHiddenBtn.disabled = true;
       try {
         // Hiding a project only sets this flag — its stored `number` never
@@ -402,7 +425,12 @@ function initProjectsTab(fs) {
         // and recomputes a gap-free display number from whatever's left, so
         // hiding #15 among 14/15/16 makes 16 show as "15" there without
         // this project's own real number ever being touched.
-        await fs.updateDoc(fs.doc(fs.db, 'projects', toggleId), { hidden: nextHidden, updatedAt: fs.serverTimestamp() });
+        // setDoc+merge (not updateDoc) because `proj` may only exist in the
+        // js/projects-data.js fallback so far — this both creates the real
+        // Firestore doc on first touch and updates it afterwards.
+        var togglePayload = Object.assign({}, proj, { hidden: nextHidden, updatedAt: fs.serverTimestamp() });
+        delete togglePayload.id;
+        await fs.setDoc(fs.doc(fs.db, 'projects', toggleId), togglePayload, { merge: true });
         showAdminToast(nextHidden ? '숨김 처리했습니다.' : '다시 노출했습니다.');
       } catch (err) {
         console.error('project toggle-hidden error', err);
@@ -415,15 +443,26 @@ function initProjectsTab(fs) {
 
     if (saveBtn) {
       var id = saveBtn.dataset.id;
+      var original = projectsCache.find(function (p) { return p.id === id; }) || {};
       var row = tbody.querySelector('tr[data-id="' + id + '"]');
       var fields = {};
       row.querySelectorAll('[data-field]').forEach(function (input) {
         fields[input.dataset.field] = input.value.trim();
       });
       if (fields.number) fields.number = padNumber(fields.number);
+      if ('version' in fields) {
+        fields.version = fields.version ? parseInt(fields.version, 10) : null;
+      }
       saveBtn.disabled = true;
       try {
-        await fs.updateDoc(fs.doc(fs.db, 'projects', id), Object.assign({}, fields, { updatedAt: fs.serverTimestamp() }));
+        // setDoc+merge (not updateDoc): same upsert reasoning as toggle-hidden
+        // above — `original` may be a fallback-only entry with no Firestore
+        // doc yet. Starting from `original` also keeps untouched fields
+        // (cover, hidden, …) intact instead of being dropped.
+        var savePayload = Object.assign({}, original, fields, { updatedAt: fs.serverTimestamp() });
+        delete savePayload.id;
+        if (savePayload.version === null) delete savePayload.version;
+        await fs.setDoc(fs.doc(fs.db, 'projects', id), savePayload, { merge: true });
         editingId = null;
       } catch (err) {
         console.error('project update error', err);
@@ -450,7 +489,7 @@ function initProjectsTab(fs) {
   });
 
   seedBtn.addEventListener('click', async function () {
-    if (!confirm('현재 공개 사이트에 하드코딩된 16개 프로젝트를 Firestore projects 컬렉션에 불러옵니다.\n같은 번호의 문서가 이미 있으면 값이 덮어써집니다. 계속할까요?')) return;
+    if (!confirm('js/projects-data.js에 기록된 전체 프로젝트를 Firestore projects 컬렉션에 불러옵니다.\n같은 번호의 문서가 이미 있으면 값이 덮어써집니다. 계속할까요?')) return;
     seedBtn.disabled = true;
     seedBtn.textContent = '불러오는 중…';
     try {

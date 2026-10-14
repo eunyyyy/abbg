@@ -1,50 +1,61 @@
 // AI WEB portfolio hub — canonical project list
 //
-// This is the single source of truth for the 17 shipped projects. It is used:
+// This is the single source of truth for all 31 shipped projects. It is used:
 //  1. As the fallback the public site (js/main.js) renders from when Firestore
 //     is unreachable or js/firebase-config.js is still on the placeholder config.
-//  2. As the payload the admin Project tab's "시드 데이터 불러오기" button writes
-//     into the Firestore `projects` collection (one document per entry, doc id
-//     = the zero-padded `number` field) the first time a real Firebase project
-//     is wired up.
+//  2. As the fallback the admin dashboard (admin/js/admin-dashboard.js) merges
+//     into the live Firestore `projects` collection, and the payload the
+//     admin Project tab's "시드 데이터 불러오기" button writes there (one
+//     document per entry, doc id = the zero-padded `number` field).
+//  3. As the file-list source for .github/scripts/package-projects.mjs, which
+//     zips every entry's folder (derived from `url`) into the project-downloads
+//     GitHub Release.
 //
 // Schema (kept 1:1 with what the site already renders per project):
 //   number   — 2-digit string, e.g. "01" (also used as the projects/{number} doc id)
 //   name     — display name
-//   category — one of the 7 industry categories used across the site
+//   category — one of the 9 industry categories used across the site
 //   url      — absolute live URL of the deployed landing page
 //   cover    — relative path to the marquee cover image (may be '' for a
 //              project added later that has no cover shot yet)
+//   hidden   — true if hidden from the public list/filters/feedback picker
+//              (its `number` never changes; the public site recomputes a
+//              gap-free display number from whatever's left visible)
+//   version  — only set on projects that are a clone/backup chain of the
+//              same brand (e.g. a redesign that replaced an older one kept
+//              around hidden): 1 = the oldest hidden backup, 2 = the next,
+//              etc. Shown as a "v{N}" badge next to the name in the admin
+//              Projects tab. Projects outside a chain have no version field.
 export const PROJECTS_FALLBACK = [
-  { number: '01', name: 'NEXFORGE', category: '테크·제조', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%ED%85%8C%ED%81%AC%C2%B7%EC%A0%9C%EC%A1%B0/nexforge/', cover: 'img/covers/nexforge.jpg' },
-  { number: '02', name: 'AERIUM', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/aerium/', cover: 'img/covers/aerium.jpg' },
-  { number: '03', name: 'Mobilion', category: '모빌리티', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AA%A8%EB%B9%8C%EB%A6%AC%ED%8B%B0/%EB%AA%A8%EB%B9%8C%EB%A6%AC%EC%98%A8/', cover: 'img/covers/mobilion.jpg' },
-  { number: '04', name: 'VELOCORE', category: '테크·제조', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%ED%85%8C%ED%81%AC%C2%B7%EC%A0%9C%EC%A1%B0/%EB%B2%A8%EB%A1%9C%EC%BD%94%EC%96%B4/', cover: 'img/covers/velocore.jpg' },
-  { number: '05', name: 'OBLIQ', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/%EC%98%A4%EB%B8%94%EB%A6%AC%ED%81%AC/', cover: 'img/covers/obliq.jpg' },
-  { number: '06', name: 'OSMERE', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%98%A4%EC%8A%A4%EB%A9%94%EC%96%B4/', cover: 'img/covers/osmere.jpg' },
-  { number: '07', name: 'AUBERON', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%98%A4%EB%B2%A0%EB%A1%A0/', cover: 'img/covers/auberon.jpg' },
-  { number: '08', name: 'VESTIA', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EB%B2%A0%EC%8A%A4%ED%8B%B0%EC%95%84/', cover: 'img/covers/vestia.jpg' },
-  { number: '09', name: 'kadence', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%B9%B4%EB%8D%B4%EC%8A%A4/', cover: 'img/covers/kadence.jpg' },
-  { number: '10', name: 'WEFT', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%9B%A8%ED%94%84%ED%8A%B8/', cover: 'img/covers/weft.jpg' },
-  { number: '11', name: 'EMBERIC', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%97%A0%EB%B2%84%EB%A6%AD/', cover: 'img/covers/emberic.jpg' },
-  { number: '12', name: 'NOM Burger & Wings', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/NOM%EB%B2%84%EA%B1%B0%EC%95%A4%EC%9C%99%EC%8A%A4/', cover: 'img/covers/nom-burger-wings.jpg' },
-  { number: '13', name: 'HALCYON', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/halcyon/', cover: 'img/covers/halcyon.jpg' },
-  { number: '14', name: 'AGRINOVA', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/20.AGRINOVA/', cover: 'img/covers/agrinova.jpg' },
-  { number: '15', name: 'VERAHYDE', category: '바이오·헬스케어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%B0%94%EC%9D%B4%EC%98%A4%C2%B7%ED%97%AC%EC%8A%A4%EC%BC%80%EC%96%B4/21.VERAHYDE/', cover: 'img/covers/verahyde.jpg' },
-  { number: '16', name: 'COGNOVA', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/22.COGNOVA/', cover: 'img/covers/cognova.jpg' },
-  { number: '17', name: 'LUMOLAB', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/23.LUMOLAB/', cover: 'img/covers/lumolab.jpg' },
-  { number: '18', name: 'AQUORA', category: '바이오·헬스케어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%B0%94%EC%9D%B4%EC%98%A4%C2%B7%ED%97%AC%EC%8A%A4%EC%BC%80%EC%96%B4/24.AQUORA/', cover: 'img/covers/aquora.jpg' },
-  { number: '19', name: 'KOLLAJ', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/25.KOLLAJ/', cover: 'img/covers/kollaj.jpg' },
-  { number: '20', name: 'Rubyloop', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/26.RUBYLOOP/', cover: 'img/covers/rubyloop.jpg' },
-  { number: '21', name: 'RIWOL', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/27.RIWOL/', cover: 'img/covers/riwol.jpg', hidden: true },
-  { number: '22', name: 'OAKMERE', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/28.OAKMERE/', cover: 'img/covers/oakmere.jpg' },
-  { number: '23', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/29.ONDAM/', cover: 'img/covers/ondam.jpg', hidden: true },
-  { number: '24', name: 'DOUGHWALK', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/30.DOUGHWALK/', cover: 'img/covers/doughwalk.jpg' },
-  { number: '25', name: 'HOMIL', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/31.HOMIL/', cover: 'img/covers/homil.jpg' },
-  { number: '26', name: 'GREEN CRUMB', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/32.GREENCRUMB/', cover: 'img/covers/greencrumb.jpg' },
-  { number: '27', name: 'NORDLANE', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/33.NORDLANE/', cover: 'img/covers/nordlane.jpg' },
-  { number: '28', name: 'HANDEUL', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/34.HANDEUL/', cover: 'img/covers/handeul.jpg', hidden: true },
-  { number: '29', name: 'HANDEUL', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/35.HANDEUL/', cover: 'img/covers/handeul-v2.jpg' },
-  { number: '30', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/36.ONDAM/', cover: 'img/covers/ondam-v2.jpg' },
-  { number: '31', name: 'RIWOL', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/37.RIWOL/', cover: 'img/covers/riwol-v2.jpg' }
+  { number: '01', name: 'NEXFORGE', category: '테크·제조', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%ED%85%8C%ED%81%AC%C2%B7%EC%A0%9C%EC%A1%B0/nexforge/', cover: 'img/covers/nexforge.jpg', hidden: false },
+  { number: '02', name: 'AERIUM', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/aerium/', cover: 'img/covers/aerium.jpg', hidden: false },
+  { number: '03', name: 'Mobilion', category: '모빌리티', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AA%A8%EB%B9%8C%EB%A6%AC%ED%8B%B0/%EB%AA%A8%EB%B9%8C%EB%A6%AC%EC%98%A8/', cover: 'img/covers/mobilion.jpg', hidden: false },
+  { number: '04', name: 'VELOCORE', category: '테크·제조', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%ED%85%8C%ED%81%AC%C2%B7%EC%A0%9C%EC%A1%B0/%EB%B2%A8%EB%A1%9C%EC%BD%94%EC%96%B4/', cover: 'img/covers/velocore.jpg', hidden: false },
+  { number: '05', name: 'OBLIQ', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/%EC%98%A4%EB%B8%94%EB%A6%AC%ED%81%AC/', cover: 'img/covers/obliq.jpg', hidden: false },
+  { number: '06', name: 'OSMERE', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%98%A4%EC%8A%A4%EB%A9%94%EC%96%B4/', cover: 'img/covers/osmere.jpg', hidden: false },
+  { number: '07', name: 'AUBERON', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%98%A4%EB%B2%A0%EB%A1%A0/', cover: 'img/covers/auberon.jpg', hidden: false },
+  { number: '08', name: 'VESTIA', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EB%B2%A0%EC%8A%A4%ED%8B%B0%EC%95%84/', cover: 'img/covers/vestia.jpg', hidden: false },
+  { number: '09', name: 'kadence', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%B9%B4%EB%8D%B4%EC%8A%A4/', cover: 'img/covers/kadence.jpg', hidden: false },
+  { number: '10', name: 'WEFT', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%9B%A8%ED%94%84%ED%8A%B8/', cover: 'img/covers/weft.jpg', hidden: false },
+  { number: '11', name: 'EMBERIC', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/%EC%97%A0%EB%B2%84%EB%A6%AD/', cover: 'img/covers/emberic.jpg', hidden: false },
+  { number: '12', name: 'NOM Burger & Wings', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/NOM%EB%B2%84%EA%B1%B0%EC%95%A4%EC%9C%99%EC%8A%A4/', cover: 'img/covers/nom-burger-wings.jpg', hidden: false },
+  { number: '13', name: 'HALCYON', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/halcyon/', cover: 'img/covers/halcyon.jpg', hidden: false },
+  { number: '14', name: 'AGRINOVA', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/20.AGRINOVA/', cover: 'img/covers/agrinova.jpg', hidden: false },
+  { number: '15', name: 'VERAHYDE', category: '바이오·헬스케어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%B0%94%EC%9D%B4%EC%98%A4%C2%B7%ED%97%AC%EC%8A%A4%EC%BC%80%EC%96%B4/21.VERAHYDE/', cover: 'img/covers/verahyde.jpg', hidden: false },
+  { number: '16', name: 'COGNOVA', category: 'IT·마케팅', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/IT%C2%B7%EB%A7%88%EC%BC%80%ED%8C%85/22.COGNOVA/', cover: 'img/covers/cognova.jpg', hidden: false },
+  { number: '17', name: 'LUMOLAB', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/23.LUMOLAB/', cover: 'img/covers/lumolab.jpg', hidden: false },
+  { number: '18', name: 'AQUORA', category: '바이오·헬스케어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%B0%94%EC%9D%B4%EC%98%A4%C2%B7%ED%97%AC%EC%8A%A4%EC%BC%80%EC%96%B4/24.AQUORA/', cover: 'img/covers/aquora.jpg', hidden: false },
+  { number: '19', name: 'KOLLAJ', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/25.KOLLAJ/', cover: 'img/covers/kollaj.jpg', hidden: false },
+  { number: '20', name: 'Rubyloop', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/26.RUBYLOOP/', cover: 'img/covers/rubyloop.jpg', hidden: false },
+  { number: '21', name: 'RIWOL', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/27.RIWOL%20v1/', cover: 'img/covers/riwol.jpg', hidden: true, version: 1 },
+  { number: '22', name: 'OAKMERE', category: '라이프스타일', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%8A%A4%ED%83%80%EC%9D%BC/28.OAKMERE/', cover: 'img/covers/oakmere.jpg', hidden: false },
+  { number: '23', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/29.ONDAM%20v1/', cover: 'img/covers/ondam.jpg', hidden: true, version: 1 },
+  { number: '24', name: 'DOUGHWALK', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/30.DOUGHWALK/', cover: 'img/covers/doughwalk.jpg', hidden: false },
+  { number: '25', name: 'HOMIL', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/31.HOMIL/', cover: 'img/covers/homil.jpg', hidden: false },
+  { number: '26', name: 'GREEN CRUMB', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/32.GREENCRUMB/', cover: 'img/covers/greencrumb.jpg', hidden: false },
+  { number: '27', name: 'NORDLANE', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/33.NORDLANE/', cover: 'img/covers/nordlane.jpg', hidden: false },
+  { number: '28', name: 'HANDEUL', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/34.HANDEUL%20v1/', cover: 'img/covers/handeul.jpg', hidden: true, version: 1 },
+  { number: '29', name: 'HANDEUL', category: '농축수산업', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%86%8D%EC%B6%95%EC%88%98%EC%82%B0%EC%97%85/35.HANDEUL/', cover: 'img/covers/handeul-v2.jpg', hidden: false, version: 2 },
+  { number: '30', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/36.ONDAM/', cover: 'img/covers/ondam-v2.jpg', hidden: false, version: 2 },
+  { number: '31', name: 'RIWOL', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/37.RIWOL/', cover: 'img/covers/riwol-v2.jpg', hidden: false, version: 2 }
 ];

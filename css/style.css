@@ -237,6 +237,17 @@ h1,h2,h3,h4,p{ margin:0; }
   position:absolute; right:12px; top:50%; transform:translateY(-50%); pointer-events:none; color: var(--text-dim);
 }
 
+/* 산업분야·프로젝트·정렬·검색·전체 다운받기를 데스크톱에서 한 줄로 유지 —
+   고정폭 대신 유동폭(flex)으로 전환해 5개 필드가 줄바꿈 없이 들어가게 함. */
+@media (min-width: 901px){
+  .filter-dropdowns{ flex-wrap:nowrap; }
+  .filter-field{ width:auto; flex:1 1 150px; min-width:0; }
+  .filter-field--wide{ flex:1.5 1 190px; }
+  .filter-field--sort{ flex:.8 1 120px; }
+  .filter-field--search{ flex:1 1 150px; }
+  .filter-field--downloadall{ flex:0 0 auto; }
+}
+
 @media (max-width: 640px){
   .filter-dropdowns{ gap:10px; }
   .filter-field,.filter-field--wide{ width: calc(50% - 5px); }
