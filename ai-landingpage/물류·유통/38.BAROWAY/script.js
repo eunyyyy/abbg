@@ -128,13 +128,13 @@
   var items = [].slice.call(list.children), fill = document.querySelector('.steps__fill');
   var box = document.querySelector('.crane__box');
   function setProcess(k){
-    var vh = window.innerHeight, mo = isMo();
+    var H = load.parentNode.clientHeight, mo = isMo();
     var land = Math.min(1, k / .88), e = 1 - Math.pow(1 - land, 2.2);
-    var stackTop = vh * (mo ? .74 : .64);
-    stack.style.top = stackTop + 'px';
-    stack.style.transform = 'translate3d(0,' + ((1 - e) * vh * .55).toFixed(1) + 'px,0)';
     var boxTop = box.offsetTop, boxH = box.offsetHeight;
-    var startY = vh * (mo ? .36 : .3) - boxTop, endY = stackTop - boxTop - boxH + 2;
+    var stackTop = mo ? H - boxH * .62 : H * .64;
+    stack.style.top = stackTop + 'px';
+    stack.style.transform = 'translate3d(0,' + ((1 - e) * H * (mo ? .7 : .55)).toFixed(1) + 'px,0)';
+    var startY = (mo ? H * .06 : H * .3) - boxTop, endY = stackTop - boxTop - boxH + 2;
     load.style.transform = 'translate3d(0,' + (startY + (endY - startY) * e).toFixed(1) + 'px,0)';
     var n = items.length, act = Math.min(n - 1, Math.floor(k * n * 1.02));
     items.forEach(function(li, i){ li.classList.toggle('is-on', i <= act); });
@@ -183,8 +183,25 @@
   }
   var cv = document.querySelector('.cases__viewport');
   carousel(document.getElementById('casesTrack'), [cv.querySelector('.arrow--prev')], [cv.querySelector('.arrow--next')]);
-  var mh = document.querySelector('.modes__ctrl');
-  carousel(document.getElementById('modesTrack'), [mh.querySelector('.arrow--prev')], [mh.querySelector('.arrow--next')], document.getElementById('modesDots'));
+
+  /* ---------- infinite leftward loops (cases on mobile, modes everywhere) ---------- */
+  function makeLoop(track, speed){
+    if (!track) return;
+    var orig = [].slice.call(track.children);
+    orig.forEach(function(el){
+      var c = el.cloneNode(true); c.classList.add('is-clone'); c.setAttribute('aria-hidden', 'true');
+      [].forEach.call(c.querySelectorAll('a,button'), function(a){ a.setAttribute('tabindex', '-1'); });
+      track.appendChild(c);
+    });
+    function setDur(){
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 16, w = 0;
+      orig.forEach(function(el){ w += el.getBoundingClientRect().width + gap; });
+      if (w > 0) track.style.setProperty('--loop-dur', (w / speed).toFixed(1) + 's');
+    }
+    setDur(); window.addEventListener('resize', setDur); window.addEventListener('load', setDur);
+  }
+  makeLoop(document.getElementById('casesTrack'), 38);
+  makeLoop(document.getElementById('modesTrack'), 42);
 
   /* first case card shows its photo until the user hovers another (reference behaviour) */
   var caseCards = [].slice.call(document.querySelectorAll('.case'));
