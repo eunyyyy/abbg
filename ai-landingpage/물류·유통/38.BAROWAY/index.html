@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preload" href="fonts/SCoreDream-6Bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -184,14 +184,37 @@
     <div class="bento">
       <article class="tile tile--teal rv">
         <h3>선사·항공사 스케줄<br>자동 수집</h3>
-        <ul class="apps">
-          <li><img src="img/icons/ship.png" alt="해상"></li>
-          <li><img src="img/icons/plane.png" alt="항공"></li>
-          <li><img src="img/icons/truck.png" alt="내륙"></li>
-          <li><img src="img/icons/container.png" alt="컨테이너"></li>
-          <li><img src="img/icons/crane.png" alt="하역"></li>
-          <li><img src="img/icons/warehouse.png" alt="창고"></li>
-        </ul>
+        <p class="tile__sub">흩어진 운항 스케줄이 한곳으로 모입니다</p>
+        <div class="hub">
+          <div class="hub__grid">
+            <svg class="hub__lines" viewBox="0 0 220 220" aria-hidden="true">
+              <path d="M32 32 L110 110"/><path d="M110 32 L110 110"/><path d="M188 32 L110 110"/>
+              <path d="M32 188 L110 110"/><path d="M110 188 L110 110"/><path d="M188 188 L110 110"/>
+            </svg>
+            <i class="hub__pulse" style="--p:path('M32 32 L110 110');--d:0s"></i>
+            <i class="hub__pulse" style="--p:path('M110 32 L110 110');--d:.5s"></i>
+            <i class="hub__pulse" style="--p:path('M188 32 L110 110');--d:1s"></i>
+            <i class="hub__pulse" style="--p:path('M32 188 L110 110');--d:1.5s"></i>
+            <i class="hub__pulse" style="--p:path('M110 188 L110 110');--d:2s"></i>
+            <i class="hub__pulse" style="--p:path('M188 188 L110 110');--d:2.5s"></i>
+            <ul class="apps">
+              <li><img src="img/icons/ship.png" alt="선사"></li>
+              <li><img src="img/icons/plane.png" alt="항공사"></li>
+              <li><img src="img/icons/container.png" alt="컨테이너 터미널"></li>
+              <li class="ghost" aria-hidden="true"></li>
+              <li class="hub__core"><span class="hub__sync"></span></li>
+              <li class="ghost" aria-hidden="true"></li>
+              <li><img src="img/icons/crane.png" alt="하역"></li>
+              <li><img src="img/icons/truck.png" alt="내륙 운송"></li>
+              <li><img src="img/icons/warehouse.png" alt="창고"></li>
+            </ul>
+          </div>
+          <ul class="hub__feed" aria-label="자동 수집 예시">
+            <li><b>선적 확정</b><span>닝보 → 부산신항</span></li>
+            <li><b>ETA 변경</b><span>10.28 → 10.27</span></li>
+            <li><b>스페이스 확보</b><span>인천공항 화물기</span></li>
+          </ul>
+        </div>
       </article>
       <article class="tile tile--light rv">
         <h3>수입신고 자동 처리</h3>
@@ -237,7 +260,7 @@
         </div>
       </article>
 
-      <article class="tile tile--half tile--light rv">
+      <article class="tile tile--half tile--temps tile--light rv">
         <h3>온도대별 재고 현황<br><span class="mute">창고가 달라도 한 화면에</span></h3>
         <div class="temps">
           <div class="temp"><i class="temp__ic" style="--ic:url(img/icons/temp-ambient.png)"></i><small>상온</small><b>3,482<span>박스</span></b><p>부산신항 B동</p></div>
@@ -245,7 +268,7 @@
           <div class="temp temp--frozen"><i class="temp__ic" style="--ic:url(img/icons/temp-frozen.png)"></i><small>냉동 -18℃</small><b>764<span>박스</span></b><p>부산 감천 냉동창고</p></div>
         </div>
       </article>
-      <article class="tile tile--half tile--light rv">
+      <article class="tile tile--half tile--link tile--light rv">
         <h3>쓰던 시스템 그대로 연동<br><span class="mute">ERP·WMS·발주 프로그램 변경 없이</span></h3>
         <div class="link">
           <div class="link__node">ERP</div>
@@ -353,6 +376,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
