@@ -9,7 +9,7 @@
   /* ---------- hero video ---------- */
   var vid = document.getElementById('heroVideo');
   if (vid){
-    vid.src = isMo() ? 'video/hero-port-mo.mp4' : 'video/hero-port.mp4';
+    vid.src = isMo() ? 'video/hero-warehouse-mo.mp4' : 'video/hero-warehouse.mp4';
     var p = vid.play(); if (p && p.catch) p.catch(function(){});
   }
   requestAnimationFrame(function(){ setTimeout(function(){ document.body.classList.add('is-loaded'); }, 60); });
