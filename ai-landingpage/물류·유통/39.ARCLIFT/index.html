@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARCLIFT 아크리프트 복합운송</title>
+<meta name="description" content="해상, 항공, 철도, 육상 운송을 하나의 계약으로 잇는 복합운송 기업 아크리프트">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%232F72F5%22/%3E%3Cpath d=%22M9 23 16 8l7 15h-4l-3-7-3 7z%22 fill=%22%23fff%22/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="img/hero-bg.jpg">
+<link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+
+<header class="gnb" id="gnb">
+  <div class="gnb__inner">
+    <a href="#top" class="gnb__logo" aria-label="ARCLIFT 처음으로">ARCLIFT</a>
+    <nav class="gnb__nav" aria-label="주요 메뉴">
+      <a href="#about">회사소개</a>
+      <a href="#service">서비스</a>
+      <a href="#hub">물류거점</a>
+      <a href="#track">화물조회</a>
+      <a href="#network">네트워크</a>
+      <a href="#faq">자주 묻는 질문</a>
+    </nav>
+    <a href="#contact" class="btn btn--pill gnb__cta">견적 문의</a>
+    <button class="gnb__burger" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer"><i class="ph ph-list"></i></button>
+  </div>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <nav class="drawer__nav" aria-label="모바일 메뉴">
+    <a href="#about">회사소개</a>
+    <a href="#service">서비스</a>
+    <a href="#hub">물류거점</a>
+    <a href="#track">화물조회</a>
+    <a href="#network">네트워크</a>
+    <a href="#faq">자주 묻는 질문</a>
+    <a href="#contact" class="btn btn--primary">견적 문의</a>
+  </nav>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__frame">
+    <img class="hero__bg" src="img/hero-bg.jpg" alt="" aria-hidden="true">
+    <div class="hero__sky" aria-hidden="true"></div>
+    <div class="hero__word" aria-hidden="true"><span class="hero__word-in">ARCLIFT</span></div>
+    <div class="hero__lift" aria-hidden="true">
+      <div class="hero__sway"><img src="img/hero-container.webp" alt="" width="1400" height="1388"></div>
+    </div>
+
+    <div class="hero__card" data-hero-in>
+      <h1 class="hero__title">국경을 넘는 화물,<br>가장 가벼운 길로</h1>
+      <p class="hero__desc">해상, 항공, 철도, 육상 운송을 하나의 계약으로 잇는 복합운송 파트너입니다.</p>
+      <a href="#contact" class="btn btn--light">견적 문의<span class="btn__ic"><i class="ph ph-arrow-up-right"></i></span></a>
+    </div>
+
+    <a href="#film" class="hero__film" data-hero-in>
+      <span class="hero__play"><i class="ph ph-play"></i></span>
+      <span class="hero__film-txt">현장 영상 보기</span>
+    </a>
+
+    <div class="hero__stat" data-hero-in>
+      <span class="hero__stat-ics" aria-hidden="true">
+        <i class="ph ph-boat"></i><i class="ph ph-airplane-tilt"></i><i class="ph ph-train"></i>
+      </span>
+      <span class="hero__stat-txt"><strong>64곳</strong>세계 항만과 연결된 네트워크</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners" aria-labelledby="partners-title">
+  <p class="partners__title" id="partners-title">제조, 유통, 에너지 기업이 아크리프트에 화물을 맡깁니다</p>
+  <div class="marquee">
+    <div class="marquee__track">
+      <ul class="marquee__list">
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 1 0 0 26V3z"/><circle cx="16" cy="16" r="12" fill="none" stroke-width="2.5"/></svg><span>HANGYEOL HEAVY</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="6" width="24" height="5" rx="2"/><rect x="4" y="13.5" width="17" height="5" rx="2"/><rect x="4" y="21" width="10" height="5" rx="2"/></svg><span>DAON FOODS</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 29 27H3z"/></svg><span>MIRTECH</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="7" width="18" height="18" rx="3" transform="rotate(45 16 16)"/></svg><span>SOLBIT CHEM</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="16" r="7"/><circle cx="21" cy="16" r="7" fill="none" stroke-width="2.5"/></svg><span>ORUM STEEL</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27.3 9.5v13L16 29 4.7 22.5v-13z"/></svg><span>BAEKRYEON PHARMA</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 9h8l8 7-8 7H4l8-7zM16 9h8l8 7-8 7h-8l8-7z"/></svg><span>PLANA MOTORS</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke-width="5"/></svg><span>SEORIN TEXTILE</span></li>
+      </ul>
+      <ul class="marquee__list" aria-hidden="true">
+        <li><svg viewBox="0 0 32 32"><path d="M16 3a13 13 0 1 0 0 26V3z"/><circle cx="16" cy="16" r="12" fill="none" stroke-width="2.5"/></svg><span>HANGYEOL HEAVY</span></li>
+        <li><svg viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="5" rx="2"/><rect x="4" y="13.5" width="17" height="5" rx="2"/><rect x="4" y="21" width="10" height="5" rx="2"/></svg><span>DAON FOODS</span></li>
+        <li><svg viewBox="0 0 32 32"><path d="M16 4 29 27H3z"/></svg><span>MIRTECH</span></li>
+        <li><svg viewBox="0 0 32 32"><rect x="7" y="7" width="18" height="18" rx="3" transform="rotate(45 16 16)"/></svg><span>SOLBIT CHEM</span></li>
+        <li><svg viewBox="0 0 32 32"><circle cx="11" cy="16" r="7"/><circle cx="21" cy="16" r="7" fill="none" stroke-width="2.5"/></svg><span>ORUM STEEL</span></li>
+        <li><svg viewBox="0 0 32 32"><path d="M16 3 27.3 9.5v13L16 29 4.7 22.5v-13z"/></svg><span>BAEKRYEON PHARMA</span></li>
+        <li><svg viewBox="0 0 32 32"><path d="M4 9h8l8 7-8 7H4l8-7zM16 9h8l8 7-8 7h-8l8-7z"/></svg><span>PLANA MOTORS</span></li>
+        <li><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke-width="5"/></svg><span>SEORIN TEXTILE</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="container">
+    <p class="about__statement" id="statement">아크리프트는 2009년 평택항의 작은 포워딩 사무실에서 시작했습니다. 지금은 바다와 하늘, 철도와 도로를 잇는 복합운송 네트워크를 운영합니다. 화물의 크기와 무게가 달라도 출발부터 도착까지 한 팀이 책임집니다.</p>
+
+    <div class="about__split">
+      <figure class="about__film" id="film" data-reveal>
+        <video src="video/lift.mp4" poster="img/lift-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="항만에서 크레인이 컨테이너를 들어 올리는 현장 영상"></video>
+      </figure>
+      <div class="about__body" data-reveal>
+        <h2 class="h2">출발부터 도착까지<br>한 팀이 움직입니다</h2>
+        <p class="lead">구간마다 업체가 바뀌는 대신, 전담 매니저 한 명이 견적부터 인도까지 모든 연락을 맡습니다.</p>
+        <ul class="about__list">
+          <li><span class="ic-box"><i class="ph ph-user-focus"></i></span><div><strong>전담 매니저 배정</strong><p>화주사마다 한 명의 매니저가 일정과 서류를 함께 관리합니다.</p></div></li>
+          <li><span class="ic-box"><i class="ph ph-warehouse"></i></span><div><strong>자체 보세창고 운영</strong><p>평택과 광양에 직영 보세창고를 두고 통관 대기 시간을 줄입니다.</p></div></li>
+          <li><span class="ic-box"><i class="ph ph-headset"></i></span><div><strong>24시간 화물 관제</strong><p>야간과 주말에도 관제센터가 운송 중인 화물을 지켜봅니다.</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <dl class="stats" data-reveal>
+      <div class="stats__item"><dt>지난해 운송한 컨테이너</dt><dd><span data-count="41.7" data-dec="1">0</span><small>만 TEU</small></dd></div>
+      <div class="stats__item"><dt>정시 도착률</dt><dd><span data-count="98.6" data-dec="1">0</span><small>%</small></dd></div>
+      <div class="stats__item"><dt>함께하는 화주사</dt><dd><span data-count="2380" data-dec="0">0</span><small>곳</small></dd></div>
+      <div class="stats__item"><dt>현장 전문 인력</dt><dd><span data-count="172" data-dec="0">0</span><small>명</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section class="service section" id="service">
+  <div class="container">
+    <div class="service__panel">
+      <div class="service__head" data-reveal>
+        <h2 class="h2">화물에 맞는 운송 방식을 고릅니다</h2>
+        <p class="lead">운송 수단부터 통관과 보관까지, 필요한 서비스만 골라 하나의 견적으로 받으세요.</p>
+      </div>
+      <ul class="service__grid">
+        <li class="svc" data-reveal><span class="svc__ic"><i class="ph ph-boat"></i></span><h3>해상 운송</h3><p>주 42회 정기 선복을 확보해 운임이 흔들리는 시기에도 FCL과 LCL 화물을 안정적으로 싣습니다.</p></li>
+        <li class="svc is-on" data-reveal><span class="svc__ic"><i class="ph ph-airplane-tilt"></i></span><h3>항공 운송</h3><p>긴급 부품과 고가 화물을 인천 출발 직항편에 실어 다음 날 도착하도록 보냅니다.</p></li>
+        <li class="svc" data-reveal><span class="svc__ic"><i class="ph ph-train"></i></span><h3>철도 운송</h3><p>의왕 내륙기지에서 출발해 중국 롄윈강을 거쳐 중앙아시아까지 철도로 잇습니다.</p></li>
+        <li class="svc" data-reveal><span class="svc__ic"><i class="ph ph-truck"></i></span><h3>육상 운송</h3><p>직영 트레일러 120대가 항만과 공장 사이를 약속한 시간에 오갑니다.</p></li>
+        <li class="svc" data-reveal><span class="svc__ic"><i class="ph ph-stamp"></i></span><h3>통관과 보세</h3><p>관세사가 상주하는 보세창고에서 수입 신고부터 반출까지 한 번에 처리합니다.</p></li>
+        <li class="svc" data-reveal><span class="svc__ic"><i class="ph ph-crane"></i></span><h3>중량물 운송</h3><p>플랜트 설비와 대형 구조물을 현장 조사부터 고정, 하역까지 맡아 옮깁니다.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HUB (scroll-pinned scenes) -->
+<section class="hub" id="hub">
+  <div class="hub__runway">
+    <div class="hub__sticky">
+      <div class="container hub__grid">
+        <div class="hub__side">
+          <h2 class="h2">네 곳의 거점이<br>하나처럼 움직입니다</h2>
+          <ol class="hub__steps" aria-label="물류거점 목록">
+            <li class="is-on"><i class="ph ph-anchor"></i>평택 항만터미널</li>
+            <li><i class="ph ph-train"></i>의왕 철도기지</li>
+            <li><i class="ph ph-airplane-tilt"></i>인천 항공화물센터</li>
+            <li><i class="ph ph-globe-hemisphere-east"></i>마곡 통합관제센터</li>
+          </ol>
+          <div class="hub__cards">
+            <article class="hub-card is-on">
+              <h3>평택 항만터미널</h3>
+              <p>수심 16m 선석과 직영 보세창고를 갖춘 아크리프트의 출발점입니다.</p>
+              <dl><div><dt>연간 처리량</dt><dd>26.4만 TEU</dd></div><div><dt>전용 선석</dt><dd>3선석</dd></div><div><dt>보세창고</dt><dd>4.2만 ㎡</dd></div></dl>
+            </article>
+            <article class="hub-card">
+              <h3>의왕 철도기지</h3>
+              <p>롄윈강을 거쳐 중앙아시아로 이어지는 철도 컨테이너가 매일 출발합니다.</p>
+              <dl><div><dt>주간 출발</dt><dd>18편</dd></div><div><dt>연결 국가</dt><dd>7개국</dd></div><div><dt>평균 운송 기간</dt><dd>14일</dd></div></dl>
+            </article>
+            <article class="hub-card">
+              <h3>인천 항공화물센터</h3>
+              <p>반도체 부품과 의약품처럼 시간이 중요한 화물을 24시간 처리합니다.</p>
+              <dl><div><dt>하루 처리량</dt><dd>380톤</dd></div><div><dt>정온 보관</dt><dd>2~8℃</dd></div><div><dt>평균 통관 시간</dt><dd>2.4시간</dd></div></dl>
+            </article>
+            <article class="hub-card">
+              <h3>마곡 통합관제센터</h3>
+              <p>선박, 열차, 항공기, 트럭의 위치를 한 화면에서 실시간으로 확인합니다.</p>
+              <dl><div><dt>하루 관제 화물</dt><dd>1.2만 건</dd></div><div><dt>위치 갱신</dt><dd>30초</dd></div><div><dt>운영 시간</dt><dd>연중무휴</dd></div></dl>
+            </article>
+          </div>
+        </div>
+        <div class="hub__stage">
+          <figure class="scene is-on" data-scene="0">
+            <img src="img/hub-port.jpg" alt="평택 항만터미널 아이소메트릭 일러스트" loading="lazy">
+            <span class="callout" style="--x:24%;--y:47%">갠트리 크레인</span>
+            <span class="callout" style="--x:72%;--y:18%">보세창고</span>
+            <span class="callout" style="--x:70%;--y:66%">컨테이너 야드</span>
+          </figure>
+          <figure class="scene" data-scene="1">
+            <img src="img/hub-rail.jpg" alt="의왕 철도기지 아이소메트릭 일러스트" loading="lazy">
+            <span class="callout" style="--x:60%;--y:62%">컨테이너 화차</span>
+            <span class="callout" style="--x:20%;--y:30%">적재 대기 구역</span>
+            <span class="callout" style="--x:30%;--y:80%">하역 장비</span>
+          </figure>
+          <figure class="scene" data-scene="2">
+            <img src="img/hub-air.jpg" alt="인천 항공화물센터 아이소메트릭 일러스트" loading="lazy">
+            <span class="callout" style="--x:50%;--y:60%">화물기 계류장</span>
+            <span class="callout" style="--x:24%;--y:30%">정온 창고</span>
+            <span class="callout" style="--x:51%;--y:10%">관제탑</span>
+          </figure>
+          <figure class="scene" data-scene="3">
+            <img src="img/hub-control.jpg" alt="마곡 통합관제센터 아이소메트릭 일러스트" loading="lazy">
+            <span class="callout" style="--x:76%;--y:22%">위성 통신</span>
+            <span class="callout" style="--x:36%;--y:45%">관제 서버</span>
+            <span class="callout" style="--x:66%;--y:58%">수신 안테나</span>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK -->
+<section class="track section" id="track">
+  <div class="container">
+    <div class="track__panel">
+      <img class="track__bg" src="img/track-bg.jpg" alt="" aria-hidden="true" loading="lazy">
+      <div class="track__copy" data-reveal>
+        <h2 class="h2">화물이 지금 어디쯤<br>왔는지 확인하세요</h2>
+        <p class="lead">B/L 번호나 컨테이너 번호만 있으면 운송 단계와 도착 예정일을 바로 볼 수 있습니다.</p>
+      </div>
+      <form class="track__form" id="trackForm" novalidate data-reveal>
+        <h3>화물 조회</h3>
+        <div class="field">
+          <label for="trackNo">B/L 또는 컨테이너 번호</label>
+          <input id="trackNo" name="trackNo" type="text" placeholder="예: ARCU 4829173" autocomplete="off">
+          <p class="field__err" id="trackErr" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="trackMode">운송 방식</label>
+          <select id="trackMode" name="trackMode">
+            <option>해상 운송</option><option>항공 운송</option><option>철도 운송</option><option>육상 운송</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block"><i class="ph ph-magnifying-glass"></i>조회하기</button>
+        <div class="track__result" id="trackResult" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- NETWORK -->
+<section class="network section" id="network">
+  <div class="container">
+    <div class="network__head" data-reveal>
+      <h2 class="h2">64개 항만으로 이어진 항로</h2>
+      <p class="lead">평택에서 출발한 화물은 아시아와 유럽, 미주의 주요 항만에서 현지 파트너에게 그대로 이어집니다.</p>
+    </div>
+    <div class="map" data-reveal>
+      <div class="map__dots" aria-hidden="true"></div>
+      <span class="pin pin--hq" style="--x:83.6%;--y:41.9%"><b>평택 본사 터미널</b></span>
+      <span class="pin" style="--x:81.4%;--y:45.9%"><b>상하이</b></span>
+      <span class="pin" style="--x:87.3%;--y:42.6%"><b>도쿄</b></span>
+      <span class="pin" style="--x:76.7%;--y:62.5%"><b>싱가포르</b></span>
+      <span class="pin" style="--x:67.8%;--y:55.6%"><b>뭄바이</b></span>
+      <span class="pin" style="--x:63.3%;--y:51.8%"><b>두바이</b></span>
+      <span class="pin" style="--x:70%;--y:38.5%"><b>알마티</b></span>
+      <span class="pin" style="--x:49.2%;--y:34%"><b>로테르담</b></span>
+      <span class="pin" style="--x:50.9%;--y:32.6%"><b>함부르크</b></span>
+      <span class="pin" style="--x:15.5%;--y:44%"><b>LA 롱비치</b></span>
+      <span class="pin" style="--x:35.6%;--y:77%"><b>산투스</b></span>
+      <span class="pin" style="--x:89.8%;--y:84%"><b>시드니</b></span>
+    </div>
+    <ul class="network__legend" data-reveal>
+      <li><strong>31곳</strong>아시아</li>
+      <li><strong>14곳</strong>유럽</li>
+      <li><strong>12곳</strong>미주</li>
+      <li><strong>7곳</strong>중동과 오세아니아</li>
+    </ul>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section class="review section" id="review">
+  <div class="container">
+    <h2 class="h2 review__title" data-reveal>함께 일한 화주사의 이야기</h2>
+    <div class="review__grid">
+      <figure class="quote quote--main" data-reveal>
+        <i class="ph ph-quotes quote__mark" aria-hidden="true"></i>
+        <blockquote>광양에서 카자흐스탄까지 240톤 설비를 옮기는 동안 일정이 하루도 밀리지 않았습니다. 구간마다 담당자가 바뀌지 않는다는 점이 가장 컸습니다.</blockquote>
+        <figcaption><img src="img/person-1.jpg" alt="" loading="lazy"><span><strong>윤서진</strong>한결중공업 물류기획팀장</span></figcaption>
+      </figure>
+      <figure class="quote" data-reveal>
+        <blockquote>수입 통관과 보세 보관을 한곳에서 처리하니 입고까지 걸리는 시간이 평균 3일 줄었습니다.</blockquote>
+        <figcaption><img src="img/person-2.jpg" alt="" loading="lazy"><span><strong>정민호</strong>다온푸드 SCM 매니저</span></figcaption>
+      </figure>
+      <figure class="quote" data-reveal>
+        <blockquote>새벽에 생긴 선적 변경도 관제센터에서 바로 받아 줍니다. 밤에도 연락이 닿는 파트너는 드뭅니다.</blockquote>
+        <figcaption><img src="img/person-4.jpg" alt="" loading="lazy"><span><strong>강태우</strong>미르텍 수출입 과장</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section" id="faq">
+  <div class="container faq__grid">
+    <div class="faq__head" data-reveal>
+      <h2 class="h2">자주 묻는 질문</h2>
+      <p class="lead">더 궁금한 점은 견적 문의를 남겨 주시면 담당 매니저가 직접 답해 드립니다.</p>
+    </div>
+    <dl class="faq__list">
+      <div class="qa" data-reveal><dt>견적은 얼마나 빨리 받을 수 있나요?</dt><dd>화물 정보와 출발지, 도착지를 남겨 주시면 영업일 기준 4시간 안에 운임과 일정을 보내 드립니다.</dd></div>
+      <div class="qa" data-reveal><dt>소량 화물도 맡길 수 있나요?</dt><dd>컨테이너 한 대를 채우지 않는 LCL 화물도 평택 CFS에서 합적해 매주 출항합니다.</dd></div>
+      <div class="qa" data-reveal><dt>통관 서류는 누가 준비하나요?</dt><dd>상주 관세사가 인보이스와 패킹리스트를 검토하고 수입 신고까지 대행합니다.</dd></div>
+      <div class="qa" data-reveal><dt>운송 중인 화물 위치는 어떻게 확인하나요?</dt><dd>화물 조회 화면이나 담당 매니저를 통해 30초마다 갱신되는 위치를 확인할 수 있습니다.</dd></div>
+      <div class="qa" data-reveal><dt>화물 사고가 생기면 어떻게 처리되나요?</dt><dd>모든 화물은 적하보험에 가입되며, 사고 접수 후 48시간 안에 손해 사정 절차를 시작합니다.</dd></div>
+      <div class="qa" data-reveal><dt>계약 기간이 정해져 있나요?</dt><dd>단건 운송부터 연간 계약까지 고를 수 있고, 연간 계약 화주사에는 선복을 먼저 배정합니다.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="contact__panel">
+      <div class="contact__copy" data-reveal>
+        <h2 class="h2">무거운 화물일수록<br>먼저 상담하세요</h2>
+        <p class="lead">중량물, 위험물, 정온 화물도 출발 전에 운송 계획부터 함께 세웁니다.</p>
+        <form class="contact__form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="cName">회사명</label>
+            <input id="cName" name="cName" type="text" placeholder="회사명을 입력해 주세요" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="cTel">연락처</label>
+            <input id="cTel" name="cTel" type="tel" placeholder="010 0000 0000" autocomplete="tel">
+          </div>
+          <button type="submit" class="btn btn--primary">견적 문의<span class="btn__ic"><i class="ph ph-arrow-up-right"></i></span></button>
+          <p class="contact__msg" id="contactMsg" role="status"></p>
+        </form>
+      </div>
+      <div class="contact__art" data-reveal>
+        <img src="img/cta-scene.jpg" alt="교량 상판을 들어 올려 선박에 싣는 중량물 운송 일러스트" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__panel">
+      <div class="footer__top">
+        <a href="#top" class="footer__logo">ARCLIFT</a>
+        <ul class="footer__sns">
+          <li><a href="#" aria-label="인스타그램"><i class="ph ph-instagram-logo"></i></a></li>
+          <li><a href="#" aria-label="유튜브"><i class="ph ph-youtube-logo"></i></a></li>
+          <li><a href="#" aria-label="링크드인"><i class="ph ph-linkedin-logo"></i></a></li>
+        </ul>
+      </div>
+      <address class="footer__info">
+        <p><span>(주)아크리프트</span><span>대표이사 한도윤</span><span>사업자등록번호 318-86-02741</span></p>
+        <p><span>서울특별시 강서구 마곡중앙6로 42, 9층</span></p>
+        <p><span>대표전화 1588-7023</span><span>팩스 02-6952-7024</span><span>hello@arclift.co.kr</span></p>
+      </address>
+      <p class="footer__copy">© 2026 ARCLIFT Co., Ltd. All rights reserved.</p>
+      <div class="footer__word" aria-hidden="true">ARCLIFT</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>
