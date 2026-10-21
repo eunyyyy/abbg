@@ -66,7 +66,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 
 /* ============ GNB ============ */
 .gnb{position:fixed;inset:0 0 auto;z-index:50;height:var(--nav-h);color:var(--g-0);transition:background-color .35s,color .35s,border-color .35s;border-bottom:1px solid transparent}
-.gnb__inner{height:100%;max-width:calc(var(--maxw) + var(--gutter)*2);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;gap:40px}
+.gnb__inner{transform:translateY(10px);transition:transform .35s var(--ease);height:100%;max-width:calc(var(--maxw) + var(--gutter)*2);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;gap:40px}
 .gnb__logo{font-family:var(--f-display);font-weight:400;font-size:28px;letter-spacing:0}
 .gnb__nav{display:flex;gap:34px;margin-left:auto;font-size:16px;font-weight:500}
 .gnb__nav a{position:relative;padding:6px 0;opacity:.92;transition:opacity .2s}
@@ -74,6 +74,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 .gnb__nav a:hover::after{transform:scaleX(1)}
 .gnb__cta{background:var(--g-0);color:var(--ink)}
 .gnb__burger{display:none;margin-left:auto;width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.18);color:inherit;font-size:24px;cursor:pointer;place-items:center}
+.gnb.is-solid .gnb__inner{transform:none}
 .gnb.is-solid{background:rgba(255,255,255,.94);color:var(--ink);border-bottom-color:var(--g-200)}
 .gnb.is-solid .gnb__cta{background:var(--p-500);color:var(--g-0)}
 .gnb.is-solid .gnb__burger{background:var(--g-100)}
@@ -92,9 +93,9 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 .hero__word-in{display:block;font-family:var(--f-display);font-weight:400;font-size:22.2vw;letter-spacing:-.01em;color:var(--g-0)}
 .hero__lift{position:absolute;left:50%;top:21%;width:min(40vw,760px);margin-left:max(-24vw,-456px);z-index:1;will-change:transform}
 .hero__sway{position:relative;transform-origin:53% -90%;animation:sway 6.5s ease-in-out infinite}
-.hero__sway::before,.hero__sway::after{content:"";position:absolute;bottom:calc(100% - 2px);width:.75%;height:150vh;background:#646464}
-.hero__sway::before{left:49%}
-.hero__sway::after{left:56.9%}
+.hero__sway::before,.hero__sway::after{content:"";position:absolute;bottom:calc(100% - 2px);width:.64%;height:150vh;background:#666}
+.hero__sway::before{left:49.21%}
+.hero__sway::after{left:57.14%}
 @keyframes sway{0%,100%{transform:rotate(-.6deg)}50%{transform:rotate(.6deg)}}
 
 .hero__card{position:absolute;left:28px;bottom:28px;z-index:2;width:min(540px,calc(100% - 56px));padding:36px 36px 32px;border-radius:var(--r-card);color:var(--g-0);
@@ -206,6 +207,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 .track__copy .h2{color:var(--g-0)}
 .track__copy .lead{color:var(--g-300);margin-top:18px}
 .track__form{padding:32px;border-radius:var(--r-card);background:var(--g-0)}
+.track__form__sub{margin:-12px 0 22px;font-size:14px;color:var(--g-500)}
 .track__form h3{font-family:var(--f-body);font-weight:700;font-size:var(--fs-h3);color:var(--ink);margin-bottom:20px}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .field label{font-size:15px;font-weight:600;color:var(--g-700)}
@@ -305,7 +307,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 .footer__info{font-style:normal;margin-top:32px;font-size:15px;line-height:1.9}
 .footer__info span+span::before{content:"";display:inline-block;width:1px;height:12px;margin:0 14px;background:var(--g-700);vertical-align:-1px}
 .footer__copy{margin-top:20px;font-size:14px;color:var(--g-500)}
-.footer__word{font-family:var(--f-display);font-weight:400;font-size:17vw;line-height:.74;letter-spacing:-.01em;color:var(--g-800);text-align:center;margin:56px 0 0;transform:translateY(8%);white-space:nowrap;user-select:none}
+.footer__word{display:block;width:100%;height:auto;margin-top:56px;fill:var(--g-800);user-select:none;pointer-events:none}
 
 /* ============ REVEAL ============ */
 [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -441,7 +443,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
   .footer__info{font-size:14px;line-height:1.8}
   .footer__info p{display:flex;flex-direction:column}
   .footer__info span+span::before{display:none}
-  .footer__word{font-size:18.4vw;margin-top:40px}
+  .footer__word{margin-top:40px}
 }
 @media (min-width:1024px){ .hub-m{display:none} }
 

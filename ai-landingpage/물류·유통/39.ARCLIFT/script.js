@@ -184,5 +184,17 @@
     cf.reset();
   });
 
+  /* ---------- FOOTER WORDMARK : 본문 폭 가득, 위 70%만 노출 ---------- */
+  const fw = document.getElementById('footWord');
+  const fitWord = () => {
+    const c = document.createElement('canvas').getContext('2d');
+    c.font = '400 100px Tenada';
+    const m = c.measureText('ARCLIFT');
+    const l = m.actualBoundingBoxLeft, w = l + m.actualBoundingBoxRight;
+    const asc = m.actualBoundingBoxAscent, h = asc + m.actualBoundingBoxDescent;
+    fw.setAttribute('viewBox', `${-l} ${-asc} ${w} ${h * 0.7}`);
+  };
+  (document.fonts ? document.fonts.load('100px Tenada').then(fitWord) : Promise.resolve()).catch(fitWord);
+
   addEventListener('load', () => hasGsap && ScrollTrigger.refresh());
 })();
