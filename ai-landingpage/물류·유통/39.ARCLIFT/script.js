@@ -37,13 +37,41 @@
   if (hasGsap && !reduce) {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl.from('.hero__word-in', { yPercent: 105, duration: 1.3, ease: 'power4.out' })
-      .from('.hero__lift', { yPercent: -70, duration: 1.6, ease: 'elastic.out(1, 0.55)' }, 0.15)
+      .from('.hero__drop', { yPercent: -70, duration: 1.6, ease: 'elastic.out(1, 0.55)', clearProps: 'transform' }, 0.15)
       .from('[data-hero-in]', { y: 30, opacity: 0, duration: 1, stagger: 0.12 }, 0.6);
 
-    // 스크롤 시 컨테이너가 위로 들어 올려지고 워드마크는 천천히 내려감
-    gsap.to('.hero__lift', { yPercent: -22, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.hero__word', { yPercent: 18, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+    // 컨테이너는 떨어진 위치를 유지하고, 뒤쪽 워드마크만 천천히 내려감
+    gsap.to('.hero__word', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
   }
+
+  /* ---------- FIELD VIDEO : fullscreen ---------- */
+  const player = document.getElementById('filmPlayer');
+  const fv = document.getElementById('filmVideo');
+  const filmBtn = document.getElementById('filmBtn');
+  const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
+  let opened = false;
+  const closeFilm = () => {
+    if (!opened) return; opened = false;
+    fv.pause(); fv.currentTime = 0; player.hidden = true;
+    document.body.style.overflow = ''; filmBtn.focus({ preventScroll: true });
+  };
+  const openFilm = async () => {
+    opened = true; player.hidden = false; document.body.style.overflow = 'hidden';
+    fv.muted = false; fv.play().catch(() => { fv.muted = true; fv.play().catch(() => {}); });
+    try {
+      if (player.requestFullscreen) await player.requestFullscreen();
+      else if (player.webkitRequestFullscreen) player.webkitRequestFullscreen();
+      else if (fv.webkitEnterFullscreen) fv.webkitEnterFullscreen();   // iPhone Safari
+    } catch (e) { /* 전체화면이 막힌 환경에서는 고정 오버레이로 재생 */ }
+  };
+  filmBtn.addEventListener('click', openFilm);
+  // 전체화면을 빠져나오거나 최소화하면 영상이 사라짐
+  ['fullscreenchange', 'webkitfullscreenchange'].forEach(ev => document.addEventListener(ev, () => { if (!fsEl()) closeFilm(); }));
+  fv.addEventListener('webkitendfullscreen', closeFilm);
+  fv.addEventListener('ended', () => { if (fsEl()) document.exitFullscreen?.(); closeFilm(); });
+  document.getElementById('filmClose').addEventListener('click', () => { if (fsEl()) (document.exitFullscreen || document.webkitExitFullscreen).call(document); else closeFilm(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && opened && !fsEl()) closeFilm(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden && opened) { if (fsEl()) document.exitFullscreen?.(); closeFilm(); } });
 
   /* ---------- REVEAL ---------- */
   const revealEls = [...document.querySelectorAll('[data-reveal]')];
@@ -147,10 +175,12 @@
   const cf = document.getElementById('contactForm'), cMsg = document.getElementById('contactMsg');
   cf.addEventListener('submit', e => {
     e.preventDefault();
-    const n = cf.cName.value.trim(), t = cf.cTel.value.replace(/\D/g, '');
+    const n = cf.cName.value.trim(), who = cf.cPerson.value.trim(), t = cf.cTel.value.replace(/\D/g, ''), m = cf.cMail.value.trim(), body = cf.cMsg.value.trim();
     cMsg.classList.remove('is-err');
-    if (!n || t.length < 9) { cMsg.classList.add('is-err'); cMsg.textContent = !n ? '회사명을 입력해 주세요.' : '연락처를 정확히 입력해 주세요.'; return; }
-    cMsg.textContent = `${n} 담당자님, 문의가 접수되었습니다. 영업일 기준 4시간 안에 연락드리겠습니다.`;
+    const err = !n ? '회사명을 입력해 주세요.' : !who ? '담당자명을 입력해 주세요.' : t.length < 9 ? '연락처를 정확히 입력해 주세요.'
+      : (m && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)) ? '이메일 형식을 확인해 주세요.' : !body ? '문의 내용을 입력해 주세요.' : '';
+    if (err) { cMsg.classList.add('is-err'); cMsg.textContent = err; return; }
+    cMsg.textContent = `${who}님, ${n}의 견적 문의가 접수되었습니다. 영업일 기준 4시간 안에 연락드리겠습니다.`;
     cf.reset();
   });
 
