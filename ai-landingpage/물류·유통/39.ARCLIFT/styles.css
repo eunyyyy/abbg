@@ -41,6 +41,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3,p,dl,dd,figure,blockquote,ul,ol{margin:0;padding:0}
 ul,ol{list-style:none}
 :focus-visible{outline:2px solid var(--p-500);outline-offset:3px}
+br.br-mo{display:none}
 section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 #film{scroll-margin-top:calc(var(--nav-h) + 24px)}
 
@@ -275,17 +276,22 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 .qa dd{margin-top:12px;font-size:16px;line-height:1.7;color:var(--g-600)}
 
 /* ============ CONTACT ============ */
-.contact__panel{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding:0 0 0 72px;border-radius:var(--r-panel);background:var(--illu);overflow:hidden}
-.contact__copy{padding:80px 0}
+.contact__panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:32px;padding:0 0 0 72px;border-radius:var(--r-panel);background:var(--illu);overflow:hidden}
+.contact__copy{padding:80px 0;position:relative;z-index:1}
 .contact__copy .lead{margin-top:18px}
-.contact__form{display:flex;flex-direction:column;gap:16px;margin-top:36px;max-width:480px}
+.contact__form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.contact__form .field--full,.contact__form .btn,.contact__msg{grid-column:1/-1}
 .contact__form .field{margin:0}
 .contact__form .field input{border-color:var(--g-300)}
-.contact__form .btn{height:56px;align-self:flex-start;margin-top:8px}
+.contact__form .btn{position:relative;width:100%;height:58px;margin-top:8px;padding:0 64px}
+.contact__form .btn .btn__ic{position:absolute;right:8px;top:50%;margin-top:-21px}
+.contact__form .btn:hover .btn__ic{transform:rotate(45deg)}
 .contact__msg{font-size:15px;font-weight:600;color:var(--p-700)}
 .contact__msg:empty{display:none}
 .contact__msg.is-err{color:#C22F2F}
-.contact__art img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}
+.contact__art{position:relative;align-self:end;line-height:0}
+.contact__art img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 10%);mask-image:linear-gradient(90deg,transparent 0,#000 10%)}
 
 /* ============ FOOTER ============ */
 .footer{padding:0 0 12px}
@@ -339,12 +345,14 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
   .track__panel{grid-template-columns:1fr;gap:36px;padding:64px 40px 40px}
   .contact__panel{grid-template-columns:1fr;padding:0}
   .contact__copy{padding:64px 40px 16px}
-  .contact__art{max-width:560px;margin:0 auto}
+  .contact__art{max-width:640px;margin:0 0 0 auto;width:100%}
+  .contact__art img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%);mask-image:linear-gradient(90deg,transparent 0,#000 18%)}
   .hero__stat{display:none}
 }
 
 @media (max-width:767px){
   .br-pc{display:none}
+  br.br-mo{display:inline}
   :root{
     --gutter:16px; --sec-y:88px; --nav-h:64px;
     --fs-body:clamp(15px,4.1vw,16px); --fs-lead:clamp(15px,4.1vw,16px);
@@ -421,8 +429,9 @@ section[id]{scroll-margin-top:calc(var(--nav-h) - 8px)}
 
   .contact__panel{grid-template-columns:1fr;padding:0;gap:0}
   .contact__copy{padding:48px 20px 8px}
-  .contact__form{margin-top:28px;max-width:none}
-  .contact__form .btn{align-self:stretch;padding-left:26px}
+  .contact__form{grid-template-columns:1fr;margin-top:28px}
+  .contact__form .btn{height:54px}
+  .contact__form .btn .btn__ic{margin-top:-19px}
 
   .footer{padding:0 0 8px}
   .footer .container{padding:0 8px}
