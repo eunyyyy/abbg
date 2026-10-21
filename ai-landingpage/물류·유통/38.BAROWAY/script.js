@@ -40,13 +40,9 @@
   sheet.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
 
   /* ---------- reveal ---------- */
-  var revealEls = [].slice.call(document.querySelectorAll('.rv, .clients, .pain__row, .tile'));
+  var revealEls = [].slice.call(document.querySelectorAll('.rv, .clients, .tile'));
   function show(el){
     if (el.classList.contains('is-in')) return;
-    if (el.classList.contains('pain__row')){
-      var idx = [].indexOf.call(el.parentNode.children, el);
-      el.style.transitionDelay = (idx * 0.12) + 's';
-    }
     if (el.classList.contains('clients')){
       [].forEach.call(el.querySelectorAll('.wm'), function(w, i){ w.style.transitionDelay = (i % 6) * 0.06 + Math.floor(i / 6) * 0.14 + 's'; });
     }
@@ -66,6 +62,25 @@
     if (hasGsap) ScrollTrigger.create({ start: 0, end: 'max', onUpdate: sweep });
     window.addEventListener('load', sweep);
   }
+
+  /* ---------- pain rows: scrubbed in / out with scroll length ---------- */
+  var painRows = [].slice.call(document.querySelectorAll('.pain__row'));
+  function seg(p, a, b){ return Math.max(0, Math.min(1, (p - a) / (b - a))); }
+  function setPain(p){
+    painRows.forEach(function(r, i){
+      var inK = seg(p, .06 + i * .1, .16 + i * .1);          /* appear one by one */
+      var outK = seg(p, .7 + i * .065, .78 + i * .065);       /* leave in the same order */
+      var o = inK * (1 - outK);
+      var y = (1 - inK) * 40 - outK * 40;
+      r.style.opacity = o.toFixed(3);
+      r.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0) scale(' + (.96 + .04 * Math.min(inK, 1 - outK + 0)).toFixed(3) + ')';
+    });
+  }
+  if (hasGsap && !reduce){
+    ScrollTrigger.create({ trigger: '.pain', start: 'top top', end: 'bottom bottom',
+      onUpdate: function(s){ setPain(s.progress); }, onRefresh: function(s){ setPain(s.progress); } });
+    setPain(0);
+  } else { painRows.forEach(function(r){ r.style.opacity = 1; r.style.transform = 'none'; }); }
 
   /* ---------- counters ---------- */
   var counters = [].slice.call(document.querySelectorAll('.count'));

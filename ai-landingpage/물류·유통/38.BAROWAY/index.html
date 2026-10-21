@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preload" href="fonts/SCoreDream-6Bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -23,7 +23,6 @@
       <a href="#cases">고객사례</a>
     </nav>
     <div class="gnb__right">
-      <a href="#tracking" class="gnb__track">화물조회</a>
       <a href="#contact" class="btn btn--sm btn--solid-ink">상담받기</a>
       <button class="gnb__menu" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
     </div>
@@ -35,7 +34,6 @@
     <a href="#process">서비스</a>
     <a href="#system">시스템</a>
     <a href="#cases">고객사례</a>
-    <a href="#tracking">화물조회</a>
   </nav>
   <a href="#contact" class="btn btn--lg btn--teal msheet__cta">상담받기</a>
 </div>
@@ -53,10 +51,6 @@
       <span class="line"><span>바다 건너온 화물,</span></span>
       <span class="line"><span>바로웨이로 바로</span></span>
     </h1>
-    <div class="hero__cta">
-      <a href="#contact" class="btn btn--lg btn--teal magnet">서비스 소개서 받기</a>
-      <a href="#contact" class="btn btn--lg btn--glass magnet">상담받기</a>
-    </div>
   </div>
 </section>
 
@@ -83,6 +77,7 @@
 
 <!-- 3. PAIN -->
 <section class="pain" data-theme="light">
+  <div class="pain__stage">
   <div class="wrap">
     <h2 class="sec-title center rv">수입은 시작했는데,<br>화물이 항구에서 멈춰 서는 순간</h2>
     <ul class="pain__list">
@@ -91,6 +86,7 @@
       <li class="pain__row"><em>재고분산</em><p>부산, 인천, 평택까지 창고마다 재고가 흩어져 있다면?</p></li>
       <li class="pain__row"><em>납기지연</em><p>입항은 했는데, 거래처 납품일을 또 미뤄야 한다면?</p></li>
     </ul>
+  </div>
   </div>
 </section>
 
@@ -188,7 +184,6 @@
     <div class="bento">
       <article class="tile tile--teal rv">
         <h3>선사·항공사 스케줄<br>자동 수집</h3>
-        <a href="#contact" class="tile__more">자세히 보기</a>
         <ul class="apps">
           <li><img src="img/icons/ship.png" alt="해상"></li>
           <li><img src="img/icons/plane.png" alt="항공"></li>
@@ -200,7 +195,6 @@
       </article>
       <article class="tile tile--light rv">
         <h3>수입신고 자동 처리</h3>
-        <a href="#contact" class="tile__more">자세히 보기</a>
         <div class="orbit">
           <div class="orbit__ring">
             <span style="--a:0deg">서류심사</span>
@@ -213,7 +207,6 @@
       </article>
       <article class="tile tile--ink rv">
         <h3>HS코드 사전 검증</h3>
-        <a href="#contact" class="tile__more">자세히 보기</a>
         <div class="hs">
           <div class="hs__card"><small>HS Code</small><b>2204.21-1000</b><span class="hs__ok">검증 완료</span></div>
           <div class="hs__card hs__card--2"><small>원산지</small><b>FRANCE</b></div>
@@ -223,7 +216,6 @@
       <article class="tile tile--wide tile--light rv" id="tracking">
         <div class="tile__head">
           <h3>실시간 화물 추적<br><span class="mute">지금 어느 바다 위인지</span></h3>
-          <a href="#contact" class="tile__more">자세히 보기</a>
         </div>
         <div class="track">
           <div class="track__table" role="table" aria-label="화물 추적 예시">
@@ -247,16 +239,14 @@
 
       <article class="tile tile--half tile--light rv">
         <h3>온도대별 재고 현황<br><span class="mute">창고가 달라도 한 화면에</span></h3>
-        <a href="#contact" class="tile__more">자세히 보기</a>
         <div class="temps">
-          <div class="temp"><small>상온</small><b>3,482<span>박스</span></b><p>부산신항 B동</p></div>
-          <div class="temp temp--cold"><small>냉장 2~8℃</small><b>1,126<span>박스</span></b><p>인천 냉장센터</p></div>
-          <div class="temp temp--frozen"><small>냉동 -18℃</small><b>764<span>박스</span></b><p>부산 감천 냉동창고</p></div>
+          <div class="temp"><i class="temp__ic" style="--ic:url(img/icons/temp-ambient.png)"></i><small>상온</small><b>3,482<span>박스</span></b><p>부산신항 B동</p></div>
+          <div class="temp temp--cold"><i class="temp__ic" style="--ic:url(img/icons/temp-chilled.png)"></i><small>냉장 2~8℃</small><b>1,126<span>박스</span></b><p>인천 냉장센터</p></div>
+          <div class="temp temp--frozen"><i class="temp__ic" style="--ic:url(img/icons/temp-frozen.png)"></i><small>냉동 -18℃</small><b>764<span>박스</span></b><p>부산 감천 냉동창고</p></div>
         </div>
       </article>
       <article class="tile tile--half tile--light rv">
         <h3>쓰던 시스템 그대로 연동<br><span class="mute">ERP·WMS·발주 프로그램 변경 없이</span></h3>
-        <a href="#contact" class="tile__more">자세히 보기</a>
         <div class="link">
           <div class="link__node">ERP</div>
           <div class="link__node">WMS</div>
@@ -363,6 +353,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="script.js?v=1"></script>
+<script src="script.js?v=2"></script>
 </body>
 </html>
