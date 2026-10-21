@@ -15,6 +15,7 @@
   const hero = document.querySelector('[data-hero]');
   const places = document.querySelector('.places');
   const about = document.querySelector('.about');
+  const lines = [...document.querySelectorAll('.about__lines .l')];
   const reveals = [...document.querySelectorAll('[data-reveal]')];
   let lastY = -1, lastH = -1;
 
@@ -40,6 +41,11 @@
       if (about) {
         const r = about.getBoundingClientRect();
         about.style.setProperty('--p', (reduce ? 1 : ease(clamp((vh - r.top) / (vh * 1.05)))).toFixed(4));
+        // 줄마다 스크롤 위치에 따라 흰색(#fff)으로 채워짐
+        for (const l of lines) {
+          const lr = l.getBoundingClientRect();
+          l.style.setProperty('--f', (reduce ? 1 : clamp((vh * 0.82 - lr.top) / (vh * 0.3))).toFixed(4));
+        }
       }
       // reveal sweep (fallback for instant jumps where IntersectionObserver never gets a frame)
       for (const el of reveals) {

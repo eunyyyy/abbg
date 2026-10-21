@@ -198,9 +198,10 @@ body.on-dark .gnb__tag{color:var(--on-dark)}
 .about__media::after{content:"";position:absolute;inset:0;background:rgba(21,20,18,.42)}
 .about__text{position:relative;z-index:1;margin-top:-62vh;padding:0 var(--pad) 36vh;color:var(--on-dark)}
 .about__label{text-align:center;font-size:16px;font-weight:700;letter-spacing:.04em;margin-bottom:28px}
-.about__lines{display:flex;flex-direction:column;font-family:var(--f-display);font-weight:200;font-size:max(34px,calc(92 * var(--u)));line-height:1.12;letter-spacing:-.045em}
-.l{display:block}
-.l--c{text-align:center}.l--l{text-align:left;padding-left:4%}.l--r{text-align:right;padding-right:4%}
+.about__lines{display:flex;flex-direction:column;font-family:var(--f-display);font-weight:200;font-size:calc(92 / 1440 * 100vw);line-height:1.12;letter-spacing:-.045em}
+.l{display:block;width:fit-content;margin-inline:auto;text-align:center;--f:0;
+  background:linear-gradient(90deg,#fff calc(var(--f) * 100%),rgba(255,255,255,.28) calc(var(--f) * 100%));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 
 /* ---------- VISIT ---------- */
 .visit{display:grid;grid-template-columns:1fr 1fr}
@@ -272,8 +273,6 @@ body.on-dark .gnb__tag{color:var(--on-dark)}
   .places__list{grid-template-columns:1fr;gap:56px;margin-top:64px}
   .place,.place--up{margin-top:0}
   .place__img{width:62%}
-  .about__lines{font-size:34px}
-  .l--l,.l--r{padding:0}
   .visit{grid-template-columns:1fr}
   .panel{min-height:auto;padding:96px var(--pad)}
   .panel__name{font-size:52px}
@@ -304,10 +303,14 @@ body.on-dark .gnb__tag{color:var(--on-dark)}
   .places__title{font-size:clamp(32px, 9.2vw, 36px);line-height:1.15;letter-spacing:-.035em}
   .place figcaption strong{font-size:var(--fs-title)}
   .about__label{font-size:15px;margin-bottom:20px}
-  .about__lines{font-size:clamp(26px, 7.6vw, 30px);line-height:1.22;letter-spacing:-.035em}
+  .about__lines{font-size:calc(92 / 1440 * 100vw)}
   .panel__name{font-size:clamp(44px, 12.3vw, 48px)}
   .panel__text{line-height:1.7}
   .links__label{font-size:15px}
+  .overlay--search{justify-items:stretch}
+  .search{width:100%}
+  .search__input{font-size:16px;padding:12px 0}
+  .search__input::placeholder{font-size:14px}
   .links__list{gap:4px 20px}
   .links__list a{font-size:clamp(26px, 7.6vw, 30px);gap:12px;line-height:1.45}
   .footer__logo strong{font-size:15px}
