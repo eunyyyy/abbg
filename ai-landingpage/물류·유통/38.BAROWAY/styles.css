@@ -71,7 +71,7 @@ h1,h2,h3,p,dl,dd{margin:0}
    GNB (floating pill)
    ========================================================= */
 .gnb{position:fixed;left:0;right:0;top:14px;z-index:50;padding:0 var(--pad);pointer-events:none}
-.gnb__bar{position:relative;pointer-events:auto;max-width:1040px;margin:0 auto;height:var(--gnb-h);display:flex;align-items:center;gap:36px;padding:0 10px 0 22px;border-radius:16px;
+.gnb__bar{position:relative;pointer-events:auto;max-width:var(--wrap);margin:0 auto;height:var(--gnb-h);display:flex;align-items:center;gap:36px;padding:0 10px 0 22px;border-radius:16px;
   background:rgba(20,26,28,.42);border:1px solid rgba(255,255,255,.1);color:#fff;
   backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
   transition:background-color .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
