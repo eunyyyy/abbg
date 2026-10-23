@@ -513,7 +513,6 @@ h1,h2,h3,p{font:inherit}
 .about{
   position:relative;
   height:calc(100svh + 900px);
-  margin-bottom:120px;
 }
 .about__pin{
   position:sticky;
@@ -581,7 +580,6 @@ h1,h2,h3,p{font:inherit}
    ========================================================================== */
 .process{
   position:relative;
-  margin:120px 0;
 }
 .process__head{
   position:absolute;
