@@ -38,11 +38,13 @@
   const lit = $('[data-lightup]');
   let litChars = [];
   if (lit) {
-    const words = lit.textContent.trim().split(/\s+/);
+    const br = lit.querySelector('br');
+    const brTag = br ? br.outerHTML : '<br>';
+    const lines = lit.innerHTML.split(/<br[^>]*>/i).map(l => l.replace(/<[^>]+>/g, '').trim());
     lit.setAttribute('aria-label', lit.textContent.trim());
-    lit.innerHTML = words.map(w =>
+    lit.innerHTML = lines.map(l => l.split(/\s+/).map(w =>
       `<span class="w" aria-hidden="true">${[...w].map(c => `<span class="c">${c}</span>`).join('')}</span>`
-    ).join(' ');
+    ).join(' ')).join(` ${brTag}`);
     litChars = $$('.c', lit);
   }
 
