@@ -92,25 +92,29 @@
     line0.classList.toggle('is-visible', progress >= 0.08 && progress < 0.38);
     line0.classList.toggle('is-up', progress >= 0.38);
 
-    line1.classList.toggle('is-visible', progress >= 0.38 && progress < 0.82);
-    line1.classList.toggle('is-up', progress >= 0.82);
+    line1.classList.toggle('is-visible', progress >= 0.38 && progress < 0.66);
+    line1.classList.toggle('is-up', progress >= 0.66);
 
-    aboutContent.classList.toggle('is-visible', progress >= 0.7);
+    // content sits in the same centred spot, so it enters once line1 has left
+    aboutContent.classList.toggle('is-visible', progress >= 0.72);
   }
 
   /* ------------------------------------------------------------------ *
    * Process — pinned sticky-stack stepper, clip-path wipe + active labels
    * ------------------------------------------------------------------ */
   const processRunway = document.getElementById('processRunway');
+  const processPin = document.getElementById('processPin');
   const processItems = processRunway.querySelectorAll('.process__item');
   const processLabels = document.querySelectorAll('.process__label');
   const processPoints = document.querySelectorAll('.process__point');
   const stepCount = processItems.length;
 
   function updateProcess() {
+    // the pin sticks below the GNB, so measure travel against its own top/height
     const rect = processRunway.getBoundingClientRect();
-    const scrollable = rect.height - window.innerHeight;
-    const globalProgress = clamp(-rect.top / Math.max(scrollable, 1), 0, 1);
+    const pinTop = parseFloat(getComputedStyle(processPin).top) || 0;
+    const scrollable = rect.height - processPin.offsetHeight;
+    const globalProgress = clamp((pinTop - rect.top) / Math.max(scrollable, 1), 0, 1);
     const activeIndex = clamp(Math.floor(globalProgress * stepCount), 0, stepCount - 1);
 
     processItems.forEach((item, i) => {
