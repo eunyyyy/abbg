@@ -143,7 +143,7 @@
       trigger: '.about__grid', start: 'top 85%', end: 'bottom 30%', scrub: true,
       onUpdate: s => {
         const p = s.progress;
-        stack.style.setProperty('--sy', (1 - Math.sin(p * Math.PI) * .45).toFixed(3));
+        stack.style.setProperty('--sx', (Math.sin(p * Math.PI) * 6).toFixed(2));
         photo.style.setProperty('--blur', `${Math.max(0, 14 - p * 26).toFixed(1)}px`);
         photo.style.setProperty('--cap', Math.max(0, 1 - Math.max(0, p - .45) * 4).toFixed(2));
       }
@@ -254,8 +254,8 @@
     const hi = $('.tech__svg--hi');
     if (!hasGsap || reduce) return;
     ScrollTrigger.create({
-      trigger: '#techDraw', start: 'top 80%', end: 'bottom 40%', scrub: true,
-      onUpdate: s => hi.style.setProperty('--hi-t', `${(100 - s.progress * 62).toFixed(1)}%`)
+      trigger: '#techDraw', start: 'top 70%', end: 'bottom 70%', scrub: .4,
+      onUpdate: s => hi.style.setProperty('--hi-t', `${(100 - s.progress * 100).toFixed(1)}%`)
     });
     ScrollTrigger.refresh();
   }
