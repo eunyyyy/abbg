@@ -59,5 +59,6 @@ export const PROJECTS_FALLBACK = [
   { number: '30', name: 'ONDAM', category: 'F&B', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/F%26B/36.ONDAM/', cover: 'img/covers/ondam-v2.jpg', hidden: false, version: 2 },
   { number: '31', name: 'RIWOL', category: '교육·미디어', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EA%B5%90%EC%9C%A1%C2%B7%EB%AF%B8%EB%94%94%EC%96%B4/37.RIWOL/', cover: 'img/covers/riwol-v2.jpg', hidden: false, version: 2 },
   { number: '32', name: 'BAROWAY', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/38.BAROWAY/', cover: 'img/covers/baroway.jpg', hidden: false },
-  { number: '33', name: 'ARCLIFT', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/39.ARCLIFT/', cover: 'img/covers/arclift.jpg', hidden: false }
+  { number: '33', name: 'ARCLIFT', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/39.ARCLIFT/', cover: 'img/covers/arclift.jpg', hidden: false },
+  { number: '34', name: 'NIMBRA', category: '모빌리티', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AA%A8%EB%B9%8C%EB%A6%AC%ED%8B%B0/40.NIMBRA/', cover: 'img/covers/nimbra.jpg', hidden: false },
 ];

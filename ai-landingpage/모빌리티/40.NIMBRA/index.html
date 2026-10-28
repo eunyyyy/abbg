@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NIMBRA 님브라 | 드론 모빌리티</title>
+<meta name="description" content="도심 배송, 응급 의료 수송, 스마트시티 관제까지. 님브라는 드론 기체와 항로, 관제를 함께 설계하는 드론 모빌리티 기업입니다.">
+<meta name="theme-color" content="#0D121A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230D121A%27/%3E%3Ctext x=%2716%27 y=%2723%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2720%27 fill=%27%230FB5D6%27 text-anchor=%27middle%27%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preload" href="fonts/Freesentation-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/hero_sky.jpg" as="image">
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body class="is-loading">
+
+<!-- 헤더: 레퍼런스와 동일하게 투명 + difference 블렌드, 스크롤 다운 시 숨김 -->
+<header class="header" id="header">
+  <div class="gutter header__inner">
+    <nav class="gnb gnb--left" aria-label="주요 메뉴">
+      <a href="#tech" class="gnb__link">기술</a>
+      <a href="#flagship" class="gnb__link">기체</a>
+      <a href="#solution" class="gnb__link">솔루션</a>
+    </nav>
+    <a href="#top" class="logo" aria-label="NIMBRA 처음으로">NIMBRA</a>
+    <nav class="gnb gnb--right" aria-label="보조 메뉴">
+      <a href="#partners" class="gnb__link">파트너</a>
+      <a href="#process" class="gnb__link">도입 절차</a>
+      <a href="#contact" class="gnb__pill">도입 문의</a>
+    </nav>
+    <button type="button" class="menu-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- 모바일 메뉴 (헤더 블렌드 영향을 받지 않도록 형제 요소로 분리) -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="mnav__list">
+    <a href="#tech">기술</a>
+    <a href="#flagship">기체</a>
+    <a href="#solution">솔루션</a>
+    <a href="#partners">파트너</a>
+    <a href="#process">도입 절차</a>
+  </div>
+  <a href="#contact" class="mnav__cta">도입 문의</a>
+  <p class="mnav__copy">© 2026 NIMBRA. All rights reserved.</p>
+</div>
+
+<main id="top">
+  <div class="intro" aria-hidden="true"></div>
+
+  <!-- 01 비주얼: 4겹 레이어 패럴랙스 + 브랜드 타이틀 -->
+  <section class="visual" aria-label="NIMBRA">
+    <div class="visual__title-wrap">
+      <h1 class="visual__title" aria-label="NIMBRA">
+        <span>N</span><span>I</span><span>M</span><span>B</span><span>R</span><span>A</span>
+      </h1>
+    </div>
+    <div class="visual__layers">
+      <div class="layer layer--04"><img src="img/hero_sky.jpg" alt="" width="2600" height="1625"></div>
+      <div class="layer layer--03"><img src="img/hero_sea.webp" alt="" width="2600" height="921"></div>
+      <div class="layer layer--01"><img src="img/hero_drone.webp" alt="덕트형 프로펠러를 단 님브라 드론이 바다 위를 비행하는 모습" width="1800" height="737"></div>
+      <div class="layer layer--shade"></div>
+    </div>
+  </section>
+
+  <!-- 02~04 모션 그룹: 스크롤에 따라 그려지는 항로 라인 -->
+  <div class="motions">
+    <div class="route" aria-hidden="true">
+      <div class="gutter"><div class="max">
+        <svg class="route__pc" viewBox="0 0 1683 9600" fill="none" preserveAspectRatio="xMidYMin meet">
+          <path d="M842 6C842 6 1890 120 1250 960C640 1760 230 1760 230 2520C230 3330 1520 3880 1520 4660C1520 5420 220 5520 220 6560C220 7560 980 8600 1676 9200" stroke="url(#routeGrad)" stroke-width="12" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="routeGrad" x1="480" y1="20" x2="470" y2="9200" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#0D121A"/>
+              <stop offset=".08" stop-color="#2AC0DD"/>
+              <stop offset=".2" stop-color="#0B5A6E"/>
+              <stop offset=".42" stop-color="#5ACFE6"/>
+              <stop offset=".66" stop-color="#FF7A1A"/>
+              <stop offset=".84" stop-color="#0F2A3A"/>
+              <stop offset=".96" stop-color="#E9EDF2"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <svg class="route__mo" viewBox="0 0 375 6300" fill="none">
+          <path d="M116 42C284 112 351 284 351 504C351 1020 5 1230 5 1836C5 2586 309 2586 309 3372C309 4158 18 4381 18 5081C18 5641 252 6099 369 6259" stroke="url(#routeGradMo)" stroke-width="7" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="routeGradMo" x1="58" y1="42" x2="58" y2="6259" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#0D121A"/>
+              <stop offset=".1" stop-color="#2AC0DD"/>
+              <stop offset=".45" stop-color="#5ACFE6"/>
+              <stop offset=".7" stop-color="#FF7A1A"/>
+              <stop offset="1" stop-color="#E9EDF2"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div></div>
+    </div>
+
+    <!-- 02 여정 텍스트 -->
+    <section class="travel">
+      <div class="gutter"><div class="travel__inner">
+        <div class="travel__text travel__text--01">
+          <div class="tx">
+            <h2 class="tx__head">이륙,</h2>
+            <p class="tx__body">님브라는<br>날아오르는 순간만 보지 않습니다.</p>
+            <p class="tx__body">우리는<br>그 비행이 닿을 곳을 먼저 봅니다.</p>
+          </div>
+        </div>
+        <div class="travel__text travel__text--02">
+          <div class="tx" data-reveal>
+            <h2 class="tx__head">항로,</h2>
+            <p class="tx__body">바람과 건물 사이를 읽으며<br>가장 안전한 길을 그립니다.</p>
+            <p class="tx__body">도시의 흐름에 맞춰<br>하늘 위에 길을 냅니다.</p>
+          </div>
+        </div>
+        <div class="travel__text travel__text--03">
+          <div class="tx" data-reveal>
+            <h2 class="tx__head">도착,</h2>
+            <p class="tx__body">필요한 순간, 필요한 곳에 닿습니다.</p>
+          </div>
+        </div>
+        <div class="travel__object">
+          <div class="travel__img" data-reveal><img src="img/travel_drone.webp" alt="와이어프레임으로 표현한 님브라 드론 설계 구조" width="1400" height="907" loading="lazy"></div>
+          <h3 class="travel__final" data-reveal>그리고,<br>하늘은<br>새로운 길이 됩니다.</h3>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- 03 여정 이미지 + 카운트 -->
+    <section class="journey">
+      <div class="journey__title">
+        <h3 class="title-xl" data-reveal>도시의 하늘,<br>그 위에 NIMBRA.</h3>
+      </div>
+      <div class="journey__img">
+        <div class="journey__layer"><img src="img/journey_bg.jpg" alt="도시 전체를 미니어처로 표현한 3D 지도" width="2200" height="1375" loading="lazy"></div>
+        <div class="journey__fade"></div>
+      </div>
+      <div class="journey__wrap">
+        <div class="gutter"><div class="journey__inner">
+          <div class="journey__copy">
+            <h3 class="title-xl" data-reveal>사람과 도시,<br>그 사이를 이어 온<br>NIMBRA</h3>
+            <p class="body-lg c-sub" data-reveal>시설 점검 비행에서 시작해,<br>도심 물류와 응급 수송까지.</p>
+          </div>
+          <div class="counts">
+            <div class="count" data-reveal>
+              <p class="count__label">업력</p>
+              <p class="count__num"><span class="js-count" data-end="12">12</span><small>년</small>+</p>
+            </div>
+            <div class="count" data-reveal>
+              <p class="count__label">누적 비행</p>
+              <p class="count__num"><span class="js-count" data-end="186420" data-sep="1">186,420</span>+</p>
+            </div>
+            <div class="count" data-reveal>
+              <p class="count__label">운용 기체</p>
+              <p class="count__num"><span class="js-count" data-end="1380" data-sep="1">1,380</span>+</p>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 04 핵심 기술: 번호 패널 (Pinterest 레퍼런스) -->
+  <section class="tech" id="tech">
+    <div class="gutter"><div class="max">
+      <div class="tech__head">
+        <h2 class="title-xl" data-reveal>하늘을 움직이는<br>네 가지 핵심 기술</h2>
+        <p class="body-lg c-sub" data-reveal>기체부터 추진까지, 님브라는 비행에 필요한 모든 계통을 직접 설계하고 생산합니다.</p>
+      </div>
+      <ul class="panels" data-reveal>
+        <li class="panel is-active">
+          <span class="panel__no">01</span>
+          <div class="panel__img"><img src="img/tech_01.webp" alt="님브라 드론 기체 정면 설계도" width="1100" height="567" loading="lazy"></div>
+          <div class="panel__txt">
+            <h3 class="panel__tit">기체 설계</h3>
+            <p class="panel__desc">탄소 복합 소재 일체형 바디로 무게는 줄이고, 덕트 가드로 도심 비행의 안전을 더했습니다.</p>
+          </div>
+        </li>
+        <li class="panel">
+          <span class="panel__no">02</span>
+          <div class="panel__img"><img src="img/tech_02.webp" alt="비행 제어 모듈이 탑재된 드론 본체" width="1100" height="625" loading="lazy"></div>
+          <div class="panel__txt">
+            <h3 class="panel__tit">비행 제어</h3>
+            <p class="panel__desc">삼중화 센서와 자체 비행 제어 컴퓨터가 돌풍 속에서도 자세를 스스로 바로잡습니다.</p>
+          </div>
+        </li>
+        <li class="panel">
+          <span class="panel__no">03</span>
+          <div class="panel__img"><img src="img/tech_03.webp" alt="드론 하부의 짐벌 카메라" width="1100" height="559" loading="lazy"></div>
+          <div class="panel__txt">
+            <h3 class="panel__tit">임무 장비</h3>
+            <p class="panel__desc">배송 모듈, 열화상 카메라, 의료 보관함까지 임무에 맞춰 하부 장비를 교체합니다.</p>
+          </div>
+        </li>
+        <li class="panel">
+          <span class="panel__no">04</span>
+          <div class="panel__img"><img src="img/tech_04.webp" alt="덕트 안의 드론 프로펠러" width="1100" height="715" loading="lazy"></div>
+          <div class="panel__txt">
+            <h3 class="panel__tit">추진 계통</h3>
+            <p class="panel__desc">저소음 프로펠러와 고효율 모터 조합으로 한 번 충전에 최대 52분을 비행합니다.</p>
+          </div>
+        </li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 05 플래그십 기체 (Pinterest 레퍼런스: 대형 모델명 + 핫스팟 + 스펙 카드) -->
+  <section class="flagship" id="flagship">
+    <div class="gutter"><div class="max">
+      <div class="flagship__head">
+        <span class="badge">Flagship</span>
+        <h2 class="title-xl" data-reveal>한 대로 배송과 점검을 모두,<br>님브라 NX4</h2>
+      </div>
+      <div class="flagship__stage">
+        <p class="flagship__model" aria-hidden="true">NX4</p>
+        <div class="flagship__orbit" aria-hidden="true"><span></span></div>
+        <div class="flagship__drone">
+          <img src="img/flagship_drone.webp" alt="화물 상자를 매달고 비행하는 님브라 NX4 드론" width="1400" height="1054" loading="lazy">
+          <ul class="hotspots">
+            <li class="hs" style="--x:80%;--y:8%" data-side="r">
+              <span class="hs__pt"></span>
+              <div class="hs__label"><i class="ic" style="--ic:url(icon/drone.png)"></i><div><strong>프롭 가드</strong><span>도심 장애물에도 안전한 덕트 구조</span></div></div>
+            </li>
+            <li class="hs" style="--x:52%;--y:31%" data-side="r">
+              <span class="hs__pt"></span>
+              <div class="hs__label"><i class="ic" style="--ic:url(icon/camera.png)"></i><div><strong>4K 짐벌 카메라</strong><span>3축 안정화로 흔들림 없는 촬영</span></div></div>
+            </li>
+            <li class="hs" style="--x:46%;--y:19%" data-side="l">
+              <span class="hs__pt"></span>
+              <div class="hs__label"><i class="ic" style="--ic:url(icon/chip.png)"></i><div><strong>비행 제어 컴퓨터</strong><span>삼중화 센서로 자세를 실시간 보정</span></div></div>
+            </li>
+            <li class="hs" style="--x:27%;--y:41%" data-side="l">
+              <span class="hs__pt"></span>
+              <div class="hs__label"><i class="ic" style="--ic:url(icon/ai.png)"></i><div><strong>AI 장애물 회피</strong><span>전방위 감지로 경로를 스스로 수정</span></div></div>
+            </li>
+            <li class="hs" style="--x:55%;--y:74%" data-side="r">
+              <span class="hs__pt"></span>
+              <div class="hs__label"><i class="ic" style="--ic:url(icon/location.png)"></i><div><strong>정밀 하강 화물 모듈</strong><span>목적지 30cm 오차 이내 하강</span></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ul class="specs">
+        <li class="spec" data-reveal><strong>52<small>분</small></strong><span>최대 비행 시간</span></li>
+        <li class="spec" data-reveal><strong>5.4<small>kg</small></strong><span>최대 탑재 중량</span></li>
+        <li class="spec" data-reveal><strong>72<small>km/h</small></strong><span>순항 속도</span></li>
+        <li class="spec" data-reveal><strong>15<small>km</small></strong><span>운용 반경</span></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 06 설계: 클립 확장 + 벤토 수치 -->
+  <section class="design">
+    <div class="design__01">
+      <div class="design__clip" aria-hidden="true"><img src="img/design_bg.jpg" alt="" loading="lazy"></div>
+      <div class="gutter design__center">
+        <h3 class="title-xl c-white design__tit01">비행의 순간,<br>안전은 항로에서 <br class="mo">시작됩니다.</h3>
+      </div>
+    </div>
+    <div class="design__02">
+      <div class="design__endbg" aria-hidden="true"><img src="img/design_final.jpg" alt="" loading="lazy"></div>
+      <div class="gutter"><div class="max">
+        <ul class="bento" data-reveal>
+          <li class="bento__item bento__item--main">
+            <div class="bento__video"><video autoplay muted loop playsinline poster="video/strength_poster.jpg" preload="metadata"><source src="video/strength.mp4" type="video/mp4"></video></div>
+            <div class="bento__main-txt">
+              <h3 class="title-lg c-white">님브라는<br>그 항로를<br>설계합니다.</h3>
+              <p class="bento__sub">NIMBRA Strengths</p>
+            </div>
+          </li>
+          <li class="bento__item">
+            <div class="bento__txt">
+              <h4 class="bento__tit">하늘을 먼저 읽습니다.</h4>
+              <p class="bento__desc">기상, 지형, 공역 데이터를<br>실시간으로 분석해 비행을 판단합니다.</p>
+            </div>
+            <div class="bento__count">
+              <i class="ic ic--lg" style="--ic:url(icon/globe.png)"></i>
+              <p class="bento__label">설계한 항로</p>
+              <p class="bento__num"><span class="js-count" data-end="12480" data-sep="1">12,480</span>+</p>
+            </div>
+          </li>
+          <li class="bento__item">
+            <div class="bento__txt">
+              <h4 class="bento__tit">가장 짧은 길을 찾습니다.</h4>
+              <p class="bento__desc">배송지와 기체 상태를 함께 계산해<br>빠르고 안전한 경로를 고릅니다.</p>
+            </div>
+            <div class="bento__count">
+              <i class="ic ic--lg" style="--ic:url(icon/location.png)"></i>
+              <p class="bento__label">평균 배송 시간 단축</p>
+              <p class="bento__num"><span class="js-count" data-end="37">37</span>%</p>
+            </div>
+          </li>
+          <li class="bento__item">
+            <div class="bento__txt">
+              <h4 class="bento__tit">끝까지 지켜봅니다.</h4>
+              <p class="bento__desc">통합 관제 센터가 모든 기체의<br>위치와 상태를 실시간으로 추적합니다.</p>
+            </div>
+            <div class="bento__count">
+              <i class="ic ic--lg" style="--ic:url(icon/network.png)"></i>
+              <p class="bento__label">누적 관제 시간</p>
+              <p class="bento__num"><span class="js-count" data-end="41600" data-sep="1">41,600</span>+</p>
+            </div>
+          </li>
+          <li class="bento__item">
+            <div class="bento__txt">
+              <h4 class="bento__tit">다음 비행을 준비합니다.</h4>
+              <p class="bento__desc">비행 기록으로 정비 시점을 예측해<br>기체를 늘 최상의 상태로 유지합니다.</p>
+            </div>
+            <div class="bento__count">
+              <i class="ic ic--lg" style="--ic:url(icon/cloud.png)"></i>
+              <p class="bento__label">재계약률</p>
+              <p class="bento__num"><span class="js-count" data-end="94">94</span>%</p>
+            </div>
+            <span class="bento__note">최근 1년 기준</span>
+          </li>
+        </ul>
+        <div class="design__end">
+          <h3 class="title-xl c-white" data-reveal>복잡한 도시의 하늘,<br>길이 선명해질 수 있도록.<br>NIMBRA.</h3>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 07 파트너: 3D 구체 클라우드 -->
+  <section class="partners" id="partners">
+    <div class="partners__bg" aria-hidden="true"></div>
+    <div class="gutter"><div class="partners__inner">
+      <h2 class="title-xl c-white" data-reveal>고객의 하늘에<br>맞는 항로를 설계합니다.</h2>
+      <div class="cloud" data-reveal>
+        <ul class="cloud__list" aria-label="협력 고객사">
+          <li class="cloud__item"><i class="mk mk--c"></i>한결로지스</li>
+          <li class="cloud__item"><i class="mk mk--s"></i>세온시티</li>
+          <li class="cloud__item"><i class="mk mk--t"></i>바름전력</li>
+          <li class="cloud__item"><i class="mk mk--r"></i>누리메디컬</li>
+          <li class="cloud__item"><i class="mk mk--c"></i>해솔항만</li>
+          <li class="cloud__item"><i class="mk mk--s"></i>다온건설</li>
+          <li class="cloud__item"><i class="mk mk--t"></i>가람에너지</li>
+          <li class="cloud__item"><i class="mk mk--r"></i>미르통신</li>
+          <li class="cloud__item"><i class="mk mk--c"></i>새빛의료원</li>
+          <li class="cloud__item"><i class="mk mk--s"></i>하람농산</li>
+          <li class="cloud__item"><i class="mk mk--t"></i>라온택배</li>
+          <li class="cloud__item"><i class="mk mk--r"></i>은하교통</li>
+          <li class="cloud__item"><i class="mk mk--c"></i>단비수자원</li>
+          <li class="cloud__item"><i class="mk mk--s"></i>청솔산림</li>
+          <li class="cloud__item"><i class="mk mk--t"></i>이음플랜트</li>
+          <li class="cloud__item"><i class="mk mk--r"></i>온누리안전</li>
+        </ul>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 08 솔루션 + 09 도입 절차 + 10 롤링 -->
+  <div class="direction">
+    <div class="gutter"><div class="max direction__inner">
+      <section class="solution" id="solution">
+        <h2 class="direction__title" data-reveal>단순한 비행이 아닌,<br>도시와 현장을 이해하고 <br class="mo">하늘길을 만듭니다.</h2>
+        <div class="solution__actions">
+          <h3 class="title-lg" data-reveal>NIMBRA 솔루션</h3>
+          <a href="#process" class="btn btn--dark" data-reveal>도입 절차 보기<i class="chev"></i></a>
+        </div>
+        <ul class="sol-cards">
+          <li class="sol-card" data-reveal>
+            <div class="sol-card__img"><img src="img/sol_01.jpg" alt="상자를 매단 드론들이 도시 위를 나는 모습" width="1400" height="875" loading="lazy"></div>
+            <div class="sol-card__txt">
+              <h4 class="sol-card__tit">주문에서 문 앞까지,<br>도심 30분 배송망을 운영합니다.</h4>
+              <p class="sol-card__en">Urban Delivery</p>
+            </div>
+          </li>
+          <li class="sol-card" data-reveal>
+            <div class="sol-card__img"><img src="img/sol_02.jpg" alt="의료 보관함을 싣고 비행하는 드론" width="1400" height="875" loading="lazy"></div>
+            <div class="sol-card__txt">
+              <h4 class="sol-card__tit">혈액과 의약품을,<br>막힌 도로 위로 가장 먼저 보냅니다.</h4>
+              <p class="sol-card__en">Medical Air</p>
+            </div>
+          </li>
+          <li class="sol-card" data-reveal>
+            <div class="sol-card__img"><img src="img/sol_03.jpg" alt="도시 지도 위에 표시된 관제 위치 핀" width="1400" height="875" loading="lazy"></div>
+            <div class="sol-card__txt">
+              <h4 class="sol-card__tit">시설 점검과 안전 순찰을,<br>하나의 관제 화면에서 운영합니다.</h4>
+              <p class="sol-card__en">City Control</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="process" id="process">
+        <h2 class="direction__title" data-reveal>현장 진단부터 정식 운항까지,<br>도입은 네 단계면 충분합니다.</h2>
+        <div class="pgrid">
+          <article class="ptile ptile--a" data-reveal>
+            <div class="ptile__txt">
+              <h3 class="ptile__tit">현장 진단</h3>
+              <p class="ptile__desc">비행 구역의 공역, 건물 높이, 전파 환경을 직접 측정합니다.</p>
+            </div>
+            <div class="ptile__img"><img src="img/proc_01.jpg" alt="노트북 화면 앞에 떠 있는 드론" width="1400" height="875" loading="lazy"></div>
+          </article>
+          <article class="ptile ptile--b" data-reveal>
+            <div class="ptile__txt">
+              <h3 class="ptile__tit">항로 설계</h3>
+              <p class="ptile__desc">배송지와 이착륙 거점을 잇는 전용 항로를 시뮬레이션으로 검증합니다.</p>
+              <div class="ptile__chips"><span class="chip">공역 승인</span><span class="chip">거점 배치</span><span class="chip">비상 착륙지</span></div>
+            </div>
+            <div class="ptile__img"><img src="img/proc_02.jpg" alt="스마트폰 화면을 지나 날아가는 드론" width="1400" height="875" loading="lazy"></div>
+          </article>
+          <article class="ptile ptile--c" data-reveal>
+            <div class="ptile__img"><img src="img/proc_03.jpg" alt="도시 모형 위로 상자를 나르는 드론들" width="1400" height="875" loading="lazy"></div>
+            <div class="ptile__txt">
+              <h3 class="ptile__tit">시범 운항</h3>
+              <p class="ptile__desc">실제 물량의 일부로 4주간 운항하며 시간과 비용을 함께 확인합니다.</p>
+            </div>
+          </article>
+          <article class="ptile ptile--d" data-reveal>
+            <div class="ptile__img"><img src="img/proc_04.jpg" alt="노트북 위에서 상자를 들어 올리는 드론" width="1400" height="875" loading="lazy"></div>
+            <div class="ptile__txt">
+              <h3 class="ptile__tit">정식 운용</h3>
+              <p class="ptile__desc">관제와 정비, 조종 인력 교육까지 님브라가 맡습니다.</p>
+              <a href="#contact" class="btn btn--line">도입 문의<i class="arrow"></i></a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div></div>
+
+    <section class="rollings" aria-label="도입 상담">
+      <div class="rollings__area">
+        <div class="roll roll--01">
+          <div class="roll__img"><img src="img/roll_01.jpg" alt="" loading="lazy"></div>
+          <div class="roll__txt">
+            <h3 class="title-lg c-white">하늘길이 막막할 때,<br>혼자 고민하지 마세요.</h3>
+          </div>
+        </div>
+        <div class="roll roll--02">
+          <div class="roll__img"><img src="img/roll_02.jpg" alt="" loading="lazy"></div>
+          <div class="roll__txt">
+            <h3 class="title-lg c-white">님브라가<br>당신의 다음 항로를<br>함께 찾습니다.</h3>
+            <a href="#contact" class="btn btn--light">도입 문의</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="footer__video" aria-hidden="true"><video autoplay muted loop playsinline poster="video/footer_poster.jpg" preload="metadata"><source src="video/footer.mp4" type="video/mp4"></video></div>
+  <div class="gutter footer__inner">
+    <div class="footer__top">
+      <h2 class="footer__title">당신의 다음 비행,<br>님브라가 <br class="mo">함께하겠습니다.</h2>
+      <a href="mailto:contact@nimbra.kr" class="btn btn--solid">도입 문의</a>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__info">
+        <p class="footer__logo">NIMBRA</p>
+        <address>
+          (주)님브라 <span class="sep"></span>대표이사 윤서진 <span class="sep"></span>사업자등록번호 214-87-40263<br>
+          인천광역시 연수구 하늘정원로 120, 님브라 항공센터<br>
+          대표전화 032-710-2480 <span class="sep"></span>팩스 032-710-2481 <span class="sep"></span>contact@nimbra.kr
+        </address>
+      </div>
+      <ul class="sns">
+        <li><a href="#contact" aria-label="유튜브"><i class="ic" style="--ic:url(icon/sns_youtube.svg)"></i></a></li>
+        <li><a href="#contact" aria-label="인스타그램"><i class="ic" style="--ic:url(icon/sns_instagram.svg)"></i></a></li>
+        <li><a href="#contact" aria-label="네이버 블로그"><i class="ic" style="--ic:url(icon/sns_naver.svg)"></i></a></li>
+        <li><a href="#contact" aria-label="페이스북"><i class="ic" style="--ic:url(icon/sns_facebook.svg)"></i></a></li>
+      </ul>
+      <p class="footer__copy">© 2026 NIMBRA. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js?v=1"></script>
+</body>
+</html>
