@@ -272,7 +272,7 @@
         trigger: '#tech', start: 'top top', end: 'bottom bottom', scrub: .4,
         onUpdate: s => {
           const p = s.progress, d = clamp((p - .4) / .14);
-          hi.style.setProperty('--hi-t', `${(100 - clamp(p / .38) * 100).toFixed(1)}%`);
+          hi.style.setProperty('--hi-t', `${(100 - clamp((p - .04) / .36) * 100).toFixed(1)}%`);
           inn.style.setProperty('--dim', d.toFixed(2));
           draw.style.setProperty('--fade', (1 - d * .45).toFixed(2));
           seq.forEach((el, i) => el.classList.toggle('is-show', p > .5 + i * .07));

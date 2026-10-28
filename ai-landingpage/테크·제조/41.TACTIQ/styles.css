@@ -246,6 +246,7 @@ ul,ol{list-style:none}
 @media (max-width:767px){
   .hum{height:380vh}
   .hum__steps b{font-size:18px}
+  .hum__text{order:0}
   .tag{font-size:14px;padding:6px 9px}
   .tag small{display:none}
   .tag[data-i="3"]{left:auto!important;right:-4px}
@@ -317,7 +318,8 @@ ul,ol{list-style:none}
   /* mobile: pinned full-bleed blueprint fills, dims, then copy steps in over it */
   .tech{height:320vh;padding:0;margin:40px 0 60px}
   .tech__in{position:sticky;top:0;height:100vh;height:100svh;display:block;padding:0;overflow:hidden}
-  .tech__draw{position:absolute;left:0;right:0;top:50%;width:100%;max-width:none;transform:translateY(-50%);opacity:var(--fade,1)}
+  /* full-screen draw box: grid, tint and fill line span the whole pinned section; svg stays centered */
+  .tech__draw{position:absolute;inset:0;width:100%;max-width:none;aspect-ratio:auto;opacity:var(--fade,1)}
   .tech__in::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:var(--dim,0);
     background:linear-gradient(rgba(16,15,14,.3),rgba(16,15,14,.7) 55%,rgba(16,15,14,.9))}
   .tech__copy{position:absolute;inset:0;z-index:2;justify-content:center;padding:calc(var(--gnb-h) + 8px) var(--gutter) 24px}
