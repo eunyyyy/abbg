@@ -214,15 +214,31 @@
       .fromTo(clip, { clipPath: startClip }, { clipPath: 'inset(0% 0% round 0px)', ease: 'none' })
       .fromTo(clip.querySelector('img'), { scale: 1.15 }, { scale: 1, ease: 'none' }, '<')
       .to(d01Tit, { y: 0, autoAlpha: 1, ease: 'none' }, '>');
-    gsap.fromTo('.design__endbg img', { yPercent: -8 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: '.design__endbg', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
+    gsap.fromTo('.city .photo-bg img', { yPercent: -6, scale: 1.12 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.city', start: 'top bottom', end: 'bottom top', scrub: 1 } });
   }
 
-  /* ---------- 07 Partners: 배경 패럴랙스 + 3D 구체 ---------- */
+  /* ---------- 07 Partners: 구름 걷힘 → 드론 하강·정지·퇴장 → 타이틀/구체 (스티키 무대) ---------- */
   const partners = document.querySelector('.partners');
-  if (!reduce) {
-    gsap.timeline({ scrollTrigger: { trigger: partners, start: 'top top', end: 'bottom center', scrub: 1.5, invalidateOnRefresh: true } })
-      .to('.partners__bg', { yPercent: byDevice(-15, -15, -20), scale: 1.08, ease: 'none' })
-      .to('.partners__inner', { yPercent: 10, ease: 'none' }, '<');
+  const pDrone = partners.querySelector('.partners__drone');
+  const pReveal = partners.querySelectorAll('.partners__title, .cloud');
+  gsap.set(pDrone, { xPercent: -50, yPercent: -50 });
+  if (reduce) {
+    gsap.set(pDrone, { autoAlpha: 0 });
+  } else {
+    gsap.set('.cl--l', { transformOrigin: '0% 100%' });
+    gsap.set('.cl--r', { transformOrigin: '100% 100%' });
+    gsap.set('.cl--c', { transformOrigin: '50% 100%' });
+    gsap.set(pReveal, { autoAlpha: 0, y: 48 });
+    // 스티키 구간 300vh 중 앞 200vh 동안 진행, 나머지 100vh는 다음 섹션이 덮음
+    gsap.timeline({ scrollTrigger: { trigger: partners, start: 'top top', end: () => '+=' + window.innerHeight * 2, scrub: 1, invalidateOnRefresh: true } })
+      .fromTo(pDrone, { y: () => -window.innerHeight * 1.15 }, { y: 0, ease: 'power2.out', duration: 1.2 }, 0.45)
+      .fromTo('.cl--l', { xPercent: 26, scale: 2.1 }, { xPercent: -34, scale: 1, ease: 'power2.inOut', duration: 1.3 }, 0.3)
+      .fromTo('.cl--r', { xPercent: -26, scale: 2.1 }, { xPercent: 34, scale: 1, ease: 'power2.inOut', duration: 1.3 }, 0.3)
+      .fromTo('.cl--c', { scale: 2.2, autoAlpha: 1 }, { yPercent: 40, scale: 1, autoAlpha: 0, ease: 'power2.in', duration: 1.1 }, 0.3)
+      .fromTo('.cl-fog', { autoAlpha: 1 }, { autoAlpha: 0, ease: 'power1.in', duration: 1 }, 0.3)
+      .to(pDrone, { y: () => -window.innerHeight * 0.08, scale: 0.82, autoAlpha: 0, ease: 'power2.in', duration: 0.5 }, 1.95)
+      .to(pReveal, { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.6, stagger: 0.15 }, 2.4)
+      .to({}, { duration: 0.4 });
   }
   const cloud = partners.querySelector('.cloud');
   const items = gsap.utils.toArray('.cloud__item');
