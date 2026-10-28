@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TACTIQ 택티크 | 협동로봇과 휴머노이드</title>
+<meta name="description" content="힘과 촉각을 읽는 협동로봇, 사람의 작업대에 들어가는 휴머노이드. 택티크는 제조 현장의 섬세한 손을 설계합니다.">
+<meta name="theme-color" content="#100F0E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23100F0E%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%226%22 fill=%22%23FF5A1F%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preload" href="fonts/TheJamsil-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+
+<header class="gnb" id="gnb">
+  <div class="gnb__in">
+    <a href="#top" class="gnb__logo" aria-label="TACTIQ 처음으로">TACTIQ</a>
+    <nav class="gnb__nav" aria-label="주요 메뉴">
+      <a href="#about">회사소개</a>
+      <a href="#product">제품</a>
+      <a href="#vision">기술</a>
+      <a href="#industry">적용 분야</a>
+      <a href="#cert">인증</a>
+    </nav>
+    <a href="#contact" class="btn btn--light gnb__cta">도입 문의</a>
+    <button class="gnb__burger" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="모바일 메뉴">
+  <a href="#about">회사소개</a>
+  <a href="#product">제품</a>
+  <a href="#vision">기술</a>
+  <a href="#industry">적용 분야</a>
+  <a href="#cert">인증</a>
+  <a href="#contact" class="mnav__cta">도입 문의</a>
+</nav>
+
+<main>
+
+<!-- HERO : qintara(dot hands) + galaxybrain(wireframe hand) -->
+<section class="hero" id="top">
+  <div class="hero__pin">
+    <div class="hero__copy">
+      <h1 class="hero__title d-title">
+        <span class="line">사람의 손끝에서 배운 감각,</span>
+        <span class="line">로봇의 손으로 완성합니다</span>
+      </h1>
+      <p class="hero__sub">택티크는 힘과 촉각을 읽는 협동로봇으로<br class="br-pc"> 제조 현장의 섬세한 작업까지 함께합니다.</p>
+      <div class="hero__ctas">
+        <a href="#product" class="btn btn--light">제품 살펴보기</a>
+        <a href="#contact" class="btn btn--ghost">도입 문의</a>
+      </div>
+    </div>
+    <div class="hero__stage" aria-hidden="true">
+      <div class="hero__robot" id="heroRobot" data-svg="svg/robot-hand.svg"></div>
+      <div class="hero__core"><i></i><i></i><b></b></div>
+      <canvas class="hero__human" id="heroHuman" data-map="img/hero-hand-map.png"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT : rayraylab statement + outline stack -->
+<section class="about" id="about">
+  <div class="wrap">
+    <p class="about__statement d-title" id="statement">택티크는 로봇이 사람을 대신하는 미래보다, 사람 곁에서 더 섬세하게 일하는 미래를 만듭니다. 무겁고 위험한 일은 로봇이, 판단과 창의는 사람이 맡는 현장을 설계합니다.</p>
+    <p class="about__lead">2013년 창원의 정밀가공 연구실에서 출발해, 지금은 감속기와 토크 센서부터 제어 소프트웨어까지 직접 만드는 로봇 제조사가 되었습니다.</p>
+
+    <div class="about__grid">
+      <div class="about__stack d-title" aria-hidden="true">
+        <span>TACTIQ</span><span>TACTIQ</span><span>TACTIQ</span><span>TACTIQ</span><span>TACTIQ</span>
+      </div>
+      <figure class="about__photo">
+        <img src="img/about-field.jpg" alt="협동로봇 옆에서 태블릿으로 공정을 확인하는 작업자" width="900" height="1125" loading="lazy">
+        <figcaption>사람과 로봇의 거리를<br>좁히는 기술</figcaption>
+      </figure>
+    </div>
+
+    <div class="about__what">
+      <span class="paren">(우리가 하는 일)</span>
+      <div>
+        <p>부품부터 제어기까지 한 지붕 아래에서 만들기 때문에, 고객 현장의 작업대 높이와 부품 크기에 맞춘 로봇을 빠르게 내놓을 수 있습니다.</p>
+        <p>판교 본사에서 소프트웨어를, 창원 스마트공장에서 하드웨어를, 대전 연구소에서 촉각 센서를 개발합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHT : apple scale-up video + big numbers -->
+<section class="hl" id="highlight">
+  <div class="wrap">
+    <h2 class="sec-title d-title">현장에서 먼저 확인했습니다.</h2>
+  </div>
+  <div class="hl__track">
+    <div class="hl__sticky">
+      <div class="hl__frame" id="hlFrame">
+        <video src="video/cobot-lab.mp4" poster="img/cobot-lab-poster.jpg" muted loop playsinline preload="metadata" aria-label="연구실에서 부품을 옮기는 협동로봇"></video>
+        <p class="hl__caption">TQ-C12가 사람과 같은 작업대에서<br>부품을 옮기고 검사하는 모습</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="hl__stats">
+      <li data-reveal>
+        <strong class="d-num"><span data-count="0.02" data-dec="2">0.02</span><em>mm</em></strong>
+        <p>반복 정밀도<br><small>TQ-C5 기준</small></p>
+      </li>
+      <li data-reveal>
+        <strong class="d-num"><span data-count="1280" data-sep="1">1,280</span><em>대</em></strong>
+        <p>누적 설치 대수<br><small>국내외 143개 현장</small></p>
+      </li>
+      <li data-reveal>
+        <strong class="d-num"><span data-count="4">4</span><em>배</em></strong>
+        <p>더 빨라진 셋업<br><small>시연 학습 기능 적용 시</small></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRODUCT : apple model compare -->
+<section class="product" id="product">
+  <div class="wrap">
+    <h2 class="sec-title d-title">현장에 맞는 손을 고르세요.</h2>
+    <p class="sec-lead">세 가지 협동로봇 모두 안전 펜스 없이 사람 곁에서 일하도록 설계했습니다.</p>
+    <div class="product__grid">
+      <article class="pcard pcard--main" data-reveal>
+        <div class="pcard__img"><img src="img/cobot-c12.webp" alt="작업대에 설치된 협동로봇 TQ-C12" width="900" height="587" loading="lazy"></div>
+        <div class="pcard__body">
+          <span class="badge">가장 많이 선택</span>
+          <h3 class="pcard__name d-title">TQ-C12</h3>
+          <p>다품종 소량 생산 라인의 표준 모델입니다. 공구 교환 없이 조립과 포장을 오갑니다.</p>
+          <dl class="spec">
+            <div><dt>가반하중</dt><dd>12kg</dd></div>
+            <div><dt>작업반경</dt><dd>1,300mm</dd></div>
+            <div><dt>반복 정밀도</dt><dd>±0.03mm</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="pcard" data-reveal>
+        <div class="pcard__img"><img src="img/cobot-c5.webp" alt="원통형 받침대 위의 소형 협동로봇 TQ-C5" width="900" height="883" loading="lazy"></div>
+        <div class="pcard__body">
+          <h3 class="pcard__name d-title">TQ-C5</h3>
+          <p>전자부품 조립과 비전 검사에 맞춘 경량 모델입니다.</p>
+          <dl class="spec">
+            <div><dt>가반하중</dt><dd>5kg</dd></div>
+            <div><dt>작업반경</dt><dd>900mm</dd></div>
+            <div><dt>반복 정밀도</dt><dd>±0.02mm</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="pcard" data-reveal>
+        <div class="pcard__img"><img src="img/cobot-c20.webp" alt="스핀들 공구를 단 고하중 협동로봇 TQ-C20" width="900" height="628" loading="lazy"></div>
+        <div class="pcard__body">
+          <h3 class="pcard__name d-title">TQ-C20</h3>
+          <p>용접, 연마, 팔레타이징처럼 힘이 필요한 공정을 맡습니다.</p>
+          <dl class="spec">
+            <div><dt>가반하중</dt><dd>20kg</dd></div>
+            <div><dt>작업반경</dt><dd>1,750mm</dd></div>
+            <div><dt>반복 정밀도</dt><dd>±0.05mm</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HUMANOID : chainGPT robot HUD + sutera callouts, sticky steps -->
+<section class="hum" id="humanoid">
+  <div class="hum__sticky">
+    <div class="wrap hum__in">
+      <div class="hum__text">
+        <h2 class="sec-title d-title">TQ-H1, 사람의 작업대에<br class="br-pc"> 그대로 들어가는 휴머노이드</h2>
+        <ol class="hum__steps" id="humSteps">
+          <li class="is-on"><b>보는 눈</b><span>스테레오 비전과 라이다로 2m 안의 작업자를 실시간으로 인식합니다.</span></li>
+          <li><b>느끼는 손</b><span>손가락마다 22개의 촉각 센서가 있어 0.1N 단위로 힘을 조절합니다.</span></li>
+          <li><b>버티는 몸</b><span>교체형 배터리 두 개로 쉬는 시간 없이 8시간을 일합니다.</span></li>
+          <li><b>멈추는 판단</b><span>예상하지 못한 접촉을 느끼면 8ms 안에 모든 관절을 멈춥니다.</span></li>
+        </ol>
+      </div>
+      <div class="hum__panel">
+        <img src="img/humanoid.jpg" alt="턱에 손을 대고 생각하는 흰색 휴머노이드 로봇 TQ-H1" width="1100" height="880" loading="lazy">
+        <svg class="hum__lines" viewBox="0 0 1100 880" preserveAspectRatio="none" aria-hidden="true">
+          <g data-i="0"><rect x="577" y="196" width="22" height="22"/><polyline points="599,207 700,100 860,100" pathLength="1"/></g>
+          <g data-i="1"><rect x="446" y="335" width="22" height="22"/><polyline points="446,346 330,430 225,430" pathLength="1"/></g>
+          <g data-i="2"><rect x="519" y="705" width="22" height="22"/><polyline points="541,716 680,800 840,800" pathLength="1"/></g>
+          <g data-i="3"><rect x="883" y="589" width="22" height="22"/><polyline points="894,589 940,470 960,470" pathLength="1"/></g>
+        </svg>
+        <div class="tag" data-i="0" style="left:78.2%;top:11.4%">비전 센서<small>STEREO + LIDAR</small></div>
+        <div class="tag tag--r" data-i="1" style="left:20.5%;top:48.9%">촉각 핸드<small>22 SENSORS</small></div>
+        <div class="tag" data-i="2" style="left:76.4%;top:90.9%">배터리 팩<small>HOT SWAP</small></div>
+        <div class="tag" data-i="3" style="left:87.3%;top:53.4%">관절 모듈<small>8ms STOP</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION : tracking boxes over grain photo (galaxy pin, person detection refs) -->
+<section class="vision" id="vision">
+  <div class="wrap">
+    <h2 class="sec-title d-title">로봇이 먼저<br>사람을 봅니다.</h2>
+    <p class="sec-lead">비전 모듈이 작업 공간의 사람과 설비를 초당 60회 구분하고, 거리가 가까워지면 스스로 속도를 낮춥니다.</p>
+  </div>
+  <div class="vision__view" id="visionView">
+    <img src="img/vision-floor.jpg" alt="여러 작업자가 오가는 정밀가공 공장 내부" width="1600" height="900" loading="lazy">
+    <div class="det" style="left:15%;top:62%;width:11%;height:37%"><span><em>작업자 </em><i data-conf="0.97">0.97</i></span></div>
+    <div class="det" style="left:30.5%;top:54%;width:6.6%;height:44%"><span><em>작업자 </em><i data-conf="0.94">0.94</i></span></div>
+    <div class="det" style="left:35.6%;top:51%;width:8.4%;height:42%"><span><em>작업자 </em><i data-conf="0.91">0.91</i></span></div>
+    <div class="det" style="left:43.6%;top:36%;width:7%;height:32%"><span><em>작업자 </em><i data-conf="0.88">0.88</i></span></div>
+    <div class="det det--bot" style="left:62%;top:31%;width:10%;height:30%"><span>TQ-C12 감속 운전</span></div>
+    <div class="vision__aim" id="visionAim" aria-hidden="true"><i></i></div>
+    <canvas class="vision__pts" id="visionPts" aria-hidden="true"></canvas>
+  </div>
+  <div class="wrap">
+    <ul class="vision__facts">
+      <li><b>60회</b><span>초당 인식 횟수</span></li>
+      <li><b>2m</b><span>감속 시작 거리</span></li>
+      <li><b>0대</b><span>안전 펜스 설치 필요 없음</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TECH : blueprint highlight (colosseum ref) -->
+<section class="tech" id="tech">
+  <div class="wrap tech__in">
+    <div class="tech__draw" id="techDraw" aria-hidden="true">
+      <div class="tech__svg tech__svg--base" data-svg="svg/robot-arm.svg"></div>
+      <div class="tech__svg tech__svg--hi" data-svg="svg/robot-arm.svg"></div>
+    </div>
+    <div class="tech__copy">
+      <h2 class="sec-title d-title">보이지 않는 부분까지<br>직접 설계합니다.</h2>
+      <p class="sec-lead">감속기, 토크 센서, 제어기처럼 로봇의 감각을 결정하는 핵심 부품을 모두 자체 개발합니다.</p>
+      <ul class="tech__list">
+        <li data-reveal><span class="ic" data-svg="svg/ic-grip.svg"></span><div><b>힘 제어</b><p>관절마다 토크 센서를 넣어 누르는 힘을 0.1N 단위로 조절합니다.</p></div></li>
+        <li data-reveal><span class="ic" data-svg="svg/ic-chip.svg"></span><div><b>촉각 센싱</b><p>손끝의 압력 분포를 읽어 깨지기 쉬운 부품도 놓치지 않고 잡습니다.</p></div></li>
+        <li data-reveal><span class="ic" data-svg="svg/ic-path.svg"></span><div><b>자율 경로</b><p>작업 공간을 스캔해 충돌 없는 경로를 스스로 계산합니다.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY : rayraylab featured work horizontal -->
+<section class="ind" id="industry">
+  <div class="ind__pin">
+    <div class="wrap ind__head">
+      <h2 class="sec-title d-title">택티크가 일하는 현장</h2>
+    </div>
+    <div class="ind__track" id="indTrack">
+      <article class="icard"><div class="icard__img"><img src="img/case-auto.jpg" alt="자동차 차체 공장의 용접 로봇" width="720" height="960" loading="lazy"></div><h3>자동차</h3><p>차체 용접과 실링</p></article>
+      <article class="icard"><div class="icard__img"><img src="img/case-semi.jpg" alt="반도체 칩을 집고 있는 로봇 그리퍼" width="720" height="960" loading="lazy"></div><h3>반도체</h3><p>웨이퍼와 칩 핸들링</p></article>
+      <article class="icard"><div class="icard__img"><img src="img/case-elec.jpg" alt="실험 작업대 위에서 부품을 집는 협동로봇" width="720" height="960" loading="lazy"></div><h3>전자부품</h3><p>정밀 조립과 비전 검사</p></article>
+      <article class="icard"><div class="icard__img"><img src="img/case-logi.jpg" alt="상자를 옮기는 산업용 로봇과 쌓인 박스" width="720" height="960" loading="lazy"></div><h3>물류</h3><p>팔레타이징과 분류</p></article>
+      <article class="icard"><div class="icard__img"><img src="img/case-factory.jpg" alt="자동화 설비가 늘어선 스마트팩토리 내부" width="720" height="960" loading="lazy"></div><h3>스마트팩토리</h3><p>공정 간 이송 자동화</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- CERT : rayraylab receipt -->
+<section class="cert" id="cert">
+  <div class="wrap">
+    <p class="cert__intro">택티크의 기술은 국내외 기준으로 검증받았습니다.<br>안전과 품질을 숫자로 먼저 보여드립니다.</p>
+    <div class="cert__slot">
+      <span class="paren">(인증</span>
+      <i class="cert__line"></i>
+      <span class="paren">&amp; 수상)</span>
+    </div>
+    <div class="cert__clip" id="certClip">
+      <div class="receipt" id="receipt">
+        <ul>
+          <li>ISO 10218 협동로봇 안전<sup>(1)</sup></li>
+          <li>KCs 산업용 로봇 인증<sup>(4)</sup></li>
+          <li>CE 유럽 기계 지침<sup>(4)</sup></li>
+          <li>ISO 9001 품질경영<sup>(1)</sup></li>
+          <li>대한민국 로봇대상<sup>(2)</sup></li>
+          <li>IR52 장영실상<sup>(1)</sup></li>
+          <li>등록 특허<sup>(148)</sup></li>
+        </ul>
+        <p class="receipt__foot"><span>TACTIQ ROBOTICS</span><span>2026.10</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT : particle handshake (acquire ref) + form -->
+<section class="contact" id="contact">
+  <div class="contact__visual">
+    <canvas id="shake" data-map="img/handshake-map.png" aria-hidden="true"></canvas>
+    <div class="wrap contact__head">
+      <h2 class="contact__title d-title"><span>사람과 로봇이</span> 함께 일하는 현장,<br>지금 설계해 보세요</h2>
+    </div>
+  </div>
+  <div class="wrap contact__body">
+    <div class="contact__info">
+      <p>현장 방문 상담부터 시범 운영까지,<br>담당 엔지니어가 영업일 기준 이틀 안에 연락드립니다.</p>
+      <dl>
+        <div><dt>대표전화</dt><dd><a href="tel:03180174420">031-8017-4420</a></dd></div>
+        <div><dt>이메일</dt><dd><a href="mailto:hello@tactiq.co.kr">hello@tactiq.co.kr</a></dd></div>
+        <div><dt>쇼룸</dt><dd>판교 택티크타워 1층<br>평일 10시부터 18시</dd></div>
+      </dl>
+    </div>
+    <form class="form" id="form" novalidate>
+      <div class="field"><label for="f-co">회사명</label><input id="f-co" name="company" required autocomplete="organization"></div>
+      <div class="field"><label for="f-nm">담당자명</label><input id="f-nm" name="name" required autocomplete="name"></div>
+      <div class="field"><label for="f-tel">연락처</label><input id="f-tel" name="tel" type="tel" required autocomplete="tel" inputmode="tel"></div>
+      <div class="field"><label for="f-em">이메일</label><input id="f-em" name="email" type="email" required autocomplete="email"></div>
+      <div class="field field--full"><label for="f-pd">관심 제품</label>
+        <select id="f-pd" name="product">
+          <option>상담 후 결정</option><option>TQ-C5</option><option>TQ-C12</option><option>TQ-C20</option><option>TQ-H1 휴머노이드</option>
+        </select>
+      </div>
+      <div class="field field--full"><label for="f-msg">문의 내용</label><textarea id="f-msg" name="message" rows="5" placeholder="공정, 부품 크기, 희망 일정을 적어주세요"></textarea></div>
+      <p class="form__msg" id="formMsg" role="status" aria-live="polite"></p>
+      <button type="submit" class="btn btn--accent form__submit">문의 보내기</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <a href="#top" class="gnb__logo foot__logo">TACTIQ</a>
+      <div class="foot__sns">
+        <a href="#" aria-label="유튜브"><i class="ph ph-youtube-logo"></i></a>
+        <a href="#" aria-label="링크드인"><i class="ph ph-linkedin-logo"></i></a>
+        <a href="#" aria-label="인스타그램"><i class="ph ph-instagram-logo"></i></a>
+      </div>
+    </div>
+    <div class="foot__info">
+      <p><span>(주)택티크</span><span>대표 한도윤</span><span>사업자등록번호 214-87-63109</span></p>
+      <p><span>본사 경기도 성남시 분당구 판교역로192번길 14, 택티크타워</span><span>스마트공장 경상남도 창원시 성산구 공단로 471</span></p>
+      <p><span>대표전화 031-8017-4420</span><span>팩스 031-8017-4421</span><span>hello@tactiq.co.kr</span></p>
+    </div>
+    <p class="foot__copy">© 2026 TACTIQ Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script src="script.js?v=1"></script>
+</body>
+</html>

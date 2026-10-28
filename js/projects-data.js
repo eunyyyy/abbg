@@ -61,4 +61,5 @@ export const PROJECTS_FALLBACK = [
   { number: '32', name: 'BAROWAY', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/38.BAROWAY/', cover: 'img/covers/baroway.jpg', hidden: false },
   { number: '33', name: 'ARCLIFT', category: '물류·유통', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AC%BC%EB%A5%98%C2%B7%EC%9C%A0%ED%86%B5/39.ARCLIFT/', cover: 'img/covers/arclift.jpg', hidden: false },
   { number: '34', name: 'NIMBRA', category: '모빌리티', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%EB%AA%A8%EB%B9%8C%EB%A6%AC%ED%8B%B0/40.NIMBRA/', cover: 'img/covers/nimbra.jpg', hidden: false },
+  { number: '35', name: 'TACTIQ', category: '테크·제조', url: 'https://eunyyyy.github.io/abbg/ai-landingpage/%ED%85%8C%ED%81%AC%C2%B7%EC%A0%9C%EC%A1%B0/41.TACTIQ/', cover: 'img/covers/tactiq.jpg', hidden: false },
 ];
