@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preload" href="fonts/Freesentation-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/hero_sky.jpg" as="image">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body class="is-loading">
 
@@ -181,7 +181,7 @@
         </li>
         <li class="panel">
           <span class="panel__no">02</span>
-          <div class="panel__img"><img src="img/tech_02.jpg" alt="비행 제어 컴퓨터가 들어 있는 NX4 본체" width="1100" height="1100" loading="lazy"></div>
+          <div class="panel__img"><img src="img/tech_02.jpg?v=2" alt="자세 제어 표시가 겹쳐진 NX4 본체 상부" width="1100" height="1100" loading="lazy"></div>
           <div class="panel__txt">
             <h3 class="panel__tit">비행 제어</h3>
             <p class="panel__desc">삼중화 센서와 자체 비행 제어 컴퓨터가 돌풍 속에서도 자세를 스스로 바로잡습니다.</p>
@@ -189,7 +189,7 @@
         </li>
         <li class="panel">
           <span class="panel__no">03</span>
-          <div class="panel__img"><img src="img/tech_03.jpg" alt="NX4 전면의 짐벌 카메라" width="1100" height="1100" loading="lazy"></div>
+          <div class="panel__img"><img src="img/tech_03.jpg?v=2" alt="응급 의료 보관함을 실은 NX4 하부 임무 모듈" width="1100" height="1100" loading="lazy"></div>
           <div class="panel__txt">
             <h3 class="panel__tit">임무 장비</h3>
             <p class="panel__desc">배송 모듈, 열화상 카메라, 의료 보관함까지 임무에 맞춰 하부 장비를 교체합니다.</p>
@@ -211,7 +211,6 @@
   <section class="flagship" id="flagship">
     <div class="gutter"><div class="max">
       <div class="flagship__head">
-        <span class="badge">Flagship</span>
         <h2 class="title-xl" data-reveal>한 대로 배송과 점검을 모두,<br>님브라 NX4</h2>
       </div>
       <div class="flagship__stage">
@@ -275,7 +274,6 @@
               <p class="bento__desc">기상, 지형, 공역 데이터를<br>실시간으로 분석해 비행을 판단합니다.</p>
             </div>
             <div class="bento__count">
-              <i class="ic ic--lg" style="--ic:url(icon/globe.png)"></i>
               <p class="bento__label">설계한 항로</p>
               <p class="bento__num"><span class="js-count" data-end="12480" data-sep="1">12,480</span>+</p>
             </div>
@@ -286,7 +284,6 @@
               <p class="bento__desc">배송지와 기체 상태를 함께 계산해<br>빠르고 안전한 경로를 고릅니다.</p>
             </div>
             <div class="bento__count">
-              <i class="ic ic--lg" style="--ic:url(icon/location.png)"></i>
               <p class="bento__label">평균 배송 시간 단축</p>
               <p class="bento__num"><span class="js-count" data-end="37">37</span>%</p>
             </div>
@@ -297,7 +294,6 @@
               <p class="bento__desc">통합 관제 센터가 모든 기체의<br>위치와 상태를 실시간으로 추적합니다.</p>
             </div>
             <div class="bento__count">
-              <i class="ic ic--lg" style="--ic:url(icon/network.png)"></i>
               <p class="bento__label">누적 관제 시간</p>
               <p class="bento__num"><span class="js-count" data-end="41600" data-sep="1">41,600</span>+</p>
             </div>
@@ -308,7 +304,6 @@
               <p class="bento__desc">비행 기록으로 정비 시점을 예측해<br>기체를 늘 최상의 상태로 유지합니다.</p>
             </div>
             <div class="bento__count">
-              <i class="ic ic--lg" style="--ic:url(icon/cloud.png)"></i>
               <p class="bento__label">재계약률</p>
               <p class="bento__num"><span class="js-count" data-end="94">94</span>%</p>
             </div>
@@ -401,83 +396,68 @@
       <section class="process" id="process">
         <h2 class="direction__title" data-reveal>현장 진단부터 정식 운항까지,<br>도입은 네 단계면 충분합니다.</h2>
         <div class="pgrid">
-          <article class="ptile ptile--a" data-reveal>
-            <div class="ptile__txt">
-              <span class="ptile__no">STEP 01</span>
-              <h3 class="ptile__tit">현장 진단</h3>
-              <p class="ptile__desc">비행 구역의 공역, 건물 높이,<br>전파 환경을 직접 측정합니다.</p>
+          <article class="pcard" data-reveal>
+            <div class="pcard__art pcard__art--survey" aria-hidden="true">
+              <img class="pc-drone" src="img/nx_drone.webp" alt="" width="1800" height="737" loading="lazy">
+              <span class="pc-tag pc-tag--1"><i></i>공역 등급 C</span>
+              <span class="pc-tag pc-tag--2"><i></i>최고 건물 86m</span>
+              <span class="pc-tag pc-tag--3"><i></i>전파 수신 양호</span>
             </div>
-            <svg class="ptile__art" viewBox="0 0 360 240" aria-hidden="true">
-              <path class="ln-soft" d="M16 214H344"/>
-              <rect class="fl" x="96" y="92" width="58" height="122" rx="2"/>
-              <path d="M40 214V128h46v86M96 214V92h58v122M166 214v-66h40v66M218 214V108h52v106"/>
-              <path class="ln-soft" d="M108 110h10M132 110h10M108 132h10M132 132h10M108 154h10M132 154h10M108 176h10M132 176h10M230 126h10M252 126h10M230 148h10M252 148h10M230 170h10M252 170h10M50 146h8M68 146h8M50 168h8M68 168h8"/>
-              <path class="ln-dash" d="M270 108h44M206 148h108"/>
-              <path d="M314 108v106M308 114l6-6 6 6M308 208l6 6 6-6"/>
-              <path d="M186 40h30M178 36a8 3 0 1 0 16 0a8 3 0 1 0-16 0M208 36a8 3 0 1 0 16 0a8 3 0 1 0-16 0M193 40h16v8h-16z"/>
-              <path class="ln-dash" d="M201 50L160 92M201 50l42 58"/>
-              <path d="M300 64a20 20 0 0 1 20-20M290 64a30 30 0 0 1 30-30M280 64a40 40 0 0 1 40-40"/>
-              <circle class="dot" cx="320" cy="64" r="4"/>
-            </svg>
+            <div class="pcard__body">
+              <span class="pcard__no">01</span>
+              <h3 class="pcard__tit">현장 진단</h3>
+              <p class="pcard__desc">비행 구역의 공역, 건물 높이,<br>전파 환경을 직접 측정합니다.</p>
+            </div>
           </article>
-          <article class="ptile ptile--b" data-reveal>
-            <div class="ptile__txt">
-              <span class="ptile__no">STEP 02</span>
-              <h3 class="ptile__tit">항로 설계</h3>
-              <p class="ptile__desc">배송지와 이착륙 거점을 잇는 전용 항로를<br>시뮬레이션으로 검증합니다.</p>
-              <div class="ptile__chips"><span class="chip">공역 승인</span><span class="chip">거점 배치</span><span class="chip">비상 착륙지</span></div>
+          <article class="pcard" data-reveal>
+            <div class="pcard__art pcard__art--route" aria-hidden="true">
+              <div class="pc-radar"><span></span><span></span><span></span></div>
+              <span class="pc-core"><i class="ic" style="--ic:url(icon/location.png)"></i></span>
+              <span class="pc-node pc-node--1"><i class="ic" style="--ic:url(icon/drone.png)"></i></span>
+              <span class="pc-node pc-node--2"><i class="ic" style="--ic:url(icon/network.png)"></i></span>
+              <span class="pc-node pc-node--3"><i class="ic" style="--ic:url(icon/globe.png)"></i></span>
+              <span class="pc-node pc-node--4"><i class="ic" style="--ic:url(icon/chart.png)"></i></span>
             </div>
-            <svg class="ptile__art" viewBox="0 0 360 240" aria-hidden="true">
-              <path class="ln-soft" d="M20 40H340M20 80H340M20 120H340M20 160H340M20 200H340M60 20V220M120 20V220M180 20V220M240 20V220M300 20V220"/>
-              <circle class="fl" cx="236" cy="96" r="34"/>
-              <circle class="ln-dash" cx="236" cy="96" r="34"/>
-              <path d="M222 82l28 28M250 82l-28 28"/>
-              <path class="ln-dash" d="M62 186C96 150 110 138 140 140S182 176 196 158 186 120 170 92s28-58 72-60 66 6 86 20"/>
-              <rect x="44" y="172" width="34" height="30" rx="6"/>
-              <path d="M54 180v14M68 180v14M54 187h14"/>
-              <circle class="fl" cx="140" cy="140" r="7"/><circle cx="140" cy="140" r="7"/>
-              <circle class="fl" cx="196" cy="158" r="7"/><circle cx="196" cy="158" r="7"/>
-              <path d="M314 56c0 14-14 26-14 26s-14-12-14-26a14 14 0 0 1 28 0z"/>
-              <circle class="dot" cx="300" cy="56" r="5"/>
-            </svg>
+            <div class="pcard__body">
+              <span class="pcard__no">02</span>
+              <h3 class="pcard__tit">항로 설계</h3>
+              <p class="pcard__desc">배송지와 이착륙 거점을 잇는 전용 항로를<br>시뮬레이션으로 검증합니다.</p>
+              <div class="pcard__chips"><span class="chip">공역 승인</span><span class="chip">거점 배치</span><span class="chip">비상 착륙지</span></div>
+            </div>
           </article>
-          <article class="ptile ptile--c" data-reveal>
-            <div class="ptile__txt">
-              <span class="ptile__no">STEP 03</span>
-              <h3 class="ptile__tit">시범 운항</h3>
-              <p class="ptile__desc">실제 물량의 일부로 4주간 운항하며<br>시간과 비용을 함께 확인합니다.</p>
+          <article class="pcard" data-reveal>
+            <div class="pcard__art pcard__art--pilot" aria-hidden="true">
+              <div class="pc-cal">
+                <p class="pc-cal__head">시범 운항 4주</p>
+                <div class="pc-cal__grid"><span class="">1</span><span class="">2</span><span class="is-run">3</span><span class="is-run">4</span><span class="is-run">5</span><span class="">6</span><span class="">7</span><span class="is-run">8</span><span class="is-run">9</span><span class="is-run">10</span><span class="is-run">11</span><span class="is-run">12</span><span class="">13</span><span class="">14</span><span class="is-run">15</span><span class="is-run">16</span><span class="is-run">17</span><span class="is-run">18</span><span class="is-run">19</span><span class="">20</span><span class="">21</span><span class="is-run">22</span><span class="is-run">23</span><span class="is-run">24</span><span class="is-run">25</span><span class="is-run">26</span><span class="">27</span><span class="">28</span><span class="">29</span><span class="">30</span><span class="is-off">31</span><span class="is-off">32</span><span class="is-off">33</span><span class="is-off">34</span><span class="is-off">35</span></div>
+              </div>
+              <div class="pc-result">
+                <span class="pc-check"></span>
+                <div><strong>평균 18분 배송</strong><span>운항비 32% 절감</span></div>
+              </div>
             </div>
-            <svg class="ptile__art" viewBox="0 0 360 240" aria-hidden="true">
-              <rect x="24" y="36" width="176" height="172" rx="10"/>
-              <path d="M24 70H200M64 24v24M160 24v24"/>
-              <path class="ln-soft" d="M24 104H200M24 138H200M24 172H200M49 70v138M74 70v138M99 70v138M124 70v138M149 70v138M174 70v138"/>
-              <path d="M30 88l6 6 8-10M55 88l6 6 8-10M80 88l6 6 8-10M105 122l6 6 8-10M130 122l6 6 8-10M155 122l6 6 8-10M30 156l6 6 8-10M80 156l6 6 8-10M130 156l6 6 8-10M180 156l6 6 8-10M55 190l6 6 8-10M105 190l6 6 8-10"/>
-              <path d="M228 200H340M228 200V52"/>
-              <rect class="fl" x="244" y="150" width="18" height="50"/><rect class="fl" x="272" y="128" width="18" height="72"/><rect class="fl" x="300" y="110" width="18" height="90"/>
-              <path d="M244 150h18v50M272 128h18v72M300 110h18v90"/>
-              <path class="ln-dash" d="M236 132l36-34 30 14 34-46"/>
-              <circle class="dot" cx="336" cy="66" r="5"/>
-            </svg>
+            <div class="pcard__body">
+              <span class="pcard__no">03</span>
+              <h3 class="pcard__tit">시범 운항</h3>
+              <p class="pcard__desc">실제 물량의 일부로 4주간 운항하며<br>시간과 비용을 함께 확인합니다.</p>
+            </div>
           </article>
-          <article class="ptile ptile--d" data-reveal>
-            <div class="ptile__txt">
-              <span class="ptile__no">STEP 04</span>
-              <h3 class="ptile__tit">정식 운용</h3>
-              <p class="ptile__desc">관제와 정비, 조종 인력 교육까지<br>님브라가 맡습니다.</p>
+          <article class="pcard" data-reveal>
+            <div class="pcard__art pcard__art--ops" aria-hidden="true">
+              <div class="pc-panel">
+                <p class="pc-panel__head">운영 서비스<span class="pc-live"><i></i>운항 24대</span></p>
+                <ul>
+                  <li><span class="pc-check"></span>실시간 관제<span class="pc-toggle"></span></li>
+                  <li><span class="pc-check"></span>정기 정비<span class="pc-toggle"></span></li>
+                  <li><span class="pc-check"></span>조종 인력 교육<span class="pc-toggle"></span></li>
+                </ul>
+              </div>
             </div>
-            <svg class="ptile__art" viewBox="0 0 360 240" aria-hidden="true">
-              <rect class="fl" x="28" y="34" width="200" height="128" rx="10"/>
-              <rect x="28" y="34" width="200" height="128" rx="10"/>
-              <path d="M110 162l-8 34M146 162l8 34M88 198h80"/>
-              <path class="ln-dash" d="M52 138c24-10 30-46 62-46s38 26 64 14 22-36 30-42"/>
-              <circle class="dot" cx="52" cy="138" r="5"/>
-              <path d="M196 58h28M190 54a7 3 0 1 0 14 0a7 3 0 1 0-14 0M216 54a7 3 0 1 0 14 0a7 3 0 1 0-14 0M203 58h14v7h-14z"/>
-              <circle class="gear" cx="292" cy="78" r="24"/>
-              <circle cx="292" cy="78" r="9"/>
-              <path d="M262 214a34 34 0 0 1 68 0"/>
-              <circle cx="296" cy="160" r="18"/>
-              <path d="M272 162a24 24 0 0 1 48 0M272 160v10M320 160v10M320 170c0 12-10 16-20 16"/>
-            </svg>
+            <div class="pcard__body">
+              <span class="pcard__no">04</span>
+              <h3 class="pcard__tit">정식 운용</h3>
+              <p class="pcard__desc">관제와 정비, 조종 인력 교육까지<br>님브라가 맡습니다.</p>
+            </div>
           </article>
         </div>
       </section>
@@ -534,6 +514,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>

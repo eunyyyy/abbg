@@ -191,8 +191,7 @@
 
   if (!reduce) {
     gsap.timeline({ scrollTrigger: { trigger: flag, start: 'top bottom', end: 'bottom top', scrub: 1 } })
-      .fromTo('.flagship__model', { xPercent: -38 }, { xPercent: -62, ease: 'none' })
-      .fromTo('.flagship__drone', { yPercent: 14 }, { yPercent: -10, ease: 'none' }, '<');
+      .fromTo('.flagship__drone', { yPercent: 10 }, { yPercent: -8, ease: 'none' });
     gsap.set('.hs__pt', { scale: 0 });
     gsap.set('.hs__label', { autoAlpha: 0, '--line': '0px' });
     gsap.timeline({ scrollTrigger: { trigger: '.flagship__stage', start: 'top 55%', toggleActions: 'play none none reverse' } })
