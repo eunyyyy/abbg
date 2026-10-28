@@ -252,10 +252,33 @@
   /* TECH: orange highlight climbs the blueprint (colosseum ref) */
   function techSetup() {
     const hi = $('.tech__svg--hi');
-    if (!hasGsap || reduce) return;
-    ScrollTrigger.create({
-      trigger: '#techDraw', start: 'top 70%', end: 'bottom 70%', scrub: .4,
-      onUpdate: s => hi.style.setProperty('--hi-t', `${(100 - s.progress * 100).toFixed(1)}%`)
+    if (!hasGsap || reduce) {
+      if (isMobile()) { $('.tech__in').style.setProperty('--dim', .9); $$('.tech__copy .sec-title, .tech__copy .sec-lead, .tech__list li').forEach(el => el.classList.add('is-show')); }
+      return;
+    }
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 768px)', () => {
+      ScrollTrigger.create({
+        trigger: '#techDraw', start: 'top 70%', end: 'bottom 70%', scrub: .4,
+        onUpdate: s => hi.style.setProperty('--hi-t', `${(100 - s.progress * 100).toFixed(1)}%`)
+      });
+    });
+    // mobile: section is a sticky track; fill first, then dim the drawing and step the copy in
+    mm.add('(max-width: 767px)', () => {
+      const inn = $('.tech__in'), draw = $('#techDraw');
+      const seq = [$('.tech__copy .sec-title'), $('.tech__copy .sec-lead'), ...$$('.tech__list li')];
+      const clamp = v => Math.min(1, Math.max(0, v));
+      ScrollTrigger.create({
+        trigger: '#tech', start: 'top top', end: 'bottom bottom', scrub: .4,
+        onUpdate: s => {
+          const p = s.progress, d = clamp((p - .4) / .14);
+          hi.style.setProperty('--hi-t', `${(100 - clamp(p / .38) * 100).toFixed(1)}%`);
+          inn.style.setProperty('--dim', d.toFixed(2));
+          draw.style.setProperty('--fade', (1 - d * .45).toFixed(2));
+          seq.forEach((el, i) => el.classList.toggle('is-show', p > .5 + i * .07));
+        }
+      });
+      return () => { seq.forEach(el => el.classList.remove('is-show')); inn.style.removeProperty('--dim'); draw.style.removeProperty('--fade'); };
     });
     ScrollTrigger.refresh();
   }

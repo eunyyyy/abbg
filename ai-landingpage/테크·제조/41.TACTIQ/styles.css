@@ -58,6 +58,8 @@ ul,ol{list-style:none}
 .paren{font-size:var(--fs-small);color:var(--muted);letter-spacing:.02em}
 @media (min-width:768px){.br-pc{display:inline}}
 @media (max-width:767px){.br-pc{display:none}}
+.br-mo{display:none}
+@media (max-width:767px){.br-mo{display:inline}}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:999px;
@@ -278,7 +280,10 @@ ul,ol{list-style:none}
 @media (max-width:767px){
   .vision{padding:100px 0 90px}
   .vision__view{margin-top:40px}
-  .vision__view img{aspect-ratio:4/3}
+  .vision__view{height:min(78svh,150vw)}
+  .vision__stage{position:absolute;top:0;left:50%;height:100%;aspect-ratio:16/9;transform:translateX(-41%)}
+  .vision__stage img{height:100%}
+  .vision__stage .det:nth-child(2){display:none}
   .det span{font-size:14px;padding:1px 5px}
   .det em{display:none}
   .det::before{display:none}
@@ -309,9 +314,20 @@ ul,ol{list-style:none}
 .ic svg{width:100%;height:100%}
 @media (max-width:1023px){.tech__in{grid-template-columns:1fr}.tech__list{grid-auto-rows:auto}.tech__draw{max-width:520px;width:100%;margin:0 auto}}
 @media (max-width:767px){
-  .tech{padding:60px 0 100px}
-  .tech__list li{grid-template-columns:44px 1fr;gap:14px;padding:20px}
-  .ic{width:44px;height:44px}
+  /* mobile: pinned full-bleed blueprint fills, dims, then copy steps in over it */
+  .tech{height:320vh;padding:0;margin:40px 0 60px}
+  .tech__in{position:sticky;top:0;height:100vh;height:100svh;display:block;padding:0;overflow:hidden}
+  .tech__draw{position:absolute;left:0;right:0;top:50%;width:100%;max-width:none;transform:translateY(-50%);opacity:var(--fade,1)}
+  .tech__in::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:var(--dim,0);
+    background:linear-gradient(rgba(16,15,14,.3),rgba(16,15,14,.7) 55%,rgba(16,15,14,.9))}
+  .tech__copy{position:absolute;inset:0;z-index:2;justify-content:center;padding:calc(var(--gnb-h) + 8px) var(--gutter) 24px}
+  .tech__copy .sec-title,.tech__copy .sec-lead,.tech .tech__list li[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .tech__copy .sec-title.is-show,.tech__copy .sec-lead.is-show,.tech .tech__list li[data-reveal].is-show{opacity:1;transform:none}
+  .tech__copy .sec-lead{margin-top:14px}
+  .tech__list{flex:none;margin-top:24px;gap:8px}
+  .tech__list li{grid-template-columns:40px 1fr;gap:14px;padding:16px 18px;background:rgba(26,25,24,.9)}
+  .tech__list b{font-size:17px}
+  .ic{width:40px;height:40px}
 }
 
 /* INDUSTRY */
@@ -356,6 +372,7 @@ ul,ol{list-style:none}
 @media (max-width:767px){
   .cert{padding:100px 0 80px}
   .cert__slot{margin-top:48px}
+  .cert__title{font-size:clamp(22px,6.4vw,30px);letter-spacing:-.03em}
   .receipt{padding:24px 20px 20px}
   .receipt li{font-size:22px}
 }
@@ -391,8 +408,8 @@ ul,ol{list-style:none}
 @media (max-width:1023px){.contact__body{grid-template-columns:1fr;gap:48px}}
 @media (max-width:767px){
   .contact__visual{height:70vh;min-height:420px}
-  .contact__head{bottom:28px}
-  .contact__body{margin-top:48px}
+  .contact__head{bottom:0}
+  .contact__body{margin-top:20px}
   .form{grid-template-columns:1fr}
 }
 
