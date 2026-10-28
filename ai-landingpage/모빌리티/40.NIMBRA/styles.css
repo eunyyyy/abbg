@@ -377,6 +377,8 @@ body.nav-open .mnav { opacity: 1; visibility: visible; }
 
 .city { position: relative; z-index: 2; background: var(--bg-deep); min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
 .city .photo-bg img { will-change: transform; }
+/* 배경 실사 드론이 하강 드론과 겹치지 않도록 우상단으로 비켜 배치 */
+.partners .photo-bg img { transform: scale(1.25); transform-origin: 0% 50%; }
 .city__inner { position: relative; z-index: 1; }
 
 /* 스티키 무대: 구름이 걷히고 드론이 내려온 뒤 파트너 구체가 나타남. 마지막 100vh는 다음 섹션이 덮음 */
@@ -406,7 +408,7 @@ body.nav-open .mnav { opacity: 1; visibility: visible; }
 .mk--t { border: 0; background: var(--p-300); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 .mk--r { border-radius: 50% 50% 0 50%; background: var(--p-300); border: 0; }
 @media (max-width: 767px) {
-  .partners .photo-bg img { object-position: 12% center; }
+  .partners .photo-bg img { object-position: 12% center; transform: none; }
   .partners__drone { width: 92vw; }
   .cl { width: 170vw; bottom: -2%; }
   .cl--l { left: -60%; } .cl--r { right: -60%; }
