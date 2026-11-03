@@ -110,7 +110,7 @@ service cloud.firestore {
         (!('infoLine2' in request.resource.data) || validSiteContentString(request.resource.data.infoLine2));
     }
 
-    // 공개 사이트의 "전체 다운받기" 버튼이 클릭될 때마다 한 건씩 쌓는 로그.
+    // 관리자 페이지 프로젝트 관리 탭의 "전체 다운받기" 버튼이 클릭될 때마다 한 건씩 쌓는 로그.
     // 익명 방문자가 쓰는 컬렉션이라 create는 누구나 가능하지만, 이력 조회는
     // admin/ 대시보드의 "다운로드 이력" 탭에서 로그인한 관리자만 볼 수 있습니다.
     match /downloadLogs/{docId} {

@@ -12,7 +12,7 @@
 이름으로 계산한 Release 다운로드 링크를 표시합니다. 새 프로젝트를 추가할 때는 실제
 프로젝트 폴더와 `js/projects-data.js` 항목을 함께 커밋해야 ZIP도 자동 생성됩니다.
 
-공개 사이트의 "전체 다운받기" 버튼은 같은 Release의 `all-projects.zip` 하나를
+관리자 페이지(admin/dashboard.html) 프로젝트 관리 탭의 "전체 다운받기" 버튼은 같은 Release의 `all-projects.zip` 하나를
 내려받습니다. 내부 구조는 `{yyyy-mm-dd}/{산업분야}/{프로젝트명}_{yy-mm-dd}.zip`이며,
 여기서 날짜는 "오늘"이 아니라 **그 프로젝트 폴더가 git에서 마지막으로 변경된 날짜**입니다
 (`package-projects.mjs`가 `git log -1 -- <폴더>`로 계산). 정적 사이트라 클릭 시점의

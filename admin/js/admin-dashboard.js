@@ -368,6 +368,34 @@ function initProjectsTab(fs) {
     return merged;
   }
 
+  // "전체 다운받기" — moved here from the public site so only signed-in
+  // admins can grab the bundle. Downloads the pre-built all-projects.zip
+  // asset (project-downloads release, built by
+  // .github/scripts/package-projects.mjs) containing every public project
+  // nested as {yyyy-mm-dd}/{산업분야}/{프로젝트명}_{yy-mm-dd}.zip, and logs
+  // the click to downloadLogs for the "다운로드 이력" tab — best-effort only,
+  // a logging failure never blocks the download.
+  var downloadAllBtn = document.getElementById('projects-download-all-btn');
+  if (downloadAllBtn) {
+    downloadAllBtn.addEventListener('click', function () {
+      var list = (projectsCache.length ? projectsCache : PROJECTS_FALLBACK).filter(function (p) { return !p.hidden; });
+      if (list.length) {
+        fs.addDoc(fs.collection(fs.db, 'downloadLogs'), {
+          projectCount: Math.min(list.length, 200),
+          projectNumbers: list.slice(0, 200).map(function (p) { return String(p.number); }),
+          createdAt: fs.serverTimestamp()
+        }).catch(function (err) { console.error('download-all log error (download itself is unaffected)', err); });
+      }
+      var a = document.createElement('a');
+      a.href = PROJECT_DOWNLOAD_RELEASE + 'all-projects.zip';
+      a.download = 'all-projects.zip';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+  }
+
   var q = fs.query(fs.collection(fs.db, 'projects'), fs.orderBy('number', 'asc'));
   fs.onSnapshot(q, function (snapshot) {
     var live = [];

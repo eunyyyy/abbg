@@ -463,58 +463,6 @@
   initPlistPreview();
 
   /* =========================================================
-     "전체 다운받기" — downloads one pre-built ZIP (project-downloads
-     GitHub Release's all-projects.zip) containing every public
-     project nested as {yyyy-mm-dd}/{산업분야}/{프로젝트명}_{yy-mm-dd}.zip.
-     The date per project is THAT project's own last-changed commit
-     date (.github/scripts/package-projects.mjs computes it via git
-     log), not "today" — a static GitHub Pages site has no server to
-     know the real click-time date, and re-zipping ~400MB of project
-     files in the visitor's browser on every click would be far too
-     slow. Building it once per relevant push and linking straight to
-     the asset keeps the download itself instant, like any other
-     direct file link. Also logs the click to Firestore (downloadLogs)
-     for the admin dashboard's "다운로드 이력" tab — best-effort only,
-     a logging failure never blocks the download.
-     ========================================================= */
-  var ALL_PROJECTS_ZIP_URL = 'https://github.com/eunyyyy/abbg/releases/download/project-downloads/all-projects.zip';
-  function logDownloadAllEvent(list) {
-    (async function () {
-      try {
-        var cfgMod = await import('./firebase-config.js');
-        if (!cfgMod.isFirebaseConfigured()) return;
-        var appMod = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js');
-        var fsMod = await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js');
-        var app = appMod.initializeApp(cfgMod.firebaseConfig);
-        var db = fsMod.getFirestore(app);
-        await fsMod.addDoc(fsMod.collection(db, 'downloadLogs'), {
-          projectCount: list.length,
-          projectNumbers: list.map(function (p) { return p.number; }),
-          createdAt: fsMod.serverTimestamp()
-        });
-      } catch (err) {
-        console.error('download-all log error (download itself is unaffected)', err);
-      }
-    })();
-  }
-  function initDownloadAllButton() {
-    var btn = document.getElementById('plist-download-all');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var list = currentProjects.slice();
-      if (!list.length) return;
-      logDownloadAllEvent(list);
-      var a = document.createElement('a');
-      a.href = ALL_PROJECTS_ZIP_URL;
-      a.download = 'all-projects.zip';
-      a.rel = 'noopener';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    });
-  }
-
-  /* =========================================================
      Boot: read the static markup first (works instantly, zero
      JS-dependency for first paint), wire up both filter UIs,
      then attempt a live Firestore subscription that — if it
@@ -524,7 +472,6 @@
      ========================================================= */
   currentProjects = readProjectsFromDom();
   initPlistFilters();
-  initDownloadAllButton();
   initFeedbackPicker();
 
   (function () {
